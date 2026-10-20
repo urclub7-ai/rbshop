@@ -1,17 +1,19 @@
 @echo off
 chcp 65001 > nul
 echo ========================================================
-echo   در حال ارسال (Push) به گیت‌هاب: rbshop
+echo   در حال ثبت و ارسال (Push) به گیت‌هاب: rbshop
 echo ========================================================
 cd /d "%~dp0"
-git push -u origin main
+git add .
+git commit -m "Update website"
+git push origin main
 if %errorlevel% neq 0 (
     echo.
-    echo در صورت وجود فایل اولیه در گیت‌هاب، ارسال اجباری (force) انجام می‌شود...
-    git push -u origin main --force
+    echo در صورت لزوم ارسال با -u انجام می شود...
+    git push -u origin main
 )
 echo.
 echo ========================================================
-echo   ارسال با موفقیت انجام شد!
+echo   عملیات به پایان رسید!
 echo ========================================================
 pause
