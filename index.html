@@ -189,6 +189,15 @@
       direction: ltr !important;
       unicode-bidi: isolate;
     }
+
+    /* Hide scrollbar for clean horizontal swiping on mobile */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
   </style>
 </head>
 <body class="selection:bg-brand-red selection:text-white">
@@ -313,21 +322,21 @@
     </div>
 
     <!-- MAIN HERO BANNER BODY (BALANCED DUAL-COLUMN LAYOUT) -->
-    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 sm:pt-14 sm:pb-24">
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 sm:pt-14 sm:pb-24">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
         
-        <!-- RIGHT COLUMN: Grand Narrative & Brand Identity (7 Cols) -->
-        <div class="lg:col-span-7 space-y-4 text-right">
+        <!-- BRAND CONTENT COLUMN (7 Cols on desktop) -->
+        <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-right space-y-3.5 sm:space-y-4">
           
-          <!-- Big Bold Site Title (Atlas Archive Shop typography) with Doodle Wave -->
-          <div>
+          <!-- Big Bold Site Title with Centered/Aligned Doodle Wave -->
+          <div class="flex flex-col items-center lg:items-start">
             <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-display tracking-tight leading-none drop-shadow-md">
               R.B Shop
             </h1>
 
-            <!-- Expressive Hand-Drawn Wavy Underline (Matching Atlas Archive doodle wave!) -->
-            <div class="w-56 sm:w-80 h-5 text-white/95 my-2.5">
+            <!-- Expressive Hand-Drawn Wavy Underline -->
+            <div class="w-44 sm:w-72 h-4 sm:h-5 text-white/95 my-2">
               <svg viewBox="0 0 280 24" fill="none" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 14 C 30 14, 50 20, 70 13 C 90 6, 110 18, 140 11 C 170 4, 200 17, 230 10 C 248 6, 262 13, 276 9" 
                       stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
@@ -336,70 +345,69 @@
           </div>
 
           <!-- Subtitle / Hook -->
-          <h2 class="text-base sm:text-lg lg:text-xl font-bold text-white/95 leading-snug">
+          <h2 class="text-sm sm:text-lg lg:text-xl font-bold text-white/95 leading-snug max-w-lg">
             اصیل‌ترین طعم افغانستان؛ تازه‌ترین کیفیت و پکیج‌های شاهانه
           </h2>
 
           <!-- Detailed Description -->
           <p class="text-rose-100/90 text-xs sm:text-sm lg:text-[15px] leading-relaxed max-w-2xl font-normal">
-            فروشگاه رسمی <strong class="text-white font-bold">رمضان بختیاری</strong>؛ گلچینی از بهترین بادام قندک شیرین و پرچرب، پسته خندان هرات، جلغوزه سیاه ارگانیک پکتیا، چهارمغز کاغذی، کشمش سایگی و زعفران ناب، در بسته‌بندی‌های بهداشتی و کادویی با ارسال سریع و مطمئن پستی DHL به سراسر آلمان و اروپا.
+            فروشگاه رسمی <strong class="text-white font-bold">رمضان بختیاری</strong>؛ گلچینی از بهترین بادام قندک شیرین، پسته خندان هرات، جلغوزه سیاه ارگانیک پکتیا، چهارمغز کاغذی، کشمش سایگی و زعفران ناب با ارسال سریع پستی DHL به سراسر آلمان و اروپا.
           </p>
 
-          <!-- Store Metadata Chips (Glassmorphic Pills) -->
-          <div class="flex flex-wrap items-center gap-2 pt-2 text-xs font-semibold">
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 border border-white/15 text-white backdrop-blur-sm">
-              <i class="fa-solid fa-user-check text-amber-300 text-[11px]"></i>
-              مدیریت: رمضان بختیاری
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 border border-white/15 text-white backdrop-blur-sm">
-              <i class="fa-solid fa-location-dot text-amber-300 text-[11px]"></i>
-              <span class="dir-ltr">Möllers weg 6, Büsum, Germany</span>
-            </span>
-            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 border border-white/15 text-white backdrop-blur-sm">
-              <i class="fa-solid fa-truck-fast text-amber-300 text-[11px]"></i>
-              ارسال پستی DHL و DPD
-            </span>
+          <!-- Store Metadata Chips (Mobile: Neat Center / Desktop: Row) -->
+          <div class="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 w-full max-w-md lg:max-w-none pt-1">
+            <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
+              <i class="fa-solid fa-user-check text-amber-300 text-[10px]"></i>
+              <span>مدیریت: رمضان بختیاری</span>
+            </div>
+            <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
+              <i class="fa-solid fa-location-dot text-amber-300 text-[10px]"></i>
+              <span class="dir-ltr">Büsum, Germany</span>
+            </div>
+            <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
+              <i class="fa-solid fa-truck-fast text-amber-300 text-[10px]"></i>
+              <span>ارسال پستی DHL به تمام اروپا</span>
+            </div>
           </div>
 
-          <!-- Direct CTA Buttons -->
-          <div class="flex flex-wrap items-center gap-3 pt-3">
-            <a href="#products" class="px-6 py-3 rounded-full bg-white hover:bg-rose-50 text-[#7a0f1b] font-black text-xs sm:text-sm flex items-center gap-2 shadow-xl hover:shadow-2xl transition">
+          <!-- Direct CTA Buttons (Full width on mobile, row on tablet/desktop) -->
+          <div class="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2.5 w-full max-w-md lg:max-w-none pt-2">
+            <a href="#products" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white hover:bg-rose-50 text-[#7a0f1b] font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transition active:scale-95">
               <i class="fa-solid fa-bag-shopping text-sm"></i>
-              <span>مشاهده محصولات و پکیج‌ها (۱۲ قلم)</span>
+              <span>مشاهده و خرید محصولات (۱۲ قلم)</span>
             </a>
             <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AC%D9%86%D8%A7%D8%A8%20%D8%A8%D8%AE%D8%AA%DB%8C%D8%A7%D8%B1%DB%8C%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85." 
                target="_blank" 
-               class="px-5 py-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/25 text-white font-bold text-xs sm:text-sm flex items-center gap-2 backdrop-blur-sm transition">
+               class="w-full sm:w-auto px-5 py-3 rounded-full bg-black/50 hover:bg-black/70 border border-white/25 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-sm transition active:scale-95">
               <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
-              <span>ثبت سفارش در واتساپ</span>
+              <span>سفارش سریع در واتساپ</span>
             </a>
           </div>
 
         </div>
 
-        <!-- LEFT COLUMN: Brand Logo Emblem Spotlight (Replaced Card) -->
-        <div class="lg:col-span-5 flex items-center justify-center py-4 lg:py-0">
-          <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 flex items-center justify-center">
+        <!-- LEFT COLUMN: Brand Logo Emblem Spotlight (Compact on Mobile) -->
+        <div class="lg:col-span-5 flex items-center justify-center py-2 lg:py-0">
+          <div class="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 flex items-center justify-center">
             
             <!-- Ambient Glow behind Logo -->
-            <div class="absolute inset-0 bg-gradient-to-tr from-brand-red/35 via-amber-500/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-red/35 via-amber-500/20 to-transparent rounded-full blur-2xl pointer-events-none"></div>
 
             <!-- Glassmorphic Emblem Container with Chrome/Gold Rim -->
-            <div class="relative w-60 h-60 sm:w-68 sm:h-68 lg:w-72 lg:h-72 rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-black/65 via-[#200206]/85 to-black/85 backdrop-blur-xl border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col items-center justify-center group hover:border-amber-400/50 transition-all duration-300">
+            <div class="relative w-44 h-44 sm:w-60 sm:h-60 lg:w-68 lg:h-68 rounded-2xl sm:rounded-3xl p-4 sm:p-6 bg-gradient-to-b from-black/70 via-[#200206]/85 to-black/85 backdrop-blur-xl border border-white/20 shadow-xl flex flex-col items-center justify-center group hover:border-amber-400/50 transition-all duration-300">
               
-              <!-- Subtle decorative corner glints -->
-              <span class="absolute top-3.5 right-3.5 text-amber-300/40 text-[10px] select-none">✦</span>
-              <span class="absolute bottom-3.5 left-3.5 text-amber-300/40 text-[10px] select-none">✦</span>
+              <span class="absolute top-2.5 right-2.5 text-amber-300/40 text-[10px] select-none">✦</span>
+              <span class="absolute bottom-2.5 left-2.5 text-amber-300/40 text-[10px] select-none">✦</span>
 
               <!-- Authentic High-Res R.B Shop Logo -->
-              <div class="w-full h-full flex items-center justify-center p-2">
-                <img src="assets/logo_transparent.png" alt="R.B Shop Official Logo" class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-500">
+              <div class="w-full h-full flex items-center justify-center p-1">
+                <img src="assets/logo_transparent.png" alt="R.B Shop Official Logo" class="w-full h-full object-contain filter drop-shadow-[0_8px_16px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-500">
               </div>
 
               <!-- Official Brand Seal Pill -->
-              <div class="mt-2.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black/70 border border-white/15 text-white text-[11px] font-bold shadow-md">
+              <div class="mt-1.5 inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/80 border border-white/15 text-white text-[10px] sm:text-[11px] font-bold shadow-md">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                <span class="font-display tracking-wider">R.B SHOP • فروشگاه رسمی</span>
+                <span class="font-display tracking-wider">R.B SHOP • رسمی</span>
               </div>
 
             </div>
@@ -413,70 +421,70 @@
   </header>
 
   <!-- UNIFIED PRODUCTS & PACKAGES CATALOG (ATLAS ARCHIVE SHOP STYLE) -->
-  <section id="products" class="py-10 sm:py-14 bg-[#07080a] relative border-b border-brand-border/60">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="products" class="py-8 sm:py-14 bg-[#07080a] relative border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
       
-      <!-- ATLAS ARCHIVE FILTER & SORT BAR -->
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-brand-border/80">
+      <!-- ATLAS ARCHIVE FILTER & SORT BAR (SWIPEABLE HORIZONTAL ON MOBILE) -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 pb-4 sm:pb-6 mb-5 sm:mb-8 border-b border-brand-border/80">
         
-        <!-- Filter Pills Tabs -->
-        <div class="flex flex-wrap items-center gap-2" id="filterContainer">
-          <button onclick="filterProducts('all')" class="filter-btn active px-4 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red">
+        <!-- Filter Pills Tabs (Horizontal Swipe on Mobile) -->
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0" id="filterContainer">
+          <button onclick="filterProducts('all')" class="filter-btn active shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red">
             همه اقلام (۱۲)
           </button>
-          <button onclick="filterProducts('packages')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+          <button onclick="filterProducts('packages')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
             پکیج‌های شاهانه (۴)
           </button>
-          <button onclick="filterProducts('nuts')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+          <button onclick="filterProducts('nuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
             بادام و مغزیجات (۲)
           </button>
-          <button onclick="filterProducts('pinenuts')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+          <button onclick="filterProducts('pinenuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
             پسته و جلغوزه (۲)
           </button>
-          <button onclick="filterProducts('fruits')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+          <button onclick="filterProducts('fruits')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
             کشمش و میوه خشک (۳)
           </button>
-          <button onclick="filterProducts('saffron')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+          <button onclick="filterProducts('saffron')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
             زعفران اعلا (۱)
           </button>
         </div>
 
-        <!-- Atlas Archive Total Items Status Label -->
-        <div class="text-xs text-brand-silver font-medium flex items-center gap-2 self-start md:self-auto">
-          <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+        <!-- Total Items Status Label -->
+        <div class="text-[11px] sm:text-xs text-brand-silver font-medium flex items-center gap-1.5 self-start md:self-auto">
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
           <span id="productsCount" class="font-bold text-white">تعداد ۱۲ قلم کالا و پکیج موجود</span>
         </div>
       </div>
 
-      <!-- ATLAS ARCHIVE 4-COLUMN PRODUCTS GRID -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="productsGrid">
+      <!-- ATLAS ARCHIVE 2-COL MOBILE / 4-COL DESKTOP PRODUCTS GRID -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-5" id="productsGrid">
 
         <!-- 1. مخلوط شاهانه میوه خشک و مغزیجات -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/rb_royal_box.jpg" alt="مخلوط شاهانه میوه خشک و مغزیجات R.B Shop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱.۲ کیلوگرم • پکیج شاهانه</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">مخلوط شاهانه میوه خشک و مغزیجات</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">۸ قلم اعلا: پسته، بادام قندک، چهارمغز، کشمش، قیسی و انجیر</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">بسته ۱.۲ کیلو • شاهانه</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">مخلوط شاهانه میوه خشک و مغزیجات</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">۸ قلم اعلا: پسته، بادام قندک، چهارمغز، کشمش، قیسی و انجیر</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
-                <span class="text-xl font-black text-white font-display">۴۵.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۴۵.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('pkg1', 'مخلوط شاهانه میوه خشک و مغزیجات', 45.00, 'assets/rb_royal_box.jpg', 'بسته مخلوط ۱.۲ کیلو')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AE%D9%84%D9%88%D8%B7%20%D8%B4%D8%A7%D9%87%D8%A7%D9%86%D9%87%20%D9%85%DB%8C%D9%88%D9%87%20%D8%AE%D8%B4%DA%A9%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -484,31 +492,31 @@
         </div>
 
         <!-- 2. پکیج عیدانه و مهمانی آر بی -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/mixed_nuts.jpg" alt="پکیج عیدانه و مهمانی آر بی" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱ کیلوگرم • پذیرایی لوکس</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پکیج عیدانه و مهمانی آر بی</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">مخلوط بادام کاغذی، پسته خندان، چهارمغز و کشمش سبز اعلا</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">بسته ۱ کیلو • پذیرایی لوکس</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">پکیج عیدانه و مهمانی آر بی</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">مخلوط بادام کاغذی، پسته خندان، چهارمغز و کشمش سبز اعلا</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
-                <span class="text-xl font-black text-white font-display">۳۲.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۳۲.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('pkg2', 'پکیج عیدانه و مهمانی آر بی', 32.00, 'assets/mixed_nuts.jpg', 'بسته ۱ کیلوگرمی')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DA%A9%DB%8C%D8%AC%20%D8%B9%DB%8C%D8%AF%D8%A7%D9%86%D9%87%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -516,31 +524,31 @@
         </div>
 
         <!-- 3. پکیج سلامتی و انرژی طبیعی -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/almonds.jpg" alt="پکیج سلامتی و انرژی طبیعی" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱ کیلوگرم • ۱۰۰٪ طبیعی</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پکیج سلامتی و انرژی طبیعی</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">مغز بادام شیرین خام، مغز پسته، مغز چهارمغز و توت ارگانیک</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">بسته ۱ کیلو • ۱۰۰٪ طبیعی</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">پکیج سلامتی و انرژی طبیعی</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">مغز بادام شیرین خام، مغز پسته، مغز چهارمغز و توت ارگانیک</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
-                <span class="text-xl font-black text-white font-display">۲۹.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۲۹.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('pkg3', 'پکیج سلامتی و انرژی طبیعی', 29.00, 'assets/almonds.jpg', 'بسته ۱ کیلوگرمی')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DA%A9%DB%8C%D8%AC%20%D8%B3%D9%84%D8%A7%D9%85%D8%AA%DB%8C%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -548,31 +556,31 @@
         </div>
 
         <!-- 4. پکیج VIP جلغوزه و پسته هرات -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/pinenuts.jpg" alt="پکیج VIP جلغوزه و پسته هرات" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱ کیلوگرم • مجلل و VIP</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پکیج VIP جلغوزه و پسته هرات</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">۵۰۰ گرم جلغوزه سیاه کابل و پکتیا + ۵۰۰ گرم پسته درشت هرات</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">بسته ۱ کیلو • مجلل VIP</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">پکیج VIP جلغوزه و پسته هرات</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">۵۰۰ گرم جلغوزه سیاه کابل و پکتیا + ۵۰۰ گرم پسته درشت هرات</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
-                <span class="text-xl font-black text-white font-display">۴۲.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۴۲.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('pkg4', 'پکیج VIP جلغوزه و پسته هرات', 42.00, 'assets/pinenuts.jpg', 'بسته ۱ کیلوگرمی')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DA%A9%DB%8C%D8%AC%20VIP%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -580,31 +588,31 @@
         </div>
 
         <!-- 5. بادام قندک درجه یک -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="nuts">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="nuts">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/almonds.jpg" alt="بادام قندک درجه یک افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">بادام قندک اعلای دست‌چین</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">پوست نازک کاغذی با شکستن آسان با دست، مغز شیرین و پرچرب</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">بادام قندک اعلای دست‌چین</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">پوست نازک کاغذی با شکستن آسان با دست، مغز شیرین و پرچرب</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
-                <span class="text-xl font-black text-white font-display">۲۲.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۲۲.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p1', 'بادام قندک اعلا (۱ کیلو)', 22.00, 'assets/almonds.jpg', '۱ کیلوگرم')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%A8%D8%A7%D8%AF%D8%A7%D9%85%20%D9%82%D9%86%D8%AF%DA%A9%20%D8%A7%D8%B9%D9%84%D8%A7%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -612,31 +620,31 @@
         </div>
 
         <!-- 6. پسته خندان ممتاز هرات -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="pinenuts">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="pinenuts">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/pistachio.jpg" alt="پسته خندان هراتی درجه یک" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پسته خندان ممتاز هرات</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">پسته درشت و خندان هرات با بافت برشته و طعم ناب طبیعی</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">پسته خندان ممتاز هرات</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">پسته درشت و خندان هرات با بافت برشته و طعم ناب طبیعی</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
-                <span class="text-xl font-black text-white font-display">۲۶.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۲۶.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p2', 'پسته خندان ممتاز هرات (۱ کیلو)', 26.00, 'assets/pistachio.jpg', '۱ کیلوگرم')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%D8%B3%D8%AA%D9%87%20%D8%AE%D9%86%D8%AF%D8%A7%D9%86%20%D9%87%D8%B1%D8%A7%D8%AA%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -644,31 +652,31 @@
         </div>
 
         <!-- 7. جلغوزه سیاه کابل و پکتیا -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="pinenuts">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="pinenuts">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/pinenuts.jpg" alt="جلغوزه سیاه افغانستان پکتیا و خوست" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۵۰۰ گرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">جلغوزه سیاه پکتیا و خوست</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">جلغوزه سیاه ارگانیک اعلا، دانه‌های درشت کشیده و روغنی</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۵۰۰ گرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">جلغوزه سیاه پکتیا و خوست</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">جلغوزه سیاه ارگانیک اعلا، دانه‌های درشت کشیده و روغنی</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت ۵۰۰ گرم:</span>
-                <span class="text-xl font-black text-white font-display">۳۴.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۳۴.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p3', 'جلغوزه سیاه اعلا (۵۰۰ گرم)', 34.00, 'assets/pinenuts.jpg', '۵۰۰ گرم خالص')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%AC%D9%84%D8%BA%D9%88%D8%B2%D9%87%20%D8%B3%DB%8C%D8%A7%D9%87%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -676,31 +684,31 @@
         </div>
 
         <!-- 8. چهارمغز کاغذی سفید تازه -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="nuts">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="nuts">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/walnuts.jpg" alt="چهارمغز کاغذی افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">چهارمغز کاغذی سفید تازه</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">پوست کاغذی نازک با شکستن آسان با دست، مغز سفید و پرچرب</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">چهارمغز کاغذی سفید تازه</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">پوست کاغذی نازک با شکستن آسان با دست، مغز سفید و پرچرب</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
-                <span class="text-xl font-black text-white font-display">۱۸.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۱۸.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p4', 'چهارمغز کاغذی سفید (۱ کیلو)', 18.00, 'assets/walnuts.jpg', '۱ کیلوگرم')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%DA%86%D9%87%D8%A7%D8%B1%D9%85%D8%BA%D8%B2%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -708,31 +716,31 @@
         </div>
 
         <!-- 9. کشمش سایگی سیاه شاهانه -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/raisins.jpg" alt="کشمش سیاه سایگی افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">کشمش سیاه سایگی شاهانه</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">تهیه شده در سایه، دانه درشت گوشتی، خون‌ساز و بدون تیزاب</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">کشمش سیاه سایگی شاهانه</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">تهیه شده در سایه، دانه درشت گوشتی، خون‌ساز و بدون تیزاب</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
-                <span class="text-xl font-black text-white font-display">۱۵.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۱۵.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p5', 'کشمش سیاه سایگی شاهانه (۱ کیلو)', 15.00, 'assets/raisins.jpg', '۱ کیلوگرم')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%DA%A9%D8%B4%D9%85%D8%B4%20%D8%B3%D8%A7%DB%8C%DA%AF%DB%8C%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -740,31 +748,31 @@
         </div>
 
         <!-- 10. انجیر شکری قندهار -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/figs.jpg" alt="انجیر خشک شکری قندهار" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">انجیر شکری ممتاز قندهار</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">انجیر عسلی طلایی قندهار با بافت نرم و مقوی، کاملاً ارگانیک</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">انجیر شکری ممتاز قندهار</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">انجیر عسلی طلایی قندهار با بافت نرم و مقوی، کاملاً ارگانیک</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
-                <span class="text-xl font-black text-white font-display">۱۶.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۱۶.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p6', 'انجیر شکری ممتاز قندهار (۱ کیلو)', 16.00, 'assets/figs.jpg', '۱ کیلوگرم')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%A7%D9%86%D8%AC%DB%8C%D8%B1%20%D9%82%D9%86%D8%AF%D9%87%D8%A7%D8%B1%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -772,31 +780,31 @@
         </div>
 
         <!-- 11. زعفران خالص سوپر نگین هرات -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="saffron">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="saffron">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/saffron.jpg" alt="زعفران سرگل سوپر نگین هرات" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۵ گرم در کریستال کادویی</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">زعفران خالص سوپر نگین هرات</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">سرگل ممتاز صادراتی با عطر دل‌انگیز و قدرت رنگ‌دهی استثنایی</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">بسته ۵ گرم در کریستال</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">زعفران خالص سوپر نگین هرات</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">سرگل ممتاز صادراتی با عطر دل‌انگیز و قدرت رنگ‌دهی استثنایی</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">بسته ۵ گرم:</span>
-                <span class="text-xl font-black text-white font-display">۱۸.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۱۸.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p7', 'زعفران سوپر نگین هرات (۵ گرام)', 18.00, 'assets/saffron.jpg', '۵ گرام در کریستال کادویی')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B2%D8%B9%D9%81%D8%B1%D8%A7%D9%86%20%D9%87%D8%B1%D8%A7%D8%AA%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -804,31 +812,31 @@
         </div>
 
         <!-- 12. قیسی و زردآلو آفتابی -->
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
-          <div class="h-48 overflow-hidden bg-black/40">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40">
             <img src="assets/apricot.jpg" alt="قیسی و زردآلو آفتابی افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">قیسی و زردآلو آفتابی شیرین</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">برگه زردآلو و قیسی آفتابی ملس، کاملاً طبیعی و بدون گوگرد</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">واحد: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">قیسی و زردآلو آفتابی شیرین</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">برگه زردآلو و قیسی آفتابی ملس، کاملاً طبیعی و بدون گوگرد</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
-                <span class="text-xl font-black text-white font-display">۱۴.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">۱۴.۰۰ <span class="text-[10px] sm:text-xs text-brand-silver font-sans">€</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 <button onclick="addToCart('p8', 'قیسی و زردآلو آفتابی (۱ کیلو)', 14.00, 'assets/apricot.jpg', '۱ کیلوگرم')" 
-                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                        class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                  <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                 </button>
                 <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%82%DB%8C%D8%B3%DB%8C%20%D9%87%D8%B3%D8%AA%D9%85." 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
@@ -1048,21 +1056,21 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="bg-brand-dark border-t border-brand-border py-10 text-xs text-brand-silver">
+  <footer class="bg-brand-dark border-t border-brand-border pt-10 pb-24 sm:pb-10 text-xs text-brand-silver">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
         
-        <!-- Logo & Store -->
-        <div class="flex items-center gap-3.5">
-          <div class="w-11 h-11 rounded-xl overflow-hidden bg-brand-surface p-1 border border-brand-border shrink-0 shadow-sm">
+        <!-- Logo & Store (Centered on Mobile) -->
+        <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 w-full md:w-auto">
+          <div class="w-12 h-12 rounded-xl overflow-hidden bg-brand-surface p-1 border border-brand-border shrink-0 shadow-sm mx-auto sm:mx-0">
             <img src="assets/logo_transparent.png" alt="R.B Shop" class="w-full h-full object-contain">
           </div>
-          <div class="space-y-1">
+          <div class="space-y-1 text-center sm:text-right">
             <div class="text-sm sm:text-base font-black text-white font-display tracking-wide leading-tight">
               R.B SHOP <span class="text-brand-silver/50 font-normal mx-1">•</span> <span class="text-white font-bold font-sans">فروشگاه آر بی شاپ</span>
             </div>
-            <div class="text-xs text-brand-silver/75 flex flex-wrap items-center gap-1.5 leading-normal">
+            <div class="text-xs text-brand-silver/75 flex flex-wrap items-center justify-center sm:justify-start gap-1.5 leading-normal">
               <span>مدیریت:</span>
               <span class="font-bold text-white">رمضان بختیاری</span>
               <span class="text-brand-silver/40 font-normal">|</span>
@@ -1240,6 +1248,26 @@
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toastContainer" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4"></div>
 
+  <!-- FLOATING BOTTOM CART BAR (MOBILE ONLY) -->
+  <div id="mobileBottomCartBar" class="fixed bottom-3 left-3 right-3 sm:hidden z-40 hidden transition-all duration-300">
+    <div onclick="openCart()" class="bg-gradient-to-r from-[#941120] to-[#54070e] border border-amber-400/40 rounded-2xl p-3 shadow-[0_12px_36px_rgba(0,0,0,0.85)] flex items-center justify-between cursor-pointer active:scale-98">
+      <div class="flex items-center gap-2.5">
+        <div class="relative w-10 h-10 rounded-xl bg-black/40 border border-white/20 flex items-center justify-center text-white">
+          <i class="fa-solid fa-bag-shopping text-base text-amber-300"></i>
+          <span id="mobileBarCount" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-400 text-[#54070e] text-[10px] font-black flex items-center justify-center font-display">0</span>
+        </div>
+        <div>
+          <span class="text-xs font-bold text-white block">سبد خرید شما</span>
+          <span id="mobileBarTotal" class="text-sm font-black text-amber-300 font-display dir-ltr">0.00 €</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white text-[#7a0f1b] font-black text-xs shadow-md">
+        <span>تکمیل خرید</span>
+        <i class="fa-solid fa-arrow-left text-[11px]"></i>
+      </div>
+    </div>
+  </div>
+
   <!-- JAVASCRIPT LOGIC -->
   <script>
     // State
@@ -1297,6 +1325,20 @@
       document.getElementById('drawerBadge').textContent = `${totalCount} قلم`;
       document.getElementById('cartSubtotal').textContent = `${totalPrice.toFixed(2)} €`;
       document.getElementById('cartTotal').textContent = `${totalPrice.toFixed(2)} €`;
+
+      // Update mobile bottom bar
+      const mobileBar = document.getElementById('mobileBottomCartBar');
+      if (mobileBar) {
+        if (totalCount > 0) {
+          mobileBar.classList.remove('hidden');
+          const mCount = document.getElementById('mobileBarCount');
+          const mTotal = document.getElementById('mobileBarTotal');
+          if (mCount) mCount.textContent = totalCount;
+          if (mTotal) mTotal.textContent = `${totalPrice.toFixed(2)} €`;
+        } else {
+          mobileBar.classList.add('hidden');
+        }
+      }
 
       const container = document.getElementById('cartItemsContainer');
       const checkoutForm = document.getElementById('checkoutFormSection');
@@ -1694,44 +1736,44 @@
         const inStock = p.inStock !== false;
 
         return `
-        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group ${inStock ? '' : 'opacity-70'}" data-category="${p.category}">
-          <div class="h-48 overflow-hidden bg-black/40 relative">
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group ${inStock ? '' : 'opacity-70'}" data-category="${p.category}">
+          <div class="h-32 sm:h-48 overflow-hidden bg-black/40 relative">
             <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             ${inStock ? '' : `
-              <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
-                <span class="px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500/50 text-white text-xs font-bold">
-                  ناموجود در انبار
+              <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px] flex items-center justify-center p-2 text-center">
+                <span class="px-2 py-0.5 rounded-full bg-rose-950/90 border border-rose-500/50 text-white text-[10px] sm:text-xs font-bold">
+                  ناموجود
                 </span>
               </div>
             `}
           </div>
-          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+          <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">${p.unit || ''}</span>
-              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">${p.title}</h3>
-              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">${p.description || ''}</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">${p.unit || ''}</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">${p.title}</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">${p.description || ''}</p>
             </div>
-            <div class="pt-3 border-t border-white/10">
-              <div class="flex items-center justify-between mb-2.5">
-                <span class="text-xs text-brand-silver/70">قیمت:</span>
-                <span class="text-xl font-black text-white font-display">${persianPrice} <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+            <div class="pt-2 sm:pt-3 border-t border-white/10">
+              <div class="flex items-baseline justify-between mb-2">
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">${persianPrice} <span class="text-[10px] sm:text-xs text-brand-silver font-sans">یورو</span></span>
               </div>
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-1.5">
                 ${inStock ? `
                   <button onclick="addToCart('${p.id}', '${p.title.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}', '${(p.variant || p.unit || '').replace(/'/g, "\\'")}')" 
-                          class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
-                    <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                          class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
+                    <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
                   </button>
                 ` : `
-                  <button disabled class="flex-1 py-2.5 rounded-xl text-xs font-bold text-slate-400 bg-white/5 border border-white/10 cursor-not-allowed flex items-center justify-center gap-1.5">
-                    <i class="fa-solid fa-ban text-xs"></i> فعلاً ناموجود
+                  <button disabled class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[10px] sm:text-xs font-bold text-slate-400 bg-white/5 border border-white/10 cursor-not-allowed flex items-center justify-center gap-1">
+                    <i class="fa-solid fa-ban text-[10px]"></i> <span>ناموجود</span>
                   </button>
                 `}
                 <a href="https://wa.me/491729343833?text=${waMsg}" 
                    target="_blank" 
                    title="سفارش سریع در واتساپ"
-                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
-                  <i class="fa-brands fa-whatsapp text-base"></i>
+                   class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
               </div>
             </div>
