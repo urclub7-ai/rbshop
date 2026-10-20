@@ -310,7 +310,7 @@
           </button>
           
           <!-- Dropdown Menu -->
-          <div id="langDropdown" class="hidden absolute top-full mt-2 end-0 w-44 rounded-2xl bg-[#1b0206]/95 border border-white/20 backdrop-blur-xl shadow-2xl p-1.5 z-50 text-xs font-bold space-y-1">
+          <div id="langDropdown" class="hidden absolute top-full mt-2 end-0 w-48 max-h-80 overflow-y-auto rounded-2xl bg-[#1b0206]/98 border border-white/20 backdrop-blur-xl shadow-2xl p-1.5 z-50 text-xs font-bold space-y-1">
             <button onclick="setLanguage('en')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="en">
               <span class="flex items-center gap-2.5">
                 <span class="text-sm">🇬🇧</span>
@@ -325,12 +325,40 @@
               </span>
               <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-de"></i>
             </button>
+            <button onclick="setLanguage('nl')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="nl">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇳🇱</span>
+                <span>Nederlands</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-nl"></i>
+            </button>
             <button onclick="setLanguage('fr')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="fr">
               <span class="flex items-center gap-2.5">
                 <span class="text-sm">🇫🇷</span>
                 <span>Français</span>
               </span>
               <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-fr"></i>
+            </button>
+            <button onclick="setLanguage('es')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="es">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇪🇸</span>
+                <span>Español</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-es"></i>
+            </button>
+            <button onclick="setLanguage('it')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="it">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇮🇹</span>
+                <span>Italiano</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-it"></i>
+            </button>
+            <button onclick="setLanguage('tr')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="tr">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇹🇷</span>
+                <span>Türkçe</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-tr"></i>
             </button>
             <button onclick="setLanguage('fa')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="fa">
               <span class="flex items-center gap-2.5">
@@ -375,11 +403,15 @@
       
       <!-- Quick Language Selector in Mobile Menu -->
       <div class="pb-3 border-b border-white/10">
-        <span class="text-[11px] text-rose-200/80 block mb-2 font-bold">Language / Sprache / زبان:</span>
+        <span class="text-[11px] text-rose-200/80 block mb-2 font-bold">Language / Sprache / Taal / زبان:</span>
         <div class="grid grid-cols-5 gap-1.5 text-center">
           <button type="button" data-mobile-lang="en" onclick="setLanguage('en')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="English">🇬🇧<span class="block text-[10px] mt-0.5">EN</span></button>
           <button type="button" data-mobile-lang="de" onclick="setLanguage('de')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Deutsch">🇩🇪<span class="block text-[10px] mt-0.5">DE</span></button>
+          <button type="button" data-mobile-lang="nl" onclick="setLanguage('nl')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Nederlands">🇳🇱<span class="block text-[10px] mt-0.5">NL</span></button>
           <button type="button" data-mobile-lang="fr" onclick="setLanguage('fr')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Français">🇫🇷<span class="block text-[10px] mt-0.5">FR</span></button>
+          <button type="button" data-mobile-lang="es" onclick="setLanguage('es')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Español">🇪🇸<span class="block text-[10px] mt-0.5">ES</span></button>
+          <button type="button" data-mobile-lang="it" onclick="setLanguage('it')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Italiano">🇮🇹<span class="block text-[10px] mt-0.5">IT</span></button>
+          <button type="button" data-mobile-lang="tr" onclick="setLanguage('tr')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Türkçe">🇹🇷<span class="block text-[10px] mt-0.5">TR</span></button>
           <button type="button" data-mobile-lang="fa" onclick="setLanguage('fa')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="فارسی">🇦🇫<span class="block text-[10px] mt-0.5">دری</span></button>
           <button type="button" data-mobile-lang="ar" onclick="setLanguage('ar')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="العربية">🇸🇦<span class="block text-[10px] mt-0.5">عربي</span></button>
         </div>
@@ -1571,7 +1603,11 @@
       const labels = {
         en: { name: "Recipient", phone: "Phone", addr: "Address", city: "Postal Code & City", country: "Country" },
         de: { name: "Empfänger", phone: "Telefon", addr: "Adresse", city: "PLZ & Stadt", country: "Land" },
+        nl: { name: "Ontvanger", phone: "Telefoonnummer", addr: "Adres", city: "Postcode & Stad", country: "Land" },
         fr: { name: "Destinataire", phone: "Téléphone", addr: "Adresse", city: "Code postal et Ville", country: "Pays" },
+        es: { name: "Destinatario", phone: "Teléfono", addr: "Dirección", city: "Código Postal y Ciudad", country: "País" },
+        it: { name: "Destinatario", phone: "Telefono", addr: "Indirizzo", city: "CAP e Città", country: "Paese" },
+        tr: { name: "Alıcı Adı", phone: "Telefon", addr: "Adres", city: "Posta Kodu ve Şehir", country: "Ülke" },
         fa: { name: "نام گیرنده", phone: "شماره تماس", addr: "آدرس", city: "کد پستی و شهر", country: "کشور" },
         ar: { name: "اسم المستلم", phone: "الهاتف", addr: "العنوان", city: "الرمز البريدي والمدينة", country: "البلد" }
       };
@@ -1617,8 +1653,16 @@
       let msg = '';
       if (currentLang === 'de') {
         msg = `Hallo Herr Bakhtyary,\nName: ${name}\nStadt/Land: ${city}\nNachricht / Anfrage:\n${text}`;
+      } else if (currentLang === 'nl') {
+        msg = `Hallo de heer Bakhtyary,\nNaam: ${name}\nStad/Land: ${city}\nBericht / Bestelaanvraag:\n${text}`;
       } else if (currentLang === 'fr') {
         msg = `Bonjour M. Bakhtyary,\nNom: ${name}\nVille/Pays: ${city}\nMessage / Demande:\n${text}`;
+      } else if (currentLang === 'es') {
+        msg = `Hola Sr. Bakhtyary,\nNombre: ${name}\nCiudad/País: ${city}\nMensaje / Consulta:\n${text}`;
+      } else if (currentLang === 'it') {
+        msg = `Salve Sig. Bakhtyary,\nNome: ${name}\nCittà/Paese: ${city}\nMessaggio / Richiesta:\n${text}`;
+      } else if (currentLang === 'tr') {
+        msg = `Merhaba Sayın Bakhtyary,\nİsim: ${name}\nŞehir/Ülke: ${city}\nMesaj ve Sipariş Talebi:\n${text}`;
       } else if (currentLang === 'fa') {
         msg = `سلام جناب بختیاری،\nنام: ${name}\nشهر/کشور: ${city}\nپیام و استعلام سفارش:\n${text}`;
       } else if (currentLang === 'ar') {
@@ -1883,7 +1927,11 @@
 
         let waText = '';
         if (currentLang === 'de') waText = `Hallo, ich möchte ${title} bestellen.`;
+        else if (currentLang === 'nl') waText = `Hallo, ik wil graag ${title} bestellen.`;
         else if (currentLang === 'fr') waText = `Bonjour, je souhaite commander ${title}.`;
+        else if (currentLang === 'es') waText = `Hola, deseo pedir ${title}.`;
+        else if (currentLang === 'it') waText = `Salve, vorrei ordinare ${title}.`;
+        else if (currentLang === 'tr') waText = `Merhaba, ${title} siparişi vermek istiyorum.`;
         else if (currentLang === 'fa') waText = `سلام، مایل به سفارش ${title} هستم.`;
         else if (currentLang === 'ar') waText = `مرحباً، أود طلب ${title}.`;
         else waText = `Hello, I would like to order ${title}.`;

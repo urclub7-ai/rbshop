@@ -6,7 +6,11 @@
 const LANGUAGES = {
   en: { code: 'en', name: 'English', nativeName: 'English', flag: '🇬🇧', dir: 'ltr', isDefault: true },
   de: { code: 'de', name: 'German', nativeName: 'Deutsch', flag: '🇩🇪', dir: 'ltr' },
+  nl: { code: 'nl', name: 'Dutch', nativeName: 'Nederlands', flag: '🇳🇱', dir: 'ltr' },
   fr: { code: 'fr', name: 'French', nativeName: 'Français', flag: '🇫🇷', dir: 'ltr' },
+  es: { code: 'es', name: 'Spanish', nativeName: 'Español', flag: '🇪🇸', dir: 'ltr' },
+  it: { code: 'it', name: 'Italian', nativeName: 'Italiano', flag: '🇮🇹', dir: 'ltr' },
+  tr: { code: 'tr', name: 'Turkish', nativeName: 'Türkçe', flag: '🇹🇷', dir: 'ltr' },
   fa: { code: 'fa', name: 'Dari / Persian', nativeName: 'فارسی (دری)', flag: '🇦🇫', dir: 'rtl' },
   ar: { code: 'ar', name: 'Arabic', nativeName: 'العربية', flag: '🇸🇦', dir: 'rtl' }
 };
@@ -576,6 +580,459 @@ const UI_TRANSLATIONS = {
     wa_msg_closing: "يرجى تزويدي برقم الحساب البنكي أو الباي بال لإتمام التحويل وشحن الطلبية فوراً. شكراً جزيلاً!",
     validation_addr: "يرجى إدخال الاسم والشارع والرمز البريدي (PLZ) والمدينة!"
   }
+,
+
+nl: {
+    page_title: "R.B Shop | Authentiek Afghaans Gedroogd Fruit, Noten & Koninklijke Geschenken in Duitsland",
+    meta_desc: "Officiële R.B Shop van Ramazan Bakhtyary in Büsum, Duitsland. Premium Qandak amandelen, lachende Herat pistachenoten, wilde zwarte pijnboompitten, schaduwgedroogde rozijnen, Super Negin saffraan en luxe geschenkdozen met snelle DHL-verzending in heel Europa.",
+    nav_shop_desc: "Authentiek Gedroogd Fruit & Koninklijke Geschenken",
+    nav_search_ph: "Zoek koninklijke geschenkdozen, amandelen, pistachenoten, pijnboompitten, saffraan...",
+    nav_wa_btn: "WhatsApp Bestelling",
+    mobile_menu_all_products: "Alle Producten & Geschenkdozen",
+    mobile_menu_contact: "Winkelinformatie & Duits Adres",
+    hero_seal: "R.B SHOP • Officiële Winkel",
+    hero_title: "R.B Shop",
+    hero_subtitle: "Authentieke Afghaanse Smaken; Topkwaliteit & Koninklijke Geschenkdozen",
+    hero_desc: "Officiële winkel van Ramazan Bakhtyary. Handgeselecteerde zoete Qandak amandelen, Herat pistachenoten, wilde biologische Paktia zwarte pijnboompitten, dunschalige walnoten, schaduwgedroogde rozijnen en super Negin saffraan met snelle DHL-pakketpost in heel Duitsland en Europa.",
+    hero_chip_owner: "Eigenaar: Ramazan Bakhtyary",
+    hero_chip_location: "Büsum, Duitsland",
+    hero_chip_shipping: "Snelle DHL & DPD Pakketverzending in heel Europa",
+    hero_cta_products: "Bekijk Producten & Boxen (12 Artikelen)",
+    hero_cta_wa: "Bestel via WhatsApp",
+    cat_all: "Alle Artikelen (12)",
+    cat_packages: "Koninklijke Pakketten (4)",
+    cat_nuts: "Amandelen & Noten (2)",
+    cat_pinenuts: "Pistaches & Pijnboompitten (2)",
+    cat_fruits: "Gedroogd Fruit & Rozijnen (3)",
+    cat_saffron: "Super Negin Saffraan (1)",
+    cat_status: "12 artikelen en koninklijke pakketten beschikbaar",
+    search_results_prefix: "Resultaten voor",
+    search_results_suffix: "gevonden artikelen",
+    btn_buy: "Kopen",
+    btn_add_to_cart: "In Winkelmand",
+    btn_wa_quick: "Snelle Bestelling via WhatsApp",
+    btn_out_of_stock: "Uitverkocht",
+    price_label: "Prijs:",
+    currency_label: "€",
+    currency_full: "Euro (€)",
+    toast_added: "is toegevoegd aan uw winkelmand!",
+    mobile_bar_title: "Uw Winkelmand",
+    mobile_bar_checkout: "Afrekenen",
+    why_us_title: "Waarom Kiezen voor R.B Shop?",
+    why_us_sub: "Onze belofte: Het beste authentieke Afghaanse oogst volgens de hoogste Europese kwaliteits- en hygiënenormen.",
+    why_feat1_title: "100% Vers & Biologisch",
+    why_feat1_desc: "Rechtstreeks afkomstig uit topboomgaarden in Herat, Paktia, Kandahar en Kabul, zonder chemische conserveringsmiddelen.",
+    why_feat2_title: "Snelle DHL-Pakketverzending",
+    why_feat2_desc: "Rechtstreeks verzonden vanuit Büsum, Duitsland met DHL & DPD tracking naar alle Europese landen.",
+    why_feat3_title: "Hygiënische Vacuümverpakking",
+    why_feat3_desc: "Luchtdicht en vochtwerend verpakt voor behoud van knapperigheid, vers natuurlijk aroma en maximale houdbaarheid.",
+    tiktok_title: "Volg Ons op TikTok",
+    tiktok_desc: "Bekijk dagelijks video's van aankomsten, kwaliteitscontroles en klantervaringen op TikTok.",
+    contact_badge: "Officiële Winkelinformatie",
+    contact_title: "Officiële R.B Shop in Duitsland",
+    contact_desc: "Voor detail- en groothandelsbestellingen, op maat gemaakte geschenkdozen of verzendvragen kunt u direct contact opnemen.",
+    contact_owner_label: "Winkelbeheer:",
+    contact_owner_val: "Ramazan Bakhtyary",
+    contact_phone_label: "Telefoon & WhatsApp:",
+    contact_address_label: "Officieel Adres in Duitsland:",
+    contact_address_val: "Möllers weg 6, 25761 Büsum",
+    contact_email_label: "E-mailadres:",
+    payment_methods_title: "Veilige & Eenvoudige Betaalmethoden:",
+    pay_method_paypal: "PayPal",
+    pay_method_bank: "Duitse Bankoverschrijving (IBAN)",
+    pay_method_wa: "Overleg via WhatsApp",
+    quick_form_title: "Direct Bericht via WhatsApp Sturen",
+    quick_form_desc: "Vul dit formulier in om direct met de heer Bakhtyary te chatten op WhatsApp.",
+    quick_form_name_label: "Uw Voor- en Achternaam:",
+    quick_form_name_ph: "bijv. Jan Jansen",
+    quick_form_city_label: "Stad of Land van Bestemming:",
+    quick_form_city_ph: "bijv. Amsterdam, Rotterdam, Brussel...",
+    quick_form_msg_label: "Uw Bestelling of Vraag:",
+    quick_form_msg_ph: "Geef producten en aantallen door (bijv. 2kg Qandak Amandelen & 1 Koninklijke Box)...",
+    quick_form_btn: "Direct Bericht via WhatsApp Verzenden",
+    footer_brand: "R.B SHOP • Officiële Online Winkel",
+    footer_management: "Directie:",
+    footer_location: "Büsum, Duitsland",
+    footer_rights: "Alle rechten voorbehouden © 2026 R.B Shop • Authentiek Afghaans Gedroogd Fruit in Europa",
+    footer_address_line: "Möllers weg 6, 25761 Büsum, Duitsland",
+    cart_drawer_title: "Uw Winkelmand",
+    cart_drawer_empty: "Uw winkelmand is momenteel leeg!",
+    cart_drawer_empty_sub: "Voeg producten of geschenkdozen toe uit onze catalogus om te beginnen.",
+    cart_drawer_badge_items: "artikelen",
+    cart_drawer_address_title: "DHL / DPD Bezorgadres",
+    cart_drawer_address_badge: "Directe Postverzending",
+    cart_field_name: "Voor- & Achternaam:",
+    cart_field_name_ph: "bijv. Jan Jansen",
+    cart_field_phone: "Telefoon- of WhatsApp-nummer:",
+    cart_field_phone_ph: "bijv. 06 12345678",
+    cart_field_street: "Straat & Huisnummer (Straße & Hausnr.):",
+    cart_field_street_ph: "bijv. Möllers weg 15",
+    cart_field_plz: "Postcode (PLZ):",
+    cart_field_plz_ph: "bijv. 25761",
+    cart_field_city: "Stad (Stadt):",
+    cart_field_city_ph: "bijv. Büsum / Hamburg",
+    cart_field_country: "Land (Land):",
+    country_de: "Duitsland (Deutschland)",
+    country_at: "Oostenrijk (Österreich)",
+    country_ch: "Zwitserland (Schweiz)",
+    country_nl: "Nederland (Nederland)",
+    country_other: "Andere Europese Landen",
+    cart_field_payment: "Gewenste Betaalmethode (Zahlungsmethode):",
+    pay_opt_paypal: "💳 PayPal",
+    pay_opt_bank: "🏦 Duitse Bankoverschrijving (IBAN)",
+    pay_opt_wa: "💬 IBAN / PayPal aanvragen via WhatsApp",
+    cart_subtotal: "Subtotaal:",
+    cart_shipping_fee: "Verzendkosten (DHL / DPD):",
+    cart_shipping_calc: "Wordt via WhatsApp berekend op gewicht",
+    cart_total: "Totaalbedrag:",
+    cart_checkout_btn: "Bestelling Plaatsen via WhatsApp",
+    wa_msg_greeting: "Hallo heer Bakhtyary, ik wil graag een bestelling plaatsen bij R.B Shop:\n\n",
+    wa_msg_items_heading: "📦 Bestelde Artikelen:\n",
+    wa_msg_total_heading: "💰 Totaalbedrag: ",
+    wa_msg_addr_heading: "\n📍 Bezorgadres (DHL-Tracking):\n",
+    wa_msg_pay_heading: "\n💳 Betaalmethode:\n",
+    wa_msg_closing: "Stuur mij alstublieft uw PayPal-adres of IBAN, zodat ik de betaling kan overmaken en u het pakket kunt verzenden. Hartelijk dank!",
+    validation_addr: "Vul alstublieft uw naam, straat, postcode (PLZ) en stad in!"
+  },
+
+  es: {
+    page_title: "R.B Shop | Frutos Secos y Nueces Auténticos de Afganistán y Cajas Reales en Alemania",
+    meta_desc: "Tienda oficial R.B Shop de Ramazan Bakhtyary en Büsum, Alemania. Almendras dulces Qandak, pistachos sonrientes de Herat, piñones negros silvestres, pasas secadas a la sombra y azafrán Negin con envío rápido por DHL a toda Europa.",
+    nav_shop_desc: "Frutos Secos Auténticos y Regalos Reales",
+    nav_search_ph: "Buscar cajas reales, almendras, pistachos, piñones, azafrán...",
+    nav_wa_btn: "Pedido por WhatsApp",
+    mobile_menu_all_products: "Todos los Productos y Cajas de Regalo",
+    mobile_menu_contact: "Detalles de la Tienda y Dirección en Alemania",
+    hero_seal: "R.B SHOP • Tienda Oficial",
+    hero_title: "R.B Shop",
+    hero_subtitle: "Sabores Auténticos de Afganistán; Calidad Premium y Cajas Reales de Regalo",
+    hero_desc: "Tienda oficial de Ramazan Bakhtyary. Almendras dulces Qandak seleccionadas a mano, pistachos de Herat, piñones negros silvestres de Paktia, nueces de cáscara fina, pasas a la sombra y azafrán súper Negin, con seguimiento postal DHL en Alemania y toda Europa.",
+    hero_chip_owner: "Propietario: Ramazan Bakhtyary",
+    hero_chip_location: "Büsum, Alemania",
+    hero_chip_shipping: "Envío postal rápido DHL y DPD en toda Europa",
+    hero_cta_products: "Explorar Productos y Cajas (12 Artículos)",
+    hero_cta_wa: "Pedir por WhatsApp",
+    cat_all: "Todos los Artículos (12)",
+    cat_packages: "Cajas Reales de Regalo (4)",
+    cat_nuts: "Almendras y Nueces (2)",
+    cat_pinenuts: "Pistachos y Piñones (2)",
+    cat_fruits: "Frutos Secos y Pasas (3)",
+    cat_saffron: "Azafrán Súper Negin (1)",
+    cat_status: "12 artículos y paquetes reales disponibles",
+    search_results_prefix: "Resultados para",
+    search_results_suffix: "artículos encontrados",
+    btn_buy: "Comprar",
+    btn_add_to_cart: "Añadir al Carrito",
+    btn_wa_quick: "Pedido Rápido por WhatsApp",
+    btn_out_of_stock: "Agotado",
+    price_label: "Precio:",
+    currency_label: "€",
+    currency_full: "Euros (€)",
+    toast_added: "¡se ha añadido al carrito de compra!",
+    mobile_bar_title: "Tu Carrito de Compra",
+    mobile_bar_checkout: "Finalizar Compra",
+    why_us_title: "¿Por Qué Elegir R.B Shop?",
+    why_us_sub: "Nuestro compromiso: Las cosechas más selectas de Afganistán con los más altos estándares europeos de calidad e higiene.",
+    why_feat1_title: "100% Fresco y Orgánico",
+    why_feat1_desc: "Directamente de los mejores cultivos de Herat, Paktia, Kandahar y Kabul, totalmente libre de conservantes químicos.",
+    why_feat2_title: "Envío Rápido con Rastreo DHL",
+    why_feat2_desc: "Despachado directamente desde Büsum, Alemania mediante DHL y DPD con número de seguimiento a todos los países de la UE.",
+    why_feat3_title: "Envasado Higiénico al Vacío",
+    why_feat3_desc: "Empaque hermético y antihumedad para garantizar textura crujiente, aroma fresco y máxima duración.",
+    tiktok_title: "Síguenos en TikTok",
+    tiktok_desc: "Mira videos diarios de llegadas de mercancía, pruebas de calidad y reseñas de clientes reales en TikTok.",
+    contact_badge: "Información Oficial de la Tienda",
+    contact_title: "Tienda Oficial R.B Shop en Alemania",
+    contact_desc: "Para pedidos minoristas o mayoristas, cajas personalizadas o consultas de envío europeo, contáctenos directamente.",
+    contact_owner_label: "Dirección:",
+    contact_owner_val: "Ramazan Bakhtyary",
+    contact_phone_label: "Teléfono y WhatsApp:",
+    contact_address_label: "Dirección Oficial en Alemania:",
+    contact_address_val: "Möllers weg 6, 25761 Büsum",
+    contact_email_label: "Correo Electrónico:",
+    payment_methods_title: "Métodos de Pago Seguros y Cómodos:",
+    pay_method_paypal: "PayPal",
+    pay_method_bank: "Transferencia Bancaria Alemana (IBAN)",
+    pay_method_wa: "Consulta por WhatsApp",
+    quick_form_title: "Enviar Mensaje Directo por WhatsApp",
+    quick_form_desc: "Completa este formulario para conectar directamente con Ramazan Bakhtyary en WhatsApp.",
+    quick_form_name_label: "Tu Nombre y Apellidos:",
+    quick_form_name_ph: "ej. Carlos García",
+    quick_form_city_label: "Ciudad o País de Destino:",
+    quick_form_city_ph: "ej. Madrid, Barcelona, Valencia...",
+    quick_form_msg_label: "Tu Pedido o Consulta:",
+    quick_form_msg_ph: "Indica productos y cantidades (ej. 2kg Almendras Qandak y 1 Caja Real)...",
+    quick_form_btn: "Enviar Mensaje Directo en WhatsApp",
+    footer_brand: "R.B SHOP • Tienda Online Oficial",
+    footer_management: "Dirección:",
+    footer_location: "Büsum, Alemania",
+    footer_rights: "Todos los derechos reservados © 2026 R.B Shop • Frutos Secos de Afganistán en Europa",
+    footer_address_line: "Möllers weg 6, 25761 Büsum, Alemania",
+    cart_drawer_title: "Tu Carrito de Compra",
+    cart_drawer_empty: "¡Tu carrito está vacío!",
+    cart_drawer_empty_sub: "Añade productos o cajas de regalo reales de nuestro catálogo para comenzar.",
+    cart_drawer_badge_items: "artículos",
+    cart_drawer_address_title: "Dirección de Entrega Postal DHL / DPD",
+    cart_drawer_address_badge: "Envío Postal Directo",
+    cart_field_name: "Nombre y Apellidos:",
+    cart_field_name_ph: "ej. Carlos García",
+    cart_field_phone: "Teléfono o Número de WhatsApp:",
+    cart_field_phone_ph: "ej. +34 612 345 678",
+    cart_field_street: "Calle y Número de Casa (Straße & Hausnr.):",
+    cart_field_street_ph: "ej. Möllers weg 15",
+    cart_field_plz: "Código Postal (PLZ):",
+    cart_field_plz_ph: "ej. 25761",
+    cart_field_city: "Ciudad (Stadt):",
+    cart_field_city_ph: "ej. Büsum / Hamburgo",
+    cart_field_country: "País (Land):",
+    country_de: "Alemania (Deutschland)",
+    country_at: "Austria (Österreich)",
+    country_ch: "Suiza (Schweiz)",
+    country_nl: "Países Bajos (Nederland)",
+    country_other: "Otros Países Europeos",
+    cart_field_payment: "Método de Pago Preferido (Zahlungsmethode):",
+    pay_opt_paypal: "💳 PayPal",
+    pay_opt_bank: "🏦 Transferencia Bancaria Alemana (IBAN)",
+    pay_opt_wa: "💬 Consultar IBAN / PayPal en el chat de WhatsApp",
+    cart_subtotal: "Subtotal:",
+    cart_shipping_fee: "Gastos de Envío (DHL / DPD):",
+    cart_shipping_calc: "Coordinado en WhatsApp (según peso)",
+    cart_total: "Importe Total:",
+    cart_checkout_btn: "Comprar y Enviar Pedido por WhatsApp",
+    wa_msg_greeting: "Hola Sr. Bakhtyary, me gustaría realizar el siguiente pedido en R.B Shop:\n\n",
+    wa_msg_items_heading: "📦 Artículos Pedidos:\n",
+    wa_msg_total_heading: "💰 Importe Total: ",
+    wa_msg_addr_heading: "\n📍 Dirección de Envío Postal (Seguimiento DHL):\n",
+    wa_msg_pay_heading: "\n💳 Método de Pago:\n",
+    wa_msg_closing: "Por favor, envíeme sus datos de PayPal o IBAN para realizar el pago y recibir el envío. ¡Muchas gracias!",
+    validation_addr: "¡Por favor ingrese su Nombre, Calle, Código Postal (PLZ) y Ciudad!"
+  },
+
+  it: {
+    page_title: "R.B Shop | Frutta Secca Autentica Afghana, Noci & Cofanetti Reali in Germania",
+    meta_desc: "Negozio ufficiale R.B Shop di Ramazan Bakhtyary a Büsum, Germania. Mandorle dolci Qandak, pistacchi sorridenti di Herat, pinoli neri selvatici, uva sultanina e zafferano Negin con spedizione rapida DHL in tutta Europa.",
+    nav_shop_desc: "Frutta Secca Autentica e Doni Reali",
+    nav_search_ph: "Cerca cofanetti regalo reali, mandorle, pistacchi, pinoli, zafferano...",
+    nav_wa_btn: "Ordine WhatsApp",
+    mobile_menu_all_products: "Tutti i Prodotti & Cofanetti Regalo",
+    mobile_menu_contact: "Informazioni Negozio & Indirizzo in Germania",
+    hero_seal: "R.B SHOP • Negozio Ufficiale",
+    hero_title: "R.B Shop",
+    hero_subtitle: "Autentici Sapori dell'Afghanistan; Qualità Pregiata e Cofanetti Reali",
+    hero_desc: "Negozio ufficiale di Ramazan Bakhtyary. Mandorle dolci Qandak selezionate a mano, pistacchi di Herat, pinoli neri selvatici biologici di Paktia, noci a guscio sottile, uvetta all'ombra e zafferano super Negin, con spedizione tracciata DHL in Germania e tutta Europa.",
+    hero_chip_owner: "Titolare: Ramazan Bakhtyary",
+    hero_chip_location: "Büsum, Germania",
+    hero_chip_shipping: "Spedizione Rapida con Corriere DHL & DPD in tutta Europa",
+    hero_cta_products: "Scopri Prodotti & Cofanetti (12 Articoli)",
+    hero_cta_wa: "Ordina su WhatsApp",
+    cat_all: "Tutti gli Articoli (12)",
+    cat_packages: "Cofanetti Reali (4)",
+    cat_nuts: "Mandorle & Noci (2)",
+    cat_pinenuts: "Pistacchi & Pinoli (2)",
+    cat_fruits: "Frutta Secca & Uvetta (3)",
+    cat_saffron: "Zafferano Super Negin (1)",
+    cat_status: "12 articoli e confezioni reali disponibili",
+    search_results_prefix: "Risultati per",
+    search_results_suffix: "articoli trovati",
+    btn_buy: "Acquista",
+    btn_add_to_cart: "Aggiungi al Carrello",
+    btn_wa_quick: "Ordine Rapido via WhatsApp",
+    btn_out_of_stock: "Esaurito",
+    price_label: "Prezzo:",
+    currency_label: "€",
+    currency_full: "Euro (€)",
+    toast_added: "è stato aggiunto al tuo carrello!",
+    mobile_bar_title: "Il Tuo Carrello",
+    mobile_bar_checkout: "Cassa",
+    why_us_title: "Perché Scegliere R.B Shop?",
+    why_us_sub: "La nostra promessa: I migliori raccolti tradizionali afghani secondo i più severi standard europei di qualità e igiene.",
+    why_feat1_title: "100% Fresco e Biologico",
+    why_feat1_desc: "Direttamente dai migliori frutteti di Herat, Paktia, Kandahar e Kabul, privo di conservanti chimici.",
+    why_feat2_title: "Spedizione Rapida Tracciata DHL",
+    why_feat2_desc: "Spedito direttamente da Büsum, Germania con tracciamento DHL e DPD verso tutti i paesi europei.",
+    why_feat3_title: "Confezionamento Sottovuoto Igienico",
+    why_feat3_desc: "Sigillatura ermetica e resistente all'umidità per garantire croccantezza, profumo naturale e massima freschezza.",
+    tiktok_title: "Seguici su TikTok",
+    tiktok_desc: "Guarda i video giornalieri sui nuovi arrivi, test di qualità e recensioni reali dei clienti su TikTok.",
+    contact_badge: "Informazioni Ufficiali Negozio",
+    contact_title: "Negozio Ufficiale R.B Shop in Germania",
+    contact_desc: "Per ordini al dettaglio o all'ingrosso, confezioni regalo personalizzate o domande sulla spedizione europea, contattaci direttamente.",
+    contact_owner_label: "Direzione:",
+    contact_owner_val: "Ramazan Bakhtyary",
+    contact_phone_label: "Telefono & WhatsApp:",
+    contact_address_label: "Indirizzo Ufficiale in Germania:",
+    contact_address_val: "Möllers weg 6, 25761 Büsum",
+    contact_email_label: "Indirizzo E-mail:",
+    payment_methods_title: "Metodi di Pagamento Sicuri e Convenienti:",
+    pay_method_paypal: "PayPal",
+    pay_method_bank: "Bonifico Bancario Tedesco (IBAN)",
+    pay_method_wa: "Accordo su WhatsApp",
+    quick_form_title: "Invia un Messaggio Diretto su WhatsApp",
+    quick_form_desc: "Compila questo modulo per comunicare direttamente con Ramazan Bakhtyary su WhatsApp.",
+    quick_form_name_label: "Nome e Cognome:",
+    quick_form_name_ph: "es. Mario Rossi",
+    quick_form_city_label: "Città o Paese di Destinazione:",
+    quick_form_city_ph: "es. Roma, Milano, Napoli...",
+    quick_form_msg_label: "Il Tuo Ordine o Richiesta:",
+    quick_form_msg_ph: "Specifica i prodotti e le quantità (es. 2kg Mandorle Qandak e 1 Cofanetto Reale)...",
+    quick_form_btn: "Invia Messaggio Diretto su WhatsApp",
+    footer_brand: "R.B SHOP • Negozio Online Ufficiale",
+    footer_management: "Direzione:",
+    footer_location: "Büsum, Germania",
+    footer_rights: "Tutti i diritti riservati © 2026 R.B Shop • Frutta Secca Afghana in Europa",
+    footer_address_line: "Möllers weg 6, 25761 Büsum, Germania",
+    cart_drawer_title: "Il Tuo Carrello",
+    cart_drawer_empty: "Il tuo carrello è attualmente vuoto!",
+    cart_drawer_empty_sub: "Aggiungi prodotti o cofanetti regalo reali dal nostro catalogo per iniziare.",
+    cart_drawer_badge_items: "articoli",
+    cart_drawer_address_title: "Indirizzo di Consegna Postale DHL / DPD",
+    cart_drawer_address_badge: "Spedizione Postale Diretta",
+    cart_field_name: "Nome e Cognome:",
+    cart_field_name_ph: "es. Mario Rossi",
+    cart_field_phone: "Numero di Telefono o WhatsApp:",
+    cart_field_phone_ph: "es. +39 340 1234567",
+    cart_field_street: "Via e Numero Civico (Straße & Hausnr.):",
+    cart_field_street_ph: "es. Möllers weg 15",
+    cart_field_plz: "Codice Postale (CAP / PLZ):",
+    cart_field_plz_ph: "es. 25761",
+    cart_field_city: "Città (Stadt):",
+    cart_field_city_ph: "es. Büsum / Amburgo",
+    cart_field_country: "Paese (Land):",
+    country_de: "Germania (Deutschland)",
+    country_at: "Austria (Österreich)",
+    country_ch: "Svizzera (Schweiz)",
+    country_nl: "Paesi Bassi (Nederland)",
+    country_other: "Altri Paesi Europei",
+    cart_field_payment: "Metodo di Pagamento Preferito (Zahlungsmethode):",
+    pay_opt_paypal: "💳 PayPal",
+    pay_opt_bank: "🏦 Bonifico Bancario Tedesco (IBAN)",
+    pay_opt_wa: "💬 Richiedi IBAN / PayPal nella chat WhatsApp",
+    cart_subtotal: "Subtotale:",
+    cart_shipping_fee: "Spese di Spedizione (DHL / DPD):",
+    cart_shipping_calc: "Concordate su WhatsApp in base al peso",
+    cart_total: "Totale Ordine:",
+    cart_checkout_btn: "Acquista e Invia Ordine via WhatsApp",
+    wa_msg_greeting: "Gentile Sig. Bakhtyary, desidero effettuare il seguente ordine su R.B Shop:\n\n",
+    wa_msg_items_heading: "📦 Articoli Ordinati:\n",
+    wa_msg_total_heading: "💰 Totale Ordine: ",
+    wa_msg_addr_heading: "\n📍 Indirizzo di Consegna Postale (Tracciamento DHL):\n",
+    wa_msg_pay_heading: "\n💳 Metodo di Pagamento:\n",
+    wa_msg_closing: "La prego di inviarmi le coordinate PayPal o l'IBAN per effettuare il pagamento e procedere con la spedizione. Grazie mille!",
+    validation_addr: "Si prega di inserire Nome, Indirizzo, CAP (PLZ) e Città!"
+  },
+
+  tr: {
+    page_title: "R.B Shop | Almanya'da Orijinal Afgan Kuru Yemişleri, Meyveleri ve Kraliyet Hediye Kutuları",
+    meta_desc: "Büsum, Almanya'da Ramazan Bakhtyary resmi R.B Shop mağazası. Kandak bademi, Herat gülen fıstığı, yabani siyah çam fıstığı, gölgede kurutulmuş kuru üzüm ve lüks hediye paketleri. Tüm Avrupa'ya hızlı DHL kargo.",
+    nav_shop_desc: "Orijinal Kuru Meyveler ve Kraliyet Hediyeleri",
+    nav_search_ph: "Kraliyet hediye kutuları, badem, fıstık, çam fıstığı, safran ara...",
+    nav_wa_btn: "WhatsApp ile Sipariş",
+    mobile_menu_all_products: "Tüm Ürünler ve Hediye Kutuları",
+    mobile_menu_contact: "Mağaza Bilgileri ve Almanya Adresi",
+    hero_seal: "R.B SHOP • Resmi Mağaza",
+    hero_title: "R.B Shop",
+    hero_subtitle: "Orijinal Afgan Lezzetleri; Üstün Kalite ve Kraliyet Hediye Paketleri",
+    hero_desc: "Ramazan Bakhtyary'nin resmi mağazası. El seçimi tatlı Kandak bademleri, Herat gülen fıstıkları, Paktia organik yabani siyah çam fıstığı, ince kabuklu cevizler, gölgede kurutulmuş üzümler ve süper Negin safran; Almanya ve tüm Avrupa'ya hızlı DHL takip güvencesiyle.",
+    hero_chip_owner: "Mağaza Sahibi: Ramazan Bakhtyary",
+    hero_chip_location: "Büsum, Almanya",
+    hero_chip_shipping: "Tüm Avrupa'ya Hızlı DHL & DPD Kargo Gönderimi",
+    hero_cta_products: "Ürünleri ve Paketleri Keşfet (12 Ürün)",
+    hero_cta_wa: "WhatsApp ile Sipariş Ver",
+    cat_all: "Tüm Ürünler (12)",
+    cat_packages: "Kraliyet Paketleri (4)",
+    cat_nuts: "Badem ve Kuruyemiş (2)",
+    cat_pinenuts: "Fıstık ve Çam Fıstığı (2)",
+    cat_fruits: "Kuru Meyve ve Üzüm (3)",
+    cat_saffron: "Süper Negin Safran (1)",
+    cat_status: "12 ürün ve kraliyet paketi mevcut",
+    search_results_prefix: "Sonuçlar:",
+    search_results_suffix: "eşleşen ürün",
+    btn_buy: "Satın Al",
+    btn_add_to_cart: "Sepete Ekle",
+    btn_wa_quick: "WhatsApp Hızlı Sipariş",
+    btn_out_of_stock: "Tükendi",
+    price_label: "Fiyat:",
+    currency_label: "€",
+    currency_full: "Euro (€)",
+    toast_added: "alışveriş sepetinize eklendi!",
+    mobile_bar_title: "Alışveriş Sepetiniz",
+    mobile_bar_checkout: "Siparişi Tamamla",
+    why_us_title: "Neden R.B Shop?",
+    why_us_sub: "Sözümüz: En taze ve seçkin Afganistan hasadını, en yüksek Avrupa kalite ve hijyen standartlarıyla sofranıza ulaştırmak.",
+    why_feat1_title: "%100 Taze ve Doğal",
+    why_feat1_desc: "Doğrudan Herat, Paktia, Kandahar ve Kabil'in en verimli bahçelerinden, hiçbir kimyasal koruyucu içermez.",
+    why_feat2_title: "Hızlı DHL Kargo Takibi",
+    why_feat2_desc: "Büsum, Almanya'dan DHL ve DPD canlı takip numarasıyla tüm Avrupa Birliği ülkelerine doğrudan gönderim.",
+    why_feat3_title: "Hijyenik Vakumlu Ambalaj",
+    why_feat3_desc: "Çıtır lezzetini, doğal kokusunu ve tazeliğini en uzun süre koruyan hava geçirmez vakumlu paketleme.",
+    tiktok_title: "Bizi TikTok'ta Takip Edin",
+    tiktok_desc: "Yeni parti ürünleri, kalite testlerini ve gerçek müşteri yorumlarını TikTok hesabımızdan izleyin.",
+    contact_badge: "Resmi Mağaza Bilgileri",
+    contact_title: "Almanya Resmi R.B Shop Mağazası",
+    contact_desc: "Perakende ve toptan siparişler, özel kraliyet paketleri veya kargo soruları için doğrudan mağaza yönetimiyle iletişime geçin.",
+    contact_owner_label: "Mağaza Yönetimi:",
+    contact_owner_val: "Ramazan Bakhtyary",
+    contact_phone_label: "Telefon & WhatsApp:",
+    contact_address_label: "Almanya Resmi Adresimiz:",
+    contact_address_val: "Möllers weg 6, 25761 Büsum",
+    contact_email_label: "E-posta Adresi:",
+    payment_methods_title: "Güvenli ve Kolay Ödeme Yöntemleri:",
+    pay_method_paypal: "PayPal",
+    pay_method_bank: "Almanya Banka Havalesi (IBAN)",
+    pay_method_wa: "WhatsApp Üzerinden Bilgi Al",
+    quick_form_title: "WhatsApp ile Doğrudan Mesaj Gönder",
+    quick_form_desc: "Sayın Ramazan Bakhtyary ile doğrudan WhatsApp üzerinden iletişime geçmek için bu formu doldurun.",
+    quick_form_name_label: "Adınız ve Soyadınız:",
+    quick_form_name_ph: "örn. Ahmet Yılmaz",
+    quick_form_city_label: "Teslimat Şehri veya Ülke:",
+    quick_form_city_ph: "örn. Berlin, Köln, Viyana...",
+    quick_form_msg_label: "Siparişiniz veya Sorunuz:",
+    quick_form_msg_ph: "İstediğiniz ürünleri ve miktarları belirtin (örn. 2kg Kandak Bademi ve 1 Kraliyet Kutusu)...",
+    quick_form_btn: "WhatsApp'tan Mesaj Gönder",
+    footer_brand: "R.B SHOP • Resmi Online Mağaza",
+    footer_management: "Yönetim:",
+    footer_location: "Büsum, Almanya",
+    footer_rights: "Tüm Hakları Saklıdır © 2026 R.B Shop • Avrupa'da Orijinal Afgan Kuru Yemişleri",
+    footer_address_line: "Möllers weg 6, 25761 Büsum, Almanya",
+    cart_drawer_title: "Alışveriş Sepetiniz",
+    cart_drawer_empty: "Sepetiniz şu anda boş!",
+    cart_drawer_empty_sub: "Başlamak için kataloğumuzdan ürün veya kraliyet hediye kutuları ekleyin.",
+    cart_drawer_badge_items: "ürün",
+    cart_drawer_address_title: "DHL / DPD Kargo Teslimat Adresi",
+    cart_drawer_address_badge: "Doğrudan Posta Gönderimi",
+    cart_field_name: "Ad ve Soyad:",
+    cart_field_name_ph: "örn. Ahmet Yılmaz",
+    cart_field_phone: "Telefon veya WhatsApp Numarası:",
+    cart_field_phone_ph: "örn. 0176 12345678",
+    cart_field_street: "Sokak ve Kapı Numarası (Straße & Hausnr.):",
+    cart_field_street_ph: "örn. Möllers weg 15",
+    cart_field_plz: "Posta Kodu (PLZ):",
+    cart_field_plz_ph: "örn. 25761",
+    cart_field_city: "Şehir (Stadt):",
+    cart_field_city_ph: "örn. Büsum / Hamburg",
+    cart_field_country: "Ülke (Land):",
+    country_de: "Almanya (Deutschland)",
+    country_at: "Avusturya (Österreich)",
+    country_ch: "İsviçre (Schweiz)",
+    country_nl: "Hollanda (Nederland)",
+    country_other: "Diğer Avrupa Ülkeleri",
+    cart_field_payment: "Tercih Edilen Ödeme Yöntemi (Zahlungsmethode):",
+    pay_opt_paypal: "💳 PayPal",
+    pay_opt_bank: "🏦 Almanya Banka Havalesi (IBAN)",
+    pay_opt_wa: "💬 WhatsApp sohbetinde IBAN / PayPal bilgisi al",
+    cart_subtotal: "Ara Toplam:",
+    cart_shipping_fee: "Kargo Ücreti (DHL / DPD):",
+    cart_shipping_calc: "Ağırlığa göre WhatsApp'ta belirlenir",
+    cart_total: "Toplam Tutar:",
+    cart_checkout_btn: "Satın Al ve Siparişi WhatsApp'tan Gönder",
+    wa_msg_greeting: "Merhaba Sayın Bakhtyary, R.B Shop üzerinden sipariş vermek istiyorum:\n\n",
+    wa_msg_items_heading: "📦 Sipariş Edilen Ürünler:\n",
+    wa_msg_total_heading: "💰 Toplam Tutar: ",
+    wa_msg_addr_heading: "\n📍 Teslimat Adresi (DHL Takip):\n",
+    wa_msg_pay_heading: "\n💳 Ödeme Yöntemi:\n",
+    wa_msg_closing: "Ödemeyi yapabilmem ve kargoyu gönderebilmeniz için lütfen PayPal veya IBAN bilgilerinizi iletiniz. Teşekkür ederim!",
+    validation_addr: "Lütfen Adınızı, Sokağınızı, Posta Kodunuzu (PLZ) ve Şehrinizi giriniz!"
+  },
 };
 
 const PRODUCT_TRANSLATIONS = {
@@ -604,6 +1061,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "الصندوق الملكي للمكسرات والفواكه المجففة الفاخرة",
       unit: "علبة ١.٢ كغ • باقة ملكية فاخرة",
       desc: "٨ أصناف ملكية: فستق، لوز قندك، جوز، كشمش الظل، مشمش وتين عسلي"
+    },
+    nl: {
+      title: "Koninklijke Afghaans Gedroogd Fruit & Noten Mix",
+      unit: "1,2kg Box • Koninklijk Luxepakket",
+      desc: "8 topingrediënten: pistachenoten, Qandak amandelen, walnoten, rozijnen, abrikozen en zoete vijgen"
+    },
+    es: {
+      title: "Caja Real de Frutos Secos y Nueces de Afganistán",
+      unit: "Caja de 1,2kg • Paquete Real de Lujo",
+      desc: "8 variedades selectas: pistachos, almendras Qandak, nueces, pasas negras, albaricoques e higos"
+    },
+    it: {
+      title: "Cofanetto Regale di Frutta Secca & Noci Afghane",
+      unit: "Scatola da 1,2kg • Confezione Reale di Lusso",
+      desc: "8 specialità d'eccellenza: pistacchi, mandorle Qandak, noci, uvetta all'ombra, albicocche e fichi dolci"
+    },
+    tr: {
+      title: "Kraliyet Karışık Kuru Meyve ve Kuruyemiş Paketi",
+      unit: "1.2kg Kutu • Lüks Kraliyet Paketi",
+      desc: "8 özel lezzet: fıstık, Kandak bademi, ceviz, siyah üzüm, kayısı ve tatlı incir"
     }
   },
 
@@ -632,6 +1109,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "باقة العيد والضيافة الراقية من آر بي",
       unit: "علبة ١ كغ • ضيافة فاخرة",
       desc: "مزيج فاخر من اللوز الورقي، الفستق المبتسم، الجوز المقرمش والكشمش الأخضر الملكي"
+    },
+    nl: {
+      title: "R.B Luxe Feest- & Gastvrijheid Mix Box",
+      unit: "1kg Box • Luxe Gastvrijheid",
+      desc: "Speciale selectie van dunschalige amandelen, lachende pistaches, walnoten en koninklijke groene rozijnen"
+    },
+    es: {
+      title: "Caja de Lujo R.B para Fiestas y Hospitalidad",
+      unit: "Caja de 1kg • Hospitalidad de Lujo",
+      desc: "Mezcla selecta de almendras de cáscara fina, pistachos abiertos, mitades de nuez y pasas verdes reales"
+    },
+    it: {
+      title: "Cofanetto R.B Festa & Ospitalità di Pregio",
+      unit: "Scatola da 1kg • Ospitalità di Lusso",
+      desc: "Miscela pregiata di mandorle a guscio sottile, pistacchi aperti, gherigli di noce e uvetta verde reale"
+    },
+    tr: {
+      title: "R.B Bayram ve Misafir Özel Karışık Lüks Kutu",
+      unit: "1kg Kutu • Lüks İkram Paketi",
+      desc: "İnce kabuklu badem, gülen fıstık, ceviz içi ve özel yeşil kuru üzüm karışımı"
     }
   },
 
@@ -660,6 +1157,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "باقة الحيوية والطاقة الطبيعية العضوية",
       unit: "علبة ١ كغ • طبيعي ١٠٠٪",
       desc: "لب لوز حلو نيء، لب فستق، أنصاف جوز أبيض وتوت مجفف عضوي بدون سكر"
+    },
+    nl: {
+      title: "Vitaliteit & Biologische Gezondheidsmix",
+      unit: "1kg Box • 100% Natuurlijk & Rauw",
+      desc: "Rauwe zoete amandelkernen, pistachepitten, walnoothelften en biologische gedroogde witte moerbeien"
+    },
+    es: {
+      title: "Mezcla de Vitalidad y Energía Orgánica Pura",
+      unit: "Caja de 1kg • 100% Natural y Crudo",
+      desc: "Almendras dulces crudas, pistachos pelados, nueces blancas y moras blancas deshidratadas bio"
+    },
+    it: {
+      title: "Mix Vitalità & Energia Biologica Naturale",
+      unit: "Scatola da 1kg • 100% Naturale e Crudo",
+      desc: "Mandorle dolci crude, pistacchi sgusciati, noci chiare e more bianche essiccate biologiche"
+    },
+    tr: {
+      title: "Doğal Sağlık ve Enerji Paketi",
+      unit: "1kg Kutu • %100 Doğal ve Çiğ",
+      desc: "Çiğ tatlı badem içi, fıstık içi, beyaz ceviz içi ve organik kurutulmuş beyaz dut"
     }
   },
 
@@ -688,6 +1205,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "باقة VIP صنوبر أسود بري وفستق هرات الفاخر",
       unit: "علبة ١ كغ • تشكيلة VIP ملكية",
       desc: "٥٠٠ غرام صنوبر أسود بري من بكتيا وخوست + ٥٠٠ غرام فستق هرات جامبو محمص"
+    },
+    nl: {
+      title: "VIP Pijnboompitten & Herat Pistaches Box",
+      unit: "1kg Box • Koninklijk VIP",
+      desc: "500g wilde zwarte pijnboompitten uit Paktia + 500g geroosterde jumbo pistachenoten uit Herat"
+    },
+    es: {
+      title: "Caja VIP Piñones Negros y Pistachos de Herat",
+      unit: "Caja de 1kg • Edición VIP Real",
+      desc: "500g de piñones negros silvestres de Paktia + 500g de pistachos jumbo tostados de Herat"
+    },
+    it: {
+      title: "Cofanetto VIP Pinoli Neri & Pistacchi di Herat",
+      unit: "Scatola da 1kg • Edizione VIP Reale",
+      desc: "500g di pinoli neri selvatici di Paktia + 500g di pistacchi jumbo tostati di Herat"
+    },
+    tr: {
+      title: "VIP Siyah Çam Fıstığı ve Herat Fıstığı Paketi",
+      unit: "1kg Kutu • VIP Özel Seri",
+      desc: "500g Paktia yabani siyah çam fıstığı + 500g iri boy kavrulmuş Herat fıstığı"
     }
   },
 
@@ -716,6 +1253,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "لوز قندك الحلو النخب الأول",
       unit: "الوزن الصافي: ١ كغ",
       desc: "قشرة ورقية رقيقة سهلة الكسر باليد، حبات حلوة ومقرمشة وغنية بالزيوت الطبيعية"
+    },
+    nl: {
+      title: "Handgeselecteerde Zoete Qandak Amandelen",
+      unit: "1kg Netto Gewicht",
+      desc: "Dunschalige amandelen gemakkelijk met de hand te kraken; zoet, knapperig en rijk aan natuurlijke olie"
+    },
+    es: {
+      title: "Almendras Dulces Qandak Seleccionadas a Mano",
+      unit: "Peso Neto: 1kg",
+      desc: "Cáscara de papel ultrafina que se abre fácilmente con la mano; crujientes, dulces y muy ricas en aceite"
+    },
+    it: {
+      title: "Mandorle Dolci Qandak Selezionate a Mano",
+      unit: "Peso Netto: 1kg",
+      desc: "Guscio sottile come carta facile da aprire a mano; dolci, croccanti e ricche di oli naturali"
+    },
+    tr: {
+      title: "El Seçimi Tatlı Kandak Bademi",
+      unit: "Net Ağırlık: 1kg",
+      desc: "Elle kolayca kırılan kağıt kabuklu; tatlı, çıtır ve yüksek doğal yağ oranlı"
     }
   },
 
@@ -744,6 +1301,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "فستق هرات الفاخر المبتسم",
       unit: "الوزن الصافي: ١ كغ",
       desc: "فستق جامبو مفتوح طبيعياً من بساتين هرات، محمص بقوام مقرمش ونكهة فريدة"
+    },
+    nl: {
+      title: "Premium Lachende Pistachenoten (Herat)",
+      unit: "1kg Netto Gewicht",
+      desc: "Natuurlijk geopende jumbo pistachenoten uit Herat met knapperige geroosterde textuur en rijke smaak"
+    },
+    es: {
+      title: "Pistachos Abiertos Premium de Herat",
+      unit: "Peso Neto: 1kg",
+      desc: "Pistachos jumbo abiertos naturalmente en el árbol, tostado crujiente y auténtico sabor persa"
+    },
+    it: {
+      title: "Pistacchi Pregiati Sorridenti di Herat",
+      unit: "Peso Netto: 1kg",
+      desc: "Pistacchi giganti aperti naturalmente sull'albero con tostatura croccante e sapore autentico"
+    },
+    tr: {
+      title: "Özel Seçim Herat Gülen Fıstığı",
+      unit: "Net Ağırlık: 1kg",
+      desc: "Dalında doğal açılmış iri boy çıtır kavrulmuş Herat fıstığı"
     }
   },
 
@@ -772,6 +1349,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "صنوبر بكتيا وخوست الأسود البري",
       unit: "الوزن الصافي: ٥٠٠ غرام",
       desc: "صنوبر أسود بري عضوي نادر، حبات ممتلئة وطويلة ذات عبير زيتي فواح"
+    },
+    nl: {
+      title: "Wilde Biologische Zwarte Pijnboompitten (Paktia)",
+      unit: "500g Netto Gewicht",
+      desc: "Zeldzame biologische zwarte pijnboompitten; langwerpige glanzende pitten met een verfijnd aards aroma"
+    },
+    es: {
+      title: "Piñones Negros Silvestres Orgánicos de Paktia",
+      unit: "Peso Neto: 500g",
+      desc: "Piñones negros silvestres exclusivos; granos alargados brillantes con un aroma aceitoso exquisito"
+    },
+    it: {
+      title: "Pinoli Neri Selvatici Biologici di Paktia",
+      unit: "Peso Netto: 500g",
+      desc: "Rari pinoli neri selvatici biologici; chicchi allungati e lucidi con profumo resinoso eccezionale"
+    },
+    tr: {
+      title: "Paktia Organik Yabani Siyah Çam Fıstığı",
+      unit: "Net Ağırlık: 500g",
+      desc: "Nadir bulunan organik yabani siyah çam fıstığı; uzun dolgun taneler ve yoğun lezzet"
     }
   },
 
@@ -800,6 +1397,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "جوز بلدي ورقي أبيض طازج",
       unit: "الوزن الصافي: ١ كغ",
       desc: "قشرة ورقية ناعمة جداً تكسر باليد، لب أبيض كبير الحجم وغني بالزيوت الصحية"
+    },
+    nl: {
+      title: "Verse Dunschalige Witte Walnoten",
+      unit: "1kg Netto Gewicht",
+      desc: "Delicate papieren schil gemakkelijk met de hand te breken; grote romige witte en voedzame noten"
+    },
+    es: {
+      title: "Nueces Blancas Frescas de Cáscara Fina",
+      unit: "Peso Neto: 1kg",
+      desc: "Cáscara fina como el papel fácil de partir con la mano; mitades blancas, cremosas y muy nutritivas"
+    },
+    it: {
+      title: "Noci Bianche Fresche a Guscio Sottile",
+      unit: "Peso Netto: 1kg",
+      desc: "Guscio sottilissimo facile da rompere con le mani; gherigli bianchi, carnosi e ricchi di nutrienti"
+    },
+    tr: {
+      title: "Taze İnce Kabuklu Beyaz Ceviz",
+      unit: "Net Ağırlık: 1kg",
+      desc: "Elle kırılabilen ince kağıt kabuklu; dolgun beyaz içli, taze ve besleyici"
     }
   },
 
@@ -828,6 +1445,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "كشمش الظل الأسود الملكي (سايكي)",
       unit: "الوزن الصافي: ١ كغ",
       desc: "مجفف في الظل بالطرق التقليدية؛ حبات لحمية غنية بالحديد والسكريات الطبيعية بدون كبريت"
+    },
+    nl: {
+      title: "Koninklijke Schaduwgedroogde Zwarte Rozijnen (Sayegi)",
+      unit: "1kg Netto Gewicht",
+      desc: "Natuurlijk gerijpt in koele donkere kamers; sappige vlezige bessen boordevol ijzer, 100% zwavelvrij"
+    },
+    es: {
+      title: "Pasas Negras Reales Secadas a la Sombra (Sayegi)",
+      unit: "Peso Neto: 1kg",
+      desc: "Secadas tradicionalmente en salas oscuras; uvas carnosas y jugosas ricas en hierro, 100% libres de sulfitos"
+    },
+    it: {
+      title: "Uvetta Nera Reale Essiccata all'Ombra (Sayegi)",
+      unit: "Peso Netto: 1kg",
+      desc: "Essiccata naturalmente all'ombra in stanze fresche; acini polposi e dolci ricchi di ferro, senza anidride solforosa"
+    },
+    tr: {
+      title: "Gölgede Kurutulmuş Kraliyet Siyah Üzümü (Sayegi)",
+      unit: "Net Ağırlık: 1kg",
+      desc: "Serin gölgede geleneksel yöntemle kurutulmuş; etli iri taneli, kükürtsüz ve kan yapıcı doğal lezzet"
     }
   },
 
@@ -856,6 +1493,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "تين قندهار العسلي السكري الفاخر",
       unit: "الوزن الصافي: ١ كغ",
       desc: "تين عسلي ذهبي مجفف تحت شمس قندهار؛ قوام طري حلو المذاق وغني بالألياف الصحية"
+    },
+    nl: {
+      title: "Zongedroogde Zoete Vijgen (Kandahar)",
+      unit: "1kg Netto Gewicht",
+      desc: "Gouden honingvijgen gerijpt onder de Afghaanse zon; heerlijk mals, van nature zoet en vezelrijk"
+    },
+    es: {
+      title: "Higos Dulces Madurados al Sol (Kandahar)",
+      unit: "Peso Neto: 1kg",
+      desc: "Higos dorados melosos secados al sol de Kandahar; tiernos, naturalmente dulces y ricos en fibra"
+    },
+    it: {
+      title: "Fichi Dolci Mielati al Sole (Kandahar)",
+      unit: "Peso Netto: 1kg",
+      desc: "Fichi dorati al miele maturati al sole di Kandahar; morbidi, naturalmente dolci e ricchi di fibre"
+    },
+    tr: {
+      title: "Kandahar Doğal Güneşte Kurutulmuş Şeker İnciri",
+      unit: "Net Ağırlık: 1kg",
+      desc: "Kandahar güneşinde olgunlaşmış ballı sarı incir; yumuşak dokulu ve lif zengini"
     }
   },
 
@@ -884,6 +1541,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "زعفران سوبر نقين الخالص (هرات)",
       unit: "عبوة ٥ غرام في كريستال فاخر",
       desc: "خيوط نقية حمراء منتقاة لأرقى معايير التصدير؛ عطر نفاذ وقوة تلوين طبيعية استثنائية"
+    },
+    nl: {
+      title: "Pure Super Negin Saffraan (Herat)",
+      unit: "5g in Luxe Kristallen Doosje",
+      desc: "Hoogste exportkwaliteit volledig rode stampers met betoverend aroma en uitzonderlijke natuurlijke kleurkracht"
+    },
+    es: {
+      title: "Azafrán Puro Súper Negin de Herat",
+      unit: "5g en Estuche de Cristal de Lujo",
+      desc: "Estigmas rojos puros de máxima calidad de exportación con aroma cautivador y poder colorante extraordinario"
+    },
+    it: {
+      title: "Zafferano Puro Super Negin di Herat",
+      unit: "5g in Cofanetto di Cristallo di Lusso",
+      desc: "Pistilli rosso vivo di grado superiore da esportazione con aroma avvolgente e straordinario potere colorante"
+    },
+    tr: {
+      title: "Herat Saf Süper Negin Safranı",
+      unit: "5g Lüks Kristal Kutuda",
+      desc: "Büyüleyici kokusu ve yüksek doğal renklendirme gücüne sahip en üst kalite kırmızı safran telleri"
     }
   },
 
@@ -912,6 +1589,26 @@ const PRODUCT_TRANSLATIONS = {
       title: "مشمش وقيسي مجفف مشمس طبيعي",
       unit: "الوزن الصافي: ١ كغ",
       desc: "شرائح مشمش ذهبية مجففة طبيعياً؛ مذاق حلو حامض متوازن وخالي تماماً من المواد الكيميائية"
+    },
+    nl: {
+      title: "Zongedroogde Zoete Abrikozen (Qaisi)",
+      unit: "1kg Netto Gewicht",
+      desc: "Gouden zongerijpte bergabrikozen; zoetzure harmonieuze smaak, natuurlijk zacht en ongezwaveld"
+    },
+    es: {
+      title: "Albaricoques Dulces Secados al Sol (Qaisi)",
+      unit: "Peso Neto: 1kg",
+      desc: "Orejones dorados madurados al sol en terrazas de montaña; sabor dulce y acidulado equilibrado, sin azufre"
+    },
+    it: {
+      title: "Albicocche Dolci Essiccate al Sole (Qaisi)",
+      unit: "Peso Netto: 1kg",
+      desc: "Albicocche dorate maturate al sole delle montagne; gusto agrodolce equilibrato, morbide e senza zolfo"
+    },
+    tr: {
+      title: "Doğal Güneşte Kurutulmuş Tatlı Kayısı (Qaisi)",
+      unit: "Net Ağırlık: 1kg",
+      desc: "Dağ yamaçlarında güneşte kurutulmuş altın sarısı kayısı; mayhoş-tatlı dengeli ve kükürtsüz"
     }
   }
 };
@@ -933,7 +1630,7 @@ function formatLocalizedNumber(num, lang) {
 // Localized price formatter
 function formatLocalizedPrice(amount, lang) {
   const val = Number(amount);
-  if (lang === 'de') {
+  if (['de', 'nl', 'fr', 'es', 'it', 'tr'].includes(lang)) {
     return val.toFixed(2).replace('.', ',') + ' €';
   }
   if (lang === 'fa') {
@@ -951,7 +1648,11 @@ function getLocalizedCountStatus(count, lang) {
   if (lang === 'fa') return `تعداد ${loc} قلم کالا و پکیج موجود`;
   if (lang === 'ar') return `تتوفر ${loc} من السلع والباقات الفاخرة`;
   if (lang === 'de') return `${loc} Artikel und königliche Pakete verfügbar`;
+  if (lang === 'nl') return `${loc} artikelen en koninklijke pakketten beschikbaar`;
   if (lang === 'fr') return `${loc} articles et coffrets royaux disponibles`;
+  if (lang === 'es') return `${loc} artículos y paquetes reales disponibles`;
+  if (lang === 'it') return `${loc} articoli e confezioni reali disponibili`;
+  if (lang === 'tr') return `${loc} ürün ve kraliyet paketi mevcut`;
   return `${loc} items and royal packages available`;
 }
 
