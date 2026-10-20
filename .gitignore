@@ -1,0 +1,8 @@
+# Screenshots & scratch files
+/*.png
+/scratch/
+/take_screenshots.py
+
+# OS generated files
+.DS_Store
+Thumbs.db

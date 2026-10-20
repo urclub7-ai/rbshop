@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>R.B Shop | فروشگاه میوه خشک و سوغات اصیل افغانستان در آلمان و اروپا</title>
+  <meta name="description" content="فروشگاه R.B Shop با مدیریت رمضان بختیاری در آلمان (بوسوم). عرضه اعلاترین بادام قندک، پسته خندان هرات، جلغوزه سیاه، کشمش سایگی، زعفران و پکیج‌های کادویی با ارسال سریع به سراسر آلمان و اروپا.">
+  <meta name="keywords" content="میوه خشک افغانستان, بادام قندک, پسته هرات, جلغوزه سیاه, کشمش سایگی, زعفران افغانی, پکیج کادویی میوه خشک, فروشگاه افغانی در آلمان, Büsum, R.B Shop, رمضان بختیاری">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="R.B Shop | فروشگاه میوه خشک و سوغات اصیل افغانستان">
+  <meta property="og:description" content="عرضه بهترین میوه خشک، بادام، پسته، جلغوزه و پکیج‌های سوغات با ارسال به سراسر اروپا">
+  <meta property="og:image" content="assets/logo.jpg">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Local Fonts First (Instant, Offline & Censorship-Proof) -->
+  <style>
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/fonts/Vazirmatn-Regular.woff2') format('woff2');
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/fonts/Vazirmatn-Medium.woff2') format('woff2');
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/fonts/Vazirmatn-SemiBold.woff2') format('woff2');
+      font-weight: 600;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/fonts/Vazirmatn-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/fonts/Vazirmatn-ExtraBold.woff2') format('woff2');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Vazirmatn';
+      src: url('assets/fonts/Vazirmatn-Black.woff2') format('woff2');
+      font-weight: 900;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: 'Plus Jakarta Sans';
+      src: url('assets/fonts/PlusJakartaSans-Bold.woff2') format('woff2');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Plus Jakarta Sans';
+      src: url('assets/fonts/PlusJakartaSans-ExtraBold.woff2') format('woff2');
+      font-weight: 800;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+
+  <!-- Fallback External CDNs -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Supabase JS Client -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#07080a',
+              dark: '#0e1117',
+              surface: '#151922',
+              card: '#1b202c',
+              border: '#2a3142',
+              silver: '#cbd5e1',
+              chrome: '#e2e8f0',
+              red: '#dc2626',
+              redHover: '#ef4444',
+              redDark: '#991b1b',
+              redGlow: 'rgba(220, 38, 38, 0.45)'
+            }
+          },
+          fontFamily: {
+            sans: ['Vazirmatn', 'system-ui', 'sans-serif'],
+            display: ['"Plus Jakarta Sans"', 'Vazirmatn', 'sans-serif'],
+          },
+          boxShadow: {
+            'glow-red': '0 0 25px -5px rgba(220, 38, 38, 0.45)',
+            'glow-silver': '0 0 25px -5px rgba(226, 232, 240, 0.2)',
+            'card-hover': '0 12px 30px -10px rgba(0, 0, 0, 0.7), 0 0 15px 1px rgba(220, 38, 38, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Vazirmatn', system-ui, sans-serif;
+      background-color: #07080a;
+      color: #f1f5f9;
+      overflow-x: hidden;
+    }
+    
+    /* Chrome Metallic Gradient Text */
+    .text-chrome {
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 45%, #94a3b8 70%, #ffffff 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Red Metallic Gradient Text */
+    .text-red-metallic {
+      background: linear-gradient(135deg, #ff4d4d 0%, #dc2626 50%, #991b1b 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Polished Chrome Border */
+    .border-chrome {
+      border-color: rgba(203, 213, 225, 0.2);
+    }
+    .border-chrome-hover:hover {
+      border-color: rgba(220, 38, 38, 0.5);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0e1117;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #2a3142;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #dc2626;
+    }
+
+    /* Subtle mesh pattern */
+    .bg-mesh {
+      background-image: radial-gradient(circle at 50% 0%, rgba(220, 38, 38, 0.14) 0%, transparent 65%),
+                        radial-gradient(circle at 100% 100%, rgba(30, 41, 59, 0.35) 0%, transparent 50%);
+    }
+
+    /* Toast animation */
+    @keyframes slideInUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-toast {
+      animation: slideInUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .dir-ltr {
+      direction: ltr !important;
+      unicode-bidi: isolate;
+    }
+  </style>
+</head>
+<body class="selection:bg-brand-red selection:text-white">
+
+  <!-- MAIN HEADER & RED BANNER (RICH EDITORIAL LUXURY STYLE) -->
+  <header id="home" class="relative overflow-hidden bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#941120] via-[#690b16] to-[#2c0207] text-white border-b border-[#3b0309]">
+    
+    <!-- 1. Afghan Damask / Rosette Geometric Watermark Pattern (Static, 4% Opacity) -->
+    <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-[0.045]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="afghanDamask" width="50" height="50" patternUnits="userSpaceOnUse">
+          <path d="M25 0 L50 25 L25 50 L0 25 Z" fill="none" stroke="#ffffff" stroke-width="0.75"/>
+          <circle cx="25" cy="25" r="9" fill="none" stroke="#ffffff" stroke-width="0.75"/>
+          <path d="M25 8 L25 42 M8 25 L42 25" stroke="#ffffff" stroke-width="0.5"/>
+          <circle cx="0" cy="0" r="6" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+          <circle cx="50" cy="0" r="6" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+          <circle cx="0" cy="50" r="6" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+          <circle cx="50" cy="50" r="6" fill="none" stroke="#ffffff" stroke-width="0.5"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#afghanDamask)"/>
+    </svg>
+
+    <!-- 2. Stylized Botanical Petals & Saffron Flowers (Static, Elegant, Editorial) -->
+    <div class="absolute inset-0 pointer-events-none select-none overflow-hidden">
+      <!-- Saffron blossom motif on top right -->
+      <svg class="absolute top-8 right-10 w-16 h-16 text-rose-300/20" viewBox="0 0 100 100" fill="currentColor">
+        <path d="M50 10 C55 30 75 35 90 50 C75 65 55 70 50 90 C45 70 25 65 10 50 C25 35 45 30 50 10 Z"/>
+      </svg>
+      <!-- Golden almond leaf on top left -->
+      <svg class="absolute top-20 left-16 w-12 h-12 text-amber-300/20" viewBox="0 0 100 100" fill="currentColor">
+        <path d="M20 80 C20 40 50 20 80 20 C80 60 50 80 20 80 Z"/>
+      </svg>
+      <!-- Subtle starlight sparkles -->
+      <span class="absolute top-36 right-1/3 text-amber-300/30 text-sm select-none">✦</span>
+      <span class="absolute top-20 left-1/3 text-amber-200/25 text-xs select-none">✦</span>
+      <span class="absolute bottom-28 right-16 text-rose-300/25 text-xs select-none">✦</span>
+    </div>
+
+    <!-- 3. Multi-Layered Mountain Ridges at the Bottom (Transition into Catalog) -->
+    <div class="absolute -bottom-1 left-0 right-0 pointer-events-none select-none overflow-hidden">
+      <!-- Back Ridge -->
+      <svg class="w-full h-28 sm:h-36 md:h-44 text-[#1a0104] opacity-40" viewBox="0 0 1440 200" preserveAspectRatio="none" fill="currentColor">
+        <path d="M0,200 L0,95 Q180,35 360,80 T720,55 T1080,85 T1440,45 L1440,200 Z"/>
+      </svg>
+      <!-- Mid Ridge -->
+      <svg class="w-full h-20 sm:h-28 md:h-32 text-[#100103] opacity-75 -mt-16 sm:-mt-20 md:-mt-24" viewBox="0 0 1440 200" preserveAspectRatio="none" fill="currentColor">
+        <path d="M0,200 L0,115 Q240,65 480,110 T960,90 T1440,105 L1440,200 Z"/>
+      </svg>
+      <!-- Front Silhouette -->
+      <svg class="w-full h-12 sm:h-16 text-[#07080a] -mt-8 sm:-mt-10" viewBox="0 0 1440 100" preserveAspectRatio="none" fill="currentColor">
+        <path d="M0,100 L0,45 Q360,15 720,40 T1440,25 L1440,100 Z"/>
+      </svg>
+    </div>
+
+    <!-- STICKY TOP NAV BAR (Inside Red Banner) -->
+    <div class="relative z-30 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 flex items-center justify-between border-b border-white/10">
+      
+      <!-- Brand Logo & Shop Name -->
+      <a href="#home" class="flex items-center gap-3">
+        <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl overflow-hidden p-0.5 bg-gradient-to-br from-amber-300/40 via-white/30 to-brand-red border border-white/30 shadow-md shrink-0">
+          <img src="assets/logo_transparent.png" alt="R.B Shop Logo" class="w-full h-full object-contain rounded-lg bg-[#240105]">
+        </div>
+        <div class="flex flex-col justify-center">
+          <span class="text-xl sm:text-2xl font-black font-display tracking-wider text-white leading-none mb-1">R.B SHOP</span>
+          <span class="text-[11px] sm:text-xs font-semibold text-rose-200/90 leading-tight">فروشگاه میوه خشک اصیل و سوغات</span>
+        </div>
+      </a>
+
+      <!-- Clean Desktop Search Bar (Exact Atlas Archive style: Pill with icon & placeholder) -->
+      <div class="hidden md:flex items-center flex-1 max-w-md mx-6 lg:mx-10">
+        <div class="relative w-full">
+          <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-rose-200/70 text-xs pointer-events-none"></i>
+          <input type="text" id="navbarSearch" placeholder="جستجوی پکیج، بادام، پسته، جلغوزه، کشمش، زعفران..." 
+                 class="w-full pl-9 pr-10 py-2.5 rounded-full bg-black/40 border border-white/20 text-xs text-white placeholder-rose-200/60 focus:outline-none focus:border-amber-400 focus:bg-black/60 transition shadow-inner">
+          <button id="clearSearchBtn" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-rose-200/70 hover:text-white text-xs">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Quick Actions: WhatsApp & Cart (No desktop nav links, as instructed!) -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- WhatsApp Quick Link -->
+        <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AC%D9%86%D8%A7%D8%A8%20%D8%A8%D8%AE%D8%AA%DB%8C%D8%A7%D8%B1%DB%8C%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%DB%8C%D9%88%D9%87%20%D8%AE%D8%B4%DA%A9%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85." 
+           target="_blank"
+           class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 border border-emerald-400/30 shadow-md transition">
+          <i class="fa-brands fa-whatsapp text-sm"></i>
+          <span class="hidden sm:inline">سفارش واتساپ</span>
+        </a>
+
+        <!-- Cart Button -->
+        <button id="cartBtn" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white hover:border-amber-400 transition shadow-md">
+          <i class="fa-solid fa-bag-shopping text-base"></i>
+          <span id="cartCount" class="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-amber-400 text-[#54070e] text-[11px] font-black flex items-center justify-center font-display shadow-md">0</span>
+        </button>
+
+        <!-- Mobile Menu Button (Mobile Only) -->
+        <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 border border-white/20 text-white">
+          <i class="fa-solid fa-bars text-base" id="menuIcon"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Dropdown (Only for Mobile) -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-white/10 bg-[#280206] px-5 py-4 space-y-3 font-medium text-sm text-rose-100 relative z-30">
+      <div class="relative w-full mb-3">
+        <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-rose-200/60 text-xs"></i>
+        <input type="text" id="mobileSearch" placeholder="جستجوی میوه خشک و پکیج..." 
+               class="w-full pl-4 pr-10 py-2.5 rounded-xl bg-black/40 border border-white/20 text-xs text-white placeholder-rose-200/60 focus:outline-none focus:border-amber-400">
+      </div>
+      <a href="#products" class="block py-2 hover:text-white border-b border-white/10">تمام محصولات و پکیج‌ها</a>
+      <a href="#contact" class="block py-2 hover:text-white border-b border-white/10">مشخصات و آدرس فروشگاه</a>
+      <div class="pt-2 flex flex-col gap-2">
+        <a href="https://wa.me/491729343833" target="_blank" class="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs">
+          <i class="fa-brands fa-whatsapp text-base"></i> واتساپ (<span class="dir-ltr">0049 172 9343833</span>)
+        </a>
+        <a href="https://www.tiktok.com/@r.b.omar.osmanshop" target="_blank" class="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-black/40 border border-white/20 text-white font-bold text-xs">
+          <i class="fa-brands fa-tiktok text-base text-rose-400"></i> تیک‌تاک: <span class="dir-ltr">@r.b.omar.osmanshop</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- MAIN HERO BANNER BODY (BALANCED DUAL-COLUMN LAYOUT) -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-20 sm:pt-14 sm:pb-24">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        
+        <!-- RIGHT COLUMN: Grand Narrative & Brand Identity (7 Cols) -->
+        <div class="lg:col-span-7 space-y-4 text-right">
+          
+          <!-- Big Bold Site Title (Atlas Archive Shop typography) with Doodle Wave -->
+          <div>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-display tracking-tight leading-none drop-shadow-md">
+              R.B Shop
+            </h1>
+
+            <!-- Expressive Hand-Drawn Wavy Underline (Matching Atlas Archive doodle wave!) -->
+            <div class="w-56 sm:w-80 h-5 text-white/95 my-2.5">
+              <svg viewBox="0 0 280 24" fill="none" class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 14 C 30 14, 50 20, 70 13 C 90 6, 110 18, 140 11 C 170 4, 200 17, 230 10 C 248 6, 262 13, 276 9" 
+                      stroke="currentColor" stroke-width="3.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Subtitle / Hook -->
+          <h2 class="text-base sm:text-lg lg:text-xl font-bold text-white/95 leading-snug">
+            اصیل‌ترین طعم افغانستان؛ تازه‌ترین کیفیت و پکیج‌های شاهانه
+          </h2>
+
+          <!-- Detailed Description -->
+          <p class="text-rose-100/90 text-xs sm:text-sm lg:text-[15px] leading-relaxed max-w-2xl font-normal">
+            فروشگاه رسمی <strong class="text-white font-bold">رمضان بختیاری</strong>؛ گلچینی از بهترین بادام قندک شیرین و پرچرب، پسته خندان هرات، جلغوزه سیاه ارگانیک پکتیا، چهارمغز کاغذی، کشمش سایگی و زعفران ناب، در بسته‌بندی‌های بهداشتی و کادویی با ارسال سریع و مطمئن پستی DHL به سراسر آلمان و اروپا.
+          </p>
+
+          <!-- Store Metadata Chips (Glassmorphic Pills) -->
+          <div class="flex flex-wrap items-center gap-2 pt-2 text-xs font-semibold">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 border border-white/15 text-white backdrop-blur-sm">
+              <i class="fa-solid fa-user-check text-amber-300 text-[11px]"></i>
+              مدیریت: رمضان بختیاری
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 border border-white/15 text-white backdrop-blur-sm">
+              <i class="fa-solid fa-location-dot text-amber-300 text-[11px]"></i>
+              <span class="dir-ltr">Möllers weg 6, Büsum, Germany</span>
+            </span>
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-black/30 border border-white/15 text-white backdrop-blur-sm">
+              <i class="fa-solid fa-truck-fast text-amber-300 text-[11px]"></i>
+              ارسال پستی DHL و DPD
+            </span>
+          </div>
+
+          <!-- Direct CTA Buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-3">
+            <a href="#products" class="px-6 py-3 rounded-full bg-white hover:bg-rose-50 text-[#7a0f1b] font-black text-xs sm:text-sm flex items-center gap-2 shadow-xl hover:shadow-2xl transition">
+              <i class="fa-solid fa-bag-shopping text-sm"></i>
+              <span>مشاهده محصولات و پکیج‌ها (۱۲ قلم)</span>
+            </a>
+            <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AC%D9%86%D8%A7%D8%A8%20%D8%A8%D8%AE%D8%AA%DB%8C%D8%A7%D8%B1%DB%8C%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85." 
+               target="_blank" 
+               class="px-5 py-3 rounded-full bg-black/40 hover:bg-black/60 border border-white/25 text-white font-bold text-xs sm:text-sm flex items-center gap-2 backdrop-blur-sm transition">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
+              <span>ثبت سفارش در واتساپ</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- LEFT COLUMN: Brand Logo Emblem Spotlight (Replaced Card) -->
+        <div class="lg:col-span-5 flex items-center justify-center py-4 lg:py-0">
+          <div class="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 flex items-center justify-center">
+            
+            <!-- Ambient Glow behind Logo -->
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-red/35 via-amber-500/20 to-transparent rounded-full blur-3xl pointer-events-none"></div>
+
+            <!-- Glassmorphic Emblem Container with Chrome/Gold Rim -->
+            <div class="relative w-60 h-60 sm:w-68 sm:h-68 lg:w-72 lg:h-72 rounded-3xl p-6 sm:p-7 bg-gradient-to-b from-black/65 via-[#200206]/85 to-black/85 backdrop-blur-xl border border-white/20 shadow-[0_25px_60px_rgba(0,0,0,0.85)] flex flex-col items-center justify-center group hover:border-amber-400/50 transition-all duration-300">
+              
+              <!-- Subtle decorative corner glints -->
+              <span class="absolute top-3.5 right-3.5 text-amber-300/40 text-[10px] select-none">✦</span>
+              <span class="absolute bottom-3.5 left-3.5 text-amber-300/40 text-[10px] select-none">✦</span>
+
+              <!-- Authentic High-Res R.B Shop Logo -->
+              <div class="w-full h-full flex items-center justify-center p-2">
+                <img src="assets/logo_transparent.png" alt="R.B Shop Official Logo" class="w-full h-full object-contain filter drop-shadow-[0_12px_24px_rgba(0,0,0,0.9)] group-hover:scale-105 transition-transform duration-500">
+              </div>
+
+              <!-- Official Brand Seal Pill -->
+              <div class="mt-2.5 inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-black/70 border border-white/15 text-white text-[11px] font-bold shadow-md">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span class="font-display tracking-wider">R.B SHOP • فروشگاه رسمی</span>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <!-- UNIFIED PRODUCTS & PACKAGES CATALOG (ATLAS ARCHIVE SHOP STYLE) -->
+  <section id="products" class="py-10 sm:py-14 bg-[#07080a] relative border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- ATLAS ARCHIVE FILTER & SORT BAR -->
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 mb-8 border-b border-brand-border/80">
+        
+        <!-- Filter Pills Tabs -->
+        <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+          <button onclick="filterProducts('all')" class="filter-btn active px-4 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red">
+            همه اقلام (۱۲)
+          </button>
+          <button onclick="filterProducts('packages')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+            پکیج‌های شاهانه (۴)
+          </button>
+          <button onclick="filterProducts('nuts')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+            بادام و مغزیجات (۲)
+          </button>
+          <button onclick="filterProducts('pinenuts')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+            پسته و جلغوزه (۲)
+          </button>
+          <button onclick="filterProducts('fruits')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+            کشمش و میوه خشک (۳)
+          </button>
+          <button onclick="filterProducts('saffron')" class="filter-btn px-4 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
+            زعفران اعلا (۱)
+          </button>
+        </div>
+
+        <!-- Atlas Archive Total Items Status Label -->
+        <div class="text-xs text-brand-silver font-medium flex items-center gap-2 self-start md:self-auto">
+          <span class="w-2 h-2 rounded-full bg-brand-red"></span>
+          <span id="productsCount" class="font-bold text-white">تعداد ۱۲ قلم کالا و پکیج موجود</span>
+        </div>
+      </div>
+
+      <!-- ATLAS ARCHIVE 4-COLUMN PRODUCTS GRID -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5" id="productsGrid">
+
+        <!-- 1. مخلوط شاهانه میوه خشک و مغزیجات -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/rb_royal_box.jpg" alt="مخلوط شاهانه میوه خشک و مغزیجات R.B Shop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱.۲ کیلوگرم • پکیج شاهانه</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">مخلوط شاهانه میوه خشک و مغزیجات</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">۸ قلم اعلا: پسته، بادام قندک، چهارمغز، کشمش، قیسی و انجیر</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
+                <span class="text-xl font-black text-white font-display">۴۵.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('pkg1', 'مخلوط شاهانه میوه خشک و مغزیجات', 45.00, 'assets/rb_royal_box.jpg', 'بسته مخلوط ۱.۲ کیلو')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%D8%AE%D9%84%D9%88%D8%B7%20%D8%B4%D8%A7%D9%87%D8%A7%D9%86%D9%87%20%D9%85%DB%8C%D9%88%D9%87%20%D8%AE%D8%B4%DA%A9%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. پکیج عیدانه و مهمانی آر بی -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/mixed_nuts.jpg" alt="پکیج عیدانه و مهمانی آر بی" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱ کیلوگرم • پذیرایی لوکس</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پکیج عیدانه و مهمانی آر بی</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">مخلوط بادام کاغذی، پسته خندان، چهارمغز و کشمش سبز اعلا</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
+                <span class="text-xl font-black text-white font-display">۳۲.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('pkg2', 'پکیج عیدانه و مهمانی آر بی', 32.00, 'assets/mixed_nuts.jpg', 'بسته ۱ کیلوگرمی')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DA%A9%DB%8C%D8%AC%20%D8%B9%DB%8C%D8%AF%D8%A7%D9%86%D9%87%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. پکیج سلامتی و انرژی طبیعی -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/almonds.jpg" alt="پکیج سلامتی و انرژی طبیعی" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱ کیلوگرم • ۱۰۰٪ طبیعی</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پکیج سلامتی و انرژی طبیعی</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">مغز بادام شیرین خام، مغز پسته، مغز چهارمغز و توت ارگانیک</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
+                <span class="text-xl font-black text-white font-display">۲۹.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('pkg3', 'پکیج سلامتی و انرژی طبیعی', 29.00, 'assets/almonds.jpg', 'بسته ۱ کیلوگرمی')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DA%A9%DB%8C%D8%AC%20%D8%B3%D9%84%D8%A7%D9%85%D8%AA%DB%8C%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. پکیج VIP جلغوزه و پسته هرات -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="packages">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/pinenuts.jpg" alt="پکیج VIP جلغوزه و پسته هرات" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۱ کیلوگرم • مجلل و VIP</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پکیج VIP جلغوزه و پسته هرات</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">۵۰۰ گرم جلغوزه سیاه کابل و پکتیا + ۵۰۰ گرم پسته درشت هرات</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت پکیج:</span>
+                <span class="text-xl font-black text-white font-display">۴۲.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('pkg4', 'پکیج VIP جلغوزه و پسته هرات', 42.00, 'assets/pinenuts.jpg', 'بسته ۱ کیلوگرمی')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DA%A9%DB%8C%D8%AC%20VIP%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. بادام قندک درجه یک -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="nuts">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/almonds.jpg" alt="بادام قندک درجه یک افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">بادام قندک اعلای دست‌چین</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">پوست نازک کاغذی با شکستن آسان با دست، مغز شیرین و پرچرب</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
+                <span class="text-xl font-black text-white font-display">۲۲.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p1', 'بادام قندک اعلا (۱ کیلو)', 22.00, 'assets/almonds.jpg', '۱ کیلوگرم')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%A8%D8%A7%D8%AF%D8%A7%D9%85%20%D9%82%D9%86%D8%AF%DA%A9%20%D8%A7%D8%B9%D9%84%D8%A7%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. پسته خندان ممتاز هرات -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="pinenuts">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/pistachio.jpg" alt="پسته خندان هراتی درجه یک" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">پسته خندان ممتاز هرات</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">پسته درشت و خندان هرات با بافت برشته و طعم ناب طبیعی</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
+                <span class="text-xl font-black text-white font-display">۲۶.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p2', 'پسته خندان ممتاز هرات (۱ کیلو)', 26.00, 'assets/pistachio.jpg', '۱ کیلوگرم')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%D8%B3%D8%AA%D9%87%20%D8%AE%D9%86%D8%AF%D8%A7%D9%86%20%D9%87%D8%B1%D8%A7%D8%AA%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. جلغوزه سیاه کابل و پکتیا -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="pinenuts">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/pinenuts.jpg" alt="جلغوزه سیاه افغانستان پکتیا و خوست" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۵۰۰ گرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">جلغوزه سیاه پکتیا و خوست</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">جلغوزه سیاه ارگانیک اعلا، دانه‌های درشت کشیده و روغنی</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت ۵۰۰ گرم:</span>
+                <span class="text-xl font-black text-white font-display">۳۴.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p3', 'جلغوزه سیاه اعلا (۵۰۰ گرم)', 34.00, 'assets/pinenuts.jpg', '۵۰۰ گرم خالص')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%AC%D9%84%D8%BA%D9%88%D8%B2%D9%87%20%D8%B3%DB%8C%D8%A7%D9%87%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. چهارمغز کاغذی سفید تازه -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="nuts">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/walnuts.jpg" alt="چهارمغز کاغذی افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">چهارمغز کاغذی سفید تازه</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">پوست کاغذی نازک با شکستن آسان با دست، مغز سفید و پرچرب</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
+                <span class="text-xl font-black text-white font-display">۱۸.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p4', 'چهارمغز کاغذی سفید (۱ کیلو)', 18.00, 'assets/walnuts.jpg', '۱ کیلوگرم')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%DA%86%D9%87%D8%A7%D8%B1%D9%85%D8%BA%D8%B2%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. کشمش سایگی سیاه شاهانه -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/raisins.jpg" alt="کشمش سیاه سایگی افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">کشمش سیاه سایگی شاهانه</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">تهیه شده در سایه، دانه درشت گوشتی، خون‌ساز و بدون تیزاب</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
+                <span class="text-xl font-black text-white font-display">۱۵.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p5', 'کشمش سیاه سایگی شاهانه (۱ کیلو)', 15.00, 'assets/raisins.jpg', '۱ کیلوگرم')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%DA%A9%D8%B4%D9%85%D8%B4%20%D8%B3%D8%A7%DB%8C%DA%AF%DB%8C%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. انجیر شکری قندهار -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/figs.jpg" alt="انجیر خشک شکری قندهار" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">انجیر شکری ممتاز قندهار</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">انجیر عسلی طلایی قندهار با بافت نرم و مقوی، کاملاً ارگانیک</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
+                <span class="text-xl font-black text-white font-display">۱۶.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p6', 'انجیر شکری ممتاز قندهار (۱ کیلو)', 16.00, 'assets/figs.jpg', '۱ کیلوگرم')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%A7%D9%86%D8%AC%DB%8C%D8%B1%20%D9%82%D9%86%D8%AF%D9%87%D8%A7%D8%B1%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. زعفران خالص سوپر نگین هرات -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="saffron">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/saffron.jpg" alt="زعفران سرگل سوپر نگین هرات" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">بسته ۵ گرم در کریستال کادویی</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">زعفران خالص سوپر نگین هرات</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">سرگل ممتاز صادراتی با عطر دل‌انگیز و قدرت رنگ‌دهی استثنایی</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">بسته ۵ گرم:</span>
+                <span class="text-xl font-black text-white font-display">۱۸.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p7', 'زعفران سوپر نگین هرات (۵ گرام)', 18.00, 'assets/saffron.jpg', '۵ گرام در کریستال کادویی')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D8%B2%D8%B9%D9%81%D8%B1%D8%A7%D9%86%20%D9%87%D8%B1%D8%A7%D8%AA%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. قیسی و زردآلو آفتابی -->
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group" data-category="fruits">
+          <div class="h-48 overflow-hidden bg-black/40">
+            <img src="assets/apricot.jpg" alt="قیسی و زردآلو آفتابی افغانستان" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">واحد فروش: ۱ کیلوگرم خالص</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">قیسی و زردآلو آفتابی شیرین</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">برگه زردآلو و قیسی آفتابی ملس، کاملاً طبیعی و بدون گوگرد</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت هر کیلو:</span>
+                <span class="text-xl font-black text-white font-display">۱۴.۰۰ <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button onclick="addToCart('p8', 'قیسی و زردآلو آفتابی (۱ کیلو)', 14.00, 'assets/apricot.jpg', '۱ کیلوگرم')" 
+                        class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                  <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                </button>
+                <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%D8%8C%20%D9%85%D8%A7%DB%8C%D9%84%20%D8%A8%D9%87%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%82%DB%8C%D8%B3%DB%8C%20%D9%87%D8%B3%D8%AA%D9%85." 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE R.B SHOP (ویژگی‌ها و مزایای خرید) -->
+  <section id="why-us" class="py-16 sm:py-20 border-y border-brand-border/60 bg-brand-dark/40 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
+        <h2 class="text-2xl sm:text-3xl font-black text-white">
+          دلایل انتخاب <span class="text-chrome">R.B Shop</span>
+        </h2>
+        <p class="text-xs sm:text-sm text-brand-silver">
+          تعهد ما، تحویل باکیفیت‌ترین محصولات وطن با بالاترین استانداردهای بهداشتی به هم‌وطنان عزیز در تمام اروپا است.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Feature 1 -->
+        <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 text-center space-y-4 hover:border-brand-red transition-all">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-2xl shadow-glow-red">
+            <i class="fa-solid fa-leaf"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">۱۰۰٪ تازه و ارگانیک</h3>
+          <p class="text-xs text-brand-silver/80 leading-relaxed">
+            محصولات ما مستقیماً از باغات و مراکز اصلی میوه خشک افغانستان (هرات، پکتیا، قندهار، خوست و کابل) تهیه شده و بدون نگه‌دارنده‌های کیمیاوی عرضه می‌شود.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 text-center space-y-4 hover:border-brand-red transition-all">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-2xl shadow-glow-red">
+            <i class="fa-solid fa-truck-fast"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">ارسال سریع و پیگیری پستی</h3>
+          <p class="text-xs text-brand-silver/80 leading-relaxed">
+            کلیه سفارشات از مبدأ آلمان (شهر Büsum) از طریق شرکت‌های معتبر پست DHL و DPD همراه با کد رهگیری لحظه‌ای (Tracking Number) به تمام نقاط اروپا ارسال می‌گردد.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 text-center space-y-4 hover:border-brand-red transition-all">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-2xl shadow-glow-red">
+            <i class="fa-solid fa-box-tissue"></i>
+          </div>
+          <h3 class="text-lg font-bold text-white">بسته‌بندی بهداشتی و وکیوم</h3>
+          <p class="text-xs text-brand-silver/80 leading-relaxed">
+            تمامی بارها در بسته‌بندی‌های بهداشتی، عایق رطوبت و وکیوم شده آماده می‌شوند تا طعم ترد، تازگی و بوی خوش میوه خشک تا زمان مصرف کاملاً حفظ شود.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- TikTok Banner Callout -->
+      <div class="mt-12 bg-gradient-to-r from-brand-surface via-brand-dark to-brand-surface border border-brand-border rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-4 text-center md:text-right">
+          <div class="w-14 h-14 rounded-2xl bg-black border border-brand-border flex items-center justify-center text-white text-2xl shadow-glow-red shrink-0">
+            <i class="fa-brands fa-tiktok"></i>
+          </div>
+          <div>
+            <h4 class="text-base sm:text-lg font-black text-white">ما را در تیک‌تاک دنبال کنید</h4>
+            <p class="text-xs text-brand-silver/80 mt-0.5">مشاهده ویدیوهای روزانه کیفیت اجناس، باز کردن بارها و رضایت مشتریان محترم در تیک‌تاک</p>
+          </div>
+        </div>
+        <a href="https://www.tiktok.com/@r.b.omar.osmanshop" target="_blank" class="px-6 py-3 rounded-xl bg-white hover:bg-brand-silver text-black font-black text-xs transition flex items-center gap-2 shrink-0">
+          <i class="fa-brands fa-tiktok text-sm"></i>
+          <span class="dir-ltr font-display">@r.b.omar.osmanshop</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STORE CONTACT & IMPRESSUM SECTION (مشخصات و آدرس رسمی) -->
+  <section id="contact" class="py-16 sm:py-24 bg-brand-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+        
+        <!-- Store Information (7 cols) -->
+        <div class="lg:col-span-7 flex flex-col justify-between space-y-6">
+          <div class="space-y-3">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-chrome text-xs font-bold">
+              <i class="fa-solid fa-address-card text-brand-red"></i>
+              <span>مشخصات و اطلاعات رسمی فروشگاه</span>
+            </div>
+
+            <h2 class="text-2xl sm:text-3xl font-black text-white">
+              فروشگاه <span class="text-chrome">R.B Shop</span> در آلمان
+            </h2>
+            <p class="text-xs sm:text-sm text-brand-silver leading-relaxed">
+              جهت ثبت سفارش عمده و خرده، استعلام موجودی پکیج‌های خاص، یا هرگونه هماهنگی ارسال به شهرهای آلمان و خارج از آلمان، می‌توانید از راه‌های زیر مستقیماً با مدیریت فروشگاه تماس حاصل فرمایید.
+            </p>
+          </div>
+
+          <!-- Contact Details Cards (Unified 2x2 Grid) -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            
+            <!-- 1. Owner Name -->
+            <div class="bg-brand-surface border border-brand-border hover:border-brand-red/50 rounded-xl p-3.5 flex items-center gap-3.5 transition">
+              <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
+                <i class="fa-solid fa-user-check"></i>
+              </div>
+              <div class="min-w-0 flex-1 text-right">
+                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">مدیریت فروشگاه:</span>
+                <span class="text-xs sm:text-sm font-bold text-white block text-right truncate">
+                  رمضان بختیاری <span class="text-[11px] font-normal text-brand-silver/80">(R. Bakhtyary)</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- 2. Phone & WhatsApp -->
+            <div class="bg-brand-surface border border-brand-border hover:border-brand-red/50 rounded-xl p-3.5 flex items-center gap-3.5 transition">
+              <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
+                <i class="fa-solid fa-phone"></i>
+              </div>
+              <div class="min-w-0 flex-1 text-right">
+                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">تماس تلفنی و واتساپ:</span>
+                <a href="tel:00491729343833" class="text-xs sm:text-sm font-bold text-white hover:text-brand-red transition block text-right">
+                  <span class="inline-block font-display tracking-wide" dir="ltr">0049 172 9343833</span>
+                </a>
+              </div>
+            </div>
+
+            <!-- 3. Address in Germany -->
+            <div class="bg-brand-surface border border-brand-border hover:border-brand-red/50 rounded-xl p-3.5 flex items-center gap-3.5 transition">
+              <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div class="min-w-0 flex-1 text-right">
+                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">آدرس رسمی در آلمان:</span>
+                <div class="text-xs sm:text-sm font-bold text-white block text-right truncate">
+                  <span class="inline-block" dir="ltr">Möllers weg 6, 25761 Büsum</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Email -->
+            <div class="bg-brand-surface border border-brand-border hover:border-brand-red/50 rounded-xl p-3.5 flex items-center gap-3.5 transition">
+              <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
+                <i class="fa-solid fa-envelope"></i>
+              </div>
+              <div class="min-w-0 flex-1 text-right">
+                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">پست الکترونیکی (ایمیل):</span>
+                <a href="mailto:ramazan.bakhtyari152@gmail.com" class="text-xs font-bold text-white hover:text-brand-red transition block text-right truncate">
+                  <span class="inline-block" dir="ltr">ramazan.bakhtyari152@gmail.com</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Payment Methods Accepted (Symmetrical 3-Col Grid) -->
+          <div class="bg-brand-surface border border-brand-border rounded-xl p-4 space-y-2.5">
+            <span class="text-xs text-brand-silver font-bold block">روش‌های پرداخت مطمئن و آسان:</span>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-white">
+              <div class="py-2.5 px-3 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center gap-2">
+                <i class="fa-brands fa-paypal text-sky-400 text-sm"></i>
+                <span class="font-medium">پی‌پال (PayPal)</span>
+              </div>
+              <div class="py-2.5 px-3 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center gap-2">
+                <i class="fa-solid fa-building-columns text-amber-400 text-sm"></i>
+                <span class="font-medium">واریز بانکی آلمان</span>
+              </div>
+              <div class="py-2.5 px-3 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center gap-2">
+                <i class="fa-solid fa-handshake text-emerald-400 text-sm"></i>
+                <span class="font-medium">هماهنگی در واتساپ</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Quick Direct Inquiry Form (5 cols) -->
+        <div class="lg:col-span-5 flex flex-col">
+          <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-7 shadow-lg flex-1 flex flex-col justify-between space-y-5">
+            <div>
+              <h3 class="text-lg font-black text-white">ارسال پیام سریع به واتساپ</h3>
+              <p class="text-xs text-brand-silver/80 mt-1">فرم را پر کنید تا مستقیماً به صفحه گفتگوی واتساپ رمضان بختیاری منتقل شوید.</p>
+            </div>
+
+            <form id="quickMsgForm" onsubmit="sendQuickMsg(event)" class="space-y-3.5 flex-1 flex flex-col justify-between">
+              <div>
+                <label class="block text-xs font-medium text-brand-silver mb-1.5">نام و تخلص شما:</label>
+                <input type="text" id="senderName" required placeholder="مثال: احمد رحیمی" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-brand-silver mb-1.5">شهر یا کشور مقصد:</label>
+                <input type="text" id="senderCity" required placeholder="مثال: هامبورگ، فرانکفورت، ویانا و ..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition">
+              </div>
+
+              <div>
+                <label class="block text-xs font-medium text-brand-silver mb-1.5">سفارش یا پیام شما:</label>
+                <textarea id="senderMsg" rows="3" required placeholder="میزان یا نام اقلام مورد نظرتان را بنویسید (مثلاً ۲ کیلو بادام قندک و ۱ پکیج شاهانه)..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition resize-none"></textarea>
+              </div>
+
+              <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-900/30 transition">
+                <i class="fa-brands fa-whatsapp text-lg"></i>
+                <span>ارسال مستقیم پیام در واتساپ</span>
+              </button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-brand-dark border-t border-brand-border py-10 text-xs text-brand-silver">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+      
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        
+        <!-- Logo & Store -->
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl overflow-hidden bg-brand-surface p-1 border border-brand-border shrink-0 shadow-sm">
+            <img src="assets/logo_transparent.png" alt="R.B Shop" class="w-full h-full object-contain">
+          </div>
+          <div class="space-y-1">
+            <div class="text-sm sm:text-base font-black text-white font-display tracking-wide leading-tight">
+              R.B SHOP <span class="text-brand-silver/50 font-normal mx-1">•</span> <span class="text-white font-bold font-sans">فروشگاه آر بی شاپ</span>
+            </div>
+            <div class="text-xs text-brand-silver/75 flex flex-wrap items-center gap-1.5 leading-normal">
+              <span>مدیریت:</span>
+              <span class="font-bold text-white">رمضان بختیاری</span>
+              <span class="text-brand-silver/40 font-normal">|</span>
+              <span class="dir-ltr text-brand-silver/80">Büsum, Deutschland</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Social & Direct links -->
+        <div class="flex items-center gap-4">
+          <a href="https://www.tiktok.com/@r.b.omar.osmanshop" target="_blank" class="w-9 h-9 rounded-xl bg-brand-surface border border-brand-border flex items-center justify-center text-white hover:border-brand-red hover:text-brand-red transition">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://wa.me/491729343833" target="_blank" class="w-9 h-9 rounded-xl bg-brand-surface border border-brand-border flex items-center justify-center text-emerald-400 hover:border-emerald-500 transition">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="tel:00491729343833" class="w-9 h-9 rounded-xl bg-brand-surface border border-brand-border flex items-center justify-center text-white hover:border-brand-red transition">
+            <i class="fa-solid fa-phone"></i>
+          </a>
+          <a href="mailto:ramazan.bakhtyari152@gmail.com" class="w-9 h-9 rounded-xl bg-brand-surface border border-brand-border flex items-center justify-center text-white hover:border-brand-red transition">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+
+      </div>
+
+      <div class="border-t border-brand-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right">
+        <p class="text-[11px] text-brand-silver/70">
+          تمامی حقوق محفوظ است © ۲۰۲۶ فروشگاه R.B Shop • عرضه اصیل‌ترین میوه خشک افغانستان در اروپا
+        </p>
+        <p class="text-[11px] text-brand-silver/70 font-display dir-ltr">
+          Möllers weg 6, 25761 Büsum, Germany
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+  <div id="cartModal" class="fixed inset-0 z-50 invisible transition-all duration-300">
+    <!-- Backdrop -->
+    <div id="cartBackdrop" class="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300"></div>
+
+    <!-- Panel -->
+    <div id="cartPanel" class="absolute top-0 bottom-0 left-0 w-full max-w-md bg-brand-dark border-r border-brand-border shadow-2xl flex flex-col justify-between transform -translate-x-full transition-transform duration-300 z-10">
+      
+      <!-- Drawer Header -->
+      <div class="p-4 sm:p-5 border-b border-brand-border flex items-center justify-between bg-brand-surface shrink-0">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-bag-shopping text-brand-red text-lg"></i>
+          <h3 class="font-bold text-base text-white">سبد خرید شما</h3>
+          <span id="drawerBadge" class="text-xs bg-brand-dark border border-brand-border px-2 py-0.5 rounded text-brand-silver">۰ قلم</span>
+        </div>
+        <button id="closeCartBtn" class="w-8 h-8 rounded-lg bg-brand-dark border border-brand-border text-brand-silver hover:text-white flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Drawer Scroll Area (Items List + Delivery Address Form) -->
+      <div id="cartScrollArea" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
+        
+        <!-- Cart Items List Container -->
+        <div id="cartItemsContainer" class="space-y-3">
+          <!-- Rendered dynamically via JS -->
+        </div>
+
+        <!-- Delivery Address & Payment Method Section (Shown when items in cart) -->
+        <div id="checkoutFormSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-3.5 hidden">
+          
+          <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+            <div class="flex items-center gap-2">
+              <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
+              <h4 class="text-xs sm:text-sm font-bold text-white">آدرس تحویل پستی (DHL / DPD)</h4>
+            </div>
+            <span class="text-[10px] text-amber-400/90 font-medium">ارسال مستقیم با پست</span>
+          </div>
+
+          <!-- Name & Phone -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                نام و تخلص: <span class="text-rose-400">*</span>
+              </label>
+              <input type="text" id="custName" placeholder="مثال: احمد رحیمی" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                شماره تماس یا واتساپ: <span class="text-rose-400">*</span>
+              </label>
+              <input type="tel" id="custPhone" placeholder="مثال: 0176 12345678" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-right focus:outline-none focus:border-emerald-500">
+            </div>
+          </div>
+
+          <!-- Street & House Number (Straße & Hausnummer) -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-300 mb-1">
+              خیابان و شماره پلاک خانه (Straße & Hausnr.): <span class="text-rose-400">*</span>
+            </label>
+            <input type="text" id="custStreet" placeholder="مثال: Möllers weg 15" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+          </div>
+
+          <!-- Postal Code (PLZ), City & Country -->
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <div>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                کد پستی (PLZ): <span class="text-rose-400">*</span>
+              </label>
+              <input type="text" id="custPlz" placeholder="مثال: 25761" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-right focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <div>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                شهر (Stadt): <span class="text-rose-400">*</span>
+              </label>
+              <input type="text" id="custCity" placeholder="مثال: Büsum / Hamburg" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+            </div>
+
+            <div class="col-span-2 sm:col-span-1">
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">کشور (Land):</label>
+              <select id="custCountry" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-2 text-xs text-white focus:outline-none focus:border-emerald-500">
+                <option value="آلمان (Deutschland)">آلمان (Deutschland)</option>
+                <option value="اتریش (Österreich)">اتریش (Österreich)</option>
+                <option value="سوئیس (Schweiz)">سوئیس (Schweiz)</option>
+                <option value="هلند (Nederland)">هلند (Nederland)</option>
+                <option value="سایر کشورهای اروپا">سایر کشورهای اروپا</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Payment Method Selection (روش پرداخت / متد) -->
+          <div>
+            <label class="block text-[11px] font-bold text-slate-300 mb-1">
+              روش پرداخت ترجیحی (Zahlungsmethode):
+            </label>
+            <select id="custPaymentMethod" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-emerald-500">
+              <option value="پی‌پال (PayPal)">💳 پی‌پال (PayPal)</option>
+              <option value="واریز به حساب بانکی آلمان (Banküberweisung / IBAN)">🏦 کارت به کارت / حساب بانکی آلمان (IBAN)</option>
+              <option value="پرسش در چت واتساپ (از چه روشی واریز کنم؟)">💬 استعلام شماره حساب یا پی‌پال در چت واتساپ</option>
+            </select>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Drawer Footer with Total & WhatsApp Checkout Button -->
+      <div id="cartFooterSection" class="p-4 sm:p-5 border-t border-brand-border bg-brand-surface space-y-3 shrink-0">
+        
+        <div class="space-y-1.5 text-xs">
+          <div class="flex items-center justify-between text-brand-silver">
+            <span>مجموع اقلام:</span>
+            <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
+          </div>
+          <div class="flex items-center justify-between text-brand-silver">
+            <span>هزینه ارسال پستی (DHL / DPD):</span>
+            <span class="text-emerald-400 font-medium">هماهنگی در واتساپ (بر اساس وزن)</span>
+          </div>
+          <div class="flex items-center justify-between text-sm font-black text-white pt-2 border-t border-brand-border/60">
+            <span>مجموع کل:</span>
+            <span id="cartTotal" class="text-lg font-black text-chrome font-display dir-ltr">0.00 €</span>
+          </div>
+        </div>
+
+        <button onclick="checkoutWhatsApp()" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-950/60 transition">
+          <i class="fa-brands fa-whatsapp text-xl"></i>
+          <span>خرید و ارسال سفارش در واتساپ</span>
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4"></div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    // State
+    let cart = [];
+
+    // Load cart from LocalStorage
+    try {
+      const saved = localStorage.getItem('rb_cart');
+      if (saved) cart = JSON.parse(saved);
+    } catch(e) {}
+
+    // Save cart
+    function saveCart() {
+      try {
+        localStorage.setItem('rb_cart', JSON.stringify(cart));
+      } catch(e) {}
+      updateCartUI();
+    }
+
+    // Add to cart
+    function addToCart(id, name, price, img, variant) {
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ id, name, price, img, variant, qty: 1 });
+      }
+      saveCart();
+      showToast(`«${name}» به سبد خرید اضافه شد!`);
+    }
+
+    // Change qty
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      saveCart();
+    }
+
+    // Remove item
+    function removeFromCart(id) {
+      cart = cart.filter(i => i.id !== id);
+      saveCart();
+    }
+
+    // Update Cart UI
+    function updateCartUI() {
+      const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
+      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+
+      document.getElementById('cartCount').textContent = totalCount;
+      document.getElementById('drawerBadge').textContent = `${totalCount} قلم`;
+      document.getElementById('cartSubtotal').textContent = `${totalPrice.toFixed(2)} €`;
+      document.getElementById('cartTotal').textContent = `${totalPrice.toFixed(2)} €`;
+
+      const container = document.getElementById('cartItemsContainer');
+      const checkoutForm = document.getElementById('checkoutFormSection');
+
+      if (cart.length === 0) {
+        if (checkoutForm) checkoutForm.classList.add('hidden');
+        container.innerHTML = `
+          <div class="text-center py-16 space-y-3">
+            <div class="w-16 h-16 mx-auto rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-silver/50 text-2xl">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <p class="text-sm font-bold text-white">سبد خرید شما فعلاً خالی است!</p>
+            <p class="text-xs text-brand-silver">محصولات یا پکیج‌های مورد نظرتان را انتخاب و اضافه نمایید.</p>
+          </div>
+        `;
+        return;
+      }
+
+      if (checkoutForm) checkoutForm.classList.remove('hidden');
+
+      container.innerHTML = cart.map(item => `
+        <div class="bg-brand-surface border border-brand-border rounded-xl p-3 flex items-center gap-3">
+          <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg bg-brand-dark shrink-0">
+          <div class="flex-1 min-w-0">
+            <h4 class="text-xs font-bold text-white truncate">${item.name}</h4>
+            <span class="text-[11px] text-brand-silver/70 block">${item.variant}</span>
+            <div class="text-xs font-black text-chrome font-display mt-1 dir-ltr text-right">${(item.price * item.qty).toFixed(2)} €</div>
+          </div>
+          <div class="flex items-center gap-1.5 bg-brand-dark border border-brand-border rounded-lg p-1">
+            <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">-</button>
+            <span class="w-6 text-center text-xs font-bold text-white font-display">${item.qty}</span>
+            <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">+</button>
+          </div>
+          <button onclick="removeFromCart('${item.id}')" class="text-brand-silver/50 hover:text-brand-red p-1 text-xs">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+      `).join('');
+    }
+
+    // Load previously saved customer address for repeat orders
+    function loadSavedCustomer() {
+      try {
+        const saved = localStorage.getItem('rb_saved_customer');
+        if (saved) {
+          const c = JSON.parse(saved);
+          if (document.getElementById('custName') && c.name) document.getElementById('custName').value = c.name;
+          if (document.getElementById('custPhone') && c.phone) document.getElementById('custPhone').value = c.phone;
+          if (document.getElementById('custStreet') && c.street) document.getElementById('custStreet').value = c.street;
+          if (document.getElementById('custPlz') && c.plz) document.getElementById('custPlz').value = c.plz;
+          if (document.getElementById('custCity') && c.city) document.getElementById('custCity').value = c.city;
+          if (document.getElementById('custCountry') && c.country) document.getElementById('custCountry').value = c.country;
+          if (document.getElementById('custPaymentMethod') && c.payMethod) document.getElementById('custPaymentMethod').value = c.payMethod;
+        }
+      } catch(e) {}
+    }
+
+    // WhatsApp Checkout Formatter (Concise, structured & professional)
+    function checkoutWhatsApp() {
+      if (cart.length === 0) {
+        showToast('لطفاً ابتدا حداقل یک محصول به سبد خرید اضافه کنید!');
+        return;
+      }
+
+      const nameEl = document.getElementById('custName');
+      const phoneEl = document.getElementById('custPhone');
+      const streetEl = document.getElementById('custStreet');
+      const plzEl = document.getElementById('custPlz');
+      const cityEl = document.getElementById('custCity');
+      const countryEl = document.getElementById('custCountry');
+      const methodEl = document.getElementById('custPaymentMethod');
+
+      const name = nameEl ? nameEl.value.trim() : '';
+      const phone = phoneEl ? phoneEl.value.trim() : '';
+      const street = streetEl ? streetEl.value.trim() : '';
+      const plz = plzEl ? plzEl.value.trim() : '';
+      const city = cityEl ? cityEl.value.trim() : '';
+      const country = countryEl ? countryEl.value : 'آلمان (Deutschland)';
+      const payMethod = methodEl ? methodEl.value : 'پی‌پال (PayPal)';
+
+      // Validation for complete shipping address
+      if (!name || !street || !plz || !city) {
+        showToast('لطفاً نام، خیابان، کد پستی (PLZ) و شهر خود را وارد فرمایید!');
+        if (!name && nameEl) nameEl.focus();
+        else if (!street && streetEl) streetEl.focus();
+        else if (!plz && plzEl) plzEl.focus();
+        else if (!city && cityEl) cityEl.focus();
+        return;
+      }
+
+      // Save customer info in localStorage for future convenience
+      try {
+        localStorage.setItem('rb_saved_customer', JSON.stringify({
+          name, phone, street, plz, city, country, payMethod
+        }));
+      } catch(e) {}
+
+      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+
+      // Clean, neat, short message formatted for WhatsApp
+      let msg = `سلام جناب بختیاری عزیز، سفارش داشتم:\n\n`;
+      msg += `📦 اقلام سفارش:\n`;
+      cart.forEach((i, idx) => {
+        msg += `• ${i.qty} عدد ${i.name} (${i.variant}) - ${(i.price * i.qty).toFixed(2)} €\n`;
+      });
+      msg += `\n💰 مجموع کل: ${totalPrice.toFixed(2)} یورو (€)\n\n`;
+      
+      msg += `📍 آدرس تحویل پستی (DHL):\n`;
+      msg += `نام گیرنده: ${name}\n`;
+      if (phone) msg += `شماره تماس: ${phone}\n`;
+      msg += `آدرس: ${street}\n`;
+      msg += `کد پستی و شهر: ${plz} ${city}\n`;
+      msg += `کشور: ${country}\n\n`;
+
+      msg += `💳 روش پرداخت (Zahlungsmethode):\n`;
+      msg += `${payMethod}\n`;
+      msg += `لطفاً بفرمایید به چه شماره حساب یا پی‌پالی واریز کنم تا فوراً ارسال فرمایید. تشکر!`;
+
+      const fullAddress = `${street}, ${plz} ${city}, ${country}` + (phone ? ` (تلفن: ${phone})` : '');
+
+      // Async record order in Supabase
+      if (sbClient) {
+        try {
+          sbClient.from('orders').insert([{
+            customer_name: name,
+            customer_address: fullAddress,
+            items: cart,
+            total_price: totalPrice,
+            status: 'whatsapp_sent'
+          }]).then(() => {});
+        } catch(e) {}
+      }
+
+      // Owner clean WhatsApp number
+      const ownerPhone = '491729343833';
+      const encoded = encodeURIComponent(msg);
+      window.open(`https://wa.me/${ownerPhone}?text=${encoded}`, '_blank');
+    }
+
+    // Quick Direct Inquiry Message Form
+    function sendQuickMsg(e) {
+      e.preventDefault();
+      const name = document.getElementById('senderName').value.trim();
+      const city = document.getElementById('senderCity').value.trim();
+      const text = document.getElementById('senderMsg').value.trim();
+
+      const msg = `سلام جناب بختیاری،\nنام: ${name}\nشهر/کشور: ${city}\nپیام و استعلام سفارش:\n${text}`;
+      window.open(`https://wa.me/491729343833?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+
+    // Live Search & Filter Functionality
+    const navbarSearch = document.getElementById('navbarSearch');
+    const mobileSearch = document.getElementById('mobileSearch');
+    const clearSearchBtn = document.getElementById('clearSearchBtn');
+
+    function applySearch(term) {
+      const q = term.trim().toLowerCase();
+      const cards = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (!q || text.includes(q)) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      const countEl = document.getElementById('productsCount');
+      if (countEl) {
+        if (q) {
+          countEl.innerText = `نمایش ${visibleCount} قلم منطبق با «${term}»`;
+        } else {
+          countEl.innerText = `تعداد ${visibleCount} قلم کالا و پکیج موجود`;
+        }
+      }
+
+      if (clearSearchBtn) {
+        if (q) {
+          clearSearchBtn.classList.remove('hidden');
+        } else {
+          clearSearchBtn.classList.add('hidden');
+        }
+      }
+    }
+
+    if (navbarSearch) {
+      navbarSearch.addEventListener('input', (e) => {
+        applySearch(e.target.value);
+        if (mobileSearch) mobileSearch.value = e.target.value;
+      });
+      navbarSearch.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const pSec = document.getElementById('products');
+          if (pSec) pSec.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+
+    if (mobileSearch) {
+      mobileSearch.addEventListener('input', (e) => {
+        applySearch(e.target.value);
+        if (navbarSearch) navbarSearch.value = e.target.value;
+      });
+    }
+
+    if (clearSearchBtn) {
+      clearSearchBtn.addEventListener('click', () => {
+        if (navbarSearch) navbarSearch.value = '';
+        if (mobileSearch) mobileSearch.value = '';
+        applySearch('');
+      });
+    }
+
+    // Filter Products
+    function filterProducts(cat) {
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-brand-red', 'text-white', 'shadow-glow-red');
+        btn.classList.add('bg-brand-surface', 'border-brand-border', 'text-brand-silver');
+      });
+      if (window.event && window.event.target) {
+        const t = window.event.target.closest('button');
+        if (t) {
+          t.classList.add('active', 'bg-brand-red', 'text-white', 'shadow-glow-red');
+          t.classList.remove('bg-brand-surface', 'text-brand-silver');
+        }
+      }
+
+      const cards = document.querySelectorAll('.product-card');
+      let visibleCount = 0;
+      cards.forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.style.display = 'flex';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      const countEl = document.getElementById('productsCount');
+      if (countEl) {
+        countEl.innerText = `تعداد ${visibleCount} قلم کالا و پکیج موجود`;
+      }
+    }
+
+    // Toast function
+    function showToast(text) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'animate-toast pointer-events-auto bg-brand-surface border border-brand-red/60 text-white text-xs font-bold px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2.5';
+      toast.innerHTML = `
+        <span class="w-2 h-2 rounded-full bg-brand-red shadow-glow-red"></span>
+        <span>${text}</span>
+      `;
+      container.appendChild(toast);
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        toast.style.transition = 'all 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    }
+
+    // Cart Drawer Toggle
+    const cartModal = document.getElementById('cartModal');
+    const cartBackdrop = document.getElementById('cartBackdrop');
+    const cartPanel = document.getElementById('cartPanel');
+
+    function openCart() {
+      cartModal.classList.remove('invisible');
+      setTimeout(() => {
+        cartBackdrop.classList.remove('opacity-0');
+        cartPanel.classList.remove('-translate-x-full');
+      }, 10);
+    }
+
+    function closeCart() {
+      cartBackdrop.classList.add('opacity-0');
+      cartPanel.classList.add('-translate-x-full');
+      setTimeout(() => {
+        cartModal.classList.add('invisible');
+      }, 300);
+    }
+
+    document.getElementById('cartBtn').addEventListener('click', openCart);
+    document.getElementById('closeCartBtn').addEventListener('click', closeCart);
+    cartBackdrop.addEventListener('click', closeCart);
+
+    // Mobile Menu Toggle
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+    });
+
+    // Supabase Cloud Configuration
+    const SUPABASE_URL = 'https://qhlnthakoddnnhrigdbc.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_KtWJ_9LbuJr_SE387yIbQQ_nOxs2jjm';
+    let sbClient = null;
+    if (window.supabase) {
+      try {
+        sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+      } catch(e) {}
+    }
+
+    // Dynamic Products & Store Sync (Supabase Cloud + LocalStorage Fallback)
+    async function syncWithAdminPanel() {
+      // 1. Instant local render (zero waiting)
+      const savedProds = localStorage.getItem('rb_products');
+      if (savedProds) {
+        try {
+          const prods = JSON.parse(savedProds);
+          if (Array.isArray(prods) && prods.length > 0) {
+            renderDynamicProducts(prods);
+          }
+        } catch(e) {}
+      }
+
+      // 2. Fetch live data from Supabase Cloud
+      if (sbClient) {
+        try {
+          const { data, error } = await sbClient.from('products').select('*').order('created_at', { ascending: false });
+          if (!error && Array.isArray(data) && data.length > 0) {
+            const cloudProds = data.map(r => ({
+              id: r.id,
+              title: r.title,
+              price: parseFloat(r.price),
+              category: r.category,
+              unit: r.unit,
+              variant: r.variant || r.unit,
+              description: r.description,
+              image: r.image,
+              inStock: r.in_stock !== false
+            }));
+            localStorage.setItem('rb_products', JSON.stringify(cloudProds));
+            renderDynamicProducts(cloudProds);
+          }
+        } catch(e) {}
+
+        // Fetch Store settings from Supabase Cloud
+        try {
+          const { data: sData } = await sbClient.from('store_settings').select('*').eq('id', 1).maybeSingle();
+          if (sData) {
+            const settingsObj = {
+              owner: sData.owner,
+              phone: sData.phone,
+              cleanPhone: sData.clean_phone,
+              address: sData.address,
+              email: sData.email,
+              tiktok: sData.tiktok
+            };
+            localStorage.setItem('rb_store_settings', JSON.stringify(settingsObj));
+          }
+        } catch(e) {}
+      }
+
+      // Apply settings to DOM
+      const savedSettings = localStorage.getItem('rb_store_settings');
+      if (savedSettings) {
+        try {
+          const s = JSON.parse(savedSettings);
+          if (s.phone && s.cleanPhone) {
+            document.querySelectorAll('a[href^="tel:"]').forEach(a => {
+              a.href = 'tel:' + s.cleanPhone;
+              const sp = a.querySelector('span');
+              if (sp) sp.innerText = s.phone;
+            });
+            document.querySelectorAll('a[href*="wa.me/"]').forEach(a => {
+              a.href = a.href.replace(/wa\.me\/[0-9]+/, 'wa.me/' + s.cleanPhone);
+            });
+          }
+        } catch(e) {}
+      }
+    }
+
+    function renderDynamicProducts(prods) {
+      const grid = document.getElementById('productsGrid');
+      if (!grid) return;
+
+      const toPersianDigits = (num) => {
+        const pDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+        return String(num).replace(/[0-9]/g, d => pDigits[d]);
+      };
+
+      grid.innerHTML = prods.map(p => {
+        const formattedPrice = Number(p.price).toFixed(2);
+        const persianPrice = toPersianDigits(formattedPrice);
+        const waMsg = encodeURIComponent(`سلام، مایل به سفارش ${p.title} هستم.`);
+        const inStock = p.inStock !== false;
+
+        return `
+        <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group ${inStock ? '' : 'opacity-70'}" data-category="${p.category}">
+          <div class="h-48 overflow-hidden bg-black/40 relative">
+            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            ${inStock ? '' : `
+              <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px] flex items-center justify-center">
+                <span class="px-3 py-1 rounded-full bg-rose-950/80 border border-rose-500/50 text-white text-xs font-bold">
+                  ناموجود در انبار
+                </span>
+              </div>
+            `}
+          </div>
+          <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+            <div>
+              <span class="text-[11px] font-semibold text-amber-400/90 block mb-1">${p.unit || ''}</span>
+              <h3 class="font-bold text-white text-base leading-snug group-hover:text-amber-200 transition-colors">${p.title}</h3>
+              <p class="text-xs text-brand-silver/70 mt-1 line-clamp-1">${p.description || ''}</p>
+            </div>
+            <div class="pt-3 border-t border-white/10">
+              <div class="flex items-center justify-between mb-2.5">
+                <span class="text-xs text-brand-silver/70">قیمت:</span>
+                <span class="text-xl font-black text-white font-display">${persianPrice} <span class="text-xs text-brand-silver font-sans">یورو (€)</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                ${inStock ? `
+                  <button onclick="addToCart('${p.id}', '${p.title.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}', '${(p.variant || p.unit || '').replace(/'/g, "\\'")}')" 
+                          class="flex-1 py-2.5 rounded-xl text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-cart-plus text-xs"></i> افزودن به سبد
+                  </button>
+                ` : `
+                  <button disabled class="flex-1 py-2.5 rounded-xl text-xs font-bold text-slate-400 bg-white/5 border border-white/10 cursor-not-allowed flex items-center justify-center gap-1.5">
+                    <i class="fa-solid fa-ban text-xs"></i> فعلاً ناموجود
+                  </button>
+                `}
+                <a href="https://wa.me/491729343833?text=${waMsg}" 
+                   target="_blank" 
+                   title="سفارش سریع در واتساپ"
+                   class="w-9 h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
+                  <i class="fa-brands fa-whatsapp text-base"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+        `;
+      }).join('');
+
+      const countEl = document.getElementById('productsCount');
+      if (countEl) {
+        countEl.innerText = `تعداد ${prods.length} قلم کالا و پکیج موجود`;
+      }
+    }
+
+    // Initial load
+    syncWithAdminPanel();
+    loadSavedCustomer();
+    updateCartUI();
+  </script>
+</body>
+</html>
