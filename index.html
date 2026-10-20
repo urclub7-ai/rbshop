@@ -1,20 +1,23 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl" class="scroll-smooth">
+<html lang="en" dir="ltr" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>R.B Shop | فروشگاه میوه خشک و سوغات اصیل افغانستان در آلمان و اروپا</title>
-  <meta name="description" content="فروشگاه R.B Shop با مدیریت رمضان بختیاری در آلمان (بوسوم). عرضه اعلاترین بادام قندک، پسته خندان هرات، جلغوزه سیاه، کشمش سایگی، زعفران و پکیج‌های کادویی با ارسال سریع به سراسر آلمان و اروپا.">
-  <meta name="keywords" content="میوه خشک افغانستان, بادام قندک, پسته هرات, جلغوزه سیاه, کشمش سایگی, زعفران افغانی, پکیج کادویی میوه خشک, فروشگاه افغانی در آلمان, Büsum, R.B Shop, رمضان بختیاری">
+  <title>R.B Shop | Authentic Afghan Dried Fruits, Nuts & Royal Gifts in Germany</title>
+  <meta name="description" content="R.B Shop by Ramazan Bakhtyary in Büsum, Germany. Premium Qandak almonds, Herat smiling pistachios, wild black pine nuts, shadow-dried raisins, Super Negin saffron and luxury gift boxes with fast DHL shipping across Europe.">
+  <meta name="keywords" content="Afghan dried fruits, Qandak almonds, Herat pistachios, black pine nuts, Sayegi raisins, Afghan saffron, luxury gift box, Afghan shop Germany, Büsum, R.B Shop, Ramazan Bakhtyary">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="R.B Shop | فروشگاه میوه خشک و سوغات اصیل افغانستان">
-  <meta property="og:description" content="عرضه بهترین میوه خشک، بادام، پسته، جلغوزه و پکیج‌های سوغات با ارسال به سراسر اروپا">
+  <meta property="og:title" content="R.B Shop | Authentic Afghan Dried Fruits, Nuts & Royal Gifts">
+  <meta property="og:description" content="Direct from Afghanistan orchards to Germany and Europe. DHL tracked shipping.">
   <meta property="og:image" content="assets/logo.jpg">
   <meta property="og:type" content="website">
 
   <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+
+  <!-- Multilingual Engine Data -->
+  <script src="translations.js"></script>
 
   <!-- Local Fonts First (Instant, Offline & Censorship-Proof) -->
   <style>
@@ -81,7 +84,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -112,7 +115,7 @@
             }
           },
           fontFamily: {
-            sans: ['Vazirmatn', 'system-ui', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'Vazirmatn', 'system-ui', 'sans-serif'],
             display: ['"Plus Jakarta Sans"', 'Vazirmatn', 'sans-serif'],
           },
           boxShadow: {
@@ -127,10 +130,15 @@
 
   <style>
     body {
-      font-family: 'Vazirmatn', system-ui, sans-serif;
       background-color: #07080a;
       color: #f1f5f9;
       overflow-x: hidden;
+    }
+    html[dir="ltr"] body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    html[dir="rtl"] body {
+      font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif;
     }
     
     /* Chrome Metallic Gradient Text */
@@ -188,6 +196,17 @@
     .dir-ltr {
       direction: ltr !important;
       unicode-bidi: isolate;
+    }
+
+    /* Multilingual Typography */
+    html[lang="en"] body,
+    html[lang="de"] body,
+    html[lang="fr"] body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    }
+    html[lang="fa"] body,
+    html[lang="ar"] body {
+      font-family: 'Vazirmatn', system-ui, sans-serif;
     }
 
     /* Hide scrollbar for clean horizontal swiping on mobile */
@@ -263,40 +282,89 @@
         </div>
         <div class="flex flex-col justify-center">
           <span class="text-xl sm:text-2xl font-black font-display tracking-wider text-white leading-none mb-1">R.B SHOP</span>
-          <span class="text-[11px] sm:text-xs font-semibold text-rose-200/90 leading-tight">فروشگاه میوه خشک اصیل و سوغات</span>
+          <span data-i18n="nav_shop_desc" class="text-[11px] sm:text-xs font-semibold text-rose-200/90 leading-tight">Authentic Dried Fruits & Royal Gifts</span>
         </div>
       </a>
 
       <!-- Clean Desktop Search Bar (Exact Atlas Archive style: Pill with icon & placeholder) -->
       <div class="hidden md:flex items-center flex-1 max-w-md mx-6 lg:mx-10">
         <div class="relative w-full">
-          <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-rose-200/70 text-xs pointer-events-none"></i>
-          <input type="text" id="navbarSearch" placeholder="جستجوی پکیج، بادام، پسته، جلغوزه، کشمش، زعفران..." 
-                 class="w-full pl-9 pr-10 py-2.5 rounded-full bg-black/40 border border-white/20 text-xs text-white placeholder-rose-200/60 focus:outline-none focus:border-amber-400 focus:bg-black/60 transition shadow-inner">
-          <button id="clearSearchBtn" class="hidden absolute left-3 top-1/2 -translate-y-1/2 text-rose-200/70 hover:text-white text-xs">
+          <i class="fa-solid fa-magnifying-glass absolute start-3.5 top-1/2 -translate-y-1/2 text-rose-200/70 text-xs pointer-events-none"></i>
+          <input type="text" id="navbarSearch" data-i18n-ph="nav_search_ph" placeholder="Search royal gift boxes, almonds, pistachios, pine nuts, saffron..." 
+                 class="w-full ps-9 pe-10 py-2.5 rounded-full bg-black/40 border border-white/20 text-xs text-white placeholder-rose-200/60 focus:outline-none focus:border-amber-400 focus:bg-black/60 transition shadow-inner">
+          <button id="clearSearchBtn" class="hidden absolute end-3 top-1/2 -translate-y-1/2 text-rose-200/70 hover:text-white text-xs">
             <i class="fa-solid fa-xmark"></i>
           </button>
         </div>
       </div>
 
-      <!-- Right Quick Actions: WhatsApp & Cart (No desktop nav links, as instructed!) -->
+      <!-- Right Quick Actions: Language Selector, WhatsApp & Cart -->
       <div class="flex items-center gap-2 sm:gap-3">
+        
+        <!-- Language Selector Dropdown -->
+        <div class="relative" id="langSelectorWrapper">
+          <button id="langBtn" type="button" aria-expanded="false" class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-black/40 hover:bg-black/60 border border-white/20 text-white text-xs font-bold transition shadow-md active:scale-95">
+            <span id="currentLangFlag" class="text-sm">🇬🇧</span>
+            <span id="currentLangLabel" class="hidden sm:inline font-sans">English</span>
+            <i class="fa-solid fa-chevron-down text-[10px] text-rose-200/70 transition-transform duration-200" id="langChevron"></i>
+          </button>
+          
+          <!-- Dropdown Menu -->
+          <div id="langDropdown" class="hidden absolute top-full mt-2 end-0 w-44 rounded-2xl bg-[#1b0206]/95 border border-white/20 backdrop-blur-xl shadow-2xl p-1.5 z-50 text-xs font-bold space-y-1">
+            <button onclick="setLanguage('en')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="en">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇬🇧</span>
+                <span>English</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs" id="check-en"></i>
+            </button>
+            <button onclick="setLanguage('de')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="de">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇩🇪</span>
+                <span>Deutsch</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-de"></i>
+            </button>
+            <button onclick="setLanguage('fr')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="fr">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇫🇷</span>
+                <span>Français</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-fr"></i>
+            </button>
+            <button onclick="setLanguage('fa')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="fa">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇦🇫</span>
+                <span>فارسی (دری)</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-fa"></i>
+            </button>
+            <button onclick="setLanguage('ar')" type="button" class="lang-opt-btn w-full flex items-center justify-between px-3 py-2 rounded-xl text-white hover:bg-white/10 transition" data-lang="ar">
+              <span class="flex items-center gap-2.5">
+                <span class="text-sm">🇸🇦</span>
+                <span>العربية</span>
+              </span>
+              <i class="fa-solid fa-check text-amber-400 text-xs hidden" id="check-ar"></i>
+            </button>
+          </div>
+        </div>
+
         <!-- WhatsApp Quick Link -->
-        <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AC%D9%86%D8%A7%D8%A8%20%D8%A8%D8%AE%D8%AA%DB%8C%D8%A7%D8%B1%DB%8C%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%85%DB%8C%D9%88%D9%87%20%D8%AE%D8%B4%DA%A9%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85." 
+        <a href="https://wa.me/491729343833" 
            target="_blank"
-           class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 border border-emerald-400/30 shadow-md transition">
+           class="inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-full text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-500 border border-emerald-400/30 shadow-md transition shrink-0">
           <i class="fa-brands fa-whatsapp text-sm"></i>
-          <span class="hidden sm:inline">سفارش واتساپ</span>
+          <span class="hidden md:inline" data-i18n="nav_wa_btn">WhatsApp Order</span>
         </a>
 
         <!-- Cart Button -->
-        <button id="cartBtn" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white hover:border-amber-400 transition shadow-md">
+        <button id="cartBtn" class="relative flex items-center justify-center w-10 h-10 rounded-full bg-black/40 border border-white/20 text-white hover:border-amber-400 transition shadow-md shrink-0">
           <i class="fa-solid fa-bag-shopping text-base"></i>
-          <span id="cartCount" class="absolute -top-1.5 -left-1.5 w-5 h-5 rounded-full bg-amber-400 text-[#54070e] text-[11px] font-black flex items-center justify-center font-display shadow-md">0</span>
+          <span id="cartCount" class="absolute -top-1.5 -start-1.5 w-5 h-5 rounded-full bg-amber-400 text-[#54070e] text-[11px] font-black flex items-center justify-center font-display shadow-md">0</span>
         </button>
 
         <!-- Mobile Menu Button (Mobile Only) -->
-        <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 border border-white/20 text-white">
+        <button id="mobileMenuBtn" class="md:hidden flex items-center justify-center w-10 h-10 rounded-xl bg-black/40 border border-white/20 text-white shrink-0">
           <i class="fa-solid fa-bars text-base" id="menuIcon"></i>
         </button>
       </div>
@@ -304,19 +372,32 @@
 
     <!-- Mobile Nav Dropdown (Only for Mobile) -->
     <div id="mobileMenu" class="hidden md:hidden border-b border-white/10 bg-[#280206] px-5 py-4 space-y-3 font-medium text-sm text-rose-100 relative z-30">
-      <div class="relative w-full mb-3">
-        <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-1/2 -translate-y-1/2 text-rose-200/60 text-xs"></i>
-        <input type="text" id="mobileSearch" placeholder="جستجوی میوه خشک و پکیج..." 
-               class="w-full pl-4 pr-10 py-2.5 rounded-xl bg-black/40 border border-white/20 text-xs text-white placeholder-rose-200/60 focus:outline-none focus:border-amber-400">
+      
+      <!-- Quick Language Selector in Mobile Menu -->
+      <div class="pb-3 border-b border-white/10">
+        <span class="text-[11px] text-rose-200/80 block mb-2 font-bold">Language / Sprache / زبان:</span>
+        <div class="grid grid-cols-5 gap-1.5 text-center">
+          <button type="button" data-mobile-lang="en" onclick="setLanguage('en')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="English">🇬🇧<span class="block text-[10px] mt-0.5">EN</span></button>
+          <button type="button" data-mobile-lang="de" onclick="setLanguage('de')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Deutsch">🇩🇪<span class="block text-[10px] mt-0.5">DE</span></button>
+          <button type="button" data-mobile-lang="fr" onclick="setLanguage('fr')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="Français">🇫🇷<span class="block text-[10px] mt-0.5">FR</span></button>
+          <button type="button" data-mobile-lang="fa" onclick="setLanguage('fa')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="فارسی">🇦🇫<span class="block text-[10px] mt-0.5">دری</span></button>
+          <button type="button" data-mobile-lang="ar" onclick="setLanguage('ar')" class="p-2 rounded-xl bg-black/40 border border-white/10 text-xs hover:border-amber-400 transition" title="العربية">🇸🇦<span class="block text-[10px] mt-0.5">عربي</span></button>
+        </div>
       </div>
-      <a href="#products" class="block py-2 hover:text-white border-b border-white/10">تمام محصولات و پکیج‌ها</a>
-      <a href="#contact" class="block py-2 hover:text-white border-b border-white/10">مشخصات و آدرس فروشگاه</a>
+
+      <div class="relative w-full mb-3">
+        <i class="fa-solid fa-magnifying-glass absolute start-3.5 top-1/2 -translate-y-1/2 text-rose-200/60 text-xs"></i>
+        <input type="text" id="mobileSearch" data-i18n-ph="nav_search_ph" placeholder="Search royal gift boxes, almonds, pistachios, pine nuts, saffron..." 
+               class="w-full ps-9 pe-4 py-2.5 rounded-xl bg-black/40 border border-white/20 text-xs text-white placeholder-rose-200/60 focus:outline-none focus:border-amber-400">
+      </div>
+      <a href="#products" class="block py-2 hover:text-white border-b border-white/10" data-i18n="mobile_menu_all_products">All Products & Gift Boxes</a>
+      <a href="#contact" class="block py-2 hover:text-white border-b border-white/10" data-i18n="mobile_menu_contact">Store Details & German Address</a>
       <div class="pt-2 flex flex-col gap-2">
         <a href="https://wa.me/491729343833" target="_blank" class="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-emerald-600 text-white font-bold text-xs">
-          <i class="fa-brands fa-whatsapp text-base"></i> واتساپ (<span class="dir-ltr">0049 172 9343833</span>)
+          <i class="fa-brands fa-whatsapp text-base"></i> <span data-i18n="nav_wa_btn">WhatsApp Order</span> (<span class="dir-ltr">0049 172 9343833</span>)
         </a>
         <a href="https://www.tiktok.com/@r.b.omar.osmanshop" target="_blank" class="flex items-center justify-center gap-2 py-2.5 rounded-xl bg-black/40 border border-white/20 text-white font-bold text-xs">
-          <i class="fa-brands fa-tiktok text-base text-rose-400"></i> تیک‌تاک: <span class="dir-ltr">@r.b.omar.osmanshop</span>
+          <i class="fa-brands fa-tiktok text-base text-rose-400"></i> TikTok: <span class="dir-ltr">@r.b.omar.osmanshop</span>
         </a>
       </div>
     </div>
@@ -327,11 +408,11 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
         
         <!-- BRAND CONTENT COLUMN (7 Cols on desktop) -->
-        <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-right space-y-3.5 sm:space-y-4">
+        <div class="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-start space-y-3.5 sm:space-y-4">
           
           <!-- Big Bold Site Title with Centered/Aligned Doodle Wave -->
           <div class="flex flex-col items-center lg:items-start">
-            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-display tracking-tight leading-none drop-shadow-md">
+            <h1 data-i18n="hero_title" class="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-display tracking-tight leading-none drop-shadow-md">
               R.B Shop
             </h1>
 
@@ -345,28 +426,28 @@
           </div>
 
           <!-- Subtitle / Hook -->
-          <h2 class="text-sm sm:text-lg lg:text-xl font-bold text-white/95 leading-snug max-w-lg">
-            اصیل‌ترین طعم افغانستان؛ تازه‌ترین کیفیت و پکیج‌های شاهانه
+          <h2 data-i18n="hero_subtitle" class="text-sm sm:text-lg lg:text-xl font-bold text-white/95 leading-snug max-w-lg">
+            Authentic Afghan Flavors; Premium Quality & Royal Gift Boxes
           </h2>
 
           <!-- Detailed Description -->
-          <p class="text-rose-100/90 text-xs sm:text-sm lg:text-[15px] leading-relaxed max-w-2xl font-normal">
-            فروشگاه رسمی <strong class="text-white font-bold">رمضان بختیاری</strong>؛ گلچینی از بهترین بادام قندک شیرین، پسته خندان هرات، جلغوزه سیاه ارگانیک پکتیا، چهارمغز کاغذی، کشمش سایگی و زعفران ناب با ارسال سریع پستی DHL به سراسر آلمان و اروپا.
+          <p data-i18n="hero_desc" class="text-rose-100/90 text-xs sm:text-sm lg:text-[15px] leading-relaxed max-w-2xl font-normal">
+            Official store of Ramazan Bakhtyary. Hand-selected sweet Qandak almonds, Herat smiling pistachios, wild organic Paktia black pine nuts, paper-shell walnuts, shadow-dried raisins, and super Negin saffron, delivered with fast DHL postal tracking across Germany and Europe.
           </p>
 
           <!-- Store Metadata Chips (Mobile: Neat Center / Desktop: Row) -->
           <div class="flex flex-wrap items-center justify-center lg:justify-start gap-1.5 w-full max-w-md lg:max-w-none pt-1">
             <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
               <i class="fa-solid fa-user-check text-amber-300 text-[10px]"></i>
-              <span>مدیریت: رمضان بختیاری</span>
+              <span data-i18n="hero_chip_owner">Owner: Ramazan Bakhtyary</span>
             </div>
             <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
               <i class="fa-solid fa-location-dot text-amber-300 text-[10px]"></i>
-              <span class="dir-ltr">Büsum, Germany</span>
+              <span class="dir-ltr" data-i18n="hero_chip_location">Büsum, Germany</span>
             </div>
             <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
               <i class="fa-solid fa-truck-fast text-amber-300 text-[10px]"></i>
-              <span>ارسال پستی DHL به تمام اروپا</span>
+              <span data-i18n="hero_chip_shipping">Fast DHL & DPD Postal Delivery across Europe</span>
             </div>
           </div>
 
@@ -374,19 +455,19 @@
           <div class="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2.5 w-full max-w-md lg:max-w-none pt-2">
             <a href="#products" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white hover:bg-rose-50 text-[#7a0f1b] font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transition active:scale-95">
               <i class="fa-solid fa-bag-shopping text-sm"></i>
-              <span>مشاهده و خرید محصولات (۱۲ قلم)</span>
+              <span data-i18n="hero_cta_products">Explore Products & Boxes (12 Items)</span>
             </a>
-            <a href="https://wa.me/491729343833?text=%D8%B3%D9%84%D8%A7%D9%85%20%D8%AC%D9%86%D8%A7%D8%A8%20%D8%A8%D8%AE%D8%AA%DB%8C%D8%A7%D8%B1%DB%8C%D8%8C%20%D8%A8%D8%B1%D8%A7%DB%8C%20%D8%B3%D9%81%D8%A7%D8%B1%D8%B4%20%D9%BE%DB%8C%D8%A7%D9%85%20%D9%85%DB%8C%E2%80%8C%D8%AF%D9%87%D9%85." 
+            <a href="https://wa.me/491729343833" 
                target="_blank" 
                class="w-full sm:w-auto px-5 py-3 rounded-full bg-black/50 hover:bg-black/70 border border-white/25 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 backdrop-blur-sm transition active:scale-95">
               <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i>
-              <span>سفارش سریع در واتساپ</span>
+              <span data-i18n="hero_cta_wa">Order via WhatsApp</span>
             </a>
           </div>
 
         </div>
 
-        <!-- LEFT COLUMN: Brand Logo Emblem Spotlight (Compact on Mobile) -->
+        <!-- LEFT/RIGHT COLUMN: Brand Logo Emblem Spotlight (Compact on Mobile) -->
         <div class="lg:col-span-5 flex items-center justify-center py-2 lg:py-0">
           <div class="relative w-48 h-48 sm:w-64 sm:h-64 lg:w-72 lg:h-72 flex items-center justify-center">
             
@@ -396,8 +477,8 @@
             <!-- Glassmorphic Emblem Container with Chrome/Gold Rim -->
             <div class="relative w-44 h-44 sm:w-60 sm:h-60 lg:w-68 lg:h-68 rounded-2xl sm:rounded-3xl p-4 sm:p-6 bg-gradient-to-b from-black/70 via-[#200206]/85 to-black/85 backdrop-blur-xl border border-white/20 shadow-xl flex flex-col items-center justify-center group hover:border-amber-400/50 transition-all duration-300">
               
-              <span class="absolute top-2.5 right-2.5 text-amber-300/40 text-[10px] select-none">✦</span>
-              <span class="absolute bottom-2.5 left-2.5 text-amber-300/40 text-[10px] select-none">✦</span>
+              <span class="absolute top-2.5 end-2.5 text-amber-300/40 text-[10px] select-none">✦</span>
+              <span class="absolute bottom-2.5 start-2.5 text-amber-300/40 text-[10px] select-none">✦</span>
 
               <!-- Authentic High-Res R.B Shop Logo -->
               <div class="w-full h-full flex items-center justify-center p-1">
@@ -407,7 +488,7 @@
               <!-- Official Brand Seal Pill -->
               <div class="mt-1.5 inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-black/80 border border-white/15 text-white text-[10px] sm:text-[11px] font-bold shadow-md">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                <span class="font-display tracking-wider">R.B SHOP • رسمی</span>
+                <span class="font-display tracking-wider" data-i18n="hero_seal">R.B SHOP • Official Store</span>
               </div>
 
             </div>
@@ -429,30 +510,30 @@
         
         <!-- Filter Pills Tabs (Horizontal Swipe on Mobile) -->
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0" id="filterContainer">
-          <button onclick="filterProducts('all')" class="filter-btn active shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red">
-            همه اقلام (۱۲)
+          <button onclick="filterProducts('all')" class="filter-btn active shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red" data-i18n="cat_all">
+            All Items (12)
           </button>
-          <button onclick="filterProducts('packages')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
-            پکیج‌های شاهانه (۴)
+          <button onclick="filterProducts('packages')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_packages">
+            Royal Gift Boxes (4)
           </button>
-          <button onclick="filterProducts('nuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
-            بادام و مغزیجات (۲)
+          <button onclick="filterProducts('nuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_nuts">
+            Almonds & Nuts (2)
           </button>
-          <button onclick="filterProducts('pinenuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
-            پسته و جلغوزه (۲)
+          <button onclick="filterProducts('pinenuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_pinenuts">
+            Pistachios & Pine Nuts (2)
           </button>
-          <button onclick="filterProducts('fruits')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
-            کشمش و میوه خشک (۳)
+          <button onclick="filterProducts('fruits')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_fruits">
+            Dried Fruits & Raisins (3)
           </button>
-          <button onclick="filterProducts('saffron')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red">
-            زعفران اعلا (۱)
+          <button onclick="filterProducts('saffron')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_saffron">
+            Super Negin Saffron (1)
           </button>
         </div>
 
         <!-- Total Items Status Label -->
         <div class="text-[11px] sm:text-xs text-brand-silver font-medium flex items-center gap-1.5 self-start md:self-auto">
           <span class="w-1.5 h-1.5 rounded-full bg-brand-red"></span>
-          <span id="productsCount" class="font-bold text-white">تعداد ۱۲ قلم کالا و پکیج موجود</span>
+          <span id="productsCount" class="font-bold text-white" data-i18n="cat_status">12 items and royal packages available</span>
         </div>
       </div>
 
@@ -853,11 +934,11 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-14 space-y-2">
-        <h2 class="text-2xl sm:text-3xl font-black text-white">
-          دلایل انتخاب <span class="text-chrome">R.B Shop</span>
+        <h2 data-i18n="why_us_title" class="text-2xl sm:text-3xl font-black text-white">
+          Why Choose <span class="text-chrome">R.B Shop</span>?
         </h2>
-        <p class="text-xs sm:text-sm text-brand-silver">
-          تعهد ما، تحویل باکیفیت‌ترین محصولات وطن با بالاترین استانداردهای بهداشتی به هم‌وطنان عزیز در تمام اروپا است.
+        <p data-i18n="why_us_sub" class="text-xs sm:text-sm text-brand-silver">
+          Our commitment is delivering the finest authentic Afghan harvest with top European hygiene and freshness standards.
         </p>
       </div>
 
@@ -868,9 +949,9 @@
           <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-2xl shadow-glow-red">
             <i class="fa-solid fa-leaf"></i>
           </div>
-          <h3 class="text-lg font-bold text-white">۱۰۰٪ تازه و ارگانیک</h3>
-          <p class="text-xs text-brand-silver/80 leading-relaxed">
-            محصولات ما مستقیماً از باغات و مراکز اصلی میوه خشک افغانستان (هرات، پکتیا، قندهار، خوست و کابل) تهیه شده و بدون نگه‌دارنده‌های کیمیاوی عرضه می‌شود.
+          <h3 data-i18n="why_feat1_title" class="text-lg font-bold text-white">100% Fresh & Organic</h3>
+          <p data-i18n="why_feat1_desc" class="text-xs text-brand-silver/80 leading-relaxed">
+            Directly sourced from premier orchards in Herat, Paktia, Kandahar, and Kabul, completely free of chemical preservatives.
           </p>
         </div>
 
@@ -879,9 +960,9 @@
           <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-2xl shadow-glow-red">
             <i class="fa-solid fa-truck-fast"></i>
           </div>
-          <h3 class="text-lg font-bold text-white">ارسال سریع و پیگیری پستی</h3>
-          <p class="text-xs text-brand-silver/80 leading-relaxed">
-            کلیه سفارشات از مبدأ آلمان (شهر Büsum) از طریق شرکت‌های معتبر پست DHL و DPD همراه با کد رهگیری لحظه‌ای (Tracking Number) به تمام نقاط اروپا ارسال می‌گردد.
+          <h3 data-i18n="why_feat2_title" class="text-lg font-bold text-white">Fast Tracked DHL Shipping</h3>
+          <p data-i18n="why_feat2_desc" class="text-xs text-brand-silver/80 leading-relaxed">
+            Dispatched directly from Büsum, Germany via DHL & DPD with live tracking numbers across Germany and all EU countries.
           </p>
         </div>
 
@@ -890,9 +971,9 @@
           <div class="w-16 h-16 mx-auto rounded-2xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-2xl shadow-glow-red">
             <i class="fa-solid fa-box-tissue"></i>
           </div>
-          <h3 class="text-lg font-bold text-white">بسته‌بندی بهداشتی و وکیوم</h3>
-          <p class="text-xs text-brand-silver/80 leading-relaxed">
-            تمامی بارها در بسته‌بندی‌های بهداشتی، عایق رطوبت و وکیوم شده آماده می‌شوند تا طعم ترد، تازگی و بوی خوش میوه خشک تا زمان مصرف کاملاً حفظ شود.
+          <h3 data-i18n="why_feat3_title" class="text-lg font-bold text-white">Hygienic Vacuum Packaging</h3>
+          <p data-i18n="why_feat3_desc" class="text-xs text-brand-silver/80 leading-relaxed">
+            Aroma-sealed and moisture-proof packaging to ensure crunchiness, fresh natural aroma, and maximum shelf life.
           </p>
         </div>
 
@@ -900,13 +981,13 @@
 
       <!-- TikTok Banner Callout -->
       <div class="mt-12 bg-gradient-to-r from-brand-surface via-brand-dark to-brand-surface border border-brand-border rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-4 text-center md:text-right">
+        <div class="flex items-center gap-4 text-center md:text-start">
           <div class="w-14 h-14 rounded-2xl bg-black border border-brand-border flex items-center justify-center text-white text-2xl shadow-glow-red shrink-0">
             <i class="fa-brands fa-tiktok"></i>
           </div>
           <div>
-            <h4 class="text-base sm:text-lg font-black text-white">ما را در تیک‌تاک دنبال کنید</h4>
-            <p class="text-xs text-brand-silver/80 mt-0.5">مشاهده ویدیوهای روزانه کیفیت اجناس، باز کردن بارها و رضایت مشتریان محترم در تیک‌تاک</p>
+            <h4 data-i18n="tiktok_title" class="text-base sm:text-lg font-black text-white">Follow Us on TikTok</h4>
+            <p data-i18n="tiktok_desc" class="text-xs text-brand-silver/80 mt-0.5">Watch daily unboxing videos, cargo arrivals, quality tests, and genuine customer reviews on TikTok.</p>
           </div>
         </div>
         <a href="https://www.tiktok.com/@r.b.omar.osmanshop" target="_blank" class="px-6 py-3 rounded-xl bg-white hover:bg-brand-silver text-black font-black text-xs transition flex items-center gap-2 shrink-0">
@@ -929,14 +1010,14 @@
           <div class="space-y-3">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-surface border border-brand-border text-brand-chrome text-xs font-bold">
               <i class="fa-solid fa-address-card text-brand-red"></i>
-              <span>مشخصات و اطلاعات رسمی فروشگاه</span>
+              <span data-i18n="contact_badge">Official Store Information</span>
             </div>
 
             <h2 class="text-2xl sm:text-3xl font-black text-white">
-              فروشگاه <span class="text-chrome">R.B Shop</span> در آلمان
+              <span data-i18n="contact_title">Official R.B Shop in Germany</span>
             </h2>
-            <p class="text-xs sm:text-sm text-brand-silver leading-relaxed">
-              جهت ثبت سفارش عمده و خرده، استعلام موجودی پکیج‌های خاص، یا هرگونه هماهنگی ارسال به شهرهای آلمان و خارج از آلمان، می‌توانید از راه‌های زیر مستقیماً با مدیریت فروشگاه تماس حاصل فرمایید.
+            <p data-i18n="contact_desc" class="text-xs sm:text-sm text-brand-silver leading-relaxed">
+              For retail and wholesale orders, custom royal boxes, or European shipping inquiries, contact shop management directly.
             </p>
           </div>
 
@@ -948,10 +1029,10 @@
               <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
                 <i class="fa-solid fa-user-check"></i>
               </div>
-              <div class="min-w-0 flex-1 text-right">
-                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">مدیریت فروشگاه:</span>
-                <span class="text-xs sm:text-sm font-bold text-white block text-right truncate">
-                  رمضان بختیاری <span class="text-[11px] font-normal text-brand-silver/80">(R. Bakhtyary)</span>
+              <div class="min-w-0 flex-1 text-start">
+                <span data-i18n="contact_owner_label" class="text-[11px] text-brand-silver/70 block mb-0.5 text-start">Shop Management:</span>
+                <span data-i18n="contact_owner_val" class="text-xs sm:text-sm font-bold text-white block text-start truncate">
+                  Ramazan Bakhtyary
                 </span>
               </div>
             </div>
@@ -961,9 +1042,9 @@
               <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
                 <i class="fa-solid fa-phone"></i>
               </div>
-              <div class="min-w-0 flex-1 text-right">
-                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">تماس تلفنی و واتساپ:</span>
-                <a href="tel:00491729343833" class="text-xs sm:text-sm font-bold text-white hover:text-brand-red transition block text-right">
+              <div class="min-w-0 flex-1 text-start">
+                <span data-i18n="contact_phone_label" class="text-[11px] text-brand-silver/70 block mb-0.5 text-start">Phone & WhatsApp:</span>
+                <a href="tel:00491729343833" class="text-xs sm:text-sm font-bold text-white hover:text-brand-red transition block text-start">
                   <span class="inline-block font-display tracking-wide" dir="ltr">0049 172 9343833</span>
                 </a>
               </div>
@@ -974,10 +1055,10 @@
               <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
                 <i class="fa-solid fa-location-dot"></i>
               </div>
-              <div class="min-w-0 flex-1 text-right">
-                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">آدرس رسمی در آلمان:</span>
-                <div class="text-xs sm:text-sm font-bold text-white block text-right truncate">
-                  <span class="inline-block" dir="ltr">Möllers weg 6, 25761 Büsum</span>
+              <div class="min-w-0 flex-1 text-start">
+                <span data-i18n="contact_address_label" class="text-[11px] text-brand-silver/70 block mb-0.5 text-start">Official Address in Germany:</span>
+                <div class="text-xs sm:text-sm font-bold text-white block text-start truncate">
+                  <span class="inline-block" dir="ltr" data-i18n="contact_address_val">Möllers weg 6, 25761 Büsum</span>
                 </div>
               </div>
             </div>
@@ -987,9 +1068,9 @@
               <div class="w-11 h-11 rounded-xl bg-brand-dark border border-brand-border flex items-center justify-center text-brand-red text-base shrink-0">
                 <i class="fa-solid fa-envelope"></i>
               </div>
-              <div class="min-w-0 flex-1 text-right">
-                <span class="text-[11px] text-brand-silver/70 block mb-0.5 text-right">پست الکترونیکی (ایمیل):</span>
-                <a href="mailto:ramazan.bakhtyari152@gmail.com" class="text-xs font-bold text-white hover:text-brand-red transition block text-right truncate">
+              <div class="min-w-0 flex-1 text-start">
+                <span data-i18n="contact_email_label" class="text-[11px] text-brand-silver/70 block mb-0.5 text-start">Email Address:</span>
+                <a href="mailto:ramazan.bakhtyari152@gmail.com" class="text-xs font-bold text-white hover:text-brand-red transition block text-start truncate">
                   <span class="inline-block" dir="ltr">ramazan.bakhtyari152@gmail.com</span>
                 </a>
               </div>
@@ -999,19 +1080,19 @@
 
           <!-- Payment Methods Accepted (Symmetrical 3-Col Grid) -->
           <div class="bg-brand-surface border border-brand-border rounded-xl p-4 space-y-2.5">
-            <span class="text-xs text-brand-silver font-bold block">روش‌های پرداخت مطمئن و آسان:</span>
+            <span data-i18n="payment_methods_title" class="text-xs text-brand-silver font-bold block text-start">Safe & Convenient Payment Methods:</span>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs text-white">
               <div class="py-2.5 px-3 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center gap-2">
                 <i class="fa-brands fa-paypal text-sky-400 text-sm"></i>
-                <span class="font-medium">پی‌پال (PayPal)</span>
+                <span class="font-medium" data-i18n="pay_method_paypal">PayPal</span>
               </div>
               <div class="py-2.5 px-3 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center gap-2">
                 <i class="fa-solid fa-building-columns text-amber-400 text-sm"></i>
-                <span class="font-medium">واریز بانکی آلمان</span>
+                <span class="font-medium" data-i18n="pay_method_bank">German Bank Transfer (IBAN)</span>
               </div>
               <div class="py-2.5 px-3 rounded-lg bg-brand-dark border border-brand-border flex items-center justify-center gap-2">
                 <i class="fa-solid fa-handshake text-emerald-400 text-sm"></i>
-                <span class="font-medium">هماهنگی در واتساپ</span>
+                <span class="font-medium" data-i18n="pay_method_wa">WhatsApp Coordination</span>
               </div>
             </div>
           </div>
@@ -1021,30 +1102,30 @@
         <!-- Quick Direct Inquiry Form (5 cols) -->
         <div class="lg:col-span-5 flex flex-col">
           <div class="bg-brand-surface border border-brand-border rounded-2xl p-6 sm:p-7 shadow-lg flex-1 flex flex-col justify-between space-y-5">
-            <div>
-              <h3 class="text-lg font-black text-white">ارسال پیام سریع به واتساپ</h3>
-              <p class="text-xs text-brand-silver/80 mt-1">فرم را پر کنید تا مستقیماً به صفحه گفتگوی واتساپ رمضان بختیاری منتقل شوید.</p>
+            <div class="text-start">
+              <h3 data-i18n="quick_form_title" class="text-lg font-black text-white">Send a Direct Message via WhatsApp</h3>
+              <p data-i18n="quick_form_desc" class="text-xs text-brand-silver/80 mt-1">Fill out this form to connect directly with Ramazan Bakhtyary on WhatsApp.</p>
             </div>
 
             <form id="quickMsgForm" onsubmit="sendQuickMsg(event)" class="space-y-3.5 flex-1 flex flex-col justify-between">
-              <div>
-                <label class="block text-xs font-medium text-brand-silver mb-1.5">نام و تخلص شما:</label>
-                <input type="text" id="senderName" required placeholder="مثال: احمد رحیمی" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition">
+              <div class="text-start">
+                <label data-i18n="quick_form_name_label" class="block text-xs font-medium text-brand-silver mb-1.5">Your Full Name:</label>
+                <input type="text" id="senderName" required data-i18n-ph="quick_form_name_ph" placeholder="e.g. John Doe" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition">
               </div>
 
-              <div>
-                <label class="block text-xs font-medium text-brand-silver mb-1.5">شهر یا کشور مقصد:</label>
-                <input type="text" id="senderCity" required placeholder="مثال: هامبورگ، فرانکفورت، ویانا و ..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition">
+              <div class="text-start">
+                <label data-i18n="quick_form_city_label" class="block text-xs font-medium text-brand-silver mb-1.5">Destination City or Country:</label>
+                <input type="text" id="senderCity" required data-i18n-ph="quick_form_city_ph" placeholder="e.g. Hamburg, Paris, Vienna..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition">
               </div>
 
-              <div>
-                <label class="block text-xs font-medium text-brand-silver mb-1.5">سفارش یا پیام شما:</label>
-                <textarea id="senderMsg" rows="3" required placeholder="میزان یا نام اقلام مورد نظرتان را بنویسید (مثلاً ۲ کیلو بادام قندک و ۱ پکیج شاهانه)..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition resize-none"></textarea>
+              <div class="text-start">
+                <label data-i18n="quick_form_msg_label" class="block text-xs font-medium text-brand-silver mb-1.5">Your Order or Inquiry:</label>
+                <textarea id="senderMsg" rows="3" required data-i18n-ph="quick_form_msg_ph" placeholder="Specify the products and quantities you wish to order..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-brand-red transition resize-none"></textarea>
               </div>
 
               <button type="submit" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg hover:shadow-emerald-900/30 transition">
                 <i class="fa-brands fa-whatsapp text-lg"></i>
-                <span>ارسال مستقیم پیام در واتساپ</span>
+                <span data-i18n="quick_form_btn">Send Direct Message on WhatsApp</span>
               </button>
             </form>
           </div>
@@ -1059,22 +1140,22 @@
   <footer class="bg-brand-dark border-t border-brand-border pt-10 pb-24 sm:pb-10 text-xs text-brand-silver">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
       
-      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-start">
         
         <!-- Logo & Store (Centered on Mobile) -->
         <div class="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-3 w-full md:w-auto">
           <div class="w-12 h-12 rounded-xl overflow-hidden bg-brand-surface p-1 border border-brand-border shrink-0 shadow-sm mx-auto sm:mx-0">
             <img src="assets/logo_transparent.png" alt="R.B Shop" class="w-full h-full object-contain">
           </div>
-          <div class="space-y-1 text-center sm:text-right">
+          <div class="space-y-1 text-center sm:text-start">
             <div class="text-sm sm:text-base font-black text-white font-display tracking-wide leading-tight">
-              R.B SHOP <span class="text-brand-silver/50 font-normal mx-1">•</span> <span class="text-white font-bold font-sans">فروشگاه آر بی شاپ</span>
+              <span data-i18n="footer_brand">R.B SHOP • Official Online Store</span>
             </div>
             <div class="text-xs text-brand-silver/75 flex flex-wrap items-center justify-center sm:justify-start gap-1.5 leading-normal">
-              <span>مدیریت:</span>
-              <span class="font-bold text-white">رمضان بختیاری</span>
+              <span data-i18n="footer_management">Management:</span>
+              <span class="font-bold text-white">Ramazan Bakhtyary</span>
               <span class="text-brand-silver/40 font-normal">|</span>
-              <span class="dir-ltr text-brand-silver/80">Büsum, Deutschland</span>
+              <span class="dir-ltr text-brand-silver/80" data-i18n="footer_location">Büsum, Germany</span>
             </div>
           </div>
         </div>
@@ -1097,11 +1178,11 @@
 
       </div>
 
-      <div class="border-t border-brand-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-right">
-        <p class="text-[11px] text-brand-silver/70">
-          تمامی حقوق محفوظ است © ۲۰۲۶ فروشگاه R.B Shop • عرضه اصیل‌ترین میوه خشک افغانستان در اروپا
+      <div class="border-t border-brand-border/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-start">
+        <p data-i18n="footer_rights" class="text-[11px] text-brand-silver/70">
+          All Rights Reserved © 2026 R.B Shop • Authentic Afghan Dried Fruits & Royal Gifts in Europe
         </p>
-        <p class="text-[11px] text-brand-silver/70 font-display dir-ltr">
+        <p data-i18n="footer_address_line" class="text-[11px] text-brand-silver/70 font-display dir-ltr">
           Möllers weg 6, 25761 Büsum, Germany
         </p>
       </div>
@@ -1121,8 +1202,8 @@
       <div class="p-4 sm:p-5 border-b border-brand-border flex items-center justify-between bg-brand-surface shrink-0">
         <div class="flex items-center gap-2">
           <i class="fa-solid fa-bag-shopping text-brand-red text-lg"></i>
-          <h3 class="font-bold text-base text-white">سبد خرید شما</h3>
-          <span id="drawerBadge" class="text-xs bg-brand-dark border border-brand-border px-2 py-0.5 rounded text-brand-silver">۰ قلم</span>
+          <h3 data-i18n="cart_drawer_title" class="font-bold text-base text-white">Your Shopping Cart</h3>
+          <span id="drawerBadge" class="text-xs bg-brand-dark border border-brand-border px-2 py-0.5 rounded text-brand-silver">0 items</span>
         </div>
         <button id="closeCartBtn" class="w-8 h-8 rounded-lg bg-brand-dark border border-brand-border text-brand-silver hover:text-white flex items-center justify-center">
           <i class="fa-solid fa-xmark"></i>
@@ -1143,73 +1224,73 @@
           <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
             <div class="flex items-center gap-2">
               <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
-              <h4 class="text-xs sm:text-sm font-bold text-white">آدرس تحویل پستی (DHL / DPD)</h4>
+              <h4 data-i18n="cart_drawer_address_title" class="text-xs sm:text-sm font-bold text-white">DHL / DPD Postal Delivery Address</h4>
             </div>
-            <span class="text-[10px] text-amber-400/90 font-medium">ارسال مستقیم با پست</span>
+            <span data-i18n="cart_drawer_address_badge" class="text-[10px] text-amber-400/90 font-medium">Direct Postal Delivery</span>
           </div>
 
           <!-- Name & Phone -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             <div>
               <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                نام و تخلص: <span class="text-rose-400">*</span>
+                <span data-i18n="cart_field_name">Full Name & Surname:</span> <span class="text-rose-400">*</span>
               </label>
-              <input type="text" id="custName" placeholder="مثال: احمد رحیمی" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+              <input type="text" id="custName" data-i18n-ph="cart_field_name_ph" placeholder="e.g. John Doe" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
             </div>
 
             <div>
               <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                شماره تماس یا واتساپ: <span class="text-rose-400">*</span>
+                <span data-i18n="cart_field_phone">Phone or WhatsApp Number:</span> <span class="text-rose-400">*</span>
               </label>
-              <input type="tel" id="custPhone" placeholder="مثال: 0176 12345678" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-right focus:outline-none focus:border-emerald-500">
+              <input type="tel" id="custPhone" data-i18n-ph="cart_field_phone_ph" placeholder="e.g. 0176 12345678" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-start focus:outline-none focus:border-emerald-500">
             </div>
           </div>
 
           <!-- Street & House Number (Straße & Hausnummer) -->
           <div>
             <label class="block text-[11px] font-bold text-slate-300 mb-1">
-              خیابان و شماره پلاک خانه (Straße & Hausnr.): <span class="text-rose-400">*</span>
+              <span data-i18n="cart_field_street">Street & House Number (Straße & Hausnr.):</span> <span class="text-rose-400">*</span>
             </label>
-            <input type="text" id="custStreet" placeholder="مثال: Möllers weg 15" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+            <input type="text" id="custStreet" data-i18n-ph="cart_field_street_ph" placeholder="e.g. Möllers weg 15" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
           </div>
 
           <!-- Postal Code (PLZ), City & Country -->
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
             <div>
               <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                کد پستی (PLZ): <span class="text-rose-400">*</span>
+                <span data-i18n="cart_field_plz">Postal Code (PLZ):</span> <span class="text-rose-400">*</span>
               </label>
-              <input type="text" id="custPlz" placeholder="مثال: 25761" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-right focus:outline-none focus:border-emerald-500">
+              <input type="text" id="custPlz" data-i18n-ph="cart_field_plz_ph" placeholder="e.g. 25761" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-start focus:outline-none focus:border-emerald-500">
             </div>
 
             <div>
               <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                شهر (Stadt): <span class="text-rose-400">*</span>
+                <span data-i18n="cart_field_city">City (Stadt):</span> <span class="text-rose-400">*</span>
               </label>
-              <input type="text" id="custCity" placeholder="مثال: Büsum / Hamburg" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
+              <input type="text" id="custCity" data-i18n-ph="cart_field_city_ph" placeholder="e.g. Büsum / Hamburg" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
             </div>
 
             <div class="col-span-2 sm:col-span-1">
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">کشور (Land):</label>
+              <label data-i18n="cart_field_country" class="block text-[11px] font-bold text-slate-300 mb-1">Country (Land):</label>
               <select id="custCountry" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-2 text-xs text-white focus:outline-none focus:border-emerald-500">
-                <option value="آلمان (Deutschland)">آلمان (Deutschland)</option>
-                <option value="اتریش (Österreich)">اتریش (Österreich)</option>
-                <option value="سوئیس (Schweiz)">سوئیس (Schweiz)</option>
-                <option value="هلند (Nederland)">هلند (Nederland)</option>
-                <option value="سایر کشورهای اروپا">سایر کشورهای اروپا</option>
+                <option data-i18n="country_de" value="Germany (Deutschland)">Germany (Deutschland)</option>
+                <option data-i18n="country_at" value="Austria (Österreich)">Austria (Österreich)</option>
+                <option data-i18n="country_ch" value="Switzerland (Schweiz)">Switzerland (Schweiz)</option>
+                <option data-i18n="country_nl" value="Netherlands (Nederland)">Netherlands (Nederland)</option>
+                <option data-i18n="country_other" value="Other European Countries">Other European Countries</option>
               </select>
             </div>
           </div>
 
-          <!-- Payment Method Selection (روش پرداخت / متد) -->
+          <!-- Payment Method Selection -->
           <div>
-            <label class="block text-[11px] font-bold text-slate-300 mb-1">
-              روش پرداخت ترجیحی (Zahlungsmethode):
+            <label data-i18n="cart_field_payment" class="block text-[11px] font-bold text-slate-300 mb-1">
+              Preferred Payment Method (Zahlungsmethode):
             </label>
             <select id="custPaymentMethod" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-emerald-500">
-              <option value="پی‌پال (PayPal)">💳 پی‌پال (PayPal)</option>
-              <option value="واریز به حساب بانکی آلمان (Banküberweisung / IBAN)">🏦 کارت به کارت / حساب بانکی آلمان (IBAN)</option>
-              <option value="پرسش در چت واتساپ (از چه روشی واریز کنم؟)">💬 استعلام شماره حساب یا پی‌پال در چت واتساپ</option>
+              <option data-i18n="pay_opt_paypal" value="PayPal">💳 PayPal</option>
+              <option data-i18n="pay_opt_bank" value="Banküberweisung / IBAN">🏦 German Bank Transfer (IBAN)</option>
+              <option data-i18n="pay_opt_wa" value="WhatsApp Inquiries">💬 Inquire IBAN / PayPal in WhatsApp Chat</option>
             </select>
           </div>
 
@@ -1222,22 +1303,22 @@
         
         <div class="space-y-1.5 text-xs">
           <div class="flex items-center justify-between text-brand-silver">
-            <span>مجموع اقلام:</span>
+            <span data-i18n="cart_subtotal">Subtotal:</span>
             <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
           </div>
           <div class="flex items-center justify-between text-brand-silver">
-            <span>هزینه ارسال پستی (DHL / DPD):</span>
-            <span class="text-emerald-400 font-medium">هماهنگی در واتساپ (بر اساس وزن)</span>
+            <span data-i18n="cart_shipping_fee">Shipping Cost (DHL / DPD):</span>
+            <span data-i18n="cart_shipping_calc" class="text-emerald-400 font-medium">Coordinated on WhatsApp (by weight)</span>
           </div>
           <div class="flex items-center justify-between text-sm font-black text-white pt-2 border-t border-brand-border/60">
-            <span>مجموع کل:</span>
+            <span data-i18n="cart_total">Total Amount:</span>
             <span id="cartTotal" class="text-lg font-black text-chrome font-display dir-ltr">0.00 €</span>
           </div>
         </div>
 
         <button onclick="checkoutWhatsApp()" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-950/60 transition">
           <i class="fa-brands fa-whatsapp text-xl"></i>
-          <span>خرید و ارسال سفارش در واتساپ</span>
+          <span data-i18n="cart_checkout_btn">Buy & Send Order via WhatsApp</span>
         </button>
 
       </div>
@@ -1257,20 +1338,24 @@
           <span id="mobileBarCount" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-400 text-[#54070e] text-[10px] font-black flex items-center justify-center font-display">0</span>
         </div>
         <div>
-          <span class="text-xs font-bold text-white block">سبد خرید شما</span>
+          <span data-i18n="mobile_bar_title" class="text-xs font-bold text-white block">Your Shopping Cart</span>
           <span id="mobileBarTotal" class="text-sm font-black text-amber-300 font-display dir-ltr">0.00 €</span>
         </div>
       </div>
       <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white text-[#7a0f1b] font-black text-xs shadow-md">
-        <span>تکمیل خرید</span>
-        <i class="fa-solid fa-arrow-left text-[11px]"></i>
+        <span data-i18n="mobile_bar_checkout">Checkout</span>
+        <i class="fa-solid fa-arrow-right rtl:rotate-180 text-[11px]"></i>
       </div>
     </div>
   </div>
 
   <!-- JAVASCRIPT LOGIC -->
   <script>
-    // State
+    // i18n State & Setup (Default: English)
+    let currentLang = localStorage.getItem('rb_lang') || 'en';
+    let cachedProducts = (typeof DEFAULT_PRODUCTS !== 'undefined' && Array.isArray(DEFAULT_PRODUCTS)) ? DEFAULT_PRODUCTS : [];
+
+    // Shopping Cart State
     let cart = [];
 
     // Load cart from LocalStorage
@@ -1296,7 +1381,11 @@
         cart.push({ id, name, price, img, variant, qty: 1 });
       }
       saveCart();
-      showToast(`«${name}» به سبد خرید اضافه شد!`);
+      
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      const pTrans = (PRODUCT_TRANSLATIONS[id] && PRODUCT_TRANSLATIONS[id][currentLang]) ? PRODUCT_TRANSLATIONS[id][currentLang] : null;
+      const displayName = pTrans ? pTrans.title : name;
+      showToast(`«${displayName}» ${dict.toast_added || 'added to cart!'}`);
     }
 
     // Change qty
@@ -1318,13 +1407,23 @@
 
     // Update Cart UI
     function updateCartUI() {
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
       const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
 
-      document.getElementById('cartCount').textContent = totalCount;
-      document.getElementById('drawerBadge').textContent = `${totalCount} قلم`;
-      document.getElementById('cartSubtotal').textContent = `${totalPrice.toFixed(2)} €`;
-      document.getElementById('cartTotal').textContent = `${totalPrice.toFixed(2)} €`;
+      const cartCountEl = document.getElementById('cartCount');
+      if (cartCountEl) cartCountEl.textContent = formatLocalizedNumber(totalCount, currentLang);
+      
+      const drawerBadge = document.getElementById('drawerBadge');
+      if (drawerBadge) {
+        drawerBadge.textContent = `${formatLocalizedNumber(totalCount, currentLang)} ${dict.cart_drawer_badge_items || 'items'}`;
+      }
+
+      const subtotalEl = document.getElementById('cartSubtotal');
+      if (subtotalEl) subtotalEl.textContent = formatLocalizedPrice(totalPrice, currentLang);
+
+      const totalEl = document.getElementById('cartTotal');
+      if (totalEl) totalEl.textContent = formatLocalizedPrice(totalPrice, currentLang);
 
       // Update mobile bottom bar
       const mobileBar = document.getElementById('mobileBottomCartBar');
@@ -1333,8 +1432,8 @@
           mobileBar.classList.remove('hidden');
           const mCount = document.getElementById('mobileBarCount');
           const mTotal = document.getElementById('mobileBarTotal');
-          if (mCount) mCount.textContent = totalCount;
-          if (mTotal) mTotal.textContent = `${totalPrice.toFixed(2)} €`;
+          if (mCount) mCount.textContent = formatLocalizedNumber(totalCount, currentLang);
+          if (mTotal) mTotal.textContent = formatLocalizedPrice(totalPrice, currentLang);
         } else {
           mobileBar.classList.add('hidden');
         }
@@ -1345,38 +1444,50 @@
 
       if (cart.length === 0) {
         if (checkoutForm) checkoutForm.classList.add('hidden');
-        container.innerHTML = `
-          <div class="text-center py-16 space-y-3">
-            <div class="w-16 h-16 mx-auto rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-silver/50 text-2xl">
-              <i class="fa-solid fa-basket-shopping"></i>
+        if (container) {
+          container.innerHTML = `
+            <div class="text-center py-16 space-y-3">
+              <div class="w-16 h-16 mx-auto rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-silver/50 text-2xl">
+                <i class="fa-solid fa-basket-shopping"></i>
+              </div>
+              <p class="text-sm font-bold text-white">${dict.cart_drawer_empty || 'Your cart is currently empty!'}</p>
+              <p class="text-xs text-brand-silver">${dict.cart_drawer_empty_sub || 'Add products or royal gift boxes from our catalog to get started.'}</p>
             </div>
-            <p class="text-sm font-bold text-white">سبد خرید شما فعلاً خالی است!</p>
-            <p class="text-xs text-brand-silver">محصولات یا پکیج‌های مورد نظرتان را انتخاب و اضافه نمایید.</p>
-          </div>
-        `;
+          `;
+        }
         return;
       }
 
       if (checkoutForm) checkoutForm.classList.remove('hidden');
 
-      container.innerHTML = cart.map(item => `
-        <div class="bg-brand-surface border border-brand-border rounded-xl p-3 flex items-center gap-3">
-          <img src="${item.img}" alt="${item.name}" class="w-14 h-14 object-cover rounded-lg bg-brand-dark shrink-0">
-          <div class="flex-1 min-w-0">
-            <h4 class="text-xs font-bold text-white truncate">${item.name}</h4>
-            <span class="text-[11px] text-brand-silver/70 block">${item.variant}</span>
-            <div class="text-xs font-black text-chrome font-display mt-1 dir-ltr text-right">${(item.price * item.qty).toFixed(2)} €</div>
+      if (container) {
+        container.innerHTML = cart.map(item => {
+          const pTrans = (PRODUCT_TRANSLATIONS[item.id] && PRODUCT_TRANSLATIONS[item.id][currentLang]) ? PRODUCT_TRANSLATIONS[item.id][currentLang] : null;
+          const itemName = pTrans ? pTrans.title : item.name;
+          const itemUnit = pTrans ? pTrans.unit : (item.variant || '');
+          const itemPriceTotal = formatLocalizedPrice(item.price * item.qty, currentLang);
+          const itemQty = formatLocalizedNumber(item.qty, currentLang);
+
+          return `
+          <div class="bg-brand-surface border border-brand-border rounded-xl p-3 flex items-center gap-3">
+            <img src="${item.img}" alt="${itemName}" class="w-14 h-14 object-cover rounded-lg bg-brand-dark shrink-0">
+            <div class="flex-1 min-w-0">
+              <h4 class="text-xs font-bold text-white truncate">${itemName}</h4>
+              <span class="text-[11px] text-brand-silver/70 block">${itemUnit}</span>
+              <div class="text-xs font-black text-chrome font-display mt-1 dir-ltr text-start">${itemPriceTotal}</div>
+            </div>
+            <div class="flex items-center gap-1.5 bg-brand-dark border border-brand-border rounded-lg p-1">
+              <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">-</button>
+              <span class="w-6 text-center text-xs font-bold text-white font-display">${itemQty}</span>
+              <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">+</button>
+            </div>
+            <button onclick="removeFromCart('${item.id}')" class="text-brand-silver/50 hover:text-brand-red p-1 text-xs">
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
           </div>
-          <div class="flex items-center gap-1.5 bg-brand-dark border border-brand-border rounded-lg p-1">
-            <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">-</button>
-            <span class="w-6 text-center text-xs font-bold text-white font-display">${item.qty}</span>
-            <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">+</button>
-          </div>
-          <button onclick="removeFromCart('${item.id}')" class="text-brand-silver/50 hover:text-brand-red p-1 text-xs">
-            <i class="fa-solid fa-trash-can"></i>
-          </button>
-        </div>
-      `).join('');
+          `;
+        }).join('');
+      }
     }
 
     // Load previously saved customer address for repeat orders
@@ -1396,10 +1507,12 @@
       } catch(e) {}
     }
 
-    // WhatsApp Checkout Formatter (Concise, structured & professional)
+    // WhatsApp Checkout Formatter (Multilingual, concise, structured & professional)
     function checkoutWhatsApp() {
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+
       if (cart.length === 0) {
-        showToast('لطفاً ابتدا حداقل یک محصول به سبد خرید اضافه کنید!');
+        showToast(dict.cart_drawer_empty || 'Please add at least one item to your cart!');
         return;
       }
 
@@ -1416,12 +1529,12 @@
       const street = streetEl ? streetEl.value.trim() : '';
       const plz = plzEl ? plzEl.value.trim() : '';
       const city = cityEl ? cityEl.value.trim() : '';
-      const country = countryEl ? countryEl.value : 'آلمان (Deutschland)';
-      const payMethod = methodEl ? methodEl.value : 'پی‌پال (PayPal)';
+      const country = countryEl ? countryEl.value : 'Germany (Deutschland)';
+      const payMethod = methodEl ? methodEl.value : 'PayPal';
 
       // Validation for complete shipping address
       if (!name || !street || !plz || !city) {
-        showToast('لطفاً نام، خیابان، کد پستی (PLZ) و شهر خود را وارد فرمایید!');
+        showToast(dict.validation_addr || 'Please provide your Name, Street, Postal Code (PLZ), and City!');
         if (!name && nameEl) nameEl.focus();
         else if (!street && streetEl) streetEl.focus();
         else if (!plz && plzEl) plzEl.focus();
@@ -1437,27 +1550,44 @@
       } catch(e) {}
 
       const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const formattedTotal = formatLocalizedPrice(totalPrice, currentLang);
 
-      // Clean, neat, short message formatted for WhatsApp
-      let msg = `سلام جناب بختیاری عزیز، سفارش داشتم:\n\n`;
-      msg += `📦 اقلام سفارش:\n`;
-      cart.forEach((i, idx) => {
-        msg += `• ${i.qty} عدد ${i.name} (${i.variant}) - ${(i.price * i.qty).toFixed(2)} €\n`;
-      });
-      msg += `\n💰 مجموع کل: ${totalPrice.toFixed(2)} یورو (€)\n\n`;
+      // Clean, structured multilingual WhatsApp message
+      let msg = dict.wa_msg_greeting || "Hello Mr. Bakhtyary, I would like to place an order from R.B Shop:\n\n";
+      msg += dict.wa_msg_items_heading || "📦 Ordered Items:\n";
       
-      msg += `📍 آدرس تحویل پستی (DHL):\n`;
-      msg += `نام گیرنده: ${name}\n`;
-      if (phone) msg += `شماره تماس: ${phone}\n`;
-      msg += `آدرس: ${street}\n`;
-      msg += `کد پستی و شهر: ${plz} ${city}\n`;
-      msg += `کشور: ${country}\n\n`;
+      cart.forEach((i) => {
+        const pTrans = (PRODUCT_TRANSLATIONS[i.id] && PRODUCT_TRANSLATIONS[i.id][currentLang]) ? PRODUCT_TRANSLATIONS[i.id][currentLang] : null;
+        const itemName = pTrans ? pTrans.title : i.name;
+        const itemUnit = pTrans ? pTrans.unit : (i.variant || '');
+        const itemTotal = formatLocalizedPrice(i.price * i.qty, currentLang);
+        const itemQty = formatLocalizedNumber(i.qty, currentLang);
+        msg += `• ${itemQty}x ${itemName} (${itemUnit}) - ${itemTotal}\n`;
+      });
 
-      msg += `💳 روش پرداخت (Zahlungsmethode):\n`;
-      msg += `${payMethod}\n`;
-      msg += `لطفاً بفرمایید به چه شماره حساب یا پی‌پالی واریز کنم تا فوراً ارسال فرمایید. تشکر!`;
+      msg += `\n${dict.wa_msg_total_heading || "💰 Total Amount: "}${formattedTotal}\n`;
+      msg += `${dict.wa_msg_addr_heading || "\n📍 Delivery Address (DHL Tracking):\n"}`;
+      
+      const labels = {
+        en: { name: "Recipient", phone: "Phone", addr: "Address", city: "Postal Code & City", country: "Country" },
+        de: { name: "Empfänger", phone: "Telefon", addr: "Adresse", city: "PLZ & Stadt", country: "Land" },
+        fr: { name: "Destinataire", phone: "Téléphone", addr: "Adresse", city: "Code postal et Ville", country: "Pays" },
+        fa: { name: "نام گیرنده", phone: "شماره تماس", addr: "آدرس", city: "کد پستی و شهر", country: "کشور" },
+        ar: { name: "اسم المستلم", phone: "الهاتف", addr: "العنوان", city: "الرمز البريدي والمدينة", country: "البلد" }
+      };
+      const lbl = labels[currentLang] || labels['en'];
 
-      const fullAddress = `${street}, ${plz} ${city}, ${country}` + (phone ? ` (تلفن: ${phone})` : '');
+      msg += `${lbl.name}: ${name}\n`;
+      if (phone) msg += `${lbl.phone}: ${phone}\n`;
+      msg += `${lbl.addr}: ${street}\n`;
+      msg += `${lbl.city}: ${plz} ${city}\n`;
+      msg += `${lbl.country}: ${country}\n`;
+
+      msg += `${dict.wa_msg_pay_heading || "\n💳 Payment Method:\n"}`;
+      msg += `${payMethod}\n\n`;
+      msg += (dict.wa_msg_closing || "Please send me your PayPal or IBAN details so I can transfer payment. Thank you!");
+
+      const fullAddress = `${street}, ${plz} ${city}, ${country}` + (phone ? ` (Tel: ${phone})` : '');
 
       // Async record order in Supabase
       if (sbClient) {
@@ -1472,10 +1602,9 @@
         } catch(e) {}
       }
 
-      // Owner clean WhatsApp number
+      // Owner WhatsApp
       const ownerPhone = '491729343833';
-      const encoded = encodeURIComponent(msg);
-      window.open(`https://wa.me/${ownerPhone}?text=${encoded}`, '_blank');
+      window.open(`https://wa.me/${ownerPhone}?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
     // Quick Direct Inquiry Message Form
@@ -1485,7 +1614,19 @@
       const city = document.getElementById('senderCity').value.trim();
       const text = document.getElementById('senderMsg').value.trim();
 
-      const msg = `سلام جناب بختیاری،\nنام: ${name}\nشهر/کشور: ${city}\nپیام و استعلام سفارش:\n${text}`;
+      let msg = '';
+      if (currentLang === 'de') {
+        msg = `Hallo Herr Bakhtyary,\nName: ${name}\nStadt/Land: ${city}\nNachricht / Anfrage:\n${text}`;
+      } else if (currentLang === 'fr') {
+        msg = `Bonjour M. Bakhtyary,\nNom: ${name}\nVille/Pays: ${city}\nMessage / Demande:\n${text}`;
+      } else if (currentLang === 'fa') {
+        msg = `سلام جناب بختیاری،\nنام: ${name}\nشهر/کشور: ${city}\nپیام و استعلام سفارش:\n${text}`;
+      } else if (currentLang === 'ar') {
+        msg = `مرحباً سيد بختياري،\nالاسم: ${name}\nالمدينة/البلد: ${city}\nالرسالة والاستفسار:\n${text}`;
+      } else {
+        msg = `Hello Mr. Bakhtyary,\nName: ${name}\nCity/Country: ${city}\nMessage / Inquiry:\n${text}`;
+      }
+
       window.open(`https://wa.me/491729343833?text=${encodeURIComponent(msg)}`, '_blank');
     }
 
@@ -1510,11 +1651,13 @@
       });
 
       const countEl = document.getElementById('productsCount');
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       if (countEl) {
+        const locCount = formatLocalizedNumber(visibleCount, currentLang);
         if (q) {
-          countEl.innerText = `نمایش ${visibleCount} قلم منطبق با «${term}»`;
+          countEl.innerText = `${dict.search_results_prefix || 'Showing'} ${locCount} ${dict.search_results_suffix || 'items matching'} «${term}»`;
         } else {
-          countEl.innerText = `تعداد ${visibleCount} قلم کالا و پکیج موجود`;
+          countEl.innerText = `${locCount} ${dict.cat_status || 'items available'}`;
         }
       }
 
@@ -1555,7 +1698,7 @@
       });
     }
 
-    // Filter Products
+    // Filter Products by Category
     function filterProducts(cat) {
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.classList.remove('active', 'bg-brand-red', 'text-white', 'shadow-glow-red');
@@ -1579,9 +1722,10 @@
           card.style.display = 'none';
         }
       });
+      
       const countEl = document.getElementById('productsCount');
       if (countEl) {
-        countEl.innerText = `تعداد ${visibleCount} قلم کالا و پکیج موجود`;
+        countEl.innerText = getLocalizedCountStatus(visibleCount, currentLang);
       }
     }
 
@@ -1635,7 +1779,6 @@
       mobileMenu.classList.toggle('hidden');
     });
 
-    // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach(link => {
       link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
     });
@@ -1720,58 +1863,72 @@
       }
     }
 
+    // Render Dynamic Products with multilingual support
     function renderDynamicProducts(prods) {
+      if (prods && Array.isArray(prods)) {
+        cachedProducts = prods;
+      }
       const grid = document.getElementById('productsGrid');
-      if (!grid) return;
+      if (!grid || !cachedProducts || cachedProducts.length === 0) return;
 
-      const toPersianDigits = (num) => {
-        const pDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
-        return String(num).replace(/[0-9]/g, d => pDigits[d]);
-      };
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
 
-      grid.innerHTML = prods.map(p => {
-        const formattedPrice = Number(p.price).toFixed(2);
-        const persianPrice = toPersianDigits(formattedPrice);
-        const waMsg = encodeURIComponent(`سلام، مایل به سفارش ${p.title} هستم.`);
+      grid.innerHTML = cachedProducts.map(p => {
+        const t = (PRODUCT_TRANSLATIONS && PRODUCT_TRANSLATIONS[p.id] && PRODUCT_TRANSLATIONS[p.id][currentLang]) ? PRODUCT_TRANSLATIONS[p.id][currentLang] : null;
+        const title = (t && t.title) ? t.title : (p.title || 'Product');
+        const unit = (t && t.unit) ? t.unit : (p.unit || p.variant || '');
+        const desc = (t && t.desc) ? t.desc : (p.description || '');
+        const formattedPrice = formatLocalizedPrice(p.price, currentLang);
         const inStock = p.inStock !== false;
+
+        let waText = '';
+        if (currentLang === 'de') waText = `Hallo, ich möchte ${title} bestellen.`;
+        else if (currentLang === 'fr') waText = `Bonjour, je souhaite commander ${title}.`;
+        else if (currentLang === 'fa') waText = `سلام، مایل به سفارش ${title} هستم.`;
+        else if (currentLang === 'ar') waText = `مرحباً، أود طلب ${title}.`;
+        else waText = `Hello, I would like to order ${title}.`;
+
+        const waMsg = encodeURIComponent(waText);
+        const safeTitle = String(title).replace(/'/g, "\\'");
+        const safeVariant = String(p.variant || unit || '').replace(/'/g, "\\'");
 
         return `
         <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group ${inStock ? '' : 'opacity-70'}" data-category="${p.category}">
           <div class="h-32 sm:h-48 overflow-hidden bg-black/40 relative">
-            <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <img src="${p.image}" alt="${title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             ${inStock ? '' : `
               <div class="absolute inset-0 bg-black/70 backdrop-blur-[2px] flex items-center justify-center p-2 text-center">
                 <span class="px-2 py-0.5 rounded-full bg-rose-950/90 border border-rose-500/50 text-white text-[10px] sm:text-xs font-bold">
-                  ناموجود
+                  ${dict.btn_out_of_stock || 'Out of Stock'}
                 </span>
               </div>
             `}
           </div>
           <div class="p-2.5 sm:p-4 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
             <div>
-              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">${p.unit || ''}</span>
-              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">${p.title}</h3>
-              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">${p.description || ''}</p>
+              <span class="text-[10px] sm:text-[11px] font-semibold text-amber-400/90 block mb-0.5 truncate">${unit}</span>
+              <h3 class="font-bold text-white text-xs sm:text-base leading-snug group-hover:text-amber-200 transition-colors line-clamp-2 h-8 sm:h-11">${title}</h3>
+              <p class="hidden sm:block text-xs text-brand-silver/70 mt-1 line-clamp-1">${desc}</p>
             </div>
             <div class="pt-2 sm:pt-3 border-t border-white/10">
               <div class="flex items-baseline justify-between mb-2">
-                <span class="text-[10px] sm:text-xs text-brand-silver/70">قیمت:</span>
-                <span class="text-sm sm:text-xl font-black text-white font-display">${persianPrice} <span class="text-[10px] sm:text-xs text-brand-silver font-sans">یورو</span></span>
+                <span class="text-[10px] sm:text-xs text-brand-silver/70">${dict.price_label || 'Price:'}</span>
+                <span class="text-sm sm:text-xl font-black text-white font-display">${formattedPrice}</span>
               </div>
               <div class="flex items-center gap-1.5">
                 ${inStock ? `
-                  <button onclick="addToCart('${p.id}', '${p.title.replace(/'/g, "\\'")}', ${Number(p.price)}, '${p.image}', '${(p.variant || p.unit || '').replace(/'/g, "\\'")}')" 
+                  <button onclick="addToCart('${p.id}', '${safeTitle}', ${Number(p.price)}, '${p.image}', '${safeVariant}')" 
                           class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
-                    <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>خرید</span>
+                    <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>${dict.btn_buy || 'Buy'}</span>
                   </button>
                 ` : `
                   <button disabled class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[10px] sm:text-xs font-bold text-slate-400 bg-white/5 border border-white/10 cursor-not-allowed flex items-center justify-center gap-1">
-                    <i class="fa-solid fa-ban text-[10px]"></i> <span>ناموجود</span>
+                    <i class="fa-solid fa-ban text-[10px]"></i> <span>${dict.btn_out_of_stock || 'Out of Stock'}</span>
                   </button>
                 `}
                 <a href="https://wa.me/491729343833?text=${waMsg}" 
                    target="_blank" 
-                   title="سفارش سریع در واتساپ"
+                   title="${dict.btn_wa_quick || 'WhatsApp'}"
                    class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/5 hover:bg-emerald-600/20 text-zinc-400 hover:text-emerald-400 border border-white/10 transition flex items-center justify-center shrink-0">
                   <i class="fa-brands fa-whatsapp text-sm sm:text-base"></i>
                 </a>
@@ -1784,11 +1941,113 @@
 
       const countEl = document.getElementById('productsCount');
       if (countEl) {
-        countEl.innerText = `تعداد ${prods.length} قلم کالا و پکیج موجود`;
+        countEl.innerText = getLocalizedCountStatus(cachedProducts.length, currentLang);
       }
     }
 
-    // Initial load
+    // Language Switcher Controller
+    function setLanguage(lang) {
+      if (!LANGUAGES || !LANGUAGES[lang]) lang = 'en';
+      currentLang = lang;
+      try {
+        localStorage.setItem('rb_lang', lang);
+      } catch(e) {}
+
+      const meta = LANGUAGES[lang];
+      document.documentElement.lang = lang;
+      document.documentElement.dir = meta.dir;
+
+      // Close language dropdown if open
+      const dd = document.getElementById('langDropdown');
+      if (dd) dd.classList.add('hidden');
+
+      // Update desktop dropdown label
+      const curFlag = document.getElementById('currentLangFlag') || document.getElementById('langCurrentFlag');
+      const curName = document.getElementById('currentLangLabel') || document.getElementById('langCurrentName');
+      if (curFlag) curFlag.textContent = meta.flag;
+      if (curName) curName.textContent = meta.nativeName;
+
+      // Update checkmarks in dropdown
+      document.querySelectorAll('#langDropdown [data-lang]').forEach(btn => {
+        const isSelected = btn.dataset.lang === lang;
+        const check = btn.querySelector('.fa-check') || btn.querySelector('.lang-check');
+        if (check) check.classList.toggle('hidden', !isSelected);
+        btn.classList.toggle('bg-white/10', isSelected);
+        btn.classList.toggle('text-amber-400', isSelected);
+        btn.classList.toggle('text-white', !isSelected);
+      });
+
+      // Update mobile flags active indicator
+      document.querySelectorAll('[data-mobile-lang]').forEach(btn => {
+        const isSelected = btn.dataset.mobileLang === lang;
+        btn.classList.toggle('bg-amber-400/20', isSelected);
+        btn.classList.toggle('border-amber-400', isSelected);
+        btn.classList.toggle('scale-105', isSelected);
+        btn.classList.toggle('border-white/10', !isSelected);
+      });
+
+      // Apply UI translations to all [data-i18n]
+      const dict = UI_TRANSLATIONS[lang] || UI_TRANSLATIONS['en'];
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.dataset.i18n;
+        if (dict && dict[key] !== undefined) {
+          el.textContent = dict[key];
+        }
+      });
+
+      // Apply placeholders [data-i18n-ph]
+      document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+        const key = el.dataset.i18nPh;
+        if (dict && dict[key] !== undefined) {
+          el.placeholder = dict[key];
+        }
+      });
+
+      // Update document title
+      if (dict && dict.page_title) {
+        document.title = dict.page_title;
+      }
+
+      // Re-render products & cart
+      if (cachedProducts && cachedProducts.length > 0) {
+        renderDynamicProducts(cachedProducts);
+      }
+      updateCartUI();
+    }
+
+    // Wire up Language Switcher UI Event Listeners
+    const langBtn = document.getElementById('langBtn');
+    const langDropdown = document.getElementById('langDropdown');
+
+    if (langBtn && langDropdown) {
+      langBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        langDropdown.classList.toggle('hidden');
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!langBtn.contains(e.target) && !langDropdown.contains(e.target)) {
+          langDropdown.classList.add('hidden');
+        }
+      });
+
+      langDropdown.querySelectorAll('[data-lang]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          setLanguage(btn.dataset.lang);
+          langDropdown.classList.add('hidden');
+        });
+      });
+    }
+
+    // Wire up Mobile Language Switcher Buttons
+    document.querySelectorAll('[data-mobile-lang]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        setLanguage(btn.dataset.mobileLang);
+      });
+    });
+
+    // Initial load sequence (English is default on first visit)
+    setLanguage(currentLang);
     syncWithAdminPanel();
     loadSavedCustomer();
     updateCartUI();
