@@ -126,7 +126,16 @@ const UI_TRANSLATIONS = {
     wa_msg_addr_heading: "\n📍 Delivery Address (DHL Tracking):\n",
     wa_msg_pay_heading: "\n💳 Payment Method:\n",
     wa_msg_closing: "Please send me your PayPal or IBAN details so I can transfer the payment and receive the parcel. Thank you!",
-    validation_addr: "Please provide your Name, Street, Postal Code (PLZ), and City!"
+    validation_addr: "Please provide your Name, Street, Postal Code (PLZ), and City!",
+    pay_online_title: "Fast & Secure Online Checkout:",
+    pay_online_sub: "Pay instantly with PayPal, Visa, Mastercard, or Maestro",
+    pay_or_divider: "OR",
+    pay_address_required_toast: "⚠️ Please enter your delivery address (Name, Phone, Address, City & PLZ) before paying!",
+    pay_success_title: "Payment Successful!",
+    pay_success_desc: "Thank you for your order! Your payment has been received and your royal package will be dispatched with DHL/DPD.",
+    pay_success_tx: "Transaction / Order ID:",
+    pay_success_wa_btn: "Send Order Confirmation to WhatsApp",
+    pay_success_close: "Continue Shopping",
   },
 
   de: {
@@ -239,7 +248,16 @@ const UI_TRANSLATIONS = {
     wa_msg_addr_heading: "\n📍 Lieferadresse (DHL Tracking):\n",
     wa_msg_pay_heading: "\n💳 Zahlungsmethode:\n",
     wa_msg_closing: "Bitte senden Sie mir Ihre PayPal-Adresse oder IBAN, damit ich die Überweisung tätigen kann. Vielen Dank!",
-    validation_addr: "Bitte geben Sie Ihren Namen, Straße, Postleitzahl (PLZ) und Stadt an!"
+    validation_addr: "Bitte geben Sie Ihren Namen, Straße, Postleitzahl (PLZ) und Stadt an!",
+    pay_online_title: "Schnelle & sichere Online-Zahlung:",
+    pay_online_sub: "Sofort zahlen mit PayPal, Visa, Mastercard oder Maestro",
+    pay_or_divider: "ODER",
+    pay_address_required_toast: "⚠️ Bitte füllen Sie zuerst Ihre Lieferadresse (Name, Telefon, Straße, Stadt & PLZ) aus!",
+    pay_success_title: "Zahlung erfolgreich!",
+    pay_success_desc: "Vielen Dank für Ihre Bestellung! Ihre Zahlung ist eingegangen und Ihr Paket wird per DHL/DPD vorbereitet.",
+    pay_success_tx: "Transaktions- / Bestellnummer:",
+    pay_success_wa_btn: "Bestellbestätigung per WhatsApp senden",
+    pay_success_close: "Weiter einkaufen",
   },
 
   fr: {
@@ -352,7 +370,16 @@ const UI_TRANSLATIONS = {
     wa_msg_addr_heading: "\n📍 Adresse de livraison (Suivi DHL) :\n",
     wa_msg_pay_heading: "\n💳 Mode de paiement :\n",
     wa_msg_closing: "Merci de m'indiquer vos coordonnées PayPal ou IBAN pour effectuer le virement et recevoir le colis. Cordialement !",
-    validation_addr: "Veuillez renseigner votre Nom, Rue, Code Postal (PLZ) et Ville !"
+    validation_addr: "Veuillez renseigner votre Nom, Rue, Code Postal (PLZ) et Ville !",
+    pay_online_title: "Paiement en ligne rapide & sécurisé :",
+    pay_online_sub: "Payez instantanément avec PayPal, Visa, Mastercard ou Maestro",
+    pay_or_divider: "OU",
+    pay_address_required_toast: "⚠️ Veuillez d'abord renseigner votre adresse de livraison complète !",
+    pay_success_title: "Paiement réussi !",
+    pay_success_desc: "Merci pour votre commande ! Votre paiement a été reçu et votre colis royal sera expédié via DHL/DPD.",
+    pay_success_tx: "N° de Transaction / Commande :",
+    pay_success_wa_btn: "Envoyer la confirmation sur WhatsApp",
+    pay_success_close: "Continuer mes achats",
   },
 
   fa: {
@@ -465,7 +492,16 @@ const UI_TRANSLATIONS = {
     wa_msg_addr_heading: "\n📍 آدرس تحویل پستی (DHL):\n",
     wa_msg_pay_heading: "\n💳 روش پرداخت (Zahlungsmethode):\n",
     wa_msg_closing: "لطفاً بفرمایید به چه شماره حساب یا پی‌پالی واریز کنم تا فوراً ارسال فرمایید. تشکر!",
-    validation_addr: "لطفاً نام، خیابان، کد پستی (PLZ) و شهر خود را وارد فرمایید!"
+    validation_addr: "لطفاً نام، خیابان، کد پستی (PLZ) و شهر خود را وارد فرمایید!",
+    pay_online_title: "پرداخت آنلاین امن و سریع:",
+    pay_online_sub: "پرداخت آنی با حساب پی‌پال، ویزا کارت، مسترکارت و کارت‌های اعتباری",
+    pay_or_divider: "یا هماهنگی سنتی",
+    pay_address_required_toast: "⚠️ لطفاً ابتدا آدرس تحویل (نام، شماره تماس، آدرس پستی، شهر و کدپستی) را تکمیل نمایید!",
+    pay_success_title: "پرداخت شما با موفقیت انجام شد!",
+    pay_success_desc: "با تشکر فراوان از خرید شما! مبلغ با موفقیت واریز گردید و سفارش شاهانه شما جهت ارسال با پست DHL/DPD آماده‌سازی می‌شود.",
+    pay_success_tx: "کد پیگیری تراکنش / شماره سفارش:",
+    pay_success_wa_btn: "ارسال رسید سفارش به واتساپ مدیر فروشگاه",
+    pay_success_close: "بستن و ادامه خرید",
   },
 
   ar: {
@@ -578,7 +614,16 @@ const UI_TRANSLATIONS = {
     wa_msg_addr_heading: "\n📍 عنوان التسليم البريدي (DHL):\n",
     wa_msg_pay_heading: "\n💳 طريقة الدفع:\n",
     wa_msg_closing: "يرجى تزويدي برقم الحساب البنكي أو الباي بال لإتمام التحويل وشحن الطلبية فوراً. شكراً جزيلاً!",
-    validation_addr: "يرجى إدخال الاسم والشارع والرمز البريدي (PLZ) والمدينة!"
+    validation_addr: "يرجى إدخال الاسم والشارع والرمز البريدي (PLZ) والمدينة!",
+    pay_online_title: "دفع إلكتروني فوري وآمن:",
+    pay_online_sub: "الدفع المباشر عبر باي بال، فيزا، ماستركارد والبطاقات البنكية",
+    pay_or_divider: "أو الطلب المباشر",
+    pay_address_required_toast: "⚠️ يرجى إدخال تفاصيل عنوان التوصيل كاملاً قبل إتمام الدفع!",
+    pay_success_title: "تم الدفع بنجاح!",
+    pay_success_desc: "شكراً جزيلاً لطلبكم! تم استلام المبلغ بنجاح وسيتم تجهيز وشحن طلبيتكم الفاخرة عبر DHL/DPD فوراً.",
+    pay_success_tx: "رقم المعاملة / كود الطلب:",
+    pay_success_wa_btn: "إرسال إيصال وتفاصيل الطلب عبر الواتساب",
+    pay_success_close: "إغلاق ومتابعة التسوق",
   }
 ,
 
@@ -692,7 +737,16 @@ nl: {
     wa_msg_addr_heading: "\n📍 Bezorgadres (DHL-Tracking):\n",
     wa_msg_pay_heading: "\n💳 Betaalmethode:\n",
     wa_msg_closing: "Stuur mij alstublieft uw PayPal-adres of IBAN, zodat ik de betaling kan overmaken en u het pakket kunt verzenden. Hartelijk dank!",
-    validation_addr: "Vul alstublieft uw naam, straat, postcode (PLZ) en stad in!"
+    validation_addr: "Vul alstublieft uw naam, straat, postcode (PLZ) en stad in!",
+    pay_online_title: "Snelle & Veilige Online Betaling:",
+    pay_online_sub: "Betaal direct met PayPal, Visa, Mastercard of Maestro",
+    pay_or_divider: "OF",
+    pay_address_required_toast: "⚠️ Vul eerst uw bezorgadres (naam, telefoon, straat, stad & postcode) in!",
+    pay_success_title: "Betaling Geslaagd!",
+    pay_success_desc: "Hartelijk dank voor uw bestelling! Uw betaling is ontvangen en uw pakket wordt verzonden via DHL/DPD.",
+    pay_success_tx: "Transactie- / Bestelnummer:",
+    pay_success_wa_btn: "Bestelbevestiging via WhatsApp sturen",
+    pay_success_close: "Verder winkelen",
   },
 
   es: {
@@ -805,7 +859,16 @@ nl: {
     wa_msg_addr_heading: "\n📍 Dirección de Envío Postal (Seguimiento DHL):\n",
     wa_msg_pay_heading: "\n💳 Método de Pago:\n",
     wa_msg_closing: "Por favor, envíeme sus datos de PayPal o IBAN para realizar el pago y recibir el envío. ¡Muchas gracias!",
-    validation_addr: "¡Por favor ingrese su Nombre, Calle, Código Postal (PLZ) y Ciudad!"
+    validation_addr: "¡Por favor ingrese su Nombre, Calle, Código Postal (PLZ) y Ciudad!",
+    pay_online_title: "Pago Online Rápido y Seguro:",
+    pay_online_sub: "Pague al instante con PayPal, Visa, Mastercard o tarjetas bancarias",
+    pay_or_divider: "O",
+    pay_address_required_toast: "⚠️ ¡Por favor ingrese su dirección de entrega antes de pagar!",
+    pay_success_title: "¡Pago Realizado con Éxito!",
+    pay_success_desc: "¡Muchas gracias por su compra! Su pago ha sido recibido y su paquete será despachado por DHL/DPD.",
+    pay_success_tx: "ID de Transacción / Pedido:",
+    pay_success_wa_btn: "Enviar confirmación a WhatsApp",
+    pay_success_close: "Continuar comprando",
   },
 
   it: {
@@ -918,7 +981,16 @@ nl: {
     wa_msg_addr_heading: "\n📍 Indirizzo di Consegna Postale (Tracciamento DHL):\n",
     wa_msg_pay_heading: "\n💳 Metodo di Pagamento:\n",
     wa_msg_closing: "La prego di inviarmi le coordinate PayPal o l'IBAN per effettuare il pagamento e procedere con la spedizione. Grazie mille!",
-    validation_addr: "Si prega di inserire Nome, Indirizzo, CAP (PLZ) e Città!"
+    validation_addr: "Si prega di inserire Nome, Indirizzo, CAP (PLZ) e Città!",
+    pay_online_title: "Pagamento Online Rapido e Sicuro:",
+    pay_online_sub: "Paga subito con PayPal, Visa, Mastercard o Maestro",
+    pay_or_divider: "OPPURE",
+    pay_address_required_toast: "⚠️ Inserisci prima il tuo indirizzo di consegna completo!",
+    pay_success_title: "Pagamento Riuscito!",
+    pay_success_desc: "Grazie mille per il tuo ordine! Il pagamento è stato ricevuto e il tuo pacco sarà spedito con DHL/DPD.",
+    pay_success_tx: "ID Transazione / Ordine:",
+    pay_success_wa_btn: "Invia conferma dell'ordine su WhatsApp",
+    pay_success_close: "Continua lo shopping",
   },
 
   tr: {
@@ -1031,7 +1103,16 @@ nl: {
     wa_msg_addr_heading: "\n📍 Teslimat Adresi (DHL Takip):\n",
     wa_msg_pay_heading: "\n💳 Ödeme Yöntemi:\n",
     wa_msg_closing: "Ödemeyi yapabilmem ve kargoyu gönderebilmeniz için lütfen PayPal veya IBAN bilgilerinizi iletiniz. Teşekkür ederim!",
-    validation_addr: "Lütfen Adınızı, Sokağınızı, Posta Kodunuzu (PLZ) ve Şehrinizi giriniz!"
+    validation_addr: "Lütfen Adınızı, Sokağınızı, Posta Kodunuzu (PLZ) ve Şehrinizi giriniz!",
+    pay_online_title: "Hızlı ve Güvenli Online Ödeme:",
+    pay_online_sub: "PayPal, Visa, Mastercard ve banka kartlarıyla anında ödeyin",
+    pay_or_divider: "VEYA",
+    pay_address_required_toast: "⚠️ Lütfen ödemeden önce teslimat adresinizi eksiksiz doldurunuz!",
+    pay_success_title: "Ödeme Başarıyla Tamamlandı!",
+    pay_success_desc: "Siparişiniz için çok teşekkür ederiz! Ödemeniz onaylandı ve paketiniz DHL/DPD ile kargoya hazırlanıyor.",
+    pay_success_tx: "İşlem / Sipariş Takip No:",
+    pay_success_wa_btn: "Sipariş Onayını WhatsApp'a Gönder",
+    pay_success_close: "Alışverişe Devam Et",
   },
 };
 

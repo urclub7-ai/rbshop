@@ -1357,10 +1357,40 @@
           </div>
         </div>
 
-        <button onclick="checkoutWhatsApp()" class="w-full py-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-xl shadow-emerald-950/60 transition">
-          <i class="fa-brands fa-whatsapp text-xl"></i>
-          <span data-i18n="cart_checkout_btn">Buy & Send Order via WhatsApp</span>
-        </button>
+        <!-- Payment Options (Online PayPal/Cards + WhatsApp) -->
+        <div id="paymentActionsArea" class="space-y-2.5 pt-1">
+          
+          <!-- PayPal & Debit/Credit Card Buttons -->
+          <div id="paypalSection" class="space-y-1.5">
+            <div class="flex items-center justify-between text-[11px]">
+              <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
+                <i class="fa-solid fa-bolt text-xs"></i>
+                <span>Fast & Secure Online Checkout:</span>
+              </span>
+              <span class="text-[11px] text-brand-silver/70 flex items-center gap-1.5 dir-ltr">
+                <i class="fa-brands fa-paypal text-blue-400" title="PayPal"></i>
+                <i class="fa-brands fa-cc-visa text-slate-300" title="Visa"></i>
+                <i class="fa-brands fa-cc-mastercard text-amber-500" title="Mastercard"></i>
+                <i class="fa-brands fa-apple-pay text-white text-sm" title="Apple Pay"></i>
+              </span>
+            </div>
+            <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
+          </div>
+
+          <!-- Divider -->
+          <div class="relative flex items-center py-0.5">
+            <div class="flex-grow border-t border-brand-border"></div>
+            <span data-i18n="pay_or_divider" class="flex-shrink mx-3 text-[10px] uppercase font-bold text-brand-silver/50 tracking-wider">OR</span>
+            <div class="flex-grow border-t border-brand-border"></div>
+          </div>
+
+          <!-- WhatsApp Checkout Button (Preserved) -->
+          <button onclick="checkoutWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition">
+            <i class="fa-brands fa-whatsapp text-lg"></i>
+            <span data-i18n="cart_checkout_btn">Buy & Send Order via WhatsApp</span>
+          </button>
+
+        </div>
 
       </div>
 
@@ -1369,6 +1399,52 @@
 
   <!-- TOAST NOTIFICATION CONTAINER -->
   <div id="toastContainer" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 flex flex-col items-center gap-2 pointer-events-none w-full max-w-sm px-4"></div>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div id="orderSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-md rounded-3xl bg-[#12151c] border border-amber-400/40 p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] transform scale-95 transition-transform duration-300 space-y-5">
+      
+      <!-- Glow & Icon -->
+      <div class="relative mx-auto w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-3xl shadow-[0_0_40px_rgba(16,185,129,0.3)]">
+        <i class="fa-solid fa-check"></i>
+      </div>
+
+      <div class="space-y-1.5">
+        <h3 data-i18n="pay_success_title" class="text-xl font-black text-white font-display">Payment Successful!</h3>
+        <p data-i18n="pay_success_desc" class="text-xs text-brand-silver/80 leading-relaxed max-w-xs mx-auto">
+          Thank you for your order! Your payment has been received and your royal package will be dispatched with DHL/DPD.
+        </p>
+      </div>
+
+      <!-- Receipt Box -->
+      <div class="bg-black/50 border border-white/10 rounded-2xl p-4 text-start text-xs space-y-2.5">
+        <div class="flex items-center justify-between border-b border-white/10 pb-2">
+          <span class="text-brand-silver/70" data-i18n="pay_success_tx">Transaction / Order ID:</span>
+          <span id="successOrderId" class="font-mono font-bold text-amber-400 text-[11px] dir-ltr"></span>
+        </div>
+        <div class="flex items-center justify-between">
+          <span class="text-brand-silver/70" data-i18n="cart_total">Total Amount:</span>
+          <span id="successTotalAmount" class="font-black text-white font-display dir-ltr"></span>
+        </div>
+        <div class="pt-1 text-[11px] text-brand-silver/60">
+          <span class="font-medium text-slate-300">Delivery Address:</span>
+          <span id="successDeliveryAddr" class="block text-white font-medium mt-0.5 truncate dir-ltr text-start"></span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="space-y-2 pt-1">
+        <a id="successWhatsAppBtn" href="#" target="_blank" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span data-i18n="pay_success_wa_btn">Send Order Confirmation to WhatsApp</span>
+        </a>
+        <button onclick="closeSuccessModal()" class="w-full py-2.5 rounded-xl bg-brand-surface hover:bg-brand-surface/80 border border-brand-border text-brand-silver text-xs font-semibold transition" data-i18n="pay_success_close">
+          Continue Shopping
+        </button>
+      </div>
+
+    </div>
+  </div>
 
   <!-- FLOATING BOTTOM CART BAR (MOBILE ONLY) -->
   <div id="mobileBottomCartBar" class="fixed bottom-3 left-3 right-3 sm:hidden z-40 hidden transition-all duration-300">
@@ -1485,6 +1561,8 @@
 
       if (cart.length === 0) {
         if (checkoutForm) checkoutForm.classList.add('hidden');
+        const payActions = document.getElementById('paymentActionsArea');
+        if (payActions) payActions.classList.add('hidden');
         if (container) {
           container.innerHTML = `
             <div class="text-center py-16 space-y-3">
@@ -1500,6 +1578,9 @@
       }
 
       if (checkoutForm) checkoutForm.classList.remove('hidden');
+      const payActions = document.getElementById('paymentActionsArea');
+      if (payActions) payActions.classList.remove('hidden');
+      setTimeout(() => renderPayPalButtons(), 100);
 
       if (container) {
         container.innerHTML = cart.map(item => {
@@ -1549,6 +1630,192 @@
     }
 
     // WhatsApp Checkout Formatter (Multilingual, concise, structured & professional)
+    
+    // ==========================================
+    // PAYPAL & CARD PAYMENT GATEWAY ENGINE
+    // ==========================================
+    // 💡 TO CONNECT REAL MONEY: Replace 'sb' with Mr. Bakhtyary's real PayPal Business Client ID
+    const PAYPAL_CLIENT_ID = 'sb';
+    let paypalButtonsRendered = false;
+
+    function initPayPalSDK(callback) {
+      if (window.paypal) {
+        if (callback) callback();
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR&components=buttons&enable-funding=card,paylater`;
+      script.onload = () => {
+        if (callback) callback();
+      };
+      script.onerror = () => {
+        console.warn("PayPal SDK failed to load (offline or blocked).");
+      };
+      document.head.appendChild(script);
+    }
+
+    function renderPayPalButtons() {
+      const container = document.getElementById('paypal-button-container');
+      if (!container) return;
+
+      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      if (totalPrice <= 0) {
+        container.innerHTML = '';
+        paypalButtonsRendered = false;
+        return;
+      }
+
+      if (!window.paypal) {
+        initPayPalSDK(() => renderPayPalButtons());
+        return;
+      }
+
+      // Clear container and render fresh buttons
+      container.innerHTML = '';
+
+      window.paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color:  'gold',
+          shape:  'rect',
+          label:  'paypal',
+          height: 40
+        },
+        onClick: function(data, actions) {
+          const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+          const nameEl = document.getElementById('custName');
+          const phoneEl = document.getElementById('custPhone');
+          const streetEl = document.getElementById('custStreet');
+          const plzEl = document.getElementById('custPlz');
+          const cityEl = document.getElementById('custCity');
+
+          const name = nameEl ? nameEl.value.trim() : '';
+          const phone = phoneEl ? phoneEl.value.trim() : '';
+          const street = streetEl ? streetEl.value.trim() : '';
+          const plz = plzEl ? plzEl.value.trim() : '';
+          const city = cityEl ? cityEl.value.trim() : '';
+
+          if (!name || !phone || !street || !plz || !city) {
+            showToast(dict.pay_address_required_toast || '⚠️ Please enter your delivery address before paying!');
+            if (!name && nameEl) nameEl.focus();
+            else if (!phone && phoneEl) phoneEl.focus();
+            else if (!street && streetEl) streetEl.focus();
+            return actions.reject();
+          }
+          return actions.resolve();
+        },
+        createOrder: function(data, actions) {
+          const currentTotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+          return actions.order.create({
+            purchase_units: [{
+              description: "R.B Shop - Authentic Afghan Dried Fruits & Royal Gifts",
+              amount: {
+                currency_code: 'EUR',
+                value: currentTotal.toFixed(2)
+              }
+            }]
+          });
+        },
+        onApprove: function(data, actions) {
+          return actions.order.capture().then(function(details) {
+            handlePaymentSuccess(details);
+          });
+        },
+        onError: function(err) {
+          console.error('PayPal Error:', err);
+          showToast('❌ Payment could not be completed. Please try again or order via WhatsApp.');
+        },
+        onCancel: function(data) {
+          showToast('ℹ️ Payment was cancelled.');
+        }
+      }).render('#paypal-button-container').then(() => {
+        paypalButtonsRendered = true;
+      }).catch(err => {
+        console.warn("PayPal button render notice:", err);
+      });
+    }
+
+    function handlePaymentSuccess(details) {
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      const orderId = details.id || ('RB-' + Math.floor(100000 + Math.random() * 900000));
+      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const formattedPrice = formatLocalizedPrice(totalPrice, currentLang);
+
+      const name = document.getElementById('custName')?.value.trim() || (details.payer?.name?.given_name || 'Customer');
+      const phone = document.getElementById('custPhone')?.value.trim() || '';
+      const street = document.getElementById('custStreet')?.value.trim() || '';
+      const plz = document.getElementById('custPlz')?.value.trim() || '';
+      const city = document.getElementById('custCity')?.value.trim() || '';
+      const country = document.getElementById('custCountry')?.value || 'Germany (Deutschland)';
+      const deliveryAddr = `${street}, ${plz} ${city} (${country})`;
+
+      // Build item list for WhatsApp confirmation
+      let itemsList = '';
+      cart.forEach(item => {
+        const pTrans = (PRODUCT_TRANSLATIONS[item.id] && PRODUCT_TRANSLATIONS[item.id][currentLang]) ? PRODUCT_TRANSLATIONS[item.id][currentLang] : null;
+        const itemName = pTrans ? pTrans.title : item.name;
+        itemsList += `• ${item.qty}x ${itemName} - ${(item.price * item.qty).toFixed(2)} €\n`;
+      });
+
+      // Prefilled WhatsApp receipt message
+      const waMsg = `✅ *ONLINE PAYMENT CONFIRMED (PAYPAL / CARD)*\n` +
+        `--------------------------------\n` +
+        `🆔 *Order ID:* ${orderId}\n` +
+        `👤 *Customer:* ${name}\n` +
+        `📞 *Phone:* ${phone}\n` +
+        `📍 *Delivery Address:* ${deliveryAddr}\n\n` +
+        `📦 *Purchased Items:*\n${itemsList}\n` +
+        `💰 *Total Paid:* ${totalPrice.toFixed(2)} € (Paid Online via PayPal)\n` +
+        `--------------------------------\n` +
+        `Payment is confirmed. Please dispatch parcel with DHL tracking. Thank you!`;
+
+      const waUrl = `https://wa.me/491729343833?text=${encodeURIComponent(waMsg)}`;
+
+      // Populate Success Modal
+      const oIdEl = document.getElementById('successOrderId');
+      const tAmtEl = document.getElementById('successTotalAmount');
+      const dAddrEl = document.getElementById('successDeliveryAddr');
+      const waBtnEl = document.getElementById('successWhatsAppBtn');
+
+      if (oIdEl) oIdEl.textContent = orderId;
+      if (tAmtEl) tAmtEl.textContent = formattedPrice;
+      if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}`;
+      if (waBtnEl) waBtnEl.href = waUrl;
+
+      // Clear cart
+      cart = [];
+      saveCart();
+      updateCartUI();
+      closeCart();
+
+      // Show Success Modal
+      openSuccessModal();
+    }
+
+    function openSuccessModal() {
+      const modal = document.getElementById('orderSuccessModal');
+      if (modal) {
+        modal.classList.remove('opacity-0', 'pointer-events-none');
+        const box = modal.querySelector('div');
+        if (box) {
+          box.classList.remove('scale-95');
+          box.classList.add('scale-100');
+        }
+      }
+    }
+
+    function closeSuccessModal() {
+      const modal = document.getElementById('orderSuccessModal');
+      if (modal) {
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        const box = modal.querySelector('div');
+        if (box) {
+          box.classList.add('scale-95');
+          box.classList.remove('scale-100');
+        }
+      }
+    }
+
     function checkoutWhatsApp() {
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
 
@@ -1807,6 +2074,9 @@
 
     function openCart() {
       cartModal.classList.remove('invisible');
+      if (cart.length > 0) {
+        setTimeout(() => renderPayPalButtons(), 150);
+      }
       setTimeout(() => {
         cartBackdrop.classList.remove('opacity-0');
         cartPanel.classList.remove('-translate-x-full');
@@ -2105,6 +2375,7 @@
 
     // Initial load sequence (English is default on first visit)
     setLanguage(currentLang);
+    initPayPalSDK();
     syncWithAdminPanel();
     loadSavedCustomer();
     updateCartUI();
