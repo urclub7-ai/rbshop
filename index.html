@@ -1648,7 +1648,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR&components=buttons&enable-funding=card,paylater`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR&components=buttons&disable-funding=paylater,credit,sepa`;
       script.onload = () => {
         if (callback) callback();
       };
@@ -1678,12 +1678,13 @@
       container.innerHTML = '';
 
       window.paypal.Buttons({
+        fundingSource: window.paypal.FUNDING.PAYPAL,
         style: {
           layout: 'vertical',
           color:  'gold',
           shape:  'rect',
           label:  'paypal',
-          height: 40
+          height: 44
         },
         onClick: function(data, actions) {
           const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
