@@ -67,7 +67,7 @@
 
       <!-- Shop Logo Emblem -->
       <div class="w-20 h-20 mx-auto rounded-2xl bg-black/60 border border-white/10 p-2 shadow-inner">
-        <img src="assets/logo_transparent.png" alt="R.B Shop" class="w-full h-full object-contain">
+        <img src="assets/logo_official_2026.png?v=3" alt="R.B Shop" class="w-full h-full object-contain">
       </div>
 
       <div>
@@ -117,7 +117,7 @@
         <!-- Brand Identity -->
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 rounded-xl bg-black border border-white/10 p-1 shrink-0">
-            <img src="assets/logo_transparent.png" alt="R.B Shop" class="w-full h-full object-contain">
+            <img src="assets/logo_official_2026.png?v=3" alt="R.B Shop" class="w-full h-full object-contain">
           </div>
           <div>
             <div class="flex items-center gap-2">
@@ -902,7 +902,7 @@
       const preview = document.getElementById('prodImagePreview');
       if (sel === 'custom') {
         customInput.classList.remove('hidden');
-        preview.src = customInput.value || 'assets/logo_transparent.png';
+        preview.src = customInput.value || 'assets/logo_official_2026.png?v=3';
       } else {
         customInput.classList.add('hidden');
         preview.src = sel;
@@ -921,7 +921,7 @@
 
       let image = document.getElementById('prodPresetImageSelect').value;
       if (image === 'custom') {
-        image = document.getElementById('prodCustomImageUrl').value.trim() || 'assets/logo_transparent.png';
+        image = document.getElementById('prodCustomImageUrl').value.trim() || 'assets/logo_official_2026.png?v=3';
       }
 
       if (editId) {
