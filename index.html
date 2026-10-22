@@ -1327,17 +1327,7 @@
             </div>
           </div>
 
-          <!-- Payment Method Selection -->
-          <div>
-            <label data-i18n="cart_field_payment" class="block text-[11px] font-bold text-slate-300 mb-1">
-              Preferred Payment Method (Zahlungsmethode):
-            </label>
-            <select id="custPaymentMethod" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-emerald-500">
-              <option data-i18n="pay_opt_paypal" value="PayPal">💳 PayPal</option>
-              <option data-i18n="pay_opt_bank" value="Banküberweisung / IBAN (SEPA)">🏦 Bank Transfer (IBAN / SEPA)</option>
-              <option data-i18n="pay_opt_wa" value="WhatsApp Inquiries">💬 Inquire IBAN / PayPal in WhatsApp Chat</option>
-            </select>
-          </div>
+
 
         </div>
 
@@ -1361,39 +1351,21 @@
           </div>
         </div>
 
-        <!-- Payment Options (Online PayPal/Cards + WhatsApp) -->
-        <div id="paymentActionsArea" class="space-y-2.5 pt-1">
-          
-          <!-- PayPal & Debit/Credit Card Buttons -->
-          <div id="paypalSection" class="space-y-1.5">
+        <!-- Online Payment Section (PayPal Instant Checkout) -->
+        <div id="paymentActionsArea" class="space-y-2 pt-1">
+          <div id="paypalSection" class="space-y-2">
             <div class="flex items-center justify-between text-[11px]">
               <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
-                <i class="fa-solid fa-bolt text-xs"></i>
+                <i class="fa-solid fa-lock text-xs"></i>
                 <span>Fast & Secure Online Checkout:</span>
               </span>
               <span class="text-[11px] text-brand-silver/70 flex items-center gap-1.5 dir-ltr">
-                <i class="fa-brands fa-paypal text-blue-400" title="PayPal"></i>
-                <i class="fa-brands fa-cc-visa text-slate-300" title="Visa"></i>
-                <i class="fa-brands fa-cc-mastercard text-amber-500" title="Mastercard"></i>
-                <i class="fa-brands fa-apple-pay text-white text-sm" title="Apple Pay"></i>
+                <i class="fa-brands fa-paypal text-blue-400 text-sm" title="PayPal"></i>
+                <span class="text-[10px] text-emerald-400 font-bold">100% Protected</span>
               </span>
             </div>
             <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
           </div>
-
-          <!-- Divider -->
-          <div class="relative flex items-center py-0.5">
-            <div class="flex-grow border-t border-brand-border"></div>
-            <span data-i18n="pay_or_divider" class="flex-shrink mx-3 text-[10px] uppercase font-bold text-brand-silver/50 tracking-wider">OR</span>
-            <div class="flex-grow border-t border-brand-border"></div>
-          </div>
-
-          <!-- WhatsApp Checkout Button (Preserved) -->
-          <button onclick="checkoutWhatsApp()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition">
-            <i class="fa-brands fa-whatsapp text-lg"></i>
-            <span data-i18n="cart_checkout_btn">Buy & Send Order via WhatsApp</span>
-          </button>
-
         </div>
 
       </div>
@@ -1762,19 +1734,51 @@
         itemsList += `• ${item.qty}x ${itemName} - ${(item.price * item.qty).toFixed(2)} €\n`;
       });
 
-      // Prefilled WhatsApp receipt message
-      const waMsg = `✅ *ONLINE PAYMENT CONFIRMED (PAYPAL / CARD)*\n` +
-        `--------------------------------\n` +
-        `🆔 *Order ID:* ${orderId}\n` +
-        `👤 *Customer:* ${name}\n` +
-        `📞 *Phone:* ${phone}\n` +
-        `📍 *Delivery Address:* ${deliveryAddr}\n\n` +
-        `📦 *Purchased Items:*\n${itemsList}\n` +
-        `💰 *Total Paid:* ${totalPrice.toFixed(2)} € (Paid Online via PayPal)\n` +
-        `--------------------------------\n` +
-        `Payment is confirmed. Please dispatch parcel with DHL tracking. Thank you!`;
+      // Prefilled WhatsApp receipt message (Clean, structured & verified)
+      let waMsg = '';
+      if (currentLang === 'fa') {
+        waMsg = `✅ *رسید پرداخت آنلاین سفارش در R.B Shop*\n` +
+          `--------------------------------\n` +
+          `🆔 *شماره سفارش:* ${orderId}\n` +
+          `👤 *نام خریدار:* ${name}\n` +
+          `📞 *شماره تماس:* ${phone}\n` +
+          `📍 *آدرس پستی جهت ارسال:* ${deliveryAddr}\n\n` +
+          `📦 *اقلام خریداری شده:*\n${itemsList}\n` +
+          `💰 *مبلغ کل پرداخت شده:* ${totalPrice.toFixed(2)} € (پرداخت با موفقیت در پی‌پال انجام شد)\n` +
+          `--------------------------------\n` +
+          `سلام آقای بختیاری، هزینه سفارش من به حساب شما واریز شد. لطفاً سفارش را آماده و کد رهگیری پستی DHL را ارسال فرمایید. با تشکر!`;
+      } else if (currentLang === 'de') {
+        waMsg = `✅ *BESTELLBESTÄTIGUNG (ONLINE BEZAHLT VIA PAYPAL)*\n` +
+          `--------------------------------\n` +
+          `🆔 *Bestell-Nr.:* ${orderId}\n` +
+          `👤 *Kunde:* ${name}\n` +
+          `📞 *Telefon:* ${phone}\n` +
+          `📍 *Lieferadresse:* ${deliveryAddr}\n\n` +
+          `📦 *Gekaufte Artikel:*\n${itemsList}\n` +
+          `💰 *Gesamtbetrag:* ${totalPrice.toFixed(2)} € (Erfolgreich via PayPal bezahlt)\n` +
+          `--------------------------------\n` +
+          `Hallo Herr Bakhtyary, die Zahlung für meine Bestellung ist erfolgt. Bitte bereiten Sie den DHL-Versand vor. Vielen Dank!`;
+      } else {
+        waMsg = `✅ *NEW ORDER PAID ONLINE (PAYPAL CONFIRMED)*\n` +
+          `--------------------------------\n` +
+          `🆔 *Order ID:* ${orderId}\n` +
+          `👤 *Customer:* ${name}\n` +
+          `📞 *Phone:* ${phone}\n` +
+          `📍 *Delivery Address:* ${deliveryAddr}\n\n` +
+          `📦 *Purchased Items:*\n${itemsList}\n` +
+          `💰 *Total Amount Paid:* ${totalPrice.toFixed(2)} € (Paid & Verified via PayPal)\n` +
+          `--------------------------------\n` +
+          `Hello Mr. Bakhtyary, my order payment has been successfully completed. Please dispatch the parcel with DHL tracking. Thank you!`;
+      }
 
       const waUrl = `https://wa.me/491729343833?text=${encodeURIComponent(waMsg)}`;
+
+      // Auto-open WhatsApp receipt in new tab/app immediately upon payment completion
+      try {
+        window.open(waUrl, '_blank');
+      } catch(e) {
+        console.log("Popup blocked, user can click modal button:", e);
+      }
 
       // Populate Success Modal
       const oIdEl = document.getElementById('successOrderId');
