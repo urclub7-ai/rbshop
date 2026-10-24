@@ -430,16 +430,29 @@
                 </div>
               </div>
 
-              <!-- Quick Helper Link -->
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 flex items-center justify-between gap-2 flex-wrap">
-                <span class="text-[11px] text-slate-300 flex items-center gap-1.5">
-                  <i class="fa-solid fa-circle-info text-amber-400"></i>
-                  <span>نحوه دریافت رایگان کلید در ۱۰ ثانیه:</span>
-                </span>
-                <a href="https://wa.me/34623786449?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 text-[11px] font-bold text-emerald-300 flex items-center gap-1 transition">
-                  <i class="fa-brands fa-whatsapp"></i>
-                  <span>ارسال پیام فعال‌سازی به بات</span>
-                </a>
+              <!-- Quick Helper Links (Multiple Active Bots in case one is full) -->
+              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
+                <div class="flex items-center justify-between gap-2 flex-wrap text-[11px]">
+                  <span class="text-slate-300 flex items-center gap-1.5 font-bold">
+                    <i class="fa-solid fa-circle-info text-amber-400"></i>
+                    <span>دریافت کلید API از بات‌های رسمی واتساپ (هر کدام خلوت‌تر بود کلیک کنید):</span>
+                  </span>
+                </div>
+                <div class="flex items-center gap-2 flex-wrap text-[11px]">
+                  <a href="https://wa.me/34644204756?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 font-bold text-emerald-300 flex items-center gap-1 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>بات شماره ۱ (34644204756+)</span>
+                  </a>
+                  <a href="https://wa.me/34644919680?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 font-bold text-emerald-300 flex items-center gap-1 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>بات شماره ۲ (34644919680+)</span>
+                  </a>
+                  <a href="https://wa.me/34644442248?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 font-bold text-emerald-300 flex items-center gap-1 transition">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    <span>بات شماره ۳ (34644442248+)</span>
+                  </a>
+                </div>
+                <span class="text-[10px] text-slate-500 block">نکته: تمام سفارشات در تب «سفارشات» و دیتابیس همیشه به صورت قطعی و امن سیو می‌شوند، حتی اگر واتساپ موقتاً قطع باشد.</span>
               </div>
             </div>
 
@@ -478,16 +491,48 @@
             </div>
           </div>
 
-          <!-- Orders Filter & Refresh -->
-          <div class="flex items-center justify-between gap-3">
-            <h3 class="text-sm font-black text-white flex items-center gap-2">
-              <i class="fa-solid fa-receipt text-rose-500"></i>
-              <span>لیست سفارشات ثبت شده در سیستم</span>
-            </h3>
-            <button onclick="loadAdminOrders()" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 flex items-center gap-1.5 transition active:scale-95">
-              <i class="fa-solid fa-rotate text-emerald-400"></i>
-              <span>بروزرسانی لیست</span>
-            </button>
+          <!-- Safe Orders Vault Action Bar: Manual Add, Excel Export, Backup JSON, Search -->
+          <div class="bg-[#12141c] border border-white/10 rounded-2xl p-3 sm:p-4 space-y-3">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+              
+              <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="openManualOrderModal()" class="h-10 px-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-emerald-950/60 transition">
+                  <i class="fa-solid fa-plus text-sm"></i>
+                  <span>ثبت دستی سفارش جدید</span>
+                </button>
+
+                <button onclick="exportOrdersToCSV()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition" title="دانلود و سیو فایل اکسل تمام سفارشات">
+                  <i class="fa-solid fa-file-excel text-emerald-400"></i>
+                  <span class="hidden sm:inline">دانلود فایل اکسل (CSV)</span>
+                  <span class="sm:hidden">اکسل</span>
+                </button>
+
+                <button onclick="exportOrdersToJSON()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition" title="سیو نسخه پشتیبان کامل سفارشات">
+                  <i class="fa-solid fa-download text-sky-400"></i>
+                  <span class="hidden sm:inline">سیو بک‌آپ (JSON)</span>
+                  <span class="sm:hidden">بک‌آپ</span>
+                </button>
+
+                <button onclick="loadAdminOrders()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 flex items-center gap-1.5 transition active:scale-95" title="بروزرسانی">
+                  <i class="fa-solid fa-rotate text-emerald-400"></i>
+                </button>
+              </div>
+
+              <!-- Quick Search Input -->
+              <div class="relative flex-1 max-w-xs">
+                <input type="text" id="orderSearchInput" oninput="filterOrdersList()" placeholder="جستجو (نام خریدار، تلفن، آدرس)..." class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 pl-8 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
+              </div>
+            </div>
+
+            <!-- Status Filter Pills -->
+            <div class="flex items-center gap-1.5 overflow-x-auto pt-1 text-[11px] font-bold">
+              <span class="text-slate-400 text-xs ml-1 shrink-0">فیلتر سفارشات:</span>
+              <button onclick="filterOrdersByStatus('all')" id="orderFilter-all" class="order-filter-btn px-3 py-1 rounded-lg bg-white/15 text-white border border-white/20 transition shrink-0">همه سفارشات</button>
+              <button onclick="filterOrdersByStatus('paid')" id="orderFilter-paid" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">پرداخت شده</button>
+              <button onclick="filterOrdersByStatus('shipped')" id="orderFilter-shipped" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">ارسال شده با DHL</button>
+              <button onclick="filterOrdersByStatus('pending')" id="orderFilter-pending" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">در انتظار پرداخت</button>
+            </div>
           </div>
 
           <!-- Orders List Container -->
@@ -640,6 +685,124 @@
     </div>
   </div>
 
+
+  <!-- =========================================================================
+       MANUAL ORDER MODAL (ثبت دستی سفارش جدید و سیو در دیتابیس)
+       ========================================================================= -->
+  <div id="manualOrderModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
+    <div class="w-full sm:max-w-lg bg-[#141722] border-t sm:border border-white/15 rounded-t-3xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl text-right relative max-h-[92vh] flex flex-col pb-safe">
+      
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-3 shrink-0">
+        <h3 class="text-sm sm:text-base font-black text-white flex items-center gap-2">
+          <i class="fa-solid fa-receipt text-emerald-400"></i>
+          <span>ثبت و ذخیره سفارش جدید در سیستم</span>
+        </h3>
+        <button onclick="closeManualOrderModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <!-- Form -->
+      <form onsubmit="handleSaveManualOrder(event)" class="overflow-y-auto space-y-3 pr-1 text-xs">
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">نام و نام خانوادگی خریدار: *</label>
+          <input type="text" id="manualCustName" required placeholder="مثال: علی احمدی یا Max Mustermann" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-white focus:outline-none focus:border-emerald-500">
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+          <div>
+            <label class="block text-slate-300 font-bold mb-1">شماره تماس خریدار: *</label>
+            <input type="text" id="manualCustPhone" required placeholder="0172 1234567" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-white dir-ltr text-right focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
+            <label class="block text-slate-300 font-bold mb-1">روش پرداخت:</label>
+            <select id="manualPayMethod" class="w-full h-10 rounded-xl bg-[#1a1e2b] border border-white/15 px-3 text-white focus:outline-none focus:border-emerald-500">
+              <option value="پرداخت نقدی / حضوری">پرداخت نقدی / حضوری</option>
+              <option value="واریز به شبا (IBAN)">واریز به شبا (IBAN)</option>
+              <option value="پرداخت آنلاین پی‌پال">پرداخت آنلاین پی‌پال</option>
+              <option value="کارت به کارت / سایر">کارت به کارت / سایر</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">آدرس کامل پستی جهت ارسال با DHL: *</label>
+          <textarea id="manualCustAddress" required rows="2" placeholder="خیابان، پلاک، کدپستی، شهر و کشور (مثلاً: Musterstr. 10, 10115 Berlin, Germany)" class="w-full rounded-xl bg-black/60 border border-white/15 p-2.5 text-white focus:outline-none focus:border-emerald-500"></textarea>
+        </div>
+
+        <!-- Items Selection -->
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label class="text-slate-300 font-bold">اقلام خریداری شده: *</label>
+            <button type="button" onclick="addManualOrderItemRow()" class="text-emerald-400 font-bold hover:underline flex items-center gap-1 text-[11px]">
+              <i class="fa-solid fa-plus"></i>
+              <span>افزودن قلم کالا</span>
+            </button>
+          </div>
+          <div id="manualOrderItemsContainer" class="space-y-2">
+            <!-- Dynamic rows -->
+          </div>
+        </div>
+
+        <!-- Total Price -->
+        <div class="p-3 rounded-xl bg-black/40 border border-emerald-500/25 flex items-center justify-between">
+          <span class="text-slate-300 font-bold">مجموع مبلغ کل سفارش:</span>
+          <div class="flex items-center gap-1">
+            <input type="number" step="0.01" min="0" id="manualTotalPrice" required placeholder="0.00" class="w-24 h-9 rounded-lg bg-black/80 border border-white/20 px-2 text-right font-mono font-bold text-amber-300 dir-ltr focus:outline-none focus:border-emerald-500">
+            <span class="text-amber-400 font-bold">€</span>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-bold mb-1">وضعیت سفارش:</label>
+          <select id="manualOrderStatus" class="w-full h-10 rounded-xl bg-[#1a1e2b] border border-white/15 px-3 text-white focus:outline-none focus:border-emerald-500">
+            <option value="paid">✅ پرداخت شده (آماده ارسال با DHL)</option>
+            <option value="shipped">🚚 ارسال شده با پست DHL</option>
+            <option value="pending">⏳ در انتظار پرداخت</option>
+          </select>
+        </div>
+
+        <div class="pt-2">
+          <button type="submit" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+            <i class="fa-solid fa-floppy-disk text-base"></i>
+            <span>سیو و ثبت قطعی سفارش در سیستم</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       INVOICE / PACKING SLIP PRINT MODAL
+       ========================================================================= -->
+  <div id="invoiceModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="w-full max-w-xl bg-[#12151c] border border-amber-400/30 rounded-3xl p-5 sm:p-7 shadow-2xl text-right relative max-h-[90vh] overflow-y-auto space-y-4">
+      <div class="flex items-center justify-between border-b border-white/10 pb-3">
+        <h3 class="text-sm sm:text-base font-black text-white flex items-center gap-2">
+          <i class="fa-solid fa-file-invoice text-amber-400"></i>
+          <span>پیش‌نمایش فاکتور رسمی / برچسب پستی DHL</span>
+        </h3>
+        <button onclick="closeInvoiceModal()" class="w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-slate-300 flex items-center justify-center transition">
+          <i class="fa-solid fa-xmark text-sm"></i>
+        </button>
+      </div>
+
+      <div id="invoicePrintArea" class="bg-white text-black p-5 sm:p-6 rounded-2xl space-y-4 text-xs">
+        <!-- Rendered Invoice Content -->
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-1">
+        <button onclick="closeInvoiceModal()" class="px-4 py-2.5 rounded-xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs transition">
+          بستن
+        </button>
+        <button onclick="printInvoiceArea()" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center gap-1.5 shadow-lg shadow-emerald-950/50 transition">
+          <i class="fa-solid fa-print"></i>
+          <span>چاپ فاکتور رسمی (Print)</span>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- =========================================================================
        4. EDIT / ADD PRODUCT MODAL (فرم کشویی بسیار ساده ویژه موبایل)
@@ -1736,9 +1899,12 @@
     }
 
 
+        // =========================================================================
+    // SAFE ORDERS VAULT & SERVER NOTIFICATIONS
     // =========================================================================
-    // ORDERS & SERVER NOTIFICATIONS
-    // =========================================================================
+    let allLoadedOrders = [];
+    let currentOrderFilter = 'all';
+
     async function testWhatsAppNotification() {
       const phone = document.getElementById('storeWaNotifyPhoneInput')?.value.trim() || '491729343833';
       const apiKey = document.getElementById('storeWaNotifyApiKeyInput')?.value.trim();
@@ -1768,124 +1934,521 @@
       const container = document.getElementById('adminOrdersList');
       if (!container) return;
 
+      // Try local cache first for instant display
+      const cached = localStorage.getItem('rb_saved_orders');
+      if (cached && allLoadedOrders.length === 0) {
+        try {
+          allLoadedOrders = JSON.parse(cached);
+          renderOrdersList(allLoadedOrders);
+        } catch(e) {}
+      }
+
       if (!sbClient) {
-        container.innerHTML = '<div class="text-center py-8 text-amber-400 text-xs">ارتباط با دیتابیس برقرار نیست.</div>';
+        if (allLoadedOrders.length === 0) {
+          container.innerHTML = '<div class="text-center py-8 text-amber-400 text-xs">ارتباط با دیتابیس برقرار نیست.</div>';
+        }
         return;
       }
 
       try {
         const { data: orders, error } = await sbClient.from('orders').select('*').order('created_at', { ascending: false });
         if (error || !orders) {
-          container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطا در دریافت لیست سفارشات</div>';
-          return;
-        }
-
-        const totalCount = orders.length;
-        const paidOrders = orders.filter(o => o.status === 'paid_paypal' || o.status === 'paid');
-        const paidCount = paidOrders.length;
-        const totalRev = paidOrders.reduce((sum, o) => sum + (parseFloat(o.total_price) || 0), 0);
-
-        if (document.getElementById('ordersTotalCount')) document.getElementById('ordersTotalCount').textContent = totalCount;
-        if (document.getElementById('ordersPaidCount')) document.getElementById('ordersPaidCount').textContent = paidCount;
-        if (document.getElementById('ordersTotalRevenue')) document.getElementById('ordersTotalRevenue').textContent = totalRev.toFixed(2) + ' €';
-        if (document.getElementById('tabOrdersCount')) document.getElementById('tabOrdersCount').textContent = paidCount;
-        if (document.getElementById('mobOrdersBadge')) {
-          const b = document.getElementById('mobOrdersBadge');
-          if (paidCount > 0) {
-            b.textContent = paidCount;
-            b.classList.remove('hidden');
-            b.classList.add('flex');
-          } else {
-            b.classList.add('hidden');
-            b.classList.remove('flex');
+          if (allLoadedOrders.length === 0) {
+            container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطا در دریافت لیست سفارشات</div>';
           }
-        }
-
-        if (orders.length === 0) {
-          container.innerHTML = `
-            <div class="p-8 text-center bg-[#12141c] border border-white/10 rounded-3xl text-slate-400 space-y-2">
-              <i class="fa-solid fa-inbox text-3xl text-slate-600 block"></i>
-              <p class="text-xs font-bold">هنوز سفارشی ثبت نشده است</p>
-              <p class="text-[11px] text-slate-500">هر زمان مشتری خریدی انجام دهد، بلافاصله اینجا نمایش داده می‌شود.</p>
-            </div>
-          `;
           return;
         }
 
-        container.innerHTML = orders.map(o => {
-          const dateStr = o.created_at ? new Date(o.created_at).toLocaleString('fa-IR', { dateStyle: 'short', timeStyle: 'short' }) : 'نامشخص';
-          const itemsArr = Array.isArray(o.items) ? o.items : [];
-          const itemsListHtml = itemsArr.map(it => `
-            <div class="flex items-center justify-between text-[11px] py-1 border-b border-white/5 last:border-0">
-              <span class="text-slate-300 font-medium">${it.qty || 1}x ${it.title || it.name || 'محصول'}</span>
-              <span class="font-mono text-amber-300 dir-ltr">${((it.price || 0) * (it.qty || 1)).toFixed(2)} €</span>
-            </div>
-          `).join('');
+        allLoadedOrders = orders;
+        // Permanently cache orders locally for safety
+        localStorage.setItem('rb_saved_orders', JSON.stringify(orders));
 
-          const isPaid = o.status === 'paid_paypal' || o.status === 'paid';
-          const statusBadge = isPaid
-            ? '<span class="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-[10px] font-bold text-emerald-300 flex items-center gap-1"><i class="fa-solid fa-check text-[9px]"></i> پرداخت آنلاین موفق</span>'
-            : '<span class="px-2.5 py-0.5 rounded-full bg-amber-950 border border-amber-500/40 text-[10px] font-bold text-amber-300 flex items-center gap-1"><i class="fa-solid fa-clock text-[9px]"></i> در انتظار بررسی</span>';
-
-          const safeAddr = (o.customer_address || '').replace(/'/g, "\\'");
-
-          return `
-            <div class="p-4 sm:p-5 rounded-2xl bg-[#12141c] border border-white/10 space-y-3 hover:border-white/20 transition">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <div class="flex items-center gap-2">
-                  <span class="font-mono font-bold text-xs text-amber-400 dir-ltr">#${(o.id || '').slice(0, 8)}</span>
-                  <span class="text-[11px] text-slate-500 dir-ltr">${dateStr}</span>
-                </div>
-                <div>${statusBadge}</div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                <div class="space-y-1">
-                  <span class="text-slate-400 block text-[10px]">مشخصات خریدار:</span>
-                  <div class="font-bold text-white flex items-center gap-1.5">
-                    <i class="fa-solid fa-user text-slate-500 text-[11px]"></i>
-                    <span>${o.customer_name || 'نامشخص'}</span>
-                  </div>
-                </div>
-                <div class="space-y-1">
-                  <span class="text-slate-400 block text-[10px]">مبلغ کل پرداختی:</span>
-                  <div class="font-black text-amber-400 text-base font-display dir-ltr text-right">
-                    ${(parseFloat(o.total_price) || 0).toFixed(2)} €
-                  </div>
-                </div>
-              </div>
-
-              <!-- Address Box with One-Click Copy for DHL Label -->
-              <div class="p-2.5 rounded-xl bg-black/50 border border-white/5 text-[11px] space-y-1.5">
-                <div class="flex items-center justify-between text-slate-400 text-[10px]">
-                  <span class="flex items-center gap-1">
-                    <i class="fa-solid fa-truck-fast text-emerald-400"></i>
-                    <span>آدرس پستی جهت برچسب ارسال پست DHL:</span>
-                  </span>
-                  <button type="button" onclick="navigator.clipboard.writeText('${safeAddr}'); showToast('آدرس پستی کپی شد!');" class="px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-white font-bold text-[9px] flex items-center gap-1 transition">
-                    <i class="fa-solid fa-copy"></i>
-                    <span>کپی آدرس</span>
-                  </button>
-                </div>
-                <div class="text-slate-200 font-medium dir-ltr text-start select-all">
-                  ${o.customer_address || 'ثبت نشده'}
-                </div>
-              </div>
-
-              <!-- Items Breakdown -->
-              <div class="pt-1">
-                <span class="text-slate-400 block text-[10px] mb-1">اقلام خریداری شده:</span>
-                <div class="bg-black/30 rounded-xl p-2 border border-white/5">
-                  ${itemsListHtml || '<span class="text-slate-500 text-[10px]">بدون اقلام</span>'}
-                </div>
-              </div>
-            </div>
-          `;
-        }).join('');
+        updateOrdersStats(orders);
+        renderOrdersList(orders);
 
       } catch(e) {
-        container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطای غیرمنتظره: ' + e.message + '</div>';
+        if (allLoadedOrders.length === 0) {
+          container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطای غیرمنتظره: ' + e.message + '</div>';
+        }
       }
+    }
+
+    function updateOrdersStats(orders) {
+      const totalCount = orders.length;
+      const paidOrders = orders.filter(o => o.status === 'paid_paypal' || o.status === 'paid' || (o.status && o.status.startsWith('shipped')));
+      const paidCount = paidOrders.length;
+      const totalRev = paidOrders.reduce((sum, o) => sum + (parseFloat(o.total_price) || 0), 0);
+
+      if (document.getElementById('ordersTotalCount')) document.getElementById('ordersTotalCount').textContent = totalCount;
+      if (document.getElementById('ordersPaidCount')) document.getElementById('ordersPaidCount').textContent = paidCount;
+      if (document.getElementById('ordersTotalRevenue')) document.getElementById('ordersTotalRevenue').textContent = totalRev.toFixed(2) + ' €';
+      if (document.getElementById('tabOrdersCount')) document.getElementById('tabOrdersCount').textContent = paidCount;
+      if (document.getElementById('mobOrdersBadge')) {
+        const b = document.getElementById('mobOrdersBadge');
+        if (paidCount > 0) {
+          b.textContent = paidCount;
+          b.classList.remove('hidden');
+          b.classList.add('flex');
+        } else {
+          b.classList.add('hidden');
+          b.classList.remove('flex');
+        }
+      }
+    }
+
+    function renderOrdersList(orders) {
+      const container = document.getElementById('adminOrdersList');
+      if (!container) return;
+
+      // Filter by search query & active status pill
+      const query = (document.getElementById('orderSearchInput')?.value || '').trim().toLowerCase();
+      let list = orders;
+
+      if (currentOrderFilter === 'paid') {
+        list = list.filter(o => o.status === 'paid_paypal' || o.status === 'paid');
+      } else if (currentOrderFilter === 'shipped') {
+        list = list.filter(o => o.status === 'shipped' || (o.status && o.status.includes('ارسال')));
+      } else if (currentOrderFilter === 'pending') {
+        list = list.filter(o => o.status !== 'paid_paypal' && o.status !== 'paid' && !o.status?.includes('ارسال'));
+      }
+
+      if (query) {
+        list = list.filter(o => {
+          const name = (o.customer_name || '').toLowerCase();
+          const addr = (o.customer_address || '').toLowerCase();
+          const id = (o.id || '').toLowerCase();
+          return name.includes(query) || addr.includes(query) || id.includes(query);
+        });
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="p-8 text-center bg-[#12141c] border border-white/10 rounded-3xl text-slate-400 space-y-2">
+            <i class="fa-solid fa-inbox text-3xl text-slate-600 block"></i>
+            <p class="text-xs font-bold">هیچ سفارشی در این بخش پیدا نشد</p>
+            <p class="text-[11px] text-slate-500">برای ثبت سفارش جدید روی «ثبت دستی سفارش جدید» کلیک کنید.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(o => {
+        const dateStr = o.created_at ? new Date(o.created_at).toLocaleString('fa-IR', { dateStyle: 'short', timeStyle: 'short' }) : 'نامشخص';
+        const itemsArr = Array.isArray(o.items) ? o.items : [];
+        const itemsListHtml = itemsArr.map(it => `
+          <div class="flex items-center justify-between text-[11px] py-1 border-b border-white/5 last:border-0">
+            <span class="text-slate-300 font-medium">${it.qty || 1}x ${it.title || it.name || 'محصول'}</span>
+            <span class="font-mono text-amber-300 dir-ltr">${((it.price || 0) * (it.qty || 1)).toFixed(2)} €</span>
+          </div>
+        `).join('');
+
+        const isShipped = o.status === 'shipped' || (o.status && o.status.includes('ارسال'));
+        const isPaid = (o.status === 'paid_paypal' || o.status === 'paid') && !isShipped;
+
+        let statusBadge = '<span class="px-2.5 py-0.5 rounded-full bg-amber-950 border border-amber-500/40 text-[10px] font-bold text-amber-300 flex items-center gap-1"><i class="fa-solid fa-clock text-[9px]"></i> در انتظار بررسی</span>';
+        if (isShipped) {
+          statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-sky-950 border border-sky-500/40 text-[10px] font-bold text-sky-300 flex items-center gap-1"><i class="fa-solid fa-truck-fast text-[9px]"></i> ${o.status.length > 25 ? o.status.slice(0, 25) + '...' : o.status}</span>`;
+        } else if (isPaid) {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-[10px] font-bold text-emerald-300 flex items-center gap-1"><i class="fa-solid fa-check text-[9px]"></i> پرداخت آنلاین موفق</span>';
+        }
+
+        const safeAddr = (o.customer_address || '').replace(/'/g, "\\'");
+        const safeId = o.id;
+
+        return `
+          <div class="p-4 sm:p-5 rounded-2xl bg-[#12141c] border border-white/10 space-y-3.5 hover:border-white/20 transition">
+            <div class="flex items-center justify-between gap-2 flex-wrap">
+              <div class="flex items-center gap-2">
+                <span class="font-mono font-bold text-xs text-amber-400 dir-ltr">#${(o.id || '').slice(0, 8)}</span>
+                <span class="text-[11px] text-slate-500 dir-ltr">${dateStr}</span>
+              </div>
+              <div>${statusBadge}</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <div class="space-y-1">
+                <span class="text-slate-400 block text-[10px]">مشخصات خریدار:</span>
+                <div class="font-bold text-white flex items-center gap-1.5">
+                  <i class="fa-solid fa-user text-slate-500 text-[11px]"></i>
+                  <span>${o.customer_name || 'نامشخص'}</span>
+                </div>
+              </div>
+              <div class="space-y-1">
+                <span class="text-slate-400 block text-[10px]">مبلغ کل پرداختی:</span>
+                <div class="font-black text-amber-400 text-base font-display dir-ltr text-right">
+                  ${(parseFloat(o.total_price) || 0).toFixed(2)} €
+                </div>
+              </div>
+            </div>
+
+            <!-- Address Box with One-Click Copy for DHL Label -->
+            <div class="p-2.5 rounded-xl bg-black/50 border border-white/5 text-[11px] space-y-1.5">
+              <div class="flex items-center justify-between text-slate-400 text-[10px]">
+                <span class="flex items-center gap-1">
+                  <i class="fa-solid fa-truck-fast text-emerald-400"></i>
+                  <span>آدرس پستی جهت برچسب ارسال پست DHL:</span>
+                </span>
+                <button type="button" onclick="navigator.clipboard.writeText('${safeAddr}'); showToast('آدرس پستی کپی شد!');" class="px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-white font-bold text-[9px] flex items-center gap-1 transition">
+                  <i class="fa-solid fa-copy"></i>
+                  <span>کپی آدرس</span>
+                </button>
+              </div>
+              <div class="text-slate-200 font-medium dir-ltr text-start select-all">
+                ${o.customer_address || 'ثبت نشده'}
+              </div>
+            </div>
+
+            <!-- Items Breakdown -->
+            <div class="pt-1">
+              <span class="text-slate-400 block text-[10px] mb-1">اقلام خریداری شده:</span>
+              <div class="bg-black/30 rounded-xl p-2 border border-white/5">
+                ${itemsListHtml || '<span class="text-slate-500 text-[10px]">بدون اقلام</span>'}
+              </div>
+            </div>
+
+            <!-- Action Controls (Save Status, Tracking, Invoice Print, Delete) -->
+            <div class="pt-2 border-t border-white/5 flex items-center justify-between gap-2 flex-wrap">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <button onclick="promptMarkAsShipped('${safeId}')" class="px-2.5 py-1.5 rounded-xl bg-sky-950/60 hover:bg-sky-900/80 border border-sky-500/40 text-[11px] font-bold text-sky-300 flex items-center gap-1 transition">
+                  <i class="fa-solid fa-truck-ramp-box"></i>
+                  <span>ثبت ارسال DHL و رهگیری</span>
+                </button>
+
+                <button onclick="openInvoiceModal('${safeId}')" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-[11px] font-bold text-slate-300 flex items-center gap-1 transition">
+                  <i class="fa-solid fa-print text-amber-400"></i>
+                  <span>چاپ فاکتور</span>
+                </button>
+              </div>
+
+              <button onclick="deleteAdminOrder('${safeId}')" class="px-2.5 py-1.5 rounded-xl bg-rose-950/30 hover:bg-rose-900/50 border border-rose-800/40 text-[11px] font-bold text-rose-400 flex items-center gap-1 transition" title="حذف سفارش">
+                <i class="fa-solid fa-trash-can"></i>
+                <span class="hidden sm:inline">حذف</span>
+              </button>
+            </div>
+
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterOrdersList() {
+      renderOrdersList(allLoadedOrders);
+    }
+
+    function filterOrdersByStatus(status) {
+      currentOrderFilter = status;
+      document.querySelectorAll('.order-filter-btn').forEach(btn => {
+        btn.classList.remove('bg-white/15', 'text-white', 'border-white/20');
+        btn.classList.add('bg-white/5', 'text-slate-400', 'border-white/10');
+      });
+      const active = document.getElementById('orderFilter-' + status);
+      if (active) {
+        active.classList.add('bg-white/15', 'text-white', 'border-white/20');
+        active.classList.remove('bg-white/5', 'text-slate-400', 'border-white/10');
+      }
+      renderOrdersList(allLoadedOrders);
+    }
+
+    // Export Orders to CSV (Excel format with UTF-8 BOM)
+    function exportOrdersToCSV() {
+      const orders = allLoadedOrders || [];
+      if (orders.length === 0) {
+        showToast('هنوز سفارشی برای خروجی گرفتن ثبت نشده است!');
+        return;
+      }
+
+      let csv = '\uFEFF';
+      csv += 'کد سفارش,تاریخ ثبت,نام خریدار,آدرس پستی کامل,اقلام سفارش,مبلغ کل (یورو),وضعیت\r\n';
+
+      orders.forEach(o => {
+        const id = (o.id || '').slice(0, 8);
+        const date = o.created_at ? new Date(o.created_at).toLocaleString('fa-IR') : '';
+        const name = (o.customer_name || '').replace(/"/g, '""');
+        const addr = (o.customer_address || '').replace(/"/g, '""');
+        const items = Array.isArray(o.items) ? o.items.map(i => `${i.qty || 1}x ${i.title || i.name}`).join(' | ').replace(/"/g, '""') : '';
+        const total = (parseFloat(o.total_price) || 0).toFixed(2);
+        const status = (o.status || '').replace(/"/g, '""');
+
+        csv += `"${id}","${date}","${name}","${addr}","${items}","${total}","${status}"\r\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rb_shop_orders_${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✅ فایل اکسل سفارشات با موفقیت دانلود و ذخیره شد!');
+    }
+
+    // Export Orders to JSON Backup
+    function exportOrdersToJSON() {
+      const orders = allLoadedOrders || [];
+      if (orders.length === 0) {
+        showToast('هیچ سفارشی جهت پشتیبان‌گیری موجود نیست!');
+        return;
+      }
+      const blob = new Blob([JSON.stringify(orders, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `rb_orders_backup_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('✅ فایل پشتیبان کامل سفارشات ذخیره شد! 💾');
+    }
+
+    // Prompt for DHL tracking code and mark as shipped
+    async function promptMarkAsShipped(orderId) {
+      const tracking = prompt('لطفاً کد رهگیری پستی مرسوله DHL (Sendungsnummer) را وارد فرمایید (اختیاری):', '');
+      if (tracking === null) return;
+
+      let newStatus = 'ارسال شد با پست DHL';
+      if (tracking.trim()) {
+        newStatus = `ارسال شد با پست DHL (کد رهگیری: ${tracking.trim()})`;
+      }
+
+      showToast('در حال ذخیره وضعیت سفارش...');
+      try {
+        const { error } = await sbClient.from('orders').update({ status: newStatus }).eq('id', orderId);
+        if (!error) {
+          showToast('✅ وضعیت ارسال سفارش با موفقیت سیو شد!');
+          loadAdminOrders();
+        } else {
+          showToast('خطا در ذخیره وضعیت: ' + error.message);
+        }
+      } catch(err) {
+        showToast('خطا: ' + err.message);
+      }
+    }
+
+    // Delete Order
+    async function deleteAdminOrder(orderId) {
+      if (!confirm('آیا از حذف این سفارش مطمئن هستید؟ این عمل غیرقابل بازگشت است.')) return;
+      showToast('در حال حذف سفارش...');
+      try {
+        const { error } = await sbClient.from('orders').delete().eq('id', orderId);
+        if (!error) {
+          showToast('سفارش با موفقیت حذف شد.');
+          loadAdminOrders();
+        } else {
+          showToast('خطا در حذف سفارش.');
+        }
+      } catch(e) {
+        showToast('خطا: ' + e.message);
+      }
+    }
+
+    // Manual Order Modal Functions
+    function openManualOrderModal() {
+      document.getElementById('manualCustName').value = '';
+      document.getElementById('manualCustPhone').value = '';
+      document.getElementById('manualCustAddress').value = '';
+      document.getElementById('manualTotalPrice').value = '0.00';
+      const container = document.getElementById('manualOrderItemsContainer');
+      container.innerHTML = '';
+      addManualOrderItemRow();
+      document.getElementById('manualOrderModal').classList.remove('hidden');
+    }
+
+    function closeManualOrderModal() {
+      document.getElementById('manualOrderModal').classList.add('hidden');
+    }
+
+    function addManualOrderItemRow() {
+      const container = document.getElementById('manualOrderItemsContainer');
+      const row = document.createElement('div');
+      row.className = 'manual-item-row flex items-center gap-2 p-2 rounded-xl bg-black/40 border border-white/5';
+
+      let optionsHtml = products.map(p => `<option value="${p.title}" data-price="${p.price}">${p.title} (${Number(p.price).toFixed(2)} €)</option>`).join('');
+      if (!optionsHtml) {
+        optionsHtml = '<option value="محصول سفارشی" data-price="0">محصول آزاد</option>';
+      }
+
+      row.innerHTML = `
+        <select onchange="recalcManualOrderTotal()" class="item-select flex-1 h-9 rounded-lg bg-[#1a1e2b] border border-white/10 px-2 text-white text-[11px] focus:outline-none">
+          ${optionsHtml}
+        </select>
+        <input type="number" min="1" value="1" oninput="recalcManualOrderTotal()" class="item-qty w-14 h-9 rounded-lg bg-black/60 border border-white/15 px-2 text-center text-white font-bold text-[11px] focus:outline-none" title="تعداد">
+        <input type="number" step="0.01" min="0" oninput="recalcManualOrderTotal()" class="item-price w-20 h-9 rounded-lg bg-black/60 border border-white/15 px-2 text-right text-amber-300 font-bold text-[11px] dir-ltr focus:outline-none" placeholder="قیمت واحد">
+        <button type="button" onclick="this.parentElement.remove(); recalcManualOrderTotal();" class="w-8 h-8 rounded-lg bg-rose-950/40 text-rose-400 hover:bg-rose-900/60 flex items-center justify-center transition">
+          <i class="fa-solid fa-trash-can text-xs"></i>
+        </button>
+      `;
+      container.appendChild(row);
+
+      const sel = row.querySelector('.item-select');
+      const prInput = row.querySelector('.item-price');
+      if (sel && prInput) {
+        const pVal = sel.options[sel.selectedIndex]?.getAttribute('data-price') || 0;
+        prInput.value = parseFloat(pVal).toFixed(2);
+      }
+      recalcManualOrderTotal();
+    }
+
+    function recalcManualOrderTotal() {
+      let sum = 0;
+      document.querySelectorAll('.manual-item-row').forEach(r => {
+        const qty = parseInt(r.querySelector('.item-qty')?.value) || 1;
+        const pr = parseFloat(r.querySelector('.item-price')?.value) || 0;
+        sum += (qty * pr);
+      });
+      const totInput = document.getElementById('manualTotalPrice');
+      if (totInput) totInput.value = sum.toFixed(2);
+    }
+
+    async function handleSaveManualOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('manualCustName').value.trim();
+      const phone = document.getElementById('manualCustPhone').value.trim();
+      const addr = document.getElementById('manualCustAddress').value.trim();
+      const payMethod = document.getElementById('manualPayMethod').value;
+      const status = document.getElementById('manualOrderStatus').value;
+      const totalPrice = parseFloat(document.getElementById('manualTotalPrice').value) || 0;
+
+      const itemRows = document.querySelectorAll('.manual-item-row');
+      const items = [];
+      itemRows.forEach(row => {
+        const title = row.querySelector('.item-select')?.value || '';
+        const qty = parseInt(row.querySelector('.item-qty')?.value) || 1;
+        const price = parseFloat(row.querySelector('.item-price')?.value) || 0;
+        if (title) {
+          items.push({ title, qty, price });
+        }
+      });
+
+      const fullAddr = `${addr}` + (phone ? ` (Tel: ${phone})` : '') + ` [روش پرداخت: ${payMethod}]`;
+
+      showToast('در حال ذخیره سفارش در سیستم...');
+
+      try {
+        const { data, error } = await sbClient.from('orders').insert([{
+          customer_name: name,
+          customer_address: fullAddr,
+          items: items.length > 0 ? items : [{ title: 'سفارش ثبت دستی', qty: 1, price: totalPrice }],
+          total_price: totalPrice,
+          status: status
+        }]).select();
+
+        if (!error) {
+          showToast('✅ سفارش جدید با موفقیت در سیستم سیو شد!');
+          closeManualOrderModal();
+          loadAdminOrders();
+        } else {
+          showToast('خطا در ذخیره سفارش: ' + error.message);
+        }
+      } catch(err) {
+        showToast('خطای سرور: ' + err.message);
+      }
+    }
+
+    // Invoice Print Modal
+    function openInvoiceModal(orderId) {
+      const order = allLoadedOrders.find(o => o.id === orderId);
+      if (!order) return;
+
+      const dateStr = order.created_at ? new Date(order.created_at).toLocaleDateString('de-DE') : new Date().toLocaleDateString('de-DE');
+      const itemsArr = Array.isArray(order.items) ? order.items : [];
+      const itemsRowsHtml = itemsArr.map((it, idx) => `
+        <tr style="border-bottom: 1px solid #e5e7eb;">
+          <td style="padding: 6px 8px; text-align: center;">${idx + 1}</td>
+          <td style="padding: 6px 8px; font-weight: bold;">${it.title || it.name || 'محصول'}</td>
+          <td style="padding: 6px 8px; text-align: center;">${it.qty || 1}</td>
+          <td style="padding: 6px 8px; text-align: right; direction: ltr;">${(it.price || 0).toFixed(2)} €</td>
+          <td style="padding: 6px 8px; text-align: right; font-weight: bold; direction: ltr;">${((it.price || 0) * (it.qty || 1)).toFixed(2)} €</td>
+        </tr>
+      `).join('');
+
+      const area = document.getElementById('invoicePrintArea');
+      area.innerHTML = `
+        <div style="font-family: Arial, sans-serif; direction: rtl; color: #111827;">
+          <!-- Top Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #b91c1c; padding-bottom: 12px; margin-bottom: 16px;">
+            <div>
+              <h2 style="font-size: 20px; font-weight: 900; margin: 0; color: #991b1b;">R.B Shop • فروشگاه آر بی</h2>
+              <p style="font-size: 11px; color: #4b5563; margin: 4px 0 0 0;">فروشگاه آنلاین خشکبار، زعفران و میوه خشک درجه یک صادراتی</p>
+              <p style="font-size: 10px; color: #6b7280; margin: 2px 0 0 0; direction: ltr; text-align: right;">Möllers weg 6, 25761 Büsum, Germany • Tel: +49 172 9343833</p>
+            </div>
+            <div style="text-align: left; direction: ltr;">
+              <span style="font-size: 14px; font-weight: bold; color: #1f2937;">INVOICE / فاکتور</span><br>
+              <span style="font-size: 11px; color: #6b7280;">Bestell-Nr: #${(order.id || '').slice(0, 8)}</span><br>
+              <span style="font-size: 11px; color: #6b7280;">Datum: ${dateStr}</span>
+            </div>
+          </div>
+
+          <!-- Customer Address Block -->
+          <div style="background: #f9fafb; border: 1px solid #e5e7eb; border-radius: 8px; padding: 12px; margin-bottom: 16px;">
+            <div style="font-size: 11px; font-weight: bold; color: #6b7280; margin-bottom: 4px;">گیرنده و آدرس پستی جهت ارسال DHL:</div>
+            <div style="font-size: 13px; font-weight: bold; color: #111827;">${order.customer_name || 'مشتری عزیز'}</div>
+            <div style="font-size: 12px; color: #374151; margin-top: 4px; direction: ltr; text-align: right;">${order.customer_address || 'ثبت نشده'}</div>
+          </div>
+
+          <!-- Items Table -->
+          <table style="width: 100%; border-collapse: collapse; font-size: 11px; margin-bottom: 16px;">
+            <thead>
+              <tr style="background: #f3f4f6; border-bottom: 2px solid #d1d5db;">
+                <th style="padding: 8px; text-align: center; width: 35px;">ردیف</th>
+                <th style="padding: 8px; text-align: right;">شرح کالا</th>
+                <th style="padding: 8px; text-align: center; width: 60px;">تعداد</th>
+                <th style="padding: 8px; text-align: right; width: 75px;">قیمت واحد</th>
+                <th style="padding: 8px; text-align: right; width: 85px;">جمع کل</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${itemsRowsHtml}
+            </tbody>
+          </table>
+
+          <!-- Total Amount -->
+          <div style="display: flex; justify-content: flex-end;">
+            <div style="min-width: 200px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; padding: 10px;">
+              <div style="display: flex; justify-content: space-between; font-size: 13px; font-weight: 900; color: #991b1b;">
+                <span>مبلغ نهایی پرداختی:</span>
+                <span style="direction: ltr;">${(parseFloat(order.total_price) || 0).toFixed(2)} €</span>
+              </div>
+              <div style="font-size: 10px; color: #059669; font-weight: bold; margin-top: 4px; text-align: center;">
+                ✔ پرداخت آنلاین تأیید شده • آماده ارسال با DHL
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer -->
+          <div style="border-top: 1px dashed #d1d5db; padding-top: 10px; margin-top: 20px; text-align: center; font-size: 10px; color: #6b7280;">
+            با تشکر از خرید و اعتماد شما به R.B Shop • ارسال بسته‌های پستی به سراسر آلمان و اروپا با پست DHL
+          </div>
+        </div>
+      `;
+
+      document.getElementById('invoiceModal').classList.remove('hidden');
+    }
+
+    function closeInvoiceModal() {
+      document.getElementById('invoiceModal').classList.add('hidden');
+    }
+
+    function printInvoiceArea() {
+      const content = document.getElementById('invoicePrintArea').innerHTML;
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(`
+        <html>
+          <head>
+            <title>فاکتور سفارش R.B Shop</title>
+            <style>
+              @page { size: A4; margin: 15mm; }
+              body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+            </style>
+          </head>
+          <body onload="window.print(); window.close();">
+            ${content}
+          </body>
+        </html>
+      `);
+      printWindow.document.close();
     }
 
     // =========================================================================
@@ -1934,6 +2497,7 @@
     function downloadBackupJSON() {
       const data = {
         products: products,
+        orders: allLoadedOrders || [],
         settings: JSON.parse(localStorage.getItem('rb_store_settings') || '{}'),
         exportDate: new Date().toISOString()
       };
