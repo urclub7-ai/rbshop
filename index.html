@@ -1370,7 +1370,7 @@
 
         <!-- Online Payment Section (PayPal Instant Checkout) -->
         <div id="paymentActionsArea" class="space-y-2 pt-1">
-          <div id="paypalSection" class="space-y-2">
+          <div id="paypalSection" class="space-y-2.5">
             <div class="flex items-center justify-between text-[11px]">
               <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
                 <i class="fa-solid fa-lock text-xs"></i>
@@ -1381,6 +1381,18 @@
                 <span class="text-[10px] text-emerald-400 font-bold">100% Protected</span>
               </span>
             </div>
+
+            <!-- Accepted Payment Badges Bar (PayPal, Visa, Mastercard, SEPA Bank) -->
+            <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-zinc-300">
+              <span class="text-[11px] text-brand-silver/90 font-medium" data-i18n="pay_online_sub">PayPal • Visa • Mastercard • SEPA Lastschrift</span>
+              <div class="flex items-center gap-2 text-zinc-300 dir-ltr text-sm shrink-0">
+                <i class="fa-brands fa-paypal text-sky-400" title="PayPal"></i>
+                <i class="fa-brands fa-cc-visa text-sky-200" title="Visa"></i>
+                <i class="fa-brands fa-cc-mastercard text-amber-400" title="Mastercard"></i>
+                <i class="fa-solid fa-building-columns text-emerald-400" title="SEPA Bank"></i>
+              </div>
+            </div>
+
             <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
           </div>
         </div>
@@ -1709,7 +1721,7 @@
         return;
       }
       const script = document.createElement('script');
-      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR&components=buttons&disable-funding=paylater,credit,sepa`;
+      script.src = `https://www.paypal.com/sdk/js?client-id=${PAYPAL_CLIENT_ID}&currency=EUR&components=buttons&enable-funding=card,sepa,paylater,sofort`;
       script.onload = () => {
         if (callback) callback();
       };
@@ -1739,13 +1751,11 @@
       container.innerHTML = '';
 
       window.paypal.Buttons({
-        fundingSource: window.paypal.FUNDING.PAYPAL,
         style: {
           layout: 'vertical',
           color:  'gold',
           shape:  'rect',
-          label:  'paypal',
-          height: 44
+          label:  'paypal'
         },
         onClick: function(data, actions) {
           const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
