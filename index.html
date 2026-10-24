@@ -1786,6 +1786,19 @@
       if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}`;
       if (waBtnEl) waBtnEl.href = waUrl;
 
+      // Save confirmed paid order in Supabase Cloud
+      if (sbClient) {
+        try {
+          sbClient.from('orders').insert([{
+            customer_name: name,
+            customer_address: `${deliveryAddr}` + (phone ? ` (Tel: ${phone})` : ''),
+            items: cart,
+            total_price: totalPrice,
+            status: 'paid_paypal'
+          }]).then(() => {});
+        } catch(e) {}
+      }
+
       // Clear cart
       cart = [];
       saveCart();
