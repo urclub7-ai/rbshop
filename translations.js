@@ -117,7 +117,11 @@ const UI_TRANSLATIONS = {
     pay_opt_wa: "💬 Inquire IBAN / PayPal in WhatsApp Chat",
     cart_subtotal: "Subtotal:",
     cart_shipping_fee: "Shipping Cost (DHL / DPD):",
-    cart_shipping_calc: "Coordinated on WhatsApp (by weight)",
+    cart_shipping_calc: "Fast DHL tracked delivery",
+    cart_shipping_free: "Free 🎁",
+    cart_away_from_free: "away from FREE DHL shipping!",
+    cart_free_shipping_unlocked: "🎉 Free DHL tracked shipping applied!",
+    cart_threshold_badge: "Min.",
     cart_total: "Total Amount:",
     cart_checkout_btn: "Buy & Send Order via WhatsApp",
     wa_msg_greeting: "Hello Mr. Bakhtyary, I would like to place an order from R.B Shop:\n\n",
@@ -239,7 +243,11 @@ const UI_TRANSLATIONS = {
     pay_opt_wa: "💬 IBAN / PayPal im WhatsApp-Chat anfragen",
     cart_subtotal: "Zwischensumme:",
     cart_shipping_fee: "Versandkosten (DHL / DPD):",
-    cart_shipping_calc: "Wird auf WhatsApp nach Gewicht berechnet",
+    cart_shipping_calc: "Schneller DHL-Paketversand",
+    cart_shipping_free: "Kostenlos 🎁",
+    cart_away_from_free: "bis zum kostenlosen DHL-Versand!",
+    cart_free_shipping_unlocked: "🎉 Kostenloser DHL-Versand aktiviert!",
+    cart_threshold_badge: "Ab",
     cart_total: "Gesamtsumme:",
     cart_checkout_btn: "Bestellung per WhatsApp absenden",
     wa_msg_greeting: "Hallo Herr Bakhtyary, ich möchte gerne folgende Bestellung bei R.B Shop aufgeben:\n\n",
@@ -361,7 +369,11 @@ const UI_TRANSLATIONS = {
     pay_opt_wa: "💬 Demander l'IBAN / PayPal sur WhatsApp",
     cart_subtotal: "Sous-total:",
     cart_shipping_fee: "Frais de livraison (DHL / DPD):",
-    cart_shipping_calc: "Calculés sur WhatsApp selon le poids",
+    cart_shipping_calc: "Livraison rapide suivie DHL",
+    cart_shipping_free: "Gratuit 🎁",
+    cart_away_from_free: "pour la livraison DHL GRATUITE !",
+    cart_free_shipping_unlocked: "🎉 Livraison DHL gratuite appliquée !",
+    cart_threshold_badge: "Dès",
     cart_total: "Total général:",
     cart_checkout_btn: "Acheter et envoyer la commande sur WhatsApp",
     wa_msg_greeting: "Bonjour M. Bakhtyary, je souhaite passer la commande suivante sur R.B Shop :\n\n",
@@ -483,7 +495,11 @@ const UI_TRANSLATIONS = {
     pay_opt_wa: "💬 استعلام شماره حساب یا پی‌پال در چت واتساپ",
     cart_subtotal: "مجموع اقلام:",
     cart_shipping_fee: "هزینه ارسال پستی (DHL / DPD):",
-    cart_shipping_calc: "هماهنگی در واتساپ (بر اساس وزن)",
+    cart_shipping_calc: "ارسال سریع و مطمئن با پست DHL",
+    cart_shipping_free: "رایگان 🎁",
+    cart_away_from_free: "دیگر تا ارسال کاملاً رایگان با DHL!",
+    cart_free_shipping_unlocked: "🎉 ارسال با DHL برای این سفارش کاملاً رایگان است!",
+    cart_threshold_badge: "سقف",
     cart_total: "مجموع کل:",
     cart_checkout_btn: "خرید و ارسال سفارش در واتساپ",
     wa_msg_greeting: "سلام جناب بختیاری عزیز، سفارش داشتم:\n\n",
@@ -605,7 +621,11 @@ const UI_TRANSLATIONS = {
     pay_opt_wa: "💬 استفسار عن رقم الحساب أو الباي بال في الواتساب",
     cart_subtotal: "مجموع الأصناف:",
     cart_shipping_fee: "تكلفة الشحن (DHL / DPD):",
-    cart_shipping_calc: "تنسيق في الواتساب (حسب الوزن)",
+    cart_shipping_calc: "شحن سريع وموثوق عبر DHL",
+    cart_shipping_free: "مجاني 🎁",
+    cart_away_from_free: "تفصلك عن الشحن المجاني مع DHL!",
+    cart_free_shipping_unlocked: "🎉 شحن مجاني مع DHL مطبق على هذا الطلب!",
+    cart_threshold_badge: "الحد",
     cart_total: "المجموع الكلي:",
     cart_checkout_btn: "شراء وإرسال الطلب عبر الواتساب",
     wa_msg_greeting: "مرحباً سيد بختياري، أود تقديم طلبية من متجر R.B Shop:\n\n",
@@ -728,7 +748,11 @@ nl: {
     pay_opt_wa: "💬 IBAN / PayPal aanvragen via WhatsApp",
     cart_subtotal: "Subtotaal:",
     cart_shipping_fee: "Verzendkosten (DHL / DPD):",
-    cart_shipping_calc: "Wordt via WhatsApp berekend op gewicht",
+    cart_shipping_calc: "Snelle traceerbare DHL-verzending",
+    cart_shipping_free: "Gratis 🎁",
+    cart_away_from_free: "verwijderd van GRATIS DHL-verzending!",
+    cart_free_shipping_unlocked: "🎉 Gratis DHL-verzending toegepast!",
+    cart_threshold_badge: "Vanaf",
     cart_total: "Totaalbedrag:",
     cart_checkout_btn: "Bestelling Plaatsen via WhatsApp",
     wa_msg_greeting: "Hallo heer Bakhtyary, ik wil graag een bestelling plaatsen bij R.B Shop:\n\n",
@@ -850,7 +874,11 @@ nl: {
     pay_opt_wa: "💬 Consultar IBAN / PayPal en el chat de WhatsApp",
     cart_subtotal: "Subtotal:",
     cart_shipping_fee: "Gastos de Envío (DHL / DPD):",
-    cart_shipping_calc: "Coordinado en WhatsApp (según peso)",
+    cart_shipping_calc: "Envío rápido y rastreado con DHL",
+    cart_shipping_free: "Gratis 🎁",
+    cart_away_from_free: "¡para envío GRATIS con DHL!",
+    cart_free_shipping_unlocked: "🎉 ¡Envío gratuito con DHL aplicado!",
+    cart_threshold_badge: "Desde",
     cart_total: "Importe Total:",
     cart_checkout_btn: "Comprar y Enviar Pedido por WhatsApp",
     wa_msg_greeting: "Hola Sr. Bakhtyary, me gustaría realizar el siguiente pedido en R.B Shop:\n\n",
@@ -972,7 +1000,11 @@ nl: {
     pay_opt_wa: "💬 Richiedi IBAN / PayPal nella chat WhatsApp",
     cart_subtotal: "Subtotale:",
     cart_shipping_fee: "Spese di Spedizione (DHL / DPD):",
-    cart_shipping_calc: "Concordate su WhatsApp in base al peso",
+    cart_shipping_calc: "Spedizione veloce e tracciata con DHL",
+    cart_shipping_free: "Gratuito 🎁",
+    cart_away_from_free: "per la spedizione GRATUITA con DHL!",
+    cart_free_shipping_unlocked: "🎉 Spedizione gratuita DHL applicata!",
+    cart_threshold_badge: "Da",
     cart_total: "Totale Ordine:",
     cart_checkout_btn: "Acquista e Invia Ordine via WhatsApp",
     wa_msg_greeting: "Gentile Sig. Bakhtyary, desidero effettuare il seguente ordine su R.B Shop:\n\n",
@@ -1094,7 +1126,11 @@ nl: {
     pay_opt_wa: "💬 WhatsApp sohbetinde IBAN / PayPal bilgisi al",
     cart_subtotal: "Ara Toplam:",
     cart_shipping_fee: "Kargo Ücreti (DHL / DPD):",
-    cart_shipping_calc: "Ağırlığa göre WhatsApp'ta belirlenir",
+    cart_shipping_calc: "Hızlı ve takipli DHL kargo teslimatı",
+    cart_shipping_free: "Ücretsiz 🎁",
+    cart_away_from_free: "daha ekleyin, DHL kargo ÜCRETSİZ olsun!",
+    cart_free_shipping_unlocked: "🎉 Siparişiniz için ücretsiz DHL kargo uygulandı!",
+    cart_threshold_badge: "Min.",
     cart_total: "Toplam Tutar:",
     cart_checkout_btn: "Satın Al ve Siparişi WhatsApp'tan Gönder",
     wa_msg_greeting: "Merhaba Sayın Bakhtyary, R.B Shop üzerinden sipariş vermek istiyorum:\n\n",
@@ -1691,6 +1727,53 @@ const PRODUCT_TRANSLATIONS = {
       unit: "Net Ağırlık: 1kg",
       desc: "Dağ yamaçlarında güneşte kurutulmuş altın sarısı kayısı; mayhoş-tatlı dengeli ve kükürtsüz"
     }
+  },
+  p_chickpeas: {
+    en: {
+      title: "Roasted & Salted Afghan Chickpeas",
+      unit: "500g Net Weight",
+      desc: "Crispy, freshly roasted authentic Afghan chickpeas with light salt, sourced from Kabul & Herat"
+    },
+    de: {
+      title: "Geröstete & Gesalzene Kichererbsen",
+      unit: "500g Netto",
+      desc: "Knusprige, ofenfrisch geröstete afghanische Kichererbsen, leicht gesalzen und voller Aroma"
+    },
+    fr: {
+      title: "Pois Chiches Grillés et Salés",
+      unit: "500g Net",
+      desc: "Pois chiches afghans croustillants et fraîchement torréfiés, légèrement salés"
+    },
+    fa: {
+      title: "نخود برشته و بوداده اعلا",
+      unit: "واحد فروش: ۵۰۰ گرم خالص",
+      desc: "نخود برشته ترد و تازه و نمکی، سوغات کابل و هرات"
+    },
+    ar: {
+      title: "حمص محمص ومملح فاخر",
+      unit: "الوزن الصافي: ٥٠٠ غرام",
+      desc: "حمص أفغاني مقرمش ومحمص طازج ومملح خفيف، غني بالطاقة"
+    },
+    nl: {
+      title: "Geroosterde & Gezouten Kikkererwten",
+      unit: "500g Netto Gewicht",
+      desc: "Knapperige, vers geroosterde Afghaanse kikkererwten, licht gezouten"
+    },
+    es: {
+      title: "Garbanzos Tostados y Salados",
+      unit: "Peso Neto: 500g",
+      desc: "Garbanzos afganos crujientes recién tostados y ligeramente salados"
+    },
+    it: {
+      title: "Ceci Tostati e Salati",
+      unit: "Peso Netto: 500g",
+      desc: "Ceci afghani croccanti e appena tostati, leggermente salati"
+    },
+    tr: {
+      title: "Kavrulmuş ve Tuzlu Nohut (Leblebi)",
+      unit: "Net Ağırlık: 500g",
+      desc: "Çıtır çıtır, taze kavrulmuş otantik Afgan nohudu, hafif tuzlu"
+    }
   }
 };
 
@@ -1750,5 +1833,6 @@ const DEFAULT_PRODUCTS = [
   { id: 'p5', category: 'fruits', price: 14.50, image: 'assets/raisins.jpg', inStock: true },
   { id: 'p6', category: 'fruits', price: 22.00, image: 'assets/dried_fruits.jpg', inStock: true },
   { id: 'p7', category: 'saffron', price: 35.00, image: 'assets/rb_royal_box.jpg', inStock: true },
-  { id: 'p8', category: 'fruits', price: 18.00, image: 'assets/dried_fruits.jpg', inStock: true }
+  { id: 'p8', category: 'fruits', price: 18.00, image: 'assets/dried_fruits.jpg', inStock: true },
+  { id: 'p_chickpeas', category: 'nuts', price: 3.00, image: 'assets/almonds.jpg', inStock: true }
 ];

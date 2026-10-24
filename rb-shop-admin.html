@@ -297,10 +297,44 @@
               </div>
             </div>
 
+            <!-- Shipping Cost Configuration (DHL / Postal Rates) -->
+            <div class="pt-4 border-t border-white/10 space-y-3">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <label class="block text-xs font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-truck-fast text-amber-400"></i>
+                  <span>تنظیمات هزینه ارسال و پست دکان (DHL / اروپا):</span>
+                </label>
+                <span class="text-[10px] text-emerald-300 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40">محاسبه هوشمند در سبد خرید</span>
+              </div>
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                هزینه ارسال به صورت تفکیک‌شده و واضح در سبد خرید مشتری نمایش داده می‌شود. اگر خرید مشتری به سقف تعیین شده برسد، هزینه ارسال به طور خودکار <strong>رایگان (۰ یورو)</strong> خواهد شد.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1.5">هزینه ارسال پایه به سراسر آلمان (€):</label>
+                  <div class="relative">
+                    <input type="number" step="0.5" min="0" id="storeShippingBaseInput" required placeholder="1.00" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 mt-1 block">مثلاً ۱.۰۰ یورو یا ۵.۹۹ یورو برای سفارش‌های عادی</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1.5">سقف ارسال کاملاً رایگان (€):</label>
+                  <div class="relative">
+                    <input type="number" step="1" min="0" id="storeFreeShippingThresholdInput" required placeholder="50.00" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-emerald-400">€</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای مساوی یا بیشتر از این مبلغ، ارسالشان ۰ € می‌شود</span>
+                </div>
+              </div>
+            </div>
+
             <div class="pt-3">
               <button type="submit" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition">
                 <i class="fa-solid fa-floppy-disk text-base"></i>
-                <span>ذخیره تغییرات آدرس و تلفن</span>
+                <span>ذخیره تغییرات آدرس، تلفن و هزینه ارسال</span>
               </button>
             </div>
 
@@ -726,6 +760,17 @@
         "image": "assets/apricot.jpg",
         "category": "fruits",
         "inStock": true
+      },
+      {
+        "id": "p_chickpeas",
+        "title": "نخود برشته و بوداده اعلا",
+        "price": 3.00,
+        "unit": "واحد فروش: ۵۰۰ گرم خالص",
+        "variant": "۵۰۰ گرم",
+        "description": "نخود برشته ترد و تازه و نمکی، سوغات کابل و هرات",
+        "image": "assets/mixed_nuts.jpg",
+        "category": "nuts",
+        "inStock": true
       }
     ];
 
@@ -736,7 +781,9 @@
       cleanPhone: "491729343833",
       address: "Möllers weg 6, 25761 Büsum",
       email: "ramazan.bakhtyari152@gmail.com",
-      tiktok: "@r.b.omar.osmanshop"
+      tiktok: "@r.b.omar.osmanshop",
+      shippingBase: 1.00,
+      freeShippingThreshold: 50.00
     };
 
     // State Variables
@@ -1017,7 +1064,7 @@
       const saved = localStorage.getItem('rb_products');
       if (saved) {
         try {
-          products = JSON.parse(saved);
+          products = JSON.parse(saved).filter(r => r.id !== '__store_shipping__' && r.category !== 'system_setting');
         } catch(err) {
           products = [...DEFAULT_PRODUCTS];
         }
@@ -1032,7 +1079,7 @@
         try {
           const { data, error } = await sbClient.from('products').select('*').order('created_at', { ascending: false });
           if (!error && Array.isArray(data) && data.length > 0) {
-            products = data.map(r => ({
+            products = data.filter(r => r.id !== '__store_shipping__' && r.category !== 'system_setting').map(r => ({
               id: r.id,
               title: r.title,
               price: parseFloat(r.price),
@@ -1441,13 +1488,13 @@
 
 
     // =========================================================================
-    // STORE SETTINGS TAB (SUPABASE SYNC)
+    // STORE SETTINGS TAB (SUPABASE SYNC & SHIPPING CONFIG)
     // =========================================================================
     async function loadStoreSettings() {
       const saved = localStorage.getItem('rb_store_settings');
       let s = DEFAULT_STORE_SETTINGS;
       if (saved) {
-        try { s = JSON.parse(saved); } catch(e) {}
+        try { s = { ...DEFAULT_STORE_SETTINGS, ...JSON.parse(saved) }; } catch(e) {}
       }
       populateSettingsForm(s);
 
@@ -1456,17 +1503,24 @@
         try {
           const { data: sData } = await sbClient.from('store_settings').select('*').eq('id', 1).maybeSingle();
           if (sData) {
-            s = {
-              owner: sData.owner || s.owner,
-              phone: sData.phone || s.phone,
-              cleanPhone: sData.clean_phone || s.cleanPhone,
-              address: sData.address || s.address,
-              email: sData.email || s.email,
-              tiktok: sData.tiktok || s.tiktok
-            };
-            localStorage.setItem('rb_store_settings', JSON.stringify(s));
-            populateSettingsForm(s);
+            s.owner = sData.owner || s.owner;
+            s.phone = sData.phone || s.phone;
+            s.cleanPhone = sData.clean_phone || s.cleanPhone;
+            s.address = sData.address || s.address;
+            s.email = sData.email || s.email;
+            s.tiktok = sData.tiktok || s.tiktok;
           }
+
+          // Fetch shipping config from Supabase
+          const { data: shipData } = await sbClient.from('products').select('*').eq('id', '__store_shipping__').maybeSingle();
+          if (shipData) {
+            s.shippingBase = parseFloat(shipData.price) || s.shippingBase;
+            s.freeShippingThreshold = parseFloat(shipData.unit) || s.freeShippingThreshold;
+          }
+
+          localStorage.setItem('rb_store_settings', JSON.stringify(s));
+          localStorage.setItem('rb_shipping_settings', JSON.stringify({ base: s.shippingBase, threshold: s.freeShippingThreshold }));
+          populateSettingsForm(s);
         } catch(e) {}
       }
     }
@@ -1477,12 +1531,20 @@
       if (document.getElementById('storeAddressInput')) document.getElementById('storeAddressInput').value = s.address || '';
       if (document.getElementById('storeEmailInput')) document.getElementById('storeEmailInput').value = s.email || '';
       if (document.getElementById('storeTiktokInput')) document.getElementById('storeTiktokInput').value = s.tiktok || '';
+      if (document.getElementById('storeShippingBaseInput')) {
+        document.getElementById('storeShippingBaseInput').value = (typeof s.shippingBase !== 'undefined' ? Number(s.shippingBase) : 1.00).toFixed(2);
+      }
+      if (document.getElementById('storeFreeShippingThresholdInput')) {
+        document.getElementById('storeFreeShippingThresholdInput').value = (typeof s.freeShippingThreshold !== 'undefined' ? Number(s.freeShippingThreshold) : 50.00).toFixed(2);
+      }
     }
 
     function handleSaveStoreSettings(e) {
       e.preventDefault();
       const phoneRaw = document.getElementById('storePhoneInput').value.trim();
       const cleanPhone = phoneRaw.replace(/[^0-9]/g, '');
+      const shippingBase = parseFloat(document.getElementById('storeShippingBaseInput').value) || 1.00;
+      const freeShippingThreshold = parseFloat(document.getElementById('storeFreeShippingThresholdInput').value) || 50.00;
 
       const newSettings = {
         owner: document.getElementById('storeOwnerInput').value.trim(),
@@ -1490,11 +1552,14 @@
         cleanPhone: cleanPhone,
         address: document.getElementById('storeAddressInput').value.trim(),
         email: document.getElementById('storeEmailInput').value.trim(),
-        tiktok: document.getElementById('storeTiktokInput').value.trim()
+        tiktok: document.getElementById('storeTiktokInput').value.trim(),
+        shippingBase: shippingBase,
+        freeShippingThreshold: freeShippingThreshold
       };
 
       localStorage.setItem('rb_store_settings', JSON.stringify(newSettings));
-      showToast('مشخصات و آدرس دکان با موفقیت ذخیره شد!');
+      localStorage.setItem('rb_shipping_settings', JSON.stringify({ base: shippingBase, threshold: freeShippingThreshold }));
+      showToast('مشخصات دکان، آدرس و هزینه ارسال با موفقیت ذخیره شد!');
 
       if (sbClient) {
         sbClient.from('store_settings').upsert([{
@@ -1505,6 +1570,15 @@
           address: newSettings.address,
           email: newSettings.email,
           tiktok: newSettings.tiktok
+        }]).then(() => {});
+
+        sbClient.from('products').upsert([{
+          id: '__store_shipping__',
+          title: 'Shipping Config',
+          price: shippingBase,
+          unit: freeShippingThreshold.toString(),
+          category: 'system_setting',
+          in_stock: false
         }]).then(() => {});
       }
     }

@@ -1336,11 +1336,32 @@
       <!-- Drawer Footer with Total & WhatsApp Checkout Button -->
       <div id="cartFooterSection" class="p-4 sm:p-5 border-t border-brand-border bg-brand-surface space-y-3 shrink-0">
         
-        <div class="space-y-1.5 text-xs">
-          <div class="flex items-center justify-between text-brand-silver">
+        <div class="space-y-2 text-xs">
+          <!-- Free Shipping Progress / Status Banner -->
+          <div id="freeShippingBanner" class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px] transition-all">
+            <span id="freeShippingText" class="text-amber-300 font-bold flex items-center gap-1.5">
+              <i class="fa-solid fa-truck-fast text-xs"></i>
+              <span>47.00 € away from FREE DHL shipping!</span>
+            </span>
+            <span id="freeShippingStatus" class="px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200">Min. 50.00 €</span>
+          </div>
+
+          <!-- Subtotal Row -->
+          <div class="flex items-center justify-between text-brand-silver pt-1">
             <span data-i18n="cart_subtotal">Subtotal:</span>
             <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
           </div>
+
+          <!-- Shipping Breakdown Row (Clear & transparent breakdown) -->
+          <div class="flex items-center justify-between text-brand-silver">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
+              <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
+            </span>
+            <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
+          </div>
+
+          <!-- Final Total Row -->
           <div class="flex items-center justify-between text-sm font-black text-white pt-2 border-t border-brand-border/60">
             <span data-i18n="cart_total">Total Amount:</span>
             <span id="cartTotal" class="text-lg font-black text-chrome font-display dir-ltr">0.00 €</span>
@@ -1444,6 +1465,27 @@
     let currentLang = localStorage.getItem('rb_lang') || 'en';
     let cachedProducts = (typeof DEFAULT_PRODUCTS !== 'undefined' && Array.isArray(DEFAULT_PRODUCTS)) ? DEFAULT_PRODUCTS : [];
 
+    // Store Shipping Configuration (Synchronized with Admin Panel & Supabase)
+    let shippingSettings = {
+      base: 1.00,
+      threshold: 50.00
+    };
+    try {
+      const savedShip = localStorage.getItem('rb_shipping_settings');
+      if (savedShip) {
+        const parsed = JSON.parse(savedShip);
+        if (parsed.base !== undefined) shippingSettings.base = parseFloat(parsed.base);
+        if (parsed.threshold !== undefined) shippingSettings.threshold = parseFloat(parsed.threshold);
+      } else {
+        const savedStore = localStorage.getItem('rb_store_settings');
+        if (savedStore) {
+          const parsedStore = JSON.parse(savedStore);
+          if (parsedStore.shippingBase !== undefined) shippingSettings.base = parseFloat(parsedStore.shippingBase);
+          if (parsedStore.freeShippingThreshold !== undefined) shippingSettings.threshold = parseFloat(parsedStore.freeShippingThreshold);
+        }
+      }
+    } catch(e) {}
+
     // Shopping Cart State
     let cart = [];
 
@@ -1494,11 +1536,18 @@
       saveCart();
     }
 
-    // Update Cart UI
+    // Update Cart UI with Dynamic Shipping & Breakdown
     function updateCartUI() {
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
-      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+
+      // Shipping calculation
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
+      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      const finalTotalPrice = subtotalPrice + shippingPrice;
 
       const cartCountEl = document.getElementById('cartCount');
       if (cartCountEl) cartCountEl.textContent = formatLocalizedNumber(totalCount, currentLang);
@@ -1508,11 +1557,56 @@
         drawerBadge.textContent = `${formatLocalizedNumber(totalCount, currentLang)} ${dict.cart_drawer_badge_items || 'items'}`;
       }
 
+      // Subtotal
       const subtotalEl = document.getElementById('cartSubtotal');
-      if (subtotalEl) subtotalEl.textContent = formatLocalizedPrice(totalPrice, currentLang);
+      if (subtotalEl) subtotalEl.textContent = formatLocalizedPrice(subtotalPrice, currentLang);
 
+      // Shipping Breakdown
+      const shippingEl = document.getElementById('cartShipping');
+      const freeShippingBadge = dict.cart_shipping_free || (currentLang === 'fa' ? 'رایگان 🎁' : 'Free 🎁');
+      if (shippingEl) {
+        if (isFreeShipping && subtotalPrice > 0) {
+          shippingEl.innerHTML = `<span class="text-emerald-400 font-bold">${formatLocalizedPrice(0, currentLang)} (${freeShippingBadge})</span>`;
+        } else {
+          shippingEl.innerHTML = `<span class="text-amber-400 font-bold">${formatLocalizedPrice(shippingPrice, currentLang)}</span>`;
+        }
+      }
+
+      // Free shipping threshold banner / progress
+      const bannerEl = document.getElementById('freeShippingBanner');
+      const bannerTextEl = document.getElementById('freeShippingText');
+      const bannerStatusEl = document.getElementById('freeShippingStatus');
+      if (bannerEl && bannerTextEl) {
+        if (subtotalPrice === 0) {
+          bannerEl.classList.add('hidden');
+        } else {
+          bannerEl.classList.remove('hidden');
+          if (isFreeShipping) {
+            bannerEl.className = 'p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-[11px]';
+            const unlockMsg = dict.cart_free_shipping_unlocked || (currentLang === 'fa' ? '🎉 ارسال با DHL برای این سفارش کاملاً رایگان است!' : '🎉 Free DHL tracked shipping applied!');
+            bannerTextEl.innerHTML = `<span class="text-emerald-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-xs"></i><span>${unlockMsg}</span></span>`;
+            if (bannerStatusEl) {
+              bannerStatusEl.className = 'px-2 py-0.5 rounded-md bg-emerald-950/90 text-[10px] font-bold text-emerald-200 border border-emerald-500/40';
+              bannerStatusEl.textContent = freeShippingBadge;
+            }
+          } else {
+            const diff = freeThreshold - subtotalPrice;
+            const diffFormatted = formatLocalizedPrice(diff, currentLang);
+            const awayMsg = dict.cart_away_from_free || (currentLang === 'fa' ? 'دیگر تا ارسال کاملاً رایگان با DHL!' : 'away from FREE DHL shipping!');
+            bannerEl.className = 'p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px]';
+            bannerTextEl.innerHTML = `<span class="text-amber-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
+            if (bannerStatusEl) {
+              const minBadge = dict.cart_threshold_badge || (currentLang === 'fa' ? 'سقف' : 'Min.');
+              bannerStatusEl.className = 'px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200';
+              bannerStatusEl.textContent = `${minBadge} ${formatLocalizedPrice(freeThreshold, currentLang)}`;
+            }
+          }
+        }
+      }
+
+      // Final Total Amount
       const totalEl = document.getElementById('cartTotal');
-      if (totalEl) totalEl.textContent = formatLocalizedPrice(totalPrice, currentLang);
+      if (totalEl) totalEl.textContent = formatLocalizedPrice(finalTotalPrice, currentLang);
 
       // Update mobile bottom bar
       const mobileBar = document.getElementById('mobileBottomCartBar');
@@ -1522,7 +1616,7 @@
           const mCount = document.getElementById('mobileBarCount');
           const mTotal = document.getElementById('mobileBarTotal');
           if (mCount) mCount.textContent = formatLocalizedNumber(totalCount, currentLang);
-          if (mTotal) mTotal.textContent = formatLocalizedPrice(totalPrice, currentLang);
+          if (mTotal) mTotal.textContent = formatLocalizedPrice(finalTotalPrice, currentLang);
         } else {
           mobileBar.classList.add('hidden');
         }
@@ -1677,13 +1771,29 @@
           return actions.resolve();
         },
         createOrder: function(data, actions) {
-          const currentTotal = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+          const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+          const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+          const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+          const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
+          const shippingPrice = isFreeShipping ? 0 : shippingBase;
+          const finalTotalPrice = subtotalPrice + shippingPrice;
+
           return actions.order.create({
             purchase_units: [{
               description: "R.B Shop - Authentic Afghan Dried Fruits & Royal Gifts",
               amount: {
                 currency_code: 'EUR',
-                value: currentTotal.toFixed(2)
+                value: finalTotalPrice.toFixed(2),
+                breakdown: {
+                  item_total: {
+                    currency_code: 'EUR',
+                    value: subtotalPrice.toFixed(2)
+                  },
+                  shipping: {
+                    currency_code: 'EUR',
+                    value: shippingPrice.toFixed(2)
+                  }
+                }
               }
             }]
           });
@@ -1710,8 +1820,13 @@
     function handlePaymentSuccess(details) {
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const orderId = details.id || ('RB-' + Math.floor(100000 + Math.random() * 900000));
-      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const formattedPrice = formatLocalizedPrice(totalPrice, currentLang);
+      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
+      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      const finalTotalPrice = subtotalPrice + shippingPrice;
+      const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
 
       const name = document.getElementById('custName')?.value.trim() || (details.payer?.name?.given_name || 'Customer');
       const phone = document.getElementById('custPhone')?.value.trim() || '';
@@ -1739,9 +1854,11 @@
           `📞 *شماره تماس:* ${phone}\n` +
           `📍 *آدرس پستی جهت ارسال:* ${deliveryAddr}\n\n` +
           `📦 *اقلام خریداری شده:*\n${itemsList}\n` +
-          `💰 *مبلغ کل پرداخت شده:* ${totalPrice.toFixed(2)} € (پرداخت با موفقیت در پی‌پال انجام شد)\n` +
+          `💵 *مجموع اقلام:* ${subtotalPrice.toFixed(2)} €\n` +
+          `🚚 *هزینه ارسال با DHL:* ${isFreeShipping ? 'رایگان 🎁' : shippingPrice.toFixed(2) + ' €'}\n` +
+          `💰 *مبلغ کل پرداخت شده:* ${finalTotalPrice.toFixed(2)} € (پرداخت با موفقیت در پی‌پال انجام شد)\n` +
           `--------------------------------\n` +
-          `سلام آقای بختیاری، هزینه سفارش من به حساب شما واریز شد. لطفاً سفارش را آماده و کد رهگیری پستی DHL را ارسال فرمایید. با تشکر!`;
+          `سلام آقای بختیاری، هزینه سفارش من به همراه ارسال به حساب شما واریز شد. لطفاً سفارش را آماده و کد رهگیری پستی DHL را ارسال فرمایید. با تشکر!`;
       } else if (currentLang === 'de') {
         waMsg = `✅ *BESTELLBESTÄTIGUNG (ONLINE BEZAHLT VIA PAYPAL)*\n` +
           `--------------------------------\n` +
@@ -1750,7 +1867,9 @@
           `📞 *Telefon:* ${phone}\n` +
           `📍 *Lieferadresse:* ${deliveryAddr}\n\n` +
           `📦 *Gekaufte Artikel:*\n${itemsList}\n` +
-          `💰 *Gesamtbetrag:* ${totalPrice.toFixed(2)} € (Erfolgreich via PayPal bezahlt)\n` +
+          `💵 *Zwischensumme:* ${subtotalPrice.toFixed(2)} €\n` +
+          `🚚 *DHL-Versand:* ${isFreeShipping ? 'Kostenlos 🎁' : shippingPrice.toFixed(2) + ' €'}\n` +
+          `💰 *Gesamtbetrag:* ${finalTotalPrice.toFixed(2)} € (Erfolgreich via PayPal bezahlt)\n` +
           `--------------------------------\n` +
           `Hallo Herr Bakhtyary, die Zahlung für meine Bestellung ist erfolgt. Bitte bereiten Sie den DHL-Versand vor. Vielen Dank!`;
       } else {
@@ -1761,7 +1880,9 @@
           `📞 *Phone:* ${phone}\n` +
           `📍 *Delivery Address:* ${deliveryAddr}\n\n` +
           `📦 *Purchased Items:*\n${itemsList}\n` +
-          `💰 *Total Amount Paid:* ${totalPrice.toFixed(2)} € (Paid & Verified via PayPal)\n` +
+          `💵 *Subtotal:* ${subtotalPrice.toFixed(2)} €\n` +
+          `🚚 *DHL Shipping:* ${isFreeShipping ? 'Free 🎁' : shippingPrice.toFixed(2) + ' €'}\n` +
+          `💰 *Total Amount Paid:* ${finalTotalPrice.toFixed(2)} € (Paid & Verified via PayPal)\n` +
           `--------------------------------\n` +
           `Hello Mr. Bakhtyary, my order payment has been successfully completed. Please dispatch the parcel with DHL tracking. Thank you!`;
       }
@@ -1793,7 +1914,7 @@
             customer_name: name,
             customer_address: `${deliveryAddr}` + (phone ? ` (Tel: ${phone})` : ''),
             items: cart,
-            total_price: totalPrice,
+            total_price: finalTotalPrice,
             status: 'paid_paypal'
           }]).then(() => {});
         } catch(e) {}
@@ -2142,8 +2263,14 @@
           const prods = JSON.parse(savedProds);
           if (Array.isArray(prods) && prods.length > 0) {
             renderDynamicProducts(prods);
+          } else if (cachedProducts && cachedProducts.length > 0) {
+            renderDynamicProducts(cachedProducts);
           }
-        } catch(e) {}
+        } catch(e) {
+          if (cachedProducts && cachedProducts.length > 0) renderDynamicProducts(cachedProducts);
+        }
+      } else if (cachedProducts && cachedProducts.length > 0) {
+        renderDynamicProducts(cachedProducts);
       }
 
       // 2. Fetch live data from Supabase Cloud
@@ -2151,7 +2278,14 @@
         try {
           const { data, error } = await sbClient.from('products').select('*').order('created_at', { ascending: false });
           if (!error && Array.isArray(data) && data.length > 0) {
-            const cloudProds = data.map(r => ({
+            const shipCfg = data.find(r => r.id === '__store_shipping__');
+            if (shipCfg) {
+              shippingSettings.base = parseFloat(shipCfg.price) || 1.00;
+              shippingSettings.threshold = parseFloat(shipCfg.unit) || 50.00;
+              localStorage.setItem('rb_shipping_settings', JSON.stringify(shippingSettings));
+            }
+
+            const cloudProds = data.filter(r => r.id !== '__store_shipping__' && r.category !== 'system_setting').map(r => ({
               id: r.id,
               title: r.title,
               price: parseFloat(r.price),
@@ -2164,6 +2298,7 @@
             }));
             localStorage.setItem('rb_products', JSON.stringify(cloudProds));
             renderDynamicProducts(cloudProds);
+            updateCartUI();
           }
         } catch(e) {}
 
