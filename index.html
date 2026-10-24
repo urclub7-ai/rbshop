@@ -2235,6 +2235,7 @@
         const waMsg = encodeURIComponent(waText);
         const safeTitle = String(title).replace(/'/g, "\\'");
         const safeVariant = String(p.variant || unit || '').replace(/'/g, "\\'");
+        const safeImage = String(p.image).replace(/'/g, "\\'");
 
         return `
         <div class="product-card bg-[#111317] border border-white/10 hover:border-brand-red/60 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group ${inStock ? '' : 'opacity-70'}" data-category="${p.category}">
@@ -2261,7 +2262,7 @@
               </div>
               <div class="flex items-center gap-1.5">
                 ${inStock ? `
-                  <button onclick="addToCart('${p.id}', '${safeTitle}', ${Number(p.price)}, '${p.image}', '${safeVariant}')" 
+                  <button onclick="addToCart('${p.id}', '${safeTitle}', ${Number(p.price)}, '${safeImage}', '${safeVariant}')" 
                           class="flex-1 py-2 sm:py-2.5 px-1.5 rounded-xl text-[11px] sm:text-xs font-bold text-white bg-brand-red hover:bg-brand-redHover transition flex items-center justify-center gap-1 shadow-sm active:scale-95">
                     <i class="fa-solid fa-cart-plus text-[11px] sm:text-xs"></i> <span>${dict.btn_buy || 'Buy'}</span>
                   </button>

@@ -198,52 +198,26 @@
            ===================================================================== -->
       <section id="tabContent-products" class="tab-panel space-y-4 sm:space-y-6">
         
-        <!-- Friendly Dari Greeting & Quick Guide Banner -->
-        <div class="bg-gradient-to-r from-rose-950/35 via-[#13151f] to-amber-950/25 border border-white/10 rounded-2xl p-4 sm:p-5 relative overflow-hidden shadow-lg">
-          <div class="flex items-start gap-3">
-            <div class="w-10 h-10 rounded-2xl bg-rose-600/20 border border-rose-500/30 text-rose-400 flex items-center justify-center shrink-0 text-base sm:text-lg">
-              <i class="fa-solid fa-circle-info"></i>
-            </div>
-            <div class="flex-1 min-w-0">
-              <div class="flex items-center justify-between gap-2 flex-wrap">
-                <h2 class="text-sm sm:text-base font-black text-white">سلام جناب بختیاری عزیز! راهنمای ساده:</h2>
-                <span class="px-2.5 py-0.5 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-[10px] font-bold text-emerald-300 flex items-center gap-1.5">
-                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span>تغییرات فوراً در سایت ثبت می‌شود</span>
-                </span>
-              </div>
-              
-              <!-- 3 Simple Instruction Badges for Non-Tech Users -->
-              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 mt-3 text-xs text-slate-300">
-                <div class="flex items-center gap-2 bg-black/40 rounded-xl px-3 py-2 border border-white/5">
-                  <span class="w-6 h-6 rounded-lg bg-amber-500/20 text-amber-300 flex items-center justify-center text-xs font-black shrink-0">۱</span>
-                  <span>تغییر قیمت با زدن دکمه <strong>+</strong> و <strong>-</strong></span>
-                </div>
-                <div class="flex items-center gap-2 bg-black/40 rounded-xl px-3 py-2 border border-white/5">
-                  <span class="w-6 h-6 rounded-lg bg-emerald-500/20 text-emerald-300 flex items-center justify-center text-xs font-black shrink-0">۲</span>
-                  <span>یک کلیک برای <strong>موجود / تمام شد</strong></span>
-                </div>
-                <div class="flex items-center gap-2 bg-black/40 rounded-xl px-3 py-2 border border-white/5">
-                  <span class="w-6 h-6 rounded-lg bg-rose-500/20 text-rose-300 flex items-center justify-center text-xs font-black shrink-0">۳</span>
-                  <span>دکمه سبز برای <strong>افزودن جنس نو</strong></span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Action Bar: Add Product & Search -->
-        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+        <!-- Action Bar: Add Product, Add Package & Search -->
+        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
           
-          <!-- Add Product Button (prominent on desktop & mobile) -->
-          <button onclick="openAddProductModal()" class="h-12 px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
-            <i class="fa-solid fa-plus-circle text-base"></i>
-            <span>افزودن جنس نو به دکان</span>
-          </button>
+          <div class="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
+            <!-- Add Product Button -->
+            <button onclick="openAddProductModal()" class="flex-1 sm:flex-initial h-12 px-4 sm:px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+              <i class="fa-solid fa-plus-circle text-base"></i>
+              <span>افزودن جنس نو به دکان</span>
+            </button>
+
+            <!-- Add Royal Package Button -->
+            <button onclick="openAddPackageModal()" class="flex-1 sm:flex-initial h-12 px-4 sm:px-5 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-950/60 border border-amber-400/40 transition">
+              <i class="fa-solid fa-gift text-base text-amber-100"></i>
+              <span>🎁 افزودن پکیج شاهانه نو</span>
+            </button>
+          </div>
 
           <!-- Search Input -->
-          <div class="relative flex-1 sm:max-w-xs">
-            <input type="text" id="adminSearchInput" oninput="handleAdminSearch()" placeholder="جستجوی نام جنس (مثلاً پسته)..." class="w-full h-11 rounded-2xl bg-[#12141c] border border-white/10 px-4 pl-9 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500">
+          <div class="relative flex-1 md:max-w-xs">
+            <input type="text" id="adminSearchInput" oninput="handleAdminSearch()" placeholder="جستجوی نام جنس یا پکیج (مثلاً پسته)..." class="w-full h-11 rounded-2xl bg-[#12141c] border border-white/10 px-4 pl-9 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500">
             <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
           </div>
 
@@ -252,22 +226,22 @@
         <!-- Swipeable Category Filter Bar (Smooth horizontal swipe on mobile) -->
         <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar w-full">
           <button onclick="filterAdminCategory('all')" class="admin-cat-btn active px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-black transition shrink-0 shadow-sm">
-            همه اجناس (<span id="catCount-all">۱۲</span>)
+            همه اجناس (<span id="catCount-all">0</span>)
           </button>
           <button onclick="filterAdminCategory('packages')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            پکیج‌های شاهانه
+            🎁 پکیج‌های شاهانه (<span id="catCount-packages">0</span>)
           </button>
           <button onclick="filterAdminCategory('nuts')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            بادام و مغزیجات
+            بادام و مغزیجات (<span id="catCount-nuts">0</span>)
           </button>
           <button onclick="filterAdminCategory('pinenuts')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            پسته و جلغوزه
+            پسته و جلغوزه (<span id="catCount-pinenuts">0</span>)
           </button>
           <button onclick="filterAdminCategory('fruits')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            کشمش و میوه خشک
+            کشمش و میوه خشک (<span id="catCount-fruits">0</span>)
           </button>
           <button onclick="filterAdminCategory('saffron')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            زعفران اعلا
+            زعفران اعلا (<span id="catCount-saffron">0</span>)
           </button>
         </div>
 
@@ -470,8 +444,8 @@
 
           <!-- Title -->
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1.5">نام جنس:</label>
-            <input type="text" id="prodEditTitle" required placeholder="مثال: پسته خندان هرات" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm font-bold text-white focus:outline-none focus:border-rose-500">
+            <label class="block text-xs font-bold text-slate-300 mb-1.5">نام جنس یا عنوان پکیج:</label>
+            <input type="text" id="prodEditTitle" required placeholder="مثال: پکیج شاهانه رویال یا پسته خندان" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm font-bold text-white focus:outline-none focus:border-rose-500">
           </div>
 
           <!-- Price & Category -->
@@ -485,9 +459,9 @@
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">دسته‌بندی جنس:</label>
-              <select id="prodEditCategory" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-3 text-xs sm:text-sm font-bold text-white focus:outline-none focus:border-rose-500">
-                <option value="packages">پکیج‌های شاهانه</option>
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">دسته‌بندی جنس یا پکیج:</label>
+              <select id="prodEditCategory" onchange="onCategorySelectChange(this.value)" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-3 text-xs sm:text-sm font-bold text-white focus:outline-none focus:border-rose-500">
+                <option value="packages">🎁 پکیج‌های شاهانه (بسته‌های هدیه و کادویی)</option>
                 <option value="nuts">بادام و مغزیجات</option>
                 <option value="pinenuts">پسته و جلغوزه</option>
                 <option value="fruits">کشمش و میوه خشک</option>
@@ -499,8 +473,8 @@
           <!-- Unit & In-Stock Status -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">وزن یا مشخصه بسته:</label>
-              <input type="text" id="prodEditUnit" placeholder="مثلاً: واحد فروش: ۱ کیلوگرم خالص" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm text-white focus:outline-none focus:border-rose-500">
+              <label class="block text-xs font-bold text-slate-300 mb-1.5">وزن یا مشخصات بسته / پکیج:</label>
+              <input type="text" id="prodEditUnit" placeholder="مثلاً: واحد فروش: ۱ کیلوگرم خالص یا باکس کادویی ۱.۲ کیلو" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm text-white focus:outline-none focus:border-rose-500">
             </div>
 
             <div>
@@ -512,29 +486,57 @@
             </div>
           </div>
 
-          <!-- Visual Image Picker (Touch photo to select) -->
-          <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1.5">
-              عکس محصول (روی عکس مورد نظر بزنید):
-            </label>
+          <!-- Visual Image Picker (Upload File / Preset / Custom URL) -->
+          <div class="bg-black/50 border border-white/10 rounded-2xl p-3 sm:p-4 space-y-3">
+            <div class="flex items-center justify-between">
+              <label class="block text-xs font-bold text-slate-200">
+                عکس محصول یا پکیج:
+              </label>
+              <span class="text-[11px] text-amber-400 font-semibold">آپلود فایل • انتخاب آماده • لینک</span>
+            </div>
             
-            <!-- Visual Preset Thumbnails Grid -->
-            <div id="presetPhotosGrid" class="grid grid-cols-5 gap-2 p-2 bg-black/50 border border-white/10 rounded-2xl">
-              <!-- Rendered by JS -->
-            </div>
-
-            <!-- Hidden storage for selected image path -->
-            <input type="hidden" id="prodSelectedImage" value="assets/almonds.jpg">
-
-            <!-- Preview & Custom URL option -->
-            <div class="flex items-center gap-3 mt-2.5">
-              <div class="w-12 h-12 rounded-xl bg-black border border-white/15 overflow-hidden shrink-0">
+            <!-- Direct File Upload & Live Preview Row -->
+            <div class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
+              <!-- Preview Thumbnail with status badge -->
+              <div class="relative w-16 h-16 rounded-xl bg-black border-2 border-emerald-500/50 overflow-hidden shrink-0 shadow-lg flex items-center justify-center">
                 <img id="prodImagePreview" src="../assets/almonds.jpg" onerror="this.onerror=null; this.src='assets/almonds.jpg'" class="w-full h-full object-cover">
+                <span id="prodImageBadge" class="hidden absolute bottom-0 inset-x-0 bg-emerald-600 text-[8px] font-black text-white text-center py-0.5 shadow">آپلود شده</span>
               </div>
-              <div class="flex-1">
-                <input type="text" id="prodCustomImageUrl" oninput="handleCustomImageInput(this.value)" placeholder="یا آدرس عکس دلخواه دیگر..." class="w-full h-10 rounded-xl bg-black/50 border border-white/10 px-3 text-xs text-white dir-ltr text-left">
+
+              <!-- Upload File Button -->
+              <div class="flex-1 min-w-0 space-y-1.5">
+                <input type="file" id="prodFileInput" accept="image/*" onchange="handleProductFileUpload(event)" class="hidden">
+                <button type="button" onclick="document.getElementById('prodFileInput').click()" class="w-full h-10 px-3 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 active:scale-98 text-white font-black text-xs flex items-center justify-center gap-2 shadow-md transition border border-blue-400/40">
+                  <i class="fa-solid fa-cloud-arrow-up text-sm text-blue-200"></i>
+                  <span>📷 آپلود عکس از موبایل / کامپیوتر</span>
+                </button>
+                <div id="uploadFileNameHint" class="text-[10px] text-slate-400 truncate flex items-center gap-1">
+                  <i class="fa-solid fa-circle-check text-slate-500 text-[9px]"></i>
+                  <span>می‌توانید عکس را مستقیماً از گوشی یا کامپیوتر انتخاب کنید</span>
+                </div>
               </div>
             </div>
+
+            <!-- Direct Link Input (optional alternative) -->
+            <div class="space-y-1">
+              <label class="block text-[11px] font-medium text-slate-400">
+                <i class="fa-solid fa-link text-[10px] ml-1"></i>یا وارد کردن لینک مستقیم عکس اینترنتی (اختیاری):
+              </label>
+              <input type="text" id="prodCustomImageUrl" oninput="handleCustomImageInput(this.value)" placeholder="https://... یا آدرس عکس دلخواه" class="w-full h-10 rounded-xl bg-black/60 border border-white/10 px-3 text-xs text-white dir-ltr text-left focus:outline-none focus:border-rose-500">
+            </div>
+
+            <!-- Preset Thumbnails Grid -->
+            <div>
+              <span class="block text-[11px] font-medium text-slate-400 mb-1.5">
+                یا انتخاب سریع از عکس‌های آماده و باکس‌های هدیه:
+              </span>
+              <div id="presetPhotosGrid" class="grid grid-cols-4 sm:grid-cols-7 gap-2 p-2 bg-black/70 border border-white/10 rounded-xl max-h-36 overflow-y-auto">
+                <!-- Rendered by JS -->
+              </div>
+            </div>
+
+            <!-- Hidden storage for selected image path or base64 -->
+            <input type="hidden" id="prodSelectedImage" value="assets/almonds.jpg">
           </div>
 
           <!-- Short Description -->
@@ -595,18 +597,22 @@
       return path;
     }
 
-    // Default Preset Photo Options
+    // Default Preset Photo Options (Products & Royal Packages)
     const PRESET_PHOTOS = [
-      { id: 'box', path: 'assets/rb_royal_box.jpg', title: 'جعبه سبز' },
-      { id: 'nuts', path: 'assets/mixed_nuts.jpg', title: 'سینی مغزها' },
-      { id: 'almond', path: 'assets/almonds.jpg', title: 'بادام' },
-      { id: 'pistachio', path: 'assets/pistachio.jpg', title: 'پسته' },
-      { id: 'pinenut', path: 'assets/pinenuts.jpg', title: 'جلغوزه' },
+      { id: 'royal_box', path: 'assets/rb_royal_box.jpg', title: 'پکیج شاهانه' },
+      { id: 'box_lux', path: 'assets/box_luxury.jpg', title: 'باکس لوکس' },
+      { id: 'gift_box', path: 'assets/gift_box.jpg', title: 'جعبه کادویی' },
+      { id: 'gift_tray', path: 'assets/gift_tray.jpg', title: 'سینی هدیه' },
+      { id: 'nuts', path: 'assets/mixed_nuts.jpg', title: 'آجیل مخلوط' },
+      { id: 'dried_mix', path: 'assets/dried_mix.jpg', title: 'میکس میوه' },
+      { id: 'almond', path: 'assets/almonds.jpg', title: 'بادام قندک' },
+      { id: 'pistachio', path: 'assets/pistachio.jpg', title: 'پسته خندان' },
+      { id: 'pinenut', path: 'assets/pinenuts.jpg', title: 'جلغوزه سیاه' },
       { id: 'walnut', path: 'assets/walnuts.jpg', title: 'چهارمغز' },
-      { id: 'raisin', path: 'assets/raisins.jpg', title: 'کشمش' },
-      { id: 'fig', path: 'assets/figs.jpg', title: 'انجیر' },
-      { id: 'saffron', path: 'assets/saffron.jpg', title: 'زعفران' },
-      { id: 'apricot', path: 'assets/apricot.jpg', title: 'قیسی' }
+      { id: 'raisin', path: 'assets/raisins.jpg', title: 'کشمش سبز' },
+      { id: 'saffron', path: 'assets/saffron.jpg', title: 'زعفران اعلا' },
+      { id: 'fig', path: 'assets/figs.jpg', title: 'انجیر کوهی' },
+      { id: 'apricot', path: 'assets/apricot.jpg', title: 'برگه قیسی' }
     ];
 
     // Default Products Dataset
@@ -784,6 +790,17 @@
       document.getElementById('prodCustomImageUrl').value = '';
       document.getElementById('prodImagePreview').src = resolveAsset(path);
 
+      const badge = document.getElementById('prodImageBadge');
+      if (badge) badge.classList.add('hidden');
+
+      const fileInput = document.getElementById('prodFileInput');
+      if (fileInput) fileInput.value = '';
+
+      const hintEl = document.getElementById('uploadFileNameHint');
+      if (hintEl) {
+        hintEl.innerHTML = '<i class="fa-solid fa-circle-check text-slate-500 text-[9px]"></i><span>عکس از آرشیو سایت انتخاب شد</span>';
+      }
+
       document.querySelectorAll('.preset-photo-btn').forEach(btn => {
         if (btn.getAttribute('data-path') === path) {
           btn.classList.add('border-emerald-500', 'bg-emerald-950/40');
@@ -797,14 +814,122 @@
 
     function handleCustomImageInput(val) {
       const path = val.trim();
+      const badge = document.getElementById('prodImageBadge');
+      if (badge) badge.classList.add('hidden');
+
+      const fileInput = document.getElementById('prodFileInput');
+      if (fileInput) fileInput.value = '';
+
       if (path) {
         document.getElementById('prodSelectedImage').value = path;
         document.getElementById('prodImagePreview').src = resolveAsset(path);
+        const hintEl = document.getElementById('uploadFileNameHint');
+        if (hintEl) {
+          hintEl.innerHTML = '<i class="fa-solid fa-link text-emerald-400 text-[9px]"></i><span class="text-emerald-300">لینک عکس متصل شد</span>';
+        }
         document.querySelectorAll('.preset-photo-btn').forEach(btn => {
           btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
           btn.classList.add('border-white/10');
         });
       }
+    }
+
+    // Direct Image File Upload with Smart Browser Compression (max 800x800 JPEG)
+    function handleProductFileUpload(event) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const hintEl = document.getElementById('uploadFileNameHint');
+      if (hintEl) {
+        hintEl.innerHTML = `<span class="text-amber-300 font-bold animate-pulse"><i class="fa-solid fa-spinner fa-spin text-[10px] ml-1"></i>در حال پردازش و بهینه‌سازی عکس (${escapeHtml(file.name)})...</span>`;
+      }
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const MAX_SIZE = 800;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height) {
+            if (width > MAX_SIZE) {
+              height = Math.round((height * MAX_SIZE) / width);
+              width = MAX_SIZE;
+            }
+          } else {
+            if (height > MAX_SIZE) {
+              width = Math.round((width * MAX_SIZE) / height);
+              height = MAX_SIZE;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Lightweight, high-quality JPEG
+          const dataUrl = canvas.toDataURL('image/jpeg', 0.84);
+
+          document.getElementById('prodSelectedImage').value = dataUrl;
+          document.getElementById('prodCustomImageUrl').value = `[عکس آپلود شده: ${file.name}]`;
+          document.getElementById('prodImagePreview').src = dataUrl;
+
+          const badge = document.getElementById('prodImageBadge');
+          if (badge) badge.classList.remove('hidden');
+
+          if (hintEl) {
+            const kbSize = Math.round((dataUrl.length * 3 / 4) / 1024);
+            hintEl.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check text-[10px] ml-1"></i>عکس «${escapeHtml(file.name)}» با موفقیت آپلود شد (${kbSize} KB)</span>`;
+          }
+
+          document.querySelectorAll('.preset-photo-btn').forEach(btn => {
+            btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+            btn.classList.add('border-white/10');
+          });
+
+          showToast('عکس با موفقیت آپلود و ذخیره شد');
+        };
+        img.onerror = function() {
+          if (hintEl) hintEl.innerHTML = '<span class="text-rose-400 font-bold"><i class="fa-solid fa-triangle-exclamation text-[10px] ml-1"></i>فایل انتخاب شده تصویر معتبر نیست!</span>';
+        };
+        img.src = e.target.result;
+      };
+      reader.onerror = function() {
+        if (hintEl) hintEl.innerHTML = '<span class="text-rose-400 font-bold"><i class="fa-solid fa-triangle-exclamation text-[10px] ml-1"></i>خطا در بارگذاری فایل!</span>';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function onCategorySelectChange(val) {
+      if (val === 'packages') {
+        const titleInput = document.getElementById('prodEditTitle');
+        const unitInput = document.getElementById('prodEditUnit');
+        const descInput = document.getElementById('prodEditDesc');
+        const curImg = document.getElementById('prodSelectedImage').value;
+
+        if (!titleInput.value) {
+          titleInput.value = 'پکیج شاهانه رویال بختیاری';
+        }
+        if (!unitInput.value || unitInput.value.includes('کیلوگرم خالص')) {
+          unitInput.value = 'باکس لوکس کادویی (وزن خالص ۱.۲ کیلوگرم)';
+        }
+        if (!descInput.value) {
+          descInput.value = 'ترکیب ممتاز مغزیجات اعلا، زعفران و میوه خشک در بسته‌بندی سلطنتی';
+        }
+        if (curImg === 'assets/almonds.jpg') {
+          selectPresetPhoto('assets/rb_royal_box.jpg');
+        }
+      }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<>"']/g, function(m) {
+        return {'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[m];
+      });
     }
 
 
@@ -932,6 +1057,14 @@
       if (countBadge) countBadge.innerText = products.length;
       if (catCountAll) catCountAll.innerText = products.length;
 
+      const cats = ['packages', 'nuts', 'pinenuts', 'fruits', 'saffron'];
+      cats.forEach(c => {
+        const el = document.getElementById('catCount-' + c);
+        if (el) {
+          el.innerText = products.filter(p => p.category === c).length;
+        }
+      });
+
       const q = searchQuery.toLowerCase().trim();
       const filtered = products.filter(p => {
         const matchCat = (currentCategory === 'all' || p.category === currentCategory);
@@ -940,13 +1073,25 @@
       });
 
       if (filtered.length === 0) {
+        const isPkgFilter = currentCategory === 'packages';
         container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-400 bg-[#12141c] border border-white/10 rounded-3xl space-y-3">
-            <i class="fa-solid fa-box-open text-4xl text-slate-500"></i>
-            <p class="text-sm font-bold text-white">هیچ جنسی با این مشخصات یافت نشد!</p>
-            <button onclick="openAddProductModal()" class="px-4 py-2 rounded-xl bg-emerald-600 text-white font-bold text-xs inline-flex items-center gap-1.5">
-              <i class="fa-solid fa-plus"></i> اضافه کردن جنس جدید
-            </button>
+          <div class="col-span-full py-12 text-center text-slate-400 bg-[#12141c] border border-white/10 rounded-3xl space-y-3.5 p-6">
+            <i class="fa-solid ${isPkgFilter ? 'fa-gift text-amber-400' : 'fa-box-open text-slate-500'} text-4xl"></i>
+            <p class="text-sm font-bold text-white">${isPkgFilter ? 'هنوز هیچ پکیج شاهانه‌ای ثبت نشده است!' : 'هیچ جنسی با این مشخصات یافت نشد!'}</p>
+            <div class="flex items-center justify-center gap-2 flex-wrap pt-1">
+              ${isPkgFilter ? `
+                <button onclick="openAddPackageModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs inline-flex items-center gap-2 shadow-lg">
+                  <i class="fa-solid fa-gift"></i> افزودن اولین پکیج شاهانه
+                </button>
+              ` : `
+                <button onclick="openAddProductModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs inline-flex items-center gap-1.5">
+                  <i class="fa-solid fa-plus"></i> اضافه کردن جنس جدید
+                </button>
+                <button onclick="openAddPackageModal()" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs inline-flex items-center gap-1.5">
+                  <i class="fa-solid fa-gift"></i> افزودن پکیج شاهانه
+                </button>
+              `}
+            </div>
           </div>
         `;
         return;
@@ -954,23 +1099,30 @@
 
       container.innerHTML = filtered.map(p => {
         const inStock = p.inStock !== false;
+        const isPkg = p.category === 'packages';
         return `
-        <div class="bg-[#12141c] border border-white/10 hover:border-white/20 rounded-3xl p-4 flex flex-col justify-between space-y-3.5 shadow-md transition group">
+        <div class="bg-[#12141c] border ${isPkg ? 'border-amber-500/40 hover:border-amber-400/80 shadow-amber-950/20' : 'border-white/10 hover:border-white/20'} rounded-3xl p-4 flex flex-col justify-between space-y-3.5 shadow-md transition group">
           
           <!-- Top Row: Thumbnail + Info -->
           <div class="flex items-start gap-3">
-            <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden bg-black/60 border border-white/10 shrink-0 relative">
-              <img src="${resolveAsset(p.image)}" alt="${p.title}" class="w-full h-full object-cover">
+            <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden bg-black/60 border ${isPkg ? 'border-amber-500/40' : 'border-white/10'} shrink-0 relative">
+              <img src="${resolveAsset(p.image)}" alt="${escapeHtml(p.title)}" class="w-full h-full object-cover">
               ${!inStock ? `
                 <div class="absolute inset-0 bg-black/65 backdrop-blur-[1px] flex items-center justify-center">
                   <span class="text-[9px] font-bold text-rose-300 bg-rose-950/90 px-1.5 py-0.5 rounded border border-rose-700">تمام شد</span>
+                </div>
+              ` : ''}
+              ${isPkg ? `
+                <div class="absolute top-1 right-1 bg-gradient-to-r from-amber-500 to-amber-600 text-black text-[8px] font-black px-1.5 py-0.5 rounded shadow flex items-center gap-0.5">
+                  <i class="fa-solid fa-crown text-[7px]"></i>
+                  <span>شاهانه</span>
                 </div>
               ` : ''}
             </div>
 
             <div class="min-w-0 flex-1">
               <div class="flex items-center gap-1.5 mb-1 flex-wrap">
-                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-white/5 border border-white/10 text-amber-300">
+                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${isPkg ? 'bg-amber-950/80 border border-amber-500/50 text-amber-300' : 'bg-white/5 border border-white/10 text-amber-300'}">
                   ${CATEGORY_NAMES[p.category] || p.category}
                 </span>
                 ${inStock ? 
@@ -979,8 +1131,8 @@
                 }
               </div>
 
-              <h4 class="text-sm font-black text-white line-clamp-1" title="${p.title}">${p.title}</h4>
-              <p class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${p.unit || ''}</p>
+              <h4 class="text-sm font-black text-white line-clamp-1" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h4>
+              <p class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${escapeHtml(p.unit || '')}</p>
             </div>
           </div>
 
@@ -1017,12 +1169,12 @@
           <div class="grid grid-cols-2 gap-2 pt-1">
             <button onclick="openEditProductModal('${p.id}')" class="h-10 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 active:scale-95 text-white border border-white/10 flex items-center justify-center gap-1.5 transition">
               <i class="fa-solid fa-pen text-slate-400 text-xs"></i>
-              <span>ویرایش عکس و نام</span>
+              <span>${isPkg ? 'ویرایش پکیج' : 'ویرایش جنس'}</span>
             </button>
 
             <button onclick="deleteProduct('${p.id}')" class="h-10 rounded-xl text-xs font-bold bg-rose-950/25 hover:bg-rose-900/40 active:scale-95 text-rose-300 border border-rose-800/30 flex items-center justify-center gap-1.5 transition">
               <i class="fa-solid fa-trash-can text-rose-400 text-xs"></i>
-              <span>حذف جنس</span>
+              <span>${isPkg ? 'حذف پکیج' : 'حذف جنس'}</span>
             </button>
           </div>
 
@@ -1094,12 +1246,44 @@
       document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-plus-circle text-emerald-500"></i><span>افزودن جنس جدید به دکان</span>';
       document.getElementById('prodEditId').value = '';
       document.getElementById('prodEditTitle').value = '';
-      document.getElementById('prodEditPrice').value = '20.00';
-      document.getElementById('prodEditCategory').value = 'packages';
+      document.getElementById('prodEditPrice').value = '22.00';
+      document.getElementById('prodEditCategory').value = 'nuts';
       document.getElementById('prodEditUnit').value = 'واحد فروش: ۱ کیلوگرم خالص';
       document.getElementById('prodEditInStock').value = 'true';
       document.getElementById('prodEditDesc').value = 'محصول اعلا، تازه و ۱۰۰٪ طبیعی افغانستان';
       
+      const fileInput = document.getElementById('prodFileInput');
+      if (fileInput) fileInput.value = '';
+      const badge = document.getElementById('prodImageBadge');
+      if (badge) badge.classList.add('hidden');
+      const hintEl = document.getElementById('uploadFileNameHint');
+      if (hintEl) {
+        hintEl.innerHTML = '<i class="fa-solid fa-circle-check text-slate-500 text-[9px]"></i><span>می‌توانید عکس را مستقیماً از گوشی یا کامپیوتر آپلود کنید</span>';
+      }
+
+      selectPresetPhoto('assets/almonds.jpg');
+      document.getElementById('productModal').classList.remove('hidden');
+    }
+
+    function openAddPackageModal() {
+      document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-gift text-amber-400"></i><span>🎁 افزودن پکیج شاهانه نو (بسته هدیه)</span>';
+      document.getElementById('prodEditId').value = '';
+      document.getElementById('prodEditTitle').value = 'پکیج شاهانه رویال بختیاری';
+      document.getElementById('prodEditPrice').value = '45.00';
+      document.getElementById('prodEditCategory').value = 'packages';
+      document.getElementById('prodEditUnit').value = 'باکس لوکس کادویی (وزن خالص ۱.۲ کیلوگرم)';
+      document.getElementById('prodEditInStock').value = 'true';
+      document.getElementById('prodEditDesc').value = 'ترکیب ممتاز مغزیجات اعلا، زعفران و میوه خشک در بسته‌بندی سلطنتی';
+      
+      const fileInput = document.getElementById('prodFileInput');
+      if (fileInput) fileInput.value = '';
+      const badge = document.getElementById('prodImageBadge');
+      if (badge) badge.classList.add('hidden');
+      const hintEl = document.getElementById('uploadFileNameHint');
+      if (hintEl) {
+        hintEl.innerHTML = '<i class="fa-solid fa-gift text-amber-400 text-[9px]"></i><span>عکس پکیج را آپلود کنید یا از جعبه‌های آماده زیر انتخاب نمایید</span>';
+      }
+
       selectPresetPhoto('assets/rb_royal_box.jpg');
       document.getElementById('productModal').classList.remove('hidden');
     }
@@ -1108,7 +1292,10 @@
       const p = products.find(x => x.id === id);
       if (!p) return;
 
-      document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square text-rose-500"></i><span>ویرایش جنس</span>';
+      const isPkg = p.category === 'packages';
+      document.getElementById('modalTitle').innerHTML = isPkg ? 
+        '<i class="fa-solid fa-gift text-amber-400"></i><span>ویرایش پکیج شاهانه</span>' : 
+        '<i class="fa-solid fa-pen-to-square text-rose-500"></i><span>ویرایش جنس</span>';
       document.getElementById('prodEditId').value = p.id;
       document.getElementById('prodEditTitle').value = p.title;
       document.getElementById('prodEditPrice').value = p.price;
@@ -1117,12 +1304,41 @@
       document.getElementById('prodEditInStock').value = (p.inStock !== false) ? 'true' : 'false';
       document.getElementById('prodEditDesc').value = p.description || '';
 
-      if (PRESET_PHOTOS.some(opt => opt.path === p.image)) {
+      const fileInput = document.getElementById('prodFileInput');
+      if (fileInput) fileInput.value = '';
+      const badge = document.getElementById('prodImageBadge');
+      const hintEl = document.getElementById('uploadFileNameHint');
+
+      if (p.image && p.image.startsWith('data:')) {
+        document.getElementById('prodSelectedImage').value = p.image;
+        document.getElementById('prodCustomImageUrl').value = '[عکس اختصاصی آپلود شده]';
+        document.getElementById('prodImagePreview').src = p.image;
+        if (badge) badge.classList.remove('hidden');
+        if (hintEl) {
+          hintEl.innerHTML = '<span class="text-emerald-400 font-bold"><i class="fa-solid fa-check text-[9px] ml-1"></i>عکس اختصاصی برای این مورد قبلاً آپلود شده است</span>';
+        }
+        document.querySelectorAll('.preset-photo-btn').forEach(btn => {
+          btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.add('border-white/10');
+        });
+      } else if (PRESET_PHOTOS.some(opt => opt.path === p.image)) {
+        if (badge) badge.classList.add('hidden');
+        if (hintEl) {
+          hintEl.innerHTML = '<i class="fa-solid fa-circle-check text-slate-500 text-[9px] ml-1"></i><span>عکس فعلی از آرشیو آماده سایت انتخاب شده است</span>';
+        }
         selectPresetPhoto(p.image);
       } else {
+        if (badge) badge.classList.add('hidden');
+        if (hintEl) {
+          hintEl.innerHTML = '<i class="fa-solid fa-link text-slate-500 text-[9px] ml-1"></i><span>عکس فعلی از لینک اینترنتی تنظیم شده است</span>';
+        }
         document.getElementById('prodSelectedImage').value = p.image;
         document.getElementById('prodCustomImageUrl').value = p.image;
         document.getElementById('prodImagePreview').src = resolveAsset(p.image);
+        document.querySelectorAll('.preset-photo-btn').forEach(btn => {
+          btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.add('border-white/10');
+        });
       }
 
       document.getElementById('productModal').classList.remove('hidden');
@@ -1142,6 +1358,7 @@
       const inStock = document.getElementById('prodEditInStock').value === 'true';
       const desc = document.getElementById('prodEditDesc').value.trim();
       const image = document.getElementById('prodSelectedImage').value || 'assets/almonds.jpg';
+      const isPkg = category === 'packages';
 
       if (editId) {
         const p = products.find(x => x.id === editId);
@@ -1154,11 +1371,12 @@
           p.inStock = inStock;
           p.description = desc;
           p.image = image;
-          showToast(`جنس «${title}» با موفقیت ویرایش شد.`);
+          showToast(`«${title}» با موفقیت ویرایش شد.`);
         }
       } else {
+        const newId = (isPkg ? 'pkg_' : 'prod_') + Date.now();
         const newProd = {
-          id: 'custom_' + Date.now(),
+          id: newId,
           title: title,
           price: price,
           category: category,
@@ -1169,7 +1387,7 @@
           inStock: inStock
         };
         products.unshift(newProd);
-        showToast(`جنس جدید «${title}» اضافه شد.`);
+        showToast(isPkg ? `پکیج شاهانه جدید «${title}» اضافه شد.` : `جنس جدید «${title}» اضافه شد.`);
       }
 
       saveAllProducts(false);
