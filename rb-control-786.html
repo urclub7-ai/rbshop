@@ -209,7 +209,7 @@
       <!-- =====================================================================
            TAB 1: PRODUCTS & PRICES MANAGEMENT
            ===================================================================== -->
-      <section id="tabContent-products" class="tab-panel space-y-3.5 sm:space-y-5">
+      <section id="tabContent-products" class="tab-panel space-y-3.5 sm:space-y-5 pb-28 sm:pb-8">
         
         <!-- Mobile-First Action Cards: Add Product & Add Royal Package -->
         <div class="grid grid-cols-2 gap-2.5 sm:flex sm:items-center sm:gap-3">
@@ -276,7 +276,7 @@
       <!-- =====================================================================
            TAB 2: STORE INFO & CONTACT DETAILS
            ===================================================================== -->
-      <section id="tabContent-store" class="tab-panel space-y-4 sm:space-y-6 hidden">
+      <section id="tabContent-store" class="tab-panel space-y-4 sm:space-y-6 hidden pb-28 sm:pb-8">
         
         <div class="bg-[#12141c] border border-white/10 rounded-3xl p-4 sm:p-7 max-w-2xl mx-auto space-y-4">
           <div class="border-b border-white/10 pb-3">
@@ -398,62 +398,18 @@
               </div>
             </div>
 
-            <!-- Server WhatsApp Notification Settings (Silent to Customer) -->
-            <div class="p-3.5 sm:p-4 rounded-2xl bg-black/40 border border-emerald-500/25 space-y-3">
+            <!-- Orders Hub Quick Notice -->
+            <div class="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/25 space-y-2">
               <div class="flex items-center justify-between">
-                <span class="text-xs font-black text-emerald-400 flex items-center gap-1.5">
-                  <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
-                  <span>ارسال خودکار رسید سفارش به واتساپ شما (توسط سرور)</span>
+                <span class="text-xs font-black text-emerald-400 flex items-center gap-2">
+                  <i class="fa-solid fa-bell-concierge text-emerald-400 text-sm"></i>
+                  <span>سیستم دریافت زنده سفارشات و ارتباط با خریداران</span>
                 </span>
-                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950/70 border border-emerald-500/40 px-2 py-0.5 rounded-full">کاملاً مخفی از مشتری</span>
+                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950 border border-emerald-500/40 px-2.5 py-0.5 rounded-full">ثبت خودکار و آنی</span>
               </div>
-              <p class="text-[11px] text-slate-400 leading-relaxed">
-                وقتی مشتری هزینه را با پی‌پال یا کارت پرداخت می‌کند، سرور بدون دخالت مشتری، رسید کامل سفارش و آدرس ارسال با پست DHL را مستقیماً به واتساپ شما می‌فرستد.
+              <p class="text-[11px] text-slate-300 leading-relaxed">
+                تمام خریدهای مشتریان به صورت قطعی در بخش <b>«سفارشات مشتریان»</b> ذخیره می‌شوند. با باز نگه‌داشتن پنل، به محض ثبت سفارش جدید زنگ هشدار 🔔 به صدا درمی‌آید و شما می‌توانید با یک کلیک مستقیماً به واتساپ مشتری پیام داده یا آدرس را برای برچسب پستی DHL کپی نمایید.
               </p>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">شماره واتساپ جهت دریافت رسید:</label>
-                  <input type="text" id="storeWaNotifyPhoneInput" placeholder="491729343833" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-mono font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
-                  <span class="text-[10px] text-slate-500 mt-1 block">شماره واتساپ با کد آلمان (مثلاً 491729343833)</span>
-                </div>
-                <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">کلید API اتصال به واتساپ (CallMeBot):</label>
-                  <div class="flex items-center gap-2">
-                    <input type="text" id="storeWaNotifyApiKeyInput" placeholder="مثال: 948210" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
-                    <button type="button" onclick="testWhatsAppNotification()" class="h-11 px-3 rounded-2xl bg-white/10 hover:bg-white/15 text-white font-bold text-xs shrink-0 flex items-center gap-1.5 transition active:scale-95" title="تست ارسال پیام به واتساپ">
-                      <i class="fa-solid fa-paper-plane text-emerald-400"></i>
-                      <span>تست</span>
-                    </button>
-                  </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">کلید عددی ارسالی توسط بات واتساپ</span>
-                </div>
-              </div>
-
-              <!-- Quick Helper Links (Multiple Active Bots in case one is full) -->
-              <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
-                <div class="flex items-center justify-between gap-2 flex-wrap text-[11px]">
-                  <span class="text-slate-300 flex items-center gap-1.5 font-bold">
-                    <i class="fa-solid fa-circle-info text-amber-400"></i>
-                    <span>دریافت کلید API از بات‌های رسمی واتساپ (هر کدام خلوت‌تر بود کلیک کنید):</span>
-                  </span>
-                </div>
-                <div class="flex items-center gap-2 flex-wrap text-[11px]">
-                  <a href="https://wa.me/34644204756?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 font-bold text-emerald-300 flex items-center gap-1 transition">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>بات شماره ۱ (34644204756+)</span>
-                  </a>
-                  <a href="https://wa.me/34644919680?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 font-bold text-emerald-300 flex items-center gap-1 transition">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>بات شماره ۲ (34644919680+)</span>
-                  </a>
-                  <a href="https://wa.me/34644442248?text=I+allow+callmebot+to+send+me+messages" target="_blank" class="px-2.5 py-1 rounded-lg bg-emerald-600/30 hover:bg-emerald-600/50 border border-emerald-500/40 font-bold text-emerald-300 flex items-center gap-1 transition">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <span>بات شماره ۳ (34644442248+)</span>
-                  </a>
-                </div>
-                <span class="text-[10px] text-slate-500 block">نکته: تمام سفارشات در تب «سفارشات» و دیتابیس همیشه به صورت قطعی و امن سیو می‌شوند، حتی اگر واتساپ موقتاً قطع باشد.</span>
-              </div>
             </div>
 
             <div class="pt-2">
@@ -472,7 +428,7 @@
       <!-- =====================================================================
            TAB 4: ORDERS & TRANSACTIONS MANAGEMENT
            ===================================================================== -->
-      <section id="tabContent-orders" class="tab-panel space-y-4 sm:space-y-6 hidden">
+      <section id="tabContent-orders" class="tab-panel space-y-4 sm:space-y-6 hidden pb-28 sm:pb-8">
         <div class="max-w-4xl mx-auto space-y-4">
           
           <!-- Top Stats Bar -->
@@ -482,7 +438,7 @@
               <span id="ordersTotalCount" class="text-2xl font-black text-white font-display">۰</span>
             </div>
             <div class="bg-[#12141c] border border-white/10 rounded-2xl p-4">
-              <span class="text-xs text-slate-400 block mb-1">سفارشات پرداخت شده:</span>
+              <span class="text-xs text-slate-400 block mb-1">سفارشات تایید شده:</span>
               <span id="ordersPaidCount" class="text-2xl font-black text-emerald-400 font-display">۰</span>
             </div>
             <div class="col-span-2 sm:col-span-1 bg-[#12141c] border border-white/10 rounded-2xl p-4">
@@ -491,8 +447,24 @@
             </div>
           </div>
 
-          <!-- Safe Orders Vault Action Bar: Manual Add, Excel Export, Backup JSON, Search -->
+          <!-- Live Order Radar & Action Bar -->
           <div class="bg-[#12141c] border border-white/10 rounded-2xl p-3 sm:p-4 space-y-3">
+            
+            <!-- Live Pulse Status & Chime Audio Test -->
+            <div class="flex items-center justify-between gap-2 flex-wrap border-b border-white/5 pb-2.5">
+              <div class="flex items-center gap-2 text-xs text-emerald-400 font-bold">
+                <span class="relative flex h-2.5 w-2.5">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                </span>
+                <span>سیستم مانیتورینگ زنده سفارشات فعال است (بروزرسانی خودکار هر ۱۵ ثانیه)</span>
+              </div>
+              <button type="button" onclick="playNewOrderChime(); showToast('🔔 تست زنگ هشدار صوتی سفارش جدید با موفقیت پخش شد!');" class="px-2.5 py-1 rounded-lg bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/30 text-amber-300 text-[11px] font-bold flex items-center gap-1.5 transition active:scale-95">
+                <i class="fa-solid fa-bell text-amber-400"></i>
+                <span>تست زنگ هشدار</span>
+              </button>
+            </div>
+
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
               
               <div class="flex items-center gap-2 flex-wrap">
@@ -501,19 +473,19 @@
                   <span>ثبت دستی سفارش جدید</span>
                 </button>
 
-                <button onclick="exportOrdersToCSV()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition" title="دانلود و سیو فایل اکسل تمام سفارشات">
+                <button onclick="exportOrdersToCSV()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition" title="دانلود و ذخیره فایل اکسل تمام سفارشات">
                   <i class="fa-solid fa-file-excel text-emerald-400"></i>
-                  <span class="hidden sm:inline">دانلود فایل اکسل (CSV)</span>
+                  <span class="hidden sm:inline">دانلود اکسل (CSV)</span>
                   <span class="sm:hidden">اکسل</span>
                 </button>
 
-                <button onclick="exportOrdersToJSON()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition" title="سیو نسخه پشتیبان کامل سفارشات">
+                <button onclick="exportOrdersToJSON()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 active:scale-95 border border-white/15 text-white font-bold text-xs flex items-center justify-center gap-1.5 transition" title="ذخیره نسخه پشتیبان کامل سفارشات">
                   <i class="fa-solid fa-download text-sky-400"></i>
-                  <span class="hidden sm:inline">سیو بک‌آپ (JSON)</span>
+                  <span class="hidden sm:inline">بک‌آپ کامل (JSON)</span>
                   <span class="sm:hidden">بک‌آپ</span>
                 </button>
 
-                <button onclick="loadAdminOrders()" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 flex items-center gap-1.5 transition active:scale-95" title="بروزرسانی">
+                <button onclick="loadAdminOrders(); showToast('در حال دریافت آخرین سفارشات...');" class="h-10 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-slate-300 flex items-center gap-1.5 transition active:scale-95" title="بروزرسانی دستی لیست">
                   <i class="fa-solid fa-rotate text-emerald-400"></i>
                 </button>
               </div>
@@ -529,9 +501,9 @@
             <div class="flex items-center gap-1.5 overflow-x-auto pt-1 text-[11px] font-bold">
               <span class="text-slate-400 text-xs ml-1 shrink-0">فیلتر سفارشات:</span>
               <button onclick="filterOrdersByStatus('all')" id="orderFilter-all" class="order-filter-btn px-3 py-1 rounded-lg bg-white/15 text-white border border-white/20 transition shrink-0">همه سفارشات</button>
-              <button onclick="filterOrdersByStatus('paid')" id="orderFilter-paid" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">پرداخت شده</button>
+              <button onclick="filterOrdersByStatus('paid')" id="orderFilter-paid" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">پرداخت آنلاین (PayPal)</button>
               <button onclick="filterOrdersByStatus('shipped')" id="orderFilter-shipped" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">ارسال شده با DHL</button>
-              <button onclick="filterOrdersByStatus('pending')" id="orderFilter-pending" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">در انتظار پرداخت</button>
+              <button onclick="filterOrdersByStatus('pending')" id="orderFilter-pending" class="order-filter-btn px-3 py-1 rounded-lg bg-white/5 text-slate-400 border border-white/10 hover:text-white transition shrink-0">در انتظار هماهنگی</button>
             </div>
           </div>
 
@@ -549,7 +521,7 @@
       <!-- =====================================================================
            TAB 3: PASSWORD & BACKUP SETTINGS
            ===================================================================== -->
-      <section id="tabContent-settings" class="tab-panel space-y-4 sm:space-y-6 hidden">
+      <section id="tabContent-settings" class="tab-panel space-y-4 sm:space-y-6 hidden pb-28 sm:pb-8">
         
         <div class="max-w-2xl mx-auto space-y-4">
           
@@ -1814,12 +1786,8 @@
       if (document.getElementById('storeIbanInput')) {
         document.getElementById('storeIbanInput').value = s.iban || 'DE49 2105 0170 0000 0000 00';
       }
-      if (document.getElementById('storeWaNotifyPhoneInput')) {
-        document.getElementById('storeWaNotifyPhoneInput').value = s.waNotifyPhone || '491729343833';
-      }
-      if (document.getElementById('storeWaNotifyApiKeyInput')) {
-        document.getElementById('storeWaNotifyApiKeyInput').value = s.waNotifyApiKey || '';
-      }
+      
+      
       if (document.getElementById('storeBankHolderInput')) {
         document.getElementById('storeBankHolderInput').value = s.bankHolder || 'Ramazan Bakhtyary';
       }
@@ -1883,64 +1851,120 @@
           in_stock: false
         }], { onConflict: 'id' }).then(() => {});
 
-        const notifyPhone = document.getElementById('storeWaNotifyPhoneInput') ? document.getElementById('storeWaNotifyPhoneInput').value.trim() : '491729343833';
-        const notifyApiKey = document.getElementById('storeWaNotifyApiKeyInput') ? document.getElementById('storeWaNotifyApiKeyInput').value.trim() : '';
-
-        sbClient.from('products').upsert([{
-          id: '__store_notifications__',
-          title: 'WhatsApp Notification Config',
-          price: 1.0,
-          unit: notifyPhone,
-          variant: notifyApiKey,
-          category: 'system_setting',
-          in_stock: false
-        }], { onConflict: 'id' }).then(() => {});
+        
       }
     }
 
 
         // =========================================================================
-    // SAFE ORDERS VAULT & SERVER NOTIFICATIONS
+    // SAFE ORDERS VAULT, LIVE AUDIO CHIME & DIRECT CUSTOMER CONTACT
     // =========================================================================
     let allLoadedOrders = [];
     let currentOrderFilter = 'all';
+    let knownOrderIds = new Set();
+    let ordersPollingInterval = null;
 
-    async function testWhatsAppNotification() {
-      const phone = document.getElementById('storeWaNotifyPhoneInput')?.value.trim() || '491729343833';
-      const apiKey = document.getElementById('storeWaNotifyApiKeyInput')?.value.trim();
-      if (!apiKey) {
-        showToast('لطفاً ابتدا کلید API واتساپ را وارد کنید!');
-        return;
-      }
-      showToast('در حال ارسال پیام تست به واتساپ...');
+    // Pleasant high-clarity sound chime for new orders (Web Audio API)
+    function playNewOrderChime() {
       try {
-        const resp = await fetch('/api/notify-owner', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ test: true, phone, apiKey })
-        });
-        const res = await resp.json();
-        if (res.success) {
-          showToast('✅ پیام تست با موفقیت به واتساپ شما ارسال شد!');
-        } else {
-          showToast('❌ خطا در ارسال: ' + (res.error || 'پاسخ ناموفق'));
-        }
-      } catch (err) {
-        showToast('❌ خطا در ارتباط با سرور: ' + err.message);
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        const now = ctx.currentTime;
+
+        // Tone 1: 587.33 Hz (D5)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(587.33, now);
+        gain1.gain.setValueAtTime(0.35, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.45);
+
+        // Tone 2: 880 Hz (A5)
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(880, now + 0.16);
+        gain2.gain.setValueAtTime(0.45, now + 0.16);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.85);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.16);
+        osc2.stop(now + 0.85);
+      } catch(e) {
+        console.log('Audio chime error:', e);
       }
     }
 
-    async function loadAdminOrders() {
+    // Helper: Parse Customer Contact & Address for WhatsApp & DHL Label
+    function parseCustomerContact(order) {
+      let name = order.customer_name || 'خریدار محترم';
+      let rawAddr = order.customer_address || '';
+      let phone = '';
+      let cleanAddr = rawAddr;
+      let payMethodText = '';
+
+      // Extract payment method tag if present [روش پرداخت: ...]
+      const methodMatch = cleanAddr.match(/\[روش پرداخت:\s*([^\]]+)\]/i);
+      if (methodMatch) {
+        payMethodText = methodMatch[1].trim();
+        cleanAddr = cleanAddr.replace(methodMatch[0], '').trim();
+      }
+
+      // Extract phone number: (تلفن: ...) or (Tel: ...) or (phone: ...) or (موبایل: ...)
+      const phoneMatch = cleanAddr.match(/\((?:تلفن|Tel|phone|موبایل|واتساپ)\s*[:：]\s*([^)]+)\)/i);
+      if (phoneMatch) {
+        phone = phoneMatch[1].trim();
+        cleanAddr = cleanAddr.replace(phoneMatch[0], '').trim();
+      } else {
+        const altPhoneMatch = cleanAddr.match(/(?:تلفن|Tel|phone|موبایل|واتساپ)\s*[:：]\s*([+0-9\s-]+)/i);
+        if (altPhoneMatch) {
+          phone = altPhoneMatch[1].trim();
+          cleanAddr = cleanAddr.replace(altPhoneMatch[0], '').trim();
+        }
+      }
+
+      // Clean trailing punctuation
+      cleanAddr = cleanAddr.replace(/[,\s-]+$/, '').trim();
+
+      // Format clean phone for WhatsApp wa.me link
+      let waPhone = '';
+      if (phone) {
+        let digits = phone.replace(/[^0-9]/g, '');
+        if (phone.startsWith('+')) {
+          waPhone = digits;
+        } else if (digits.startsWith('00')) {
+          waPhone = digits.slice(2);
+        } else if (digits.startsWith('0') && digits.length >= 10) {
+          // German local mobile 017... -> 4917...
+          waPhone = '49' + digits.slice(1);
+        } else if (digits.length >= 9) {
+          waPhone = digits;
+        }
+      }
+
+      return { name, cleanAddr, phone, waPhone, payMethodText };
+    }
+
+    async function loadAdminOrders(isBackground = false) {
       const container = document.getElementById('adminOrdersList');
       if (!container) return;
 
-      // Try local cache first for instant display
-      const cached = localStorage.getItem('rb_saved_orders');
-      if (cached && allLoadedOrders.length === 0) {
-        try {
-          allLoadedOrders = JSON.parse(cached);
-          renderOrdersList(allLoadedOrders);
-        } catch(e) {}
+      // Instant local cache recovery on startup
+      if (!isBackground) {
+        const cached = localStorage.getItem('rb_saved_orders');
+        if (cached && allLoadedOrders.length === 0) {
+          try {
+            allLoadedOrders = JSON.parse(cached);
+            allLoadedOrders.forEach(o => { if (o && o.id) knownOrderIds.add(o.id); });
+            updateOrdersStats(allLoadedOrders);
+            renderOrdersList(allLoadedOrders);
+          } catch(e) {}
+        }
       }
 
       if (!sbClient) {
@@ -1954,13 +1978,25 @@
         const { data: orders, error } = await sbClient.from('orders').select('*').order('created_at', { ascending: false });
         if (error || !orders) {
           if (allLoadedOrders.length === 0) {
-            container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطا در دریافت لیست سفارشات</div>';
+            container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطا در دریافت لیست سفارشات از سرور</div>';
           }
           return;
         }
 
+        // Live alert chime if new orders arrived!
+        if (knownOrderIds.size > 0) {
+          const brandNew = orders.filter(o => o && o.id && !knownOrderIds.has(o.id));
+          if (brandNew.length > 0) {
+            playNewOrderChime();
+            const firstNew = brandNew[0];
+            showToast(`🔔 سفارش جدید دریافت شد! خریدار: ${firstNew.customer_name || 'کاربر'} • مبلغ: ${(parseFloat(firstNew.total_price)||0).toFixed(2)} €`);
+          }
+        }
+
+        // Update known order IDs
+        orders.forEach(o => { if (o && o.id) knownOrderIds.add(o.id); });
+
         allLoadedOrders = orders;
-        // Permanently cache orders locally for safety
         localStorage.setItem('rb_saved_orders', JSON.stringify(orders));
 
         updateOrdersStats(orders);
@@ -1971,6 +2007,13 @@
           container.innerHTML = '<div class="text-center py-8 text-rose-400 text-xs">خطای غیرمنتظره: ' + e.message + '</div>';
         }
       }
+    }
+
+    // Auto-polling every 15 seconds
+    if (!ordersPollingInterval) {
+      ordersPollingInterval = setInterval(() => {
+        loadAdminOrders(true);
+      }, 15000);
     }
 
     function updateOrdersStats(orders) {
@@ -2000,7 +2043,6 @@
       const container = document.getElementById('adminOrdersList');
       if (!container) return;
 
-      // Filter by search query & active status pill
       const query = (document.getElementById('orderSearchInput')?.value || '').trim().toLowerCase();
       let list = orders;
 
@@ -2026,103 +2068,168 @@
           <div class="p-8 text-center bg-[#12141c] border border-white/10 rounded-3xl text-slate-400 space-y-2">
             <i class="fa-solid fa-inbox text-3xl text-slate-600 block"></i>
             <p class="text-xs font-bold">هیچ سفارشی در این بخش پیدا نشد</p>
-            <p class="text-[11px] text-slate-500">برای ثبت سفارش جدید روی «ثبت دستی سفارش جدید» کلیک کنید.</p>
+            <p class="text-[11px] text-slate-500">برای ثبت سفارش تلفنی یا واتساپی روی «ثبت دستی سفارش جدید» کلیک کنید.</p>
           </div>
         `;
         return;
       }
 
       container.innerHTML = list.map(o => {
+        const contact = parseCustomerContact(o);
         const dateStr = o.created_at ? new Date(o.created_at).toLocaleString('fa-IR', { dateStyle: 'short', timeStyle: 'short' }) : 'نامشخص';
         const itemsArr = Array.isArray(o.items) ? o.items : [];
-        const itemsListHtml = itemsArr.map(it => `
-          <div class="flex items-center justify-between text-[11px] py-1 border-b border-white/5 last:border-0">
-            <span class="text-slate-300 font-medium">${it.qty || 1}x ${it.title || it.name || 'محصول'}</span>
-            <span class="font-mono text-amber-300 dir-ltr">${((it.price || 0) * (it.qty || 1)).toFixed(2)} €</span>
-          </div>
-        `).join('');
 
+        // Status badges
         const isShipped = o.status === 'shipped' || (o.status && o.status.includes('ارسال'));
         const isPaid = (o.status === 'paid_paypal' || o.status === 'paid') && !isShipped;
 
-        let statusBadge = '<span class="px-2.5 py-0.5 rounded-full bg-amber-950 border border-amber-500/40 text-[10px] font-bold text-amber-300 flex items-center gap-1"><i class="fa-solid fa-clock text-[9px]"></i> در انتظار بررسی</span>';
+        let statusBadge = '<span class="px-3 py-1 rounded-full bg-amber-950/80 border border-amber-500/50 text-[11px] font-bold text-amber-300 flex items-center gap-1.5"><i class="fa-solid fa-clock text-amber-400"></i><span>در انتظار هماهنگی / پرداخت</span></span>';
         if (isShipped) {
-          statusBadge = `<span class="px-2.5 py-0.5 rounded-full bg-sky-950 border border-sky-500/40 text-[10px] font-bold text-sky-300 flex items-center gap-1"><i class="fa-solid fa-truck-fast text-[9px]"></i> ${o.status.length > 25 ? o.status.slice(0, 25) + '...' : o.status}</span>`;
+          statusBadge = `<span class="px-3 py-1 rounded-full bg-sky-950/80 border border-sky-500/50 text-[11px] font-bold text-sky-300 flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-sky-400"></i><span>${o.status.length > 32 ? o.status.slice(0, 32) + '...' : o.status}</span></span>`;
         } else if (isPaid) {
-          statusBadge = '<span class="px-2.5 py-0.5 rounded-full bg-emerald-950 border border-emerald-500/40 text-[10px] font-bold text-emerald-300 flex items-center gap-1"><i class="fa-solid fa-check text-[9px]"></i> پرداخت آنلاین موفق</span>';
+          statusBadge = '<span class="px-3 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/50 text-[11px] font-bold text-emerald-300 flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-400"></i><span>پرداخت آنلاین تأیید شده (PayPal)</span></span>';
         }
 
-        const safeAddr = (o.customer_address || '').replace(/'/g, "\\'");
+        // Payment method pill
+        let payPill = '';
+        if (contact.payMethodText) {
+          payPill = `<span class="text-[10px] text-slate-300 bg-white/10 border border-white/15 px-2 py-0.5 rounded-md font-bold">روش پرداخت: ${contact.payMethodText}</span>`;
+        } else if (isPaid) {
+          payPill = `<span class="text-[10px] text-emerald-400 bg-emerald-950/50 border border-emerald-500/30 px-2 py-0.5 rounded-md font-bold"><i class="fa-brands fa-paypal text-sky-400 ml-1"></i>پرداخت آنلاین پی‌پال</span>`;
+        }
+
+        // WhatsApp Direct Link
+        let waButton = '';
+        let callButton = '';
+        if (contact.waPhone) {
+          const waDefaultMsg = `سلام جناب ${contact.name} عزیز، سفارش شما در فروشگاه R.B Shop دریافت گردید. شماره سفارش: #${(o.id || '').slice(0,8)}`;
+          waButton = `
+            <a href="https://wa.me/${contact.waPhone}?text=${encodeURIComponent(waDefaultMsg)}" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/50 transition">
+              <i class="fa-brands fa-whatsapp text-sm"></i>
+              <span>پیام به خریدار در واتساپ</span>
+            </a>
+          `;
+          callButton = `
+            <a href="tel:${contact.phone.replace(/[^0-9+]/g, '')}" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 font-bold text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-phone text-xs text-sky-400"></i>
+              <span>تماس</span>
+            </a>
+          `;
+        }
+
+        // Items list table/breakdown
+        const itemsListHtml = itemsArr.map(it => `
+          <div class="flex items-center justify-between text-xs py-1.5 border-b border-white/5 last:border-0">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-lg bg-white/10 text-white font-bold text-[11px] flex items-center justify-center shrink-0">${it.qty || 1}×</span>
+              <div>
+                <span class="text-slate-100 font-bold">${it.title || it.name || 'محصول'}</span>
+                ${it.variant ? `<span class="text-[10px] text-slate-400 block">${it.variant}</span>` : ''}
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="font-mono text-amber-300 font-bold dir-ltr">${((it.price || 0) * (it.qty || 1)).toFixed(2)} €</span>
+              ${(it.qty || 1) > 1 ? `<span class="text-[10px] text-slate-500 block dir-ltr">${(it.price || 0).toFixed(2)} € هر بسته</span>` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        const safeCleanAddr = contact.cleanAddr.replace(/'/g, "\\'");
         const safeId = o.id;
 
         return `
-          <div class="p-4 sm:p-5 rounded-2xl bg-[#12141c] border border-white/10 space-y-3.5 hover:border-white/20 transition">
-            <div class="flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-2">
-                <span class="font-mono font-bold text-xs text-amber-400 dir-ltr">#${(o.id || '').slice(0, 8)}</span>
-                <span class="text-[11px] text-slate-500 dir-ltr">${dateStr}</span>
-              </div>
-              <div>${statusBadge}</div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+          <div class="p-4 sm:p-5 rounded-2xl bg-[#12141c] border border-white/10 space-y-4 hover:border-emerald-500/30 transition shadow-lg">
+            
+            <!-- Header: Order ID, Date, Amount & Status -->
+            <div class="flex items-start sm:items-center justify-between gap-3 flex-wrap border-b border-white/10 pb-3">
               <div class="space-y-1">
-                <span class="text-slate-400 block text-[10px]">مشخصات خریدار:</span>
-                <div class="font-bold text-white flex items-center gap-1.5">
-                  <i class="fa-solid fa-user text-slate-500 text-[11px]"></i>
-                  <span>${o.customer_name || 'نامشخص'}</span>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-mono font-black text-sm text-amber-400 dir-ltr bg-amber-950/40 border border-amber-500/30 px-2.5 py-0.5 rounded-lg">#${(o.id || '').slice(0, 8)}</span>
+                  <span class="text-xs text-slate-400 dir-ltr flex items-center gap-1">
+                    <i class="fa-regular fa-clock text-slate-500 text-[11px]"></i>
+                    ${dateStr}
+                  </span>
+                  ${payPill}
                 </div>
               </div>
-              <div class="space-y-1">
-                <span class="text-slate-400 block text-[10px]">مبلغ کل پرداختی:</span>
-                <div class="font-black text-amber-400 text-base font-display dir-ltr text-right">
-                  ${(parseFloat(o.total_price) || 0).toFixed(2)} €
+
+              <div class="flex items-center gap-3">
+                <div class="text-left dir-ltr">
+                  <span class="text-[10px] text-slate-400 block text-right font-sans">مبلغ کل سفارش:</span>
+                  <span class="text-xl sm:text-2xl font-black text-amber-300 font-display">${(parseFloat(o.total_price) || 0).toFixed(2)} €</span>
                 </div>
+                <div>${statusBadge}</div>
               </div>
             </div>
 
-            <!-- Address Box with One-Click Copy for DHL Label -->
-            <div class="p-2.5 rounded-xl bg-black/50 border border-white/5 text-[11px] space-y-1.5">
-              <div class="flex items-center justify-between text-slate-400 text-[10px]">
-                <span class="flex items-center gap-1">
-                  <i class="fa-solid fa-truck-fast text-emerald-400"></i>
-                  <span>آدرس پستی جهت برچسب ارسال پست DHL:</span>
+            <!-- Customer Identity & Direct Contact Row -->
+            <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div class="space-y-1">
+                <span class="text-[10px] text-slate-400 block font-bold">نام و هویت خریدار:</span>
+                <div class="flex items-center gap-2">
+                  <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">
+                    <i class="fa-solid fa-user"></i>
+                  </div>
+                  <div>
+                    <span class="font-black text-white text-sm sm:text-base">${contact.name}</span>
+                    ${contact.phone ? `<span class="block text-xs font-mono text-emerald-400 dir-ltr text-right">${contact.phone}</span>` : '<span class="block text-[11px] text-slate-500">شماره تلفن مستقیم ثبت نشده</span>'}
+                  </div>
+                </div>
+              </div>
+
+              <!-- 1-Click WhatsApp & Phone Contact Buttons -->
+              <div class="flex items-center gap-2 flex-wrap">
+                ${waButton}
+                ${callButton}
+              </div>
+            </div>
+
+            <!-- DHL Shipping Address Box (High-Contrast & 1-Click Copy) -->
+            <div class="p-3.5 rounded-xl bg-gradient-to-r from-[#181d28] to-[#12141c] border-2 border-emerald-500/30 text-xs space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-black text-emerald-400 flex items-center gap-1.5 text-xs">
+                  <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
+                  <span>آدرس کامل پستی جهت برچسب ارسال با پست DHL:</span>
                 </span>
-                <button type="button" onclick="navigator.clipboard.writeText('${safeAddr}'); showToast('آدرس پستی کپی شد!');" class="px-2 py-0.5 rounded-md bg-white/10 hover:bg-white/20 text-white font-bold text-[9px] flex items-center gap-1 transition">
+                <button type="button" onclick="navigator.clipboard.writeText('${safeCleanAddr}'); showToast('✅ آدرس پستی خریدار کپی شد!');" class="px-2.5 py-1 rounded-lg bg-emerald-600/40 hover:bg-emerald-600/60 active:scale-95 text-emerald-200 border border-emerald-500/50 font-bold text-xs flex items-center gap-1.5 transition">
                   <i class="fa-solid fa-copy"></i>
-                  <span>کپی آدرس</span>
+                  <span>کپی آدرس پستی</span>
                 </button>
               </div>
-              <div class="text-slate-200 font-medium dir-ltr text-start select-all">
-                ${o.customer_address || 'ثبت نشده'}
+
+              <div class="p-2.5 rounded-lg bg-black/60 border border-white/10 text-white font-mono text-xs sm:text-sm leading-relaxed dir-ltr text-left select-all">
+                ${contact.cleanAddr || 'آدرسی ثبت نشده است'}
               </div>
             </div>
 
-            <!-- Items Breakdown -->
-            <div class="pt-1">
-              <span class="text-slate-400 block text-[10px] mb-1">اقلام خریداری شده:</span>
-              <div class="bg-black/30 rounded-xl p-2 border border-white/5">
-                ${itemsListHtml || '<span class="text-slate-500 text-[10px]">بدون اقلام</span>'}
+            <!-- Ordered Products List -->
+            <div class="space-y-1.5">
+              <span class="text-slate-400 block text-xs font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-basket-shopping text-rose-400"></i>
+                <span>سبد اقلام سفارش داده شده (${itemsArr.length} ردیف):</span>
+              </span>
+              <div class="bg-black/30 rounded-xl p-2.5 border border-white/5 space-y-1">
+                ${itemsListHtml || '<span class="text-slate-500 text-xs">بدون اقلام مشخص</span>'}
               </div>
             </div>
 
-            <!-- Action Controls (Save Status, Tracking, Invoice Print, Delete) -->
-            <div class="pt-2 border-t border-white/5 flex items-center justify-between gap-2 flex-wrap">
-              <div class="flex items-center gap-1.5 flex-wrap">
-                <button onclick="promptMarkAsShipped('${safeId}')" class="px-2.5 py-1.5 rounded-xl bg-sky-950/60 hover:bg-sky-900/80 border border-sky-500/40 text-[11px] font-bold text-sky-300 flex items-center gap-1 transition">
-                  <i class="fa-solid fa-truck-ramp-box"></i>
-                  <span>ثبت ارسال DHL و رهگیری</span>
+            <!-- Action Buttons: DHL Tracking, Print Invoice, Delete -->
+            <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-2 flex-wrap">
+              <div class="flex items-center gap-2 flex-wrap">
+                <button onclick="promptMarkAsShipped('${safeId}')" class="px-3 py-1.5 rounded-xl bg-sky-950/70 hover:bg-sky-900 border border-sky-500/40 text-xs font-bold text-sky-300 flex items-center gap-1.5 transition active:scale-95">
+                  <i class="fa-solid fa-truck-ramp-box text-sky-400"></i>
+                  <span>ثبت ارسال پست DHL و رهگیری</span>
                 </button>
 
-                <button onclick="openInvoiceModal('${safeId}')" class="px-2.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-[11px] font-bold text-slate-300 flex items-center gap-1 transition">
+                <button onclick="openInvoiceModal('${safeId}')" class="px-3 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-bold text-slate-200 flex items-center gap-1.5 transition active:scale-95">
                   <i class="fa-solid fa-print text-amber-400"></i>
-                  <span>چاپ فاکتور</span>
+                  <span>مشاهده و چاپ فاکتور</span>
                 </button>
               </div>
 
-              <button onclick="deleteAdminOrder('${safeId}')" class="px-2.5 py-1.5 rounded-xl bg-rose-950/30 hover:bg-rose-900/50 border border-rose-800/40 text-[11px] font-bold text-rose-400 flex items-center gap-1 transition" title="حذف سفارش">
+              <button onclick="deleteAdminOrder('${safeId}')" class="px-3 py-1.5 rounded-xl bg-rose-950/30 hover:bg-rose-900/50 border border-rose-800/40 text-xs font-bold text-rose-400 flex items-center gap-1.5 transition" title="حذف این سفارش">
                 <i class="fa-solid fa-trash-can"></i>
-                <span class="hidden sm:inline">حذف</span>
+                <span>حذف</span>
               </button>
             </div>
 
