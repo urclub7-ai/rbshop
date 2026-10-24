@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /rb-shop-admin/
+Disallow: /rb-control-786.html
+Disallow: /rb-shop-admin.html
+
+Sitemap: https://urclub7-ai.github.io/rbshop/sitemap.xml
