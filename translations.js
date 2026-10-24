@@ -153,7 +153,9 @@ const UI_TRANSLATIONS = {
     pay_success_title: "Payment Successful!",
     pay_success_desc: "Thank you for your order! Your payment has been received and your royal package will be dispatched with DHL/DPD.",
     pay_success_tx: "Transaction / Order ID:",
-    pay_success_wa_btn: "Send Order Confirmation to WhatsApp",
+    pay_success_print: "Resmi Makbuzu Yazdır",
+
+    pay_success_courier: "DHL Express Sigortalı Gönderim",
     pay_success_close: "Continue Shopping",
   },
 
@@ -294,7 +296,9 @@ const UI_TRANSLATIONS = {
     pay_success_title: "Zahlung erfolgreich!",
     pay_success_desc: "Vielen Dank für Ihre Bestellung! Ihre Zahlung ist eingegangen und Ihr Paket wird per DHL/DPD vorbereitet.",
     pay_success_tx: "Transaktions- / Bestellnummer:",
-    pay_success_wa_btn: "Bestellbestätigung per WhatsApp senden",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "Weiter einkaufen",
   },
 
@@ -435,7 +439,9 @@ const UI_TRANSLATIONS = {
     pay_success_title: "Paiement réussi !",
     pay_success_desc: "Merci pour votre commande ! Votre paiement a été reçu et votre colis royal sera expédié via DHL/DPD.",
     pay_success_tx: "N° de Transaction / Commande :",
-    pay_success_wa_btn: "Envoyer la confirmation sur WhatsApp",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "Continuer mes achats",
   },
 
@@ -575,7 +581,9 @@ const UI_TRANSLATIONS = {
     pay_success_title: "پرداخت شما با موفقیت انجام شد!",
     pay_success_desc: "با تشکر فراوان از خرید شما! مبلغ با موفقیت واریز گردید و سفارش شاهانه شما جهت ارسال با پست DHL/DPD آماده‌سازی می‌شود.",
     pay_success_tx: "کد پیگیری تراکنش / شماره سفارش:",
-    pay_success_wa_btn: "ارسال رسید سفارش به واتساپ مدیر فروشگاه",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "بستن و ادامه خرید",
   },
 
@@ -715,7 +723,9 @@ const UI_TRANSLATIONS = {
     pay_success_title: "تم الدفع بنجاح!",
     pay_success_desc: "شكراً جزيلاً لطلبكم! تم استلام المبلغ بنجاح وسيتم تجهيز وشحن طلبيتكم الفاخرة عبر DHL/DPD فوراً.",
     pay_success_tx: "رقم المعاملة / كود الطلب:",
-    pay_success_wa_btn: "إرسال إيصال وتفاصيل الطلب عبر الواتساب",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "إغلاق ومتابعة التسوق",
   }
 ,
@@ -857,7 +867,9 @@ nl: {
     pay_success_title: "Betaling Geslaagd!",
     pay_success_desc: "Hartelijk dank voor uw bestelling! Uw betaling is ontvangen en uw pakket wordt verzonden via DHL/DPD.",
     pay_success_tx: "Transactie- / Bestelnummer:",
-    pay_success_wa_btn: "Bestelbevestiging via WhatsApp sturen",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "Verder winkelen",
   },
 
@@ -998,7 +1010,9 @@ nl: {
     pay_success_title: "¡Pago Realizado con Éxito!",
     pay_success_desc: "¡Muchas gracias por su compra! Su pago ha sido recibido y su paquete será despachado por DHL/DPD.",
     pay_success_tx: "ID de Transacción / Pedido:",
-    pay_success_wa_btn: "Enviar confirmación a WhatsApp",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "Continuar comprando",
   },
 
@@ -1139,7 +1153,9 @@ nl: {
     pay_success_title: "Pagamento Riuscito!",
     pay_success_desc: "Grazie mille per il tuo ordine! Il pagamento è stato ricevuto e il tuo pacco sarà spedito con DHL/DPD.",
     pay_success_tx: "ID Transazione / Ordine:",
-    pay_success_wa_btn: "Invia conferma dell'ordine su WhatsApp",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "Continua lo shopping",
   },
 
@@ -1280,7 +1296,9 @@ nl: {
     pay_success_title: "Ödeme Başarıyla Tamamlandı!",
     pay_success_desc: "Siparişiniz için çok teşekkür ederiz! Ödemeniz onaylandı ve paketiniz DHL/DPD ile kargoya hazırlanıyor.",
     pay_success_tx: "İşlem / Sipariş Takip No:",
-    pay_success_wa_btn: "Sipariş Onayını WhatsApp'a Gönder",
+    pay_success_print: "Rechnung / Beleg drucken",
+
+    pay_success_courier: "Versicherter Versand mit DHL Paket",
     pay_success_close: "Alışverişe Devam Et",
   },
 };
