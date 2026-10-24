@@ -2156,26 +2156,5 @@ function getLocalizedCountStatus(count, lang) {
   return `${loc} items and royal packages available`;
 }
 
-// Default 12 Products Dataset
-const DEFAULT_PRODUCTS = [
-  { id: 'pkg1', category: 'packages', price: 38.00, image: 'assets/rb_royal_box.jpg', inStock: true },
-  { id: 'pkg2', category: 'packages', price: 32.00, image: 'assets/dried_fruits.jpg', inStock: true },
-  { id: 'pkg3', category: 'packages', price: 29.00, image: 'assets/almonds.jpg', inStock: true },
-  { id: 'pkg4', category: 'packages', price: 45.00, image: 'assets/pinenuts.jpg', inStock: true },
-  { id: 'p1', category: 'nuts', price: 24.00, image: 'assets/almonds.jpg', inStock: true },
-  { id: 'p2', category: 'pinenuts', price: 27.00, image: 'assets/almonds.jpg', inStock: true },
-  { id: 'p3', category: 'pinenuts', price: 49.00, image: 'assets/pinenuts.jpg', inStock: true },
-  { id: 'p4', category: 'nuts', price: 19.50, image: 'assets/almonds.jpg', inStock: true },
-  { id: 'p5', category: 'fruits', price: 14.50, image: 'assets/raisins.jpg', inStock: true },
-  { id: 'p6', category: 'fruits', price: 22.00, image: 'assets/dried_fruits.jpg', inStock: true },
-  { id: 'p7', category: 'saffron', price: 35.00, image: 'assets/rb_royal_box.jpg', inStock: true },
-  { id: 'p8', category: 'fruits', price: 18.00, image: 'assets/dried_fruits.jpg', inStock: true },
-  { id: 'p_chickpeas', category: 'nuts', price: 3.00, image: 'assets/almonds.jpg', inStock: true },
-  { id: 'pkg_royal_55', category: 'packages', price: 55.00, image: 'https://files.catbox.moe/w3zc40.jpg', inStock: true },
-  { id: 'pkg_pouch_60', category: 'packages', price: 60.00, image: 'https://files.catbox.moe/bq14ls.jpg', inStock: true },
-  { id: 'prod_cardamom_akbar', category: 'nuts', price: 70.00, image: 'https://files.catbox.moe/jh7iaj.jpg', inStock: true },
-  { id: 'prod_energy_ginseng', category: 'drinks', price: 1.00, image: 'https://files.catbox.moe/ub0nd0.png', inStock: true },
-  { id: 'prod_energy_carbo', category: 'drinks', price: 1.00, image: 'https://files.catbox.moe/5kbm6t.png', inStock: true },
-  { id: 'prod_afghan_gur', category: 'fruits', price: 8.00, image: 'https://files.catbox.moe/02kf9e.png', inStock: true },
-  { id: 'prod_nabat_saffron', category: 'saffron', price: 0.50, image: 'https://files.catbox.moe/x3pmzj.jpg', inStock: true }
-];
+// Default Products Dataset (Clean start - managed via Admin Panel & Supabase)
+const DEFAULT_PRODUCTS = [];
