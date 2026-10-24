@@ -39,6 +39,7 @@ const UI_TRANSLATIONS = {
     cat_pinenuts: "Pistachios & Pine Nuts (2)",
     cat_fruits: "Dried Fruits & Raisins (3)",
     cat_saffron: "Super Negin Saffron (1)",
+    cat_drinks: "Energy Drinks (2)",
     cat_status: "12 items and royal packages available",
     search_results_prefix: "Showing",
     search_results_suffix: "items matching",
@@ -165,6 +166,7 @@ const UI_TRANSLATIONS = {
     cat_pinenuts: "Pistazien & Pinienkerne (2)",
     cat_fruits: "Trockenfrüchte & Rosinen (3)",
     cat_saffron: "Super-Negin-Safran (1)",
+    cat_drinks: "Energy Drinks (2)",
     cat_status: "12 Artikel und königliche Pakete verfügbar",
     search_results_prefix: "Ergebnisse für",
     search_results_suffix: "gefundene Artikel",
@@ -291,6 +293,7 @@ const UI_TRANSLATIONS = {
     cat_pinenuts: "Pistaches & Pignons (2)",
     cat_fruits: "Fruits Secs & Raisins (3)",
     cat_saffron: "Safran Supérieur (1)",
+    cat_drinks: "Boissons Énergisantes (2)",
     cat_status: "12 articles et coffrets royaux disponibles",
     search_results_prefix: "Affichage de",
     search_results_suffix: "articles correspondants",
@@ -670,6 +673,7 @@ nl: {
     cat_pinenuts: "Pistaches & Pijnboompitten (2)",
     cat_fruits: "Gedroogd Fruit & Rozijnen (3)",
     cat_saffron: "Super Negin Saffraan (1)",
+    cat_drinks: "Energiedranken (2)",
     cat_status: "12 artikelen en koninklijke pakketten beschikbaar",
     search_results_prefix: "Resultaten voor",
     search_results_suffix: "gevonden artikelen",
@@ -796,6 +800,7 @@ nl: {
     cat_pinenuts: "Pistachos y Piñones (2)",
     cat_fruits: "Frutos Secos y Pasas (3)",
     cat_saffron: "Azafrán Súper Negin (1)",
+    cat_drinks: "Bebidas Energéticas (2)",
     cat_status: "12 artículos y paquetes reales disponibles",
     search_results_prefix: "Resultados para",
     search_results_suffix: "artículos encontrados",
@@ -922,6 +927,7 @@ nl: {
     cat_pinenuts: "Pistacchi & Pinoli (2)",
     cat_fruits: "Frutta Secca & Uvetta (3)",
     cat_saffron: "Zafferano Super Negin (1)",
+    cat_drinks: "Bevande Energetiche (2)",
     cat_status: "12 articoli e confezioni reali disponibili",
     search_results_prefix: "Risultati per",
     search_results_suffix: "articoli trovati",
@@ -1048,6 +1054,7 @@ nl: {
     cat_pinenuts: "Fıstık ve Çam Fıstığı (2)",
     cat_fruits: "Kuru Meyve ve Üzüm (3)",
     cat_saffron: "Süper Negin Safran (1)",
+    cat_drinks: "Enerji İçecekleri (2)",
     cat_status: "12 ürün ve kraliyet paketi mevcut",
     search_results_prefix: "Sonuçlar:",
     search_results_suffix: "eşleşen ürün",
@@ -1774,6 +1781,335 @@ const PRODUCT_TRANSLATIONS = {
       unit: "Net Ağırlık: 500g",
       desc: "Çıtır çıtır, taze kavrulmuş otantik Afgan nohudu, hafif tuzlu"
     }
+  },
+  pkg_royal_55: {
+    en: {
+      title: "Royal 8-Item Afghan Gift Box (Nuts, Fruits & Simian)",
+      unit: "8-Item Royal Pack • Free DHL Shipping",
+      desc: "Luxurious handcrafted selection: Smiling pistachios, paper-shell walnuts, sweet almonds, green raisins, black raisins & mulberries, roasted chickpeas & noghl, silverberry & dried apricots, and crunchy Afghan simian."
+    },
+    de: {
+      title: "Königliche 8-Sorten Geschenkbox (Nüsse, Früchte & Simian)",
+      unit: "8-teiliges Königspaket • Gratis DHL Versand",
+      desc: "Edle afghanische Luxusauswahl: Pistazien, Walnüsse, Mandeln, grüne Rosinen, schwarze Rosinen & Maulbeeren, Kichererbsen, getrocknete Aprikosen und knuspriges Simian."
+    },
+    fa: {
+      title: "پکیج شاهانه ۸ قلم اعلا (مغزیجات، میوه خشک و سیمیان)",
+      unit: "پکیج ویژه ۸ قلم اعلا • ارسال کاملاً رایگان با DHL",
+      desc: "۸ قلم اعلا و دست‌چین: پسته خندان ممتاز، چهارمغز، مغز بادام، کشمش سبز، کشمش سیاه و توت سیاه، نخود و نقل نخودی، سنجد و غولنگ (شکرپاره)، و سیمیان اصیل افغانستانی."
+    },
+    ps: {
+      title: "د شاهانه ۸ توکو ډالۍ بکس (مغزیات، وچه میوه او سیمیان)",
+      unit: "د ۸ توکو شاهانه کڅوړه • وړیا DHL لیږد",
+      desc: "۸ ډوله غوره افغاني توکي: خندان پسته، څلورمغز، د بادامو مغز، شنې ممیز، تور ممیز او تور توت، نخود او نخودي نقل، سنجد او غولنګ، او خوندور سیمیان."
+    },
+    fr: {
+      title: "Coffret Royal 8 Délices Afghans (Fruits Secs, Noix & Simian)",
+      unit: "Coffret Royal 8 Articles • Livraison DHL Gratuite",
+      desc: "Sélection artisanale de prestige : Pistaches, cerneaux de noix, amandes, raisins verts, raisins noirs et mûres, pois chiches, abricots secs et simian croustillant."
+    },
+    nl: {
+      title: "Koninklijke 8-Delige Geschenkdoos (Noten, Fruit & Simian)",
+      unit: "Koninklijk 8-Delig Pakket • Gratis DHL Verzending",
+      desc: "Luxe selectie: Pistachenoten, walnoten, amandelen, groene rozijnen, zwarte rozijnen & moerbeien, kikkererwten, gedroogde abrikozen en knapperige simian."
+    },
+    es: {
+      title: "Caja Real de 8 Delicias Afganas (Frutos Secos y Simian)",
+      unit: "Paquete Real de 8 Artículos • Envío DHL Gratis",
+      desc: "Selección artesanal prémium: Pistachos, nueces, almendras, pasas verdes, pasas negras y moras, garbanzos tostados, albaricoques secos y simian crujiente."
+    },
+    it: {
+      title: "Cofanetto Reale 8 Prelibatezze Afghane (Frutta Secca & Simian)",
+      unit: "Confezione Reale 8 Articoli • Spedizione DHL Gratuita",
+      desc: "Pregiata selezione afghana: Pistacchi, noci, mandorle, uvetta verde, uvetta nera e gelsi, ceci tostati, albicocche secche e croccante simian."
+    },
+    tr: {
+      title: "Kraliyet 8 Çeşit Özel Hediye Kutusu (Kuruyemiş ve Simian)",
+      unit: "8 Çeşit Kraliyet Paketi • Ücretsiz DHL Kargo",
+      desc: "Özel lezzet harmanı: Antep fıstığı, ceviz içi, badem, yeşil üzüm, siyah kuru üzüm & dut kurusu, leblebi ve çıtır geleneksel Simian."
+    }
+  },
+  pkg_pouch_60: {
+    en: {
+      title: "Royal 8-Item Souvenir Gift Pack (With Golden Figs & Almond Noghl)",
+      unit: "Premium 8-Item Hamper • Free DHL Shipping",
+      desc: "Grand Afghan assortment: Premium pistachios, royal golden figs, sweet almonds, sugar-glazed almond noghl, walnut kernels, green raisins, roasted chickpeas, and dried black mulberries."
+    },
+    de: {
+      title: "Königliches 8-Sorten Souvenir-Paket (Mit Feigen & Mandel-Noghl)",
+      unit: "Exklusives 8-Sorten Paket • Gratis DHL Versand",
+      desc: "Traditionelle Meistermischung: Premium-Pistazien, goldene Feigen, Mandeln, glasierte Mandel-Noghl, Walnusskerne, grüne Rosinen, geröstete Kichererbsen und schwarze Maulbeeren."
+    },
+    fa: {
+      title: "پکیج سوغات شاهانه ۸ قلم (با انجیر طلایی و نقل بادامی)",
+      unit: "پکیج کامل سوغات شاهانه • ارسال کاملاً رایگان با DHL",
+      desc: "ترکیب بی‌نظیر ۸ قلم اعلا: پسته ممتاز، انجیر طلایی اعلا، مغز بادام شیرین، نقل بادامی، چهارمغز کاغذی، کشمش سبز، نخود برشته و توت سیاه طبیعی."
+    },
+    ps: {
+      title: "د شاهانه ۸ توکو سوغات کڅوړه (د سرو انځرو او بادامي نقل سره)",
+      unit: "د سوغات بشپړه کڅوړه • وړیا DHL لیږد",
+      desc: "د ۸ غوره توکو شاهانه ټولګه: اعلی پسته، طلایي انځر، خواږه بادام، بادامي نقل، کاغذي څلورمغز، شنې ممیز، برشته نخود او تور توت."
+    },
+    fr: {
+      title: "Pochette Cadeau Royale 8 Saveurs (Figues Dorées & Noghl)",
+      unit: "Sélection Royale 8 Produits • Livraison DHL Gratuite",
+      desc: "Assortiment afghan raffiné : Pistaches royales, figues dorées de Kandahar, amandes douces, noghl aux amandes, noix, raisins verts, pois chiches et mûres noires."
+    },
+    nl: {
+      title: "Koninklijk 8-Delig Souvenirpakket (Met Vijgen & Amandel-Noghl)",
+      unit: "Exclusief 8-Delig Pakket • Gratis DHL Verzending",
+      desc: "Prachtige afghaanse mix: Premium pistachenoten, gouden vijgen, amandelen, amandel-noghl, walnoten, groene rozijnen, kikkererwten en zwarte moerbeien."
+    },
+    es: {
+      title: "Paquete de Regalo Real 8 Delicias (Con Higos y Noghl de Almendra)",
+      unit: "Lote Prémium de 8 Productos • Envío DHL Gratis",
+      desc: "Gran variedad afgana: Pistachos selectos, higos dorados, almendras dulces, noghl de almendra, nueces, pasas verdes, garbanzos y moras negras."
+    },
+    it: {
+      title: "Pacco Regalo Reale 8 Prodotti (Con Fichi Dorati & Noghl)",
+      unit: "Confezione Prémium 8 Varietà • Spedizione DHL Gratuita",
+      desc: "Assortimento supremo: Pistacchi scelti, fichi dorati di Kandahar, mandorle dolci, noghl alle mandorle, noci, uvetta verde, ceci e gelsi neri."
+    },
+    tr: {
+      title: "Kraliyet 8 Çeşit Hatıra Paketi (Kandahar İnciri ve Bademli Noghl)",
+      unit: "Özel 8 Çeşit Hediyelik Paket • Ücretsiz DHL Kargo",
+      desc: "Eşsiz Afgan lezzetleri: Özel fıstık, altın rengi incir, tatlı badem içi, şekerli badem noghl, ceviz içi, yeşil üzüm, kavrulmuş leblebi ve kara dut."
+    }
+  },
+  prod_energy_ginseng: {
+    en: {
+      title: "Ginseng Energy Drink 250ml",
+      unit: "250ml Slim Can • Natural Ginseng",
+      desc: "Revitalizing and refreshing energy drink infused with premium natural ginseng extract for sustained energy and great taste."
+    },
+    de: {
+      title: "Ginseng Energy Drink 250ml",
+      unit: "250ml Dose • Natürlicher Ginseng",
+      desc: "Erfrischender Energy Drink mit natürlichem Ginseng-Extrakt für anhaltende Energie und köstlichen Geschmack."
+    },
+    fa: {
+      title: "نوشیدنی انرژی‌زا جینسینگ (Ginseng Energy)",
+      unit: "قوطی ۲۵۰ میلی‌لیتر • عصاره طبیعی جینسینگ",
+      desc: "نوشیدنی انرژی‌بخش و باطراوت حاوی عصاره طبیعی جینسینگ، تقویت‌کننده تمرکز و انرژی پایدار با طعم عالی."
+    },
+    ps: {
+      title: "د جینسینګ انرژي لرونکی څښاک (Ginseng Energy)",
+      unit: "۲۵۰ ملي لیتره ډبۍ • طبیعي جینسینګ",
+      desc: "د طبیعي جینسینګ ځانګړي عصاره لرونکی انرژي بخش څښاک، د تمرکز او دوامداره انرژۍ لپاره په زړه پورې خوند سره."
+    },
+    fr: {
+      title: "Boisson Énergisante au Ginseng 250ml",
+      unit: "Canette 250ml • Ginseng Naturel",
+      desc: "Boisson rafraîchissante et stimulante enrichie à l'extrait naturel de ginseng pour une vitalité durable et un goût unique."
+    },
+    nl: {
+      title: "Ginseng Energiedrank 250ml",
+      unit: "250ml Blikje • Natuurlijke Ginseng",
+      desc: "Verkwikkende en verfrissende energiedrank verrijkt met natuurlijk ginseng-extract voor aanhoudende energie en heerlijke smaak."
+    },
+    es: {
+      title: "Bebida Energética de Ginseng 250ml",
+      unit: "Lata 250ml • Ginseng Natural",
+      desc: "Bebida revitalizante y refrescante con extracto natural de ginseng para una energía duradera y delicioso sabor."
+    },
+    it: {
+      title: "Energy Drink al Ginseng 250ml",
+      unit: "Lattina 250ml • Ginseng Naturale",
+      desc: "Bevanda energizzante e rinfrescante arricchita con estratto naturale di ginseng per una carica prolungata e gusto eccellente."
+    },
+    tr: {
+      title: "Ginseng Enerji İçeceği 250ml",
+      unit: "250ml İnce Kutu • Doğal Ginseng",
+      desc: "Doğal ginseng özü ile zenginleştirilmiş, gün boyu zindelik ve enerji veren canlandırıcı içecek."
+    }
+  },
+  prod_energy_carbo: {
+    en: {
+      title: "Carbo Energy Drink 250ml",
+      unit: "250ml Slim Can • Rapid Energy",
+      desc: "High-performance hydration and energizing carbonated drink designed for active days, athletes, and fast revitalization."
+    },
+    de: {
+      title: "Carbo Energy Drink 250ml",
+      unit: "250ml Dose • Schnelle Energie",
+      desc: "Leistungsstarker Energy Drink für Sport, Alltag und schnelle Regeneration mit fruchtiger Frische."
+    },
+    fa: {
+      title: "نوشیدنی انرژی‌زا کربو (Carbo Energy)",
+      unit: "قوطی ۲۵۰ میلی‌لیتر • انرژی سریع و هیدراتاسیون",
+      desc: "نوشیدنی انرژی‌زا و هیدراتاسیون مخصوص ورزشکاران و فعالیت‌های روزانه با طعم نشاط‌آور و خنک."
+    },
+    ps: {
+      title: "د کاربو انرژي څښاک (Carbo Energy)",
+      unit: "۲۵۰ ملي لیتره ډبۍ • چټکه انرژي",
+      desc: "د ورزشکارانو او ورځني فعال ژوند لپاره د چټکې هایډریشن او باطراوته انرژۍ څښاک."
+    },
+    fr: {
+      title: "Boisson Énergisante Carbo 250ml",
+      unit: "Canette 250ml • Énergie Rapide",
+      desc: "Boisson énergisante idéale pour les sportifs et les journées actives, offrant une réhydratation et un coup de fouet immédiat."
+    },
+    nl: {
+      title: "Carbo Energiedrank 250ml",
+      unit: "250ml Blikje • Snelle Energie",
+      desc: "Hoogwaardige energiedrank ontworpen voor sporters en actieve dagen met snelle hydratatie en frisse smaak."
+    },
+    es: {
+      title: "Bebida Energética Carbo 250ml",
+      unit: "Lata 250ml • Energía Rápida",
+      desc: "Bebida energética e hidratante ideal para el deporte y jornadas activas, aportando vigor instantáneo."
+    },
+    it: {
+      title: "Energy Drink Carbo 250ml",
+      unit: "Lattina 250ml • Energia Rapida",
+      desc: "Bevanda energetica studiata per atleti e giornate intense, garantisce idratazione rapida e massima vitalità."
+    },
+    tr: {
+      title: "Carbo Enerji İçeceği 250ml",
+      unit: "250ml İnce Kutu • Hızlı Enerji",
+      desc: "Sporcular ve yoğun tempolu günler için özel olarak geliştirilmiş hızlı enerji ve hidrasyon içeceği."
+    }
+  },
+  prod_afghan_gur: {
+    en: {
+      title: "Authentic Afghan Organic Gur (Cane Jaggery 1kg)",
+      unit: "1 kg Pack • Pure Unrefined Jaggery",
+      desc: "100% natural unrefined Afghan cane sugar, rich in minerals and iron, with deep authentic traditional caramel flavor."
+    },
+    de: {
+      title: "Traditioneller afghanischer Bio-Gur (Rohrzucker 1kg)",
+      unit: "1 kg Packung • Reiner unraffinierter Rohrzucker",
+      desc: "100% natürlicher afghanischer Gur, reich an Mineralstoffen und Eisen, unverfälschter traditioneller Karamellgeschmack."
+    },
+    fa: {
+      title: "گور سنتی خالص و ارگانیک افغانستانی (شکر سرخ ۱ کیلو)",
+      unit: "بسته ۱ کیلوگرم • شکر سرخ ۱۰۰٪ طبیعی",
+      desc: "گور خالص و درجه یک سنتی افغانستان، تهیه شده از نیشکر خالص، غنی از آهن و مواد معدنی مفید برای سلامتی."
+    },
+    ps: {
+      title: "اصلي او طبیعي افغاني ګوړه (۱ کیلو خالصه ګوړه)",
+      unit: "۱ کیلو کڅوړه • ۱۰۰٪ طبیعي سره بوره",
+      desc: "د افغانستان پخوانۍ او ځانګړې طبیعي ګوړه، په اوسپنه او منرالونو بډایه، په بشپړ طبیعي او غوره خوند سره."
+    },
+    fr: {
+      title: "Gur Bio Traditionnel Afghan (Sucre de Canne Brut 1kg)",
+      unit: "Paquet de 1 kg • Sucre de Canne Brut 100% Naturel",
+      desc: "Véritable jaggery afghan non raffiné, riche en minéraux et fer, avec une saveur gourmande et authentique de caramel."
+    },
+    nl: {
+      title: "Traditionele Afghaanse Bio Gur (Rietsuiker 1kg)",
+      unit: "1 kg Pakket • Zuivere Ongeraffineerde Gur",
+      desc: "100% natuurlijke ongeraffineerde rietsuiker uit Afghanistan, rijk aan mineralen en ijzer met een diepe karamelsmaak."
+    },
+    es: {
+      title: "Gur Orgánico Tradicional Afgano (Panela / Azúcar de Caña 1kg)",
+      unit: "Paquete de 1 kg • Azúcar de Caña Pura Sin Refinar",
+      desc: "Panela tradicional afgana 100% natural, rica en hierro y minerales, con un exquisito sabor acaramelado."
+    },
+    it: {
+      title: "Gur Tradizionale Bio Afghano (Zucchero di Canna Grezzo 1kg)",
+      unit: "Confezione da 1 kg • Zucchero Grezzo Puro 100%",
+      desc: "Autentico zucchero di canna integrale afghano, ricco di ferro e nutrienti, dal sapore unico e naturalmente caramellato."
+    },
+    tr: {
+      title: "Geleneksel Organik Afgan Goru (Ham Şeker Kamışı 1kg)",
+      unit: "1 kg Paket • %100 Doğal Rafine Edilmemiş Gur",
+      desc: "Afganistan'ın geleneksel saf şeker kamışı goru, zengin demir ve mineral içeriğiyle şifalı ve doğal karamel aromalı."
+    }
+  },
+  prod_nabat_saffron: {
+    en: {
+      title: "Saffron Rock Candy Crystal Stick (Nabat Zafrani)",
+      unit: "Premium Saffron Candy Stick • €0.50",
+      desc: "Artisanal golden crystal rock candy stick infused with genuine Super Negin saffron threads, perfect for royal black tea."
+    },
+    de: {
+      title: "Safran-Kandis Kristallstick (Nabat Zafrani)",
+      unit: "Safran-Kandiszucker am Holzstab • 0,50 €",
+      desc: "Edler gelber Kandiszucker mit echten Safranfäden am Holzstab, ideal zum Süßen von feinem schwarzen Tee."
+    },
+    fa: {
+      title: "شاخه نبات کریستالی زعفرانی اعلا (۵۰ سنت)",
+      unit: "۱ شاخه نبات چوبی زعفرانی • ۰.۵۰ یورو",
+      desc: "شاخه نبات زعفرانی بلورین با زعفران سوپر نگین، اعلا و خوش‌طعم، مکمل عالی برای چای سیاه و دمنوش‌های سنتی."
+    },
+    ps: {
+      title: "د زعفرانو غوره کریستالي نبات لرګی (۵۰ سنټه)",
+      unit: "۱ دانه زعفراني چوبي نبات • ۰.۵۰ یورو",
+      desc: "د خالص زعفران لرونکی ځلیدونکی کریستالي نبات، د تور چای او شین چای سره د کارولو لپاره خورا زړه راښکونکی."
+    },
+    fr: {
+      title: "Bâtonnet de Sucre Candi au Safran (Nabat Zafrani)",
+      unit: "Bâtonnet Candi au Safran • 0,50 €",
+      desc: "Cristaux de sucre candi dorés infusés aux pistils de safran pur, parfaits pour sublimer un thé noir d'exception."
+    },
+    nl: {
+      title: "Saffraan Kandijstokje (Nabat Zafrani)",
+      unit: "Luxe Saffraan Kandijstokje • € 0,50",
+      desc: "Goudkleurige suikerkristallen met echte saffraandraden op een houten stokje, een verwennerij voor traditionele thee."
+    },
+    es: {
+      title: "Palito de Azúcar Candi con Azafrán (Nabat Zafrani)",
+      unit: "Palito de Azúcar con Azafrán • 0,50 €",
+      desc: "Cristales dorados de azúcar candi aromatizados con azafrán puro, ideales para endulzar el té con distinción."
+    },
+    it: {
+      title: "Bastoncino di Zucchero Candito allo Zafferano (Nabat)",
+      unit: "Stick di Zucchero allo Zafferano • 0,50 €",
+      desc: "Cristalli dorati di zucchero candito con veri fili di zafferano puro, ideali per accompagnare il tè reale."
+    },
+    tr: {
+      title: "Safranlı Kristal Nöbet Şekeri Çubuğu (Nabat)",
+      unit: "Özel Safranlı Ahşap Çubuk Şeker • 0,50 €",
+      desc: "Gerçek süper negin safran telleriyle harmanlanmış şifalı ve nefis altın rengi kristal çubuk nöbet şekeri."
+    }
+  },
+  prod_cardamom_akbar: {
+    en: {
+      title: "Emperor Akbar Green Cardamom - Purple Grade (1kg Sealed)",
+      unit: "1 kg Sealed Aroma-Lock Pack • Bold 8mm+",
+      desc: "World-renowned Emperor Akbar Purple Grade Alleppey green cardamom. Jumbo 8mm+ pods, rich natural oils, and sealed freshness with free DHL shipping."
+    },
+    de: {
+      title: "Emperor Akbar Grüner Kardamom - Lila Sorte (1kg Original)",
+      unit: "1 kg Aroma-Versiegelte Packung • Große 8mm+ Kapseln",
+      desc: "Weltberühmter grüner Kardamom der Spitzenklasse (Purple Grade, 8mm+ Kapseln) mit vollem ätherischen Aroma und gratis DHL-Versand."
+    },
+    fa: {
+      title: "هل اکبر بنفش اعلا (بسته ۱ کیلوگرم پلمپ - اصل)",
+      unit: "بسته ۱ کیلوگرم • گرید بنفش درشت ۸+ میلی‌متر",
+      desc: "هل سبز اصل امپراطور اکبر (Emperor Akbar Purple) با درشت‌ترین دانه‌ها (۸+ میلی‌متر)، عطر جادویی ماندگار و بسته‌بندی معطر زیپ‌کیپ با ارسال رایگان DHL."
+    },
+    ps: {
+      title: "امپراتور اکبر ارغواني شین هیل (۱ کیلو مهربنده اصل کڅوړه)",
+      unit: "۱ کیلو کڅوړه • ارغواني درجه د ۸+ ملي متر دانې",
+      desc: "د نړۍ نامتو امپراتور اکبر ارغواني درجې شین هیل، تر ټولو غټې دانې او عالي معطر بوی، د وړيا DHL لېږد سره."
+    },
+    fr: {
+      title: "Cardamome Verte Emperor Akbar - Qualité Violette (1kg Scellé)",
+      unit: "Paquet de 1 kg Scellé • Grosses Capsules 8mm+",
+      desc: "La célèbre cardamome verte Emperor Akbar Purple Grade. Grosses gousses de 8 mm+, arôme intense et livraison DHL gratuite."
+    },
+    nl: {
+      title: "Emperor Akbar Groene Kardemom - Paarse Kwaliteit (1kg)",
+      unit: "1 kg Verzegelde Aroma-Lock Verpakking • Grote 8mm+ Peulen",
+      desc: "Wereldberoemde Emperor Akbar kardemom (Purple Grade). Extra grote 8mm+ peulen, rijke oliën en gratis DHL-verzending."
+    },
+    es: {
+      title: "Cardamomo Verde Emperor Akbar - Grado Púrpura (1kg Sellado)",
+      unit: "Paquete Sellado de 1 kg • Vainas Grandes de 8mm+",
+      desc: "El célebre cardamomo verde Emperor Akbar Grado Púrpura. Vainas jumbo de más de 8 mm, aroma puro y envío DHL gratis."
+    },
+    it: {
+      title: "Cardamomo Verde Emperor Akbar - Grado Viola (1kg Sigillato)",
+      unit: "Confezione Sigillata da 1 kg • Capsule Grandi 8mm+",
+      desc: "Famoso cardamomo verde Emperor Akbar Purple Grade. Capsule giganti da 8mm+, profumo intenso e spedizione DHL gratuita."
+    },
+    tr: {
+      title: "Emperor Akbar Mor Kalite Yeşil Kakule (1kg Mühürlü)",
+      unit: "1 kg Özel Kilitli Paket • İri 8mm+ Taneler",
+      desc: "Dünyaca ünlü Emperor Akbar mor seri iri taneli (8mm+) yoğun aromalı hakiki yeşil kakule, ücretsiz DHL kargo ile."
+    }
   }
 };
 
@@ -1834,5 +2170,12 @@ const DEFAULT_PRODUCTS = [
   { id: 'p6', category: 'fruits', price: 22.00, image: 'assets/dried_fruits.jpg', inStock: true },
   { id: 'p7', category: 'saffron', price: 35.00, image: 'assets/rb_royal_box.jpg', inStock: true },
   { id: 'p8', category: 'fruits', price: 18.00, image: 'assets/dried_fruits.jpg', inStock: true },
-  { id: 'p_chickpeas', category: 'nuts', price: 3.00, image: 'assets/almonds.jpg', inStock: true }
+  { id: 'p_chickpeas', category: 'nuts', price: 3.00, image: 'assets/almonds.jpg', inStock: true },
+  { id: 'pkg_royal_55', category: 'packages', price: 55.00, image: 'https://files.catbox.moe/w3zc40.jpg', inStock: true },
+  { id: 'pkg_pouch_60', category: 'packages', price: 60.00, image: 'https://files.catbox.moe/bq14ls.jpg', inStock: true },
+  { id: 'prod_cardamom_akbar', category: 'nuts', price: 70.00, image: 'https://files.catbox.moe/jh7iaj.jpg', inStock: true },
+  { id: 'prod_energy_ginseng', category: 'drinks', price: 1.00, image: 'https://files.catbox.moe/ub0nd0.png', inStock: true },
+  { id: 'prod_energy_carbo', category: 'drinks', price: 1.00, image: 'https://files.catbox.moe/5kbm6t.png', inStock: true },
+  { id: 'prod_afghan_gur', category: 'fruits', price: 8.00, image: 'https://files.catbox.moe/02kf9e.png', inStock: true },
+  { id: 'prod_nabat_saffron', category: 'saffron', price: 0.50, image: 'https://files.catbox.moe/x3pmzj.jpg', inStock: true }
 ];
