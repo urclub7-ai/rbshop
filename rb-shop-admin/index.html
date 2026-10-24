@@ -345,6 +345,53 @@
               </div>
             </div>
 
+            <!-- Payment Gateway Surcharge Configuration (تنظیمات کارمزد درگاه پرداخت آنلاین) -->
+            <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <div class="flex items-center justify-between flex-wrap gap-2">
+                <label class="block text-xs font-bold text-white flex items-center gap-2">
+                  <i class="fa-solid fa-credit-card text-sky-400"></i>
+                  <span>تنظیمات کارمزد درگاه پرداخت آنلاین (PayPal و کارت):</span>
+                </label>
+                <span class="text-[10px] text-amber-300 font-bold bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-500/40">محاسبه خودکار در سبد خرید</span>
+              </div>
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                وقتی مشتری پرداخت آنلاین (PayPal یا کارت) را انتخاب می‌کند، این کارمزد به صورت خودکار به فاکتور مشتری اضافه می‌شود تا هیچ مبلغی از پول آقای بختیاری کسر نگردد. برای واریز مستقیم بانکی کارمزد صفر (۰٪) است.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">درصد کارمزد درگاه پی‌پال (%):</label>
+                  <div class="relative">
+                    <input type="number" step="0.01" min="0" id="storePayFeePercentInput" required placeholder="2.49" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">%</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 mt-1 block">کارمزد رسمی پی‌پال در آلمان: ۲.۴۹٪</span>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">کارمزد ثابت درگاه پی‌پال (€):</label>
+                  <div class="relative">
+                    <input type="number" step="0.01" min="0" id="storePayFeeFixedInput" required placeholder="0.35" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
+                  </div>
+                  <span class="text-[10px] text-slate-500 mt-1 block">کارمزد ثابت پی‌پال در آلمان: ۰.۳۵ یورو</span>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">شماره شبا (IBAN) دکان برای واریز مستقیم بانکی:</label>
+                  <input type="text" id="storeIbanInput" placeholder="DE49 2105 0170 0000 0000 00" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                  <span class="text-[10px] text-slate-500 mt-1 block">مشتری با انتخاب واریز بانکی، این شبا را می‌بیند</span>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">نام دارنده حساب بانکی (Inhaber):</label>
+                  <input type="text" id="storeBankHolderInput" placeholder="Ramazan Bakhtyary" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-bold text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
+                  <span class="text-[10px] text-slate-500 mt-1 block">نام صاحب حساب در بانک آلمان</span>
+                </div>
+              </div>
+            </div>
+
             <div class="pt-2">
               <button type="submit" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition">
                 <i class="fa-solid fa-floppy-disk text-base"></i>
@@ -1455,6 +1502,14 @@
             s.freeShippingThreshold = parseFloat(shipData.unit) || s.freeShippingThreshold;
           }
 
+          // Fetch payment fee config from Supabase
+          const { data: feeData } = await sbClient.from('products').select('*').eq('id', '__store_payment_fee__').maybeSingle();
+          if (feeData) {
+            s.payFeePercent = parseFloat(feeData.price) || 2.49;
+            s.payFeeFixed = parseFloat(feeData.unit) || 0.35;
+            s.iban = feeData.description || 'DE49 2105 0170 0000 0000 00';
+          }
+
           localStorage.setItem('rb_store_settings', JSON.stringify(s));
           localStorage.setItem('rb_shipping_settings', JSON.stringify({ base: s.shippingBase, threshold: s.freeShippingThreshold }));
           populateSettingsForm(s);
@@ -1473,6 +1528,18 @@
       }
       if (document.getElementById('storeFreeShippingThresholdInput')) {
         document.getElementById('storeFreeShippingThresholdInput').value = (typeof s.freeShippingThreshold !== 'undefined' ? Number(s.freeShippingThreshold) : 50.00).toFixed(2);
+      }
+      if (document.getElementById('storePayFeePercentInput')) {
+        document.getElementById('storePayFeePercentInput').value = (typeof s.payFeePercent !== 'undefined' ? Number(s.payFeePercent) : 2.49).toFixed(2);
+      }
+      if (document.getElementById('storePayFeeFixedInput')) {
+        document.getElementById('storePayFeeFixedInput').value = (typeof s.payFeeFixed !== 'undefined' ? Number(s.payFeeFixed) : 0.35).toFixed(2);
+      }
+      if (document.getElementById('storeIbanInput')) {
+        document.getElementById('storeIbanInput').value = s.iban || 'DE49 2105 0170 0000 0000 00';
+      }
+      if (document.getElementById('storeBankHolderInput')) {
+        document.getElementById('storeBankHolderInput').value = s.bankHolder || 'Ramazan Bakhtyary';
       }
     }
 
@@ -1514,6 +1581,22 @@
           title: 'Shipping Config',
           price: shippingBase,
           unit: freeShippingThreshold.toString(),
+          category: 'system_setting',
+          in_stock: false
+        }], { onConflict: 'id' }).then(() => {});
+
+        const feePercent = parseFloat(document.getElementById('storePayFeePercentInput').value) || 2.49;
+        const feeFixed = parseFloat(document.getElementById('storePayFeeFixedInput').value) || 0.35;
+        const iban = document.getElementById('storeIbanInput').value.trim();
+        const holder = document.getElementById('storeBankHolderInput').value.trim();
+
+        sbClient.from('products').upsert([{
+          id: '__store_payment_fee__',
+          title: 'Payment Fee Config',
+          price: feePercent,
+          unit: feeFixed.toString(),
+          description: iban,
+          variant: holder,
           category: 'system_setting',
           in_stock: false
         }], { onConflict: 'id' }).then(() => {});

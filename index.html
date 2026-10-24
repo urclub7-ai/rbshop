@@ -989,6 +989,66 @@
             </div>
           </div>
 
+            <!-- Payment Method Selection (انتخاب روش پرداخت با محاسبه دقیق کارمزد) -->
+            <div class="space-y-2 pt-2.5 border-t border-brand-border/60">
+              <label data-i18n="cart_field_payment" class="block text-[11px] font-bold text-slate-300">
+                روش پرداخت را انتخاب کنید (Zahlungsmethode):
+              </label>
+              
+              <div class="space-y-2" id="paymentMethodSelector">
+                <!-- Method 1: PayPal & Online Cards -->
+                <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-2.5 rounded-xl bg-black/60 border-2 border-emerald-500 cursor-pointer transition select-none flex items-start gap-2.5">
+                  <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-emerald-500 pointer-events-none">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-1 flex-wrap">
+                      <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                        <i class="fa-brands fa-paypal text-sky-400"></i>
+                        <span data-i18n="pay_method_paypal">پرداخت آنلاین (PayPal، ویزا، مسترکارت)</span>
+                      </span>
+                      <span id="paypalFeeBadge" class="text-[9px] font-bold text-amber-300 bg-amber-950/80 border border-amber-500/40 px-1.5 py-0.5 rounded-md">
+                        +۲.۴۹٪ + ۰.۳۵€ کارمزد درگاه
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-0.5" data-i18n="pay_paypal_hint">پرداخت امن و فوری با پی‌پال، مسترکارت، ویزا یا Später Bezahlen (۳۰ روزه)</p>
+                  </div>
+                </div>
+
+                <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
+                <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-2.5 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+                  <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-emerald-500 pointer-events-none">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-1 flex-wrap">
+                      <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                        <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                        <span data-i18n="pay_method_bank">واریز مستقیم بانکی (SEPA / IBAN آلمان)</span>
+                      </span>
+                      <span class="text-[9px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-1.5 py-0.5 rounded-md" data-i18n="pay_fee_free">
+                        بدون کارمزد (۰٪ رایگان)
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-0.5" data-i18n="pay_bank_hint">انتقال مستقیم از حساب بانکی شما به حساب بانکی در آلمان بدون هیچ کارمزدی</p>
+                  </div>
+                </div>
+
+                <!-- Method 3: WhatsApp Order -->
+                <div onclick="selectPaymentMethod('wa')" id="payCard-wa" class="p-2.5 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+                  <input type="radio" name="cartPayOption" id="radio-wa" value="wa" class="mt-0.5 accent-emerald-500 pointer-events-none">
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between gap-1 flex-wrap">
+                      <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                        <span data-i18n="pay_method_wa">سفارش و هماهنگی در واتساپ</span>
+                      </span>
+                      <span class="text-[9px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-1.5 py-0.5 rounded-md" data-i18n="pay_fee_free">
+                        بدون کارمزد (۰٪ رایگان)
+                      </span>
+                    </div>
+                    <p class="text-[10px] text-slate-400 mt-0.5" data-i18n="pay_wa_hint">هماهنگی آسان نحوه پرداخت مستقیم با مدیریت در چت واتساپ</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
 
 
         </div>
@@ -1014,13 +1074,22 @@
             <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
           </div>
 
-          <!-- Shipping Breakdown Row (Clear & transparent breakdown) -->
+          <!-- Shipping Breakdown Row -->
           <div class="flex items-center justify-between text-brand-silver">
             <span class="flex items-center gap-1.5">
               <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
               <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
             </span>
             <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
+          </div>
+
+          <!-- Payment Processing Fee Row (کارمزد درگاه پرداخت آنلاین - دقیق و شفاف) -->
+          <div class="flex items-center justify-between text-brand-silver" id="paymentFeeRow">
+            <span class="flex items-center gap-1.5">
+              <i class="fa-solid fa-credit-card text-[11px] text-amber-400"></i>
+              <span data-i18n="cart_payment_fee">Payment Fee:</span>
+            </span>
+            <span id="cartPaymentFee" class="font-bold text-amber-400 font-display dir-ltr">+ 0.00 €</span>
           </div>
 
           <!-- Final Total Row -->
@@ -1056,6 +1125,35 @@
             </div>
 
             <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
+          </div>
+
+          <!-- Bank Transfer Action Section -->
+          <div id="bankTransferSection" class="space-y-2.5 hidden">
+            <div class="p-3 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-1.5 text-xs text-right">
+              <div class="text-[11px] font-bold text-emerald-300 flex items-center gap-1.5">
+                <i class="fa-solid fa-building-columns"></i>
+                <span data-i18n="pay_bank_details_title">مشخصات حساب بانکی فروشگاه در آلمان (IBAN / SEPA):</span>
+              </div>
+              <div class="p-2 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs font-bold dir-ltr text-center select-all" id="bankIbanDisplay">
+                DE49 2105 0170 0000 0000 00
+              </div>
+              <div class="flex items-center justify-between text-[11px] text-slate-300 pt-0.5">
+                <span class="text-slate-400" data-i18n="pay_bank_holder_label">نام صاحب حساب:</span>
+                <span class="font-bold text-white" id="bankHolderDisplay">Ramazan Bakhtyary</span>
+              </div>
+            </div>
+            <button onclick="checkoutWhatsApp('bank')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+              <i class="fa-brands fa-whatsapp text-base"></i>
+              <span data-i18n="btn_confirm_bank_order">ثبت سفارش و ارسال به واتساپ (واریز بانکی)</span>
+            </button>
+          </div>
+
+          <!-- WhatsApp Direct Action Section -->
+          <div id="waOrderSection" class="space-y-2.5 hidden">
+            <button onclick="checkoutWhatsApp('wa')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+              <i class="fa-brands fa-whatsapp text-base"></i>
+              <span data-i18n="btn_confirm_wa_order">ثبت و ارسال سفارش در واتساپ</span>
+            </button>
           </div>
         </div>
 
@@ -1137,6 +1235,17 @@
   <script>
     // i18n State & Setup (Default: English)
     let currentLang = localStorage.getItem('rb_lang') || 'en';
+    let selectedPaymentMethod = 'paypal'; // 'paypal', 'bank', 'wa'
+    let paymentFeeSettings = {
+      percent: 2.49,
+      fixed: 0.35,
+      iban: 'DE49 2105 0170 0000 0000 00',
+      holder: 'Ramazan Bakhtyary'
+    };
+    try {
+      const savedFee = localStorage.getItem('rb_payment_fee_settings');
+      if (savedFee) paymentFeeSettings = { ...paymentFeeSettings, ...JSON.parse(savedFee) };
+    } catch(e) {}
     let cachedProducts = (typeof DEFAULT_PRODUCTS !== 'undefined' && Array.isArray(DEFAULT_PRODUCTS)) ? DEFAULT_PRODUCTS : [];
 
     // Store Shipping Configuration (Synchronized with Admin Panel & Supabase)
@@ -1211,6 +1320,29 @@
     }
 
     // Update Cart UI with Dynamic Shipping & Breakdown
+
+    function selectPaymentMethod(method) {
+      selectedPaymentMethod = method;
+      ['paypal', 'bank', 'wa'].forEach(m => {
+        const card = document.getElementById('payCard-' + m);
+        const radio = document.getElementById('radio-' + m);
+        if (m === method) {
+          if (card) {
+            card.classList.add('border-2', 'border-emerald-500', 'bg-black/60');
+            card.classList.remove('border-white/10', 'bg-black/30');
+          }
+          if (radio) radio.checked = true;
+        } else {
+          if (card) {
+            card.classList.remove('border-2', 'border-emerald-500', 'bg-black/60');
+            card.classList.add('border-white/10', 'bg-black/30');
+          }
+          if (radio) radio.checked = false;
+        }
+      });
+      updateCartUI();
+    }
+
     function updateCartUI() {
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
@@ -1278,9 +1410,55 @@
         }
       }
 
+      // Dynamic Payment Processing Fee Calculation (کارمزد درگاه پرداخت آنلاین)
+      let paymentFee = 0;
+      const basePayable = subtotalPrice + shippingPrice;
+      if (selectedPaymentMethod === 'paypal' && basePayable > 0) {
+        const r = (parseFloat(paymentFeeSettings.percent) || 2.49) / 100;
+        const f = parseFloat(paymentFeeSettings.fixed) || 0.35;
+        // Gross formula so merchant receives 100% net of the order amount
+        const gross = (basePayable + f) / (1 - r);
+        paymentFee = Math.max(0, Math.round((gross - basePayable) * 100) / 100);
+      }
+      const actualFinalTotal = basePayable + paymentFee;
+
+      const feeEl = document.getElementById('cartPaymentFee');
+      if (feeEl) {
+        if (selectedPaymentMethod === 'paypal') {
+          feeEl.className = 'font-bold text-amber-400 font-display dir-ltr';
+          feeEl.textContent = '+ ' + formatLocalizedPrice(paymentFee, currentLang);
+        } else {
+          feeEl.className = 'font-bold text-emerald-400 font-display dir-ltr';
+          feeEl.textContent = dict.pay_fee_free || (currentLang === 'fa' ? '۰.۰۰ € (رایگان - ۰٪)' : '0.00 € (0% Free)');
+        }
+      }
+
+      // Update badge text on paypal card
+      const feeBadge = document.getElementById('paypalFeeBadge');
+      if (feeBadge) {
+        const pStr = (parseFloat(paymentFeeSettings.percent) || 2.49).toFixed(2);
+        const fStr = (parseFloat(paymentFeeSettings.fixed) || 0.35).toFixed(2);
+        feeBadge.textContent = `+${pStr}% + ${fStr}€ ${currentLang === 'fa' ? 'کارمزد درگاه' : 'Fee'}`;
+      }
+
+      // Toggle action sections based on payment method
+      const paypalSec = document.getElementById('paypalSection');
+      const bankSec = document.getElementById('bankTransferSection');
+      const waSec = document.getElementById('waOrderSection');
+
+      if (paypalSec) paypalSec.classList.toggle('hidden', selectedPaymentMethod !== 'paypal');
+      if (bankSec) bankSec.classList.toggle('hidden', selectedPaymentMethod !== 'bank');
+      if (waSec) waSec.classList.toggle('hidden', selectedPaymentMethod !== 'wa');
+
+      // Update Bank IBAN & Holder Display
+      const ibanDisp = document.getElementById('bankIbanDisplay');
+      const holderDisp = document.getElementById('bankHolderDisplay');
+      if (ibanDisp && paymentFeeSettings.iban) ibanDisp.textContent = paymentFeeSettings.iban;
+      if (holderDisp && paymentFeeSettings.holder) holderDisp.textContent = paymentFeeSettings.holder;
+
       // Final Total Amount
       const totalEl = document.getElementById('cartTotal');
-      if (totalEl) totalEl.textContent = formatLocalizedPrice(finalTotalPrice, currentLang);
+      if (totalEl) totalEl.textContent = formatLocalizedPrice(actualFinalTotal, currentLang);
 
       // Update mobile bottom bar
       const mobileBar = document.getElementById('mobileBottomCartBar');
@@ -1290,7 +1468,7 @@
           const mCount = document.getElementById('mobileBarCount');
           const mTotal = document.getElementById('mobileBarTotal');
           if (mCount) mCount.textContent = formatLocalizedNumber(totalCount, currentLang);
-          if (mTotal) mTotal.textContent = formatLocalizedPrice(finalTotalPrice, currentLang);
+          if (mTotal) mTotal.textContent = formatLocalizedPrice(actualFinalTotal, currentLang);
         } else {
           mobileBar.classList.add('hidden');
         }
@@ -1448,18 +1626,25 @@
           const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
           const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
           const shippingPrice = isFreeShipping ? 0 : shippingBase;
-          const finalTotalPrice = subtotalPrice + shippingPrice;
+
+          // Fee calculation
+          const basePayable = subtotalPrice + shippingPrice;
+          const r = (parseFloat(paymentFeeSettings.percent) || 2.49) / 100;
+          const f = parseFloat(paymentFeeSettings.fixed) || 0.35;
+          const gross = (basePayable + f) / (1 - r);
+          const paymentFee = Math.max(0, Math.round((gross - basePayable) * 100) / 100);
+          const finalOrderTotal = basePayable + paymentFee;
 
           return actions.order.create({
             purchase_units: [{
               description: "R.B Shop - Authentic Afghan Dried Fruits & Royal Gifts",
               amount: {
                 currency_code: 'EUR',
-                value: finalTotalPrice.toFixed(2),
+                value: finalOrderTotal.toFixed(2),
                 breakdown: {
                   item_total: {
                     currency_code: 'EUR',
-                    value: subtotalPrice.toFixed(2)
+                    value: (subtotalPrice + paymentFee).toFixed(2)
                   },
                   shipping: {
                     currency_code: 'EUR',
@@ -1626,8 +1811,9 @@
       }
     }
 
-    function checkoutWhatsApp() {
+    function checkoutWhatsApp(methodOverride) {
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      const activeMethod = methodOverride || selectedPaymentMethod;
 
       if (cart.length === 0) {
         showToast(dict.cart_drawer_empty || 'Please add at least one item to your cart!');
@@ -1640,7 +1826,6 @@
       const plzEl = document.getElementById('custPlz');
       const cityEl = document.getElementById('custCity');
       const countryEl = document.getElementById('custCountry');
-      const methodEl = document.getElementById('custPaymentMethod');
 
       const name = nameEl ? nameEl.value.trim() : '';
       const phone = phoneEl ? phoneEl.value.trim() : '';
@@ -1648,7 +1833,11 @@
       const plz = plzEl ? plzEl.value.trim() : '';
       const city = cityEl ? cityEl.value.trim() : '';
       const country = countryEl ? countryEl.value : 'Germany (Deutschland)';
-      const payMethod = methodEl ? methodEl.value : 'PayPal';
+
+      let payMethodTitle = 'Online PayPal / Card';
+      if (activeMethod === 'bank') payMethodTitle = 'Bank Transfer (SEPA / IBAN Germany) - 0% Fee';
+      else if (activeMethod === 'wa') payMethodTitle = 'WhatsApp Order / Direct Coordination - 0% Fee';
+      else payMethodTitle = 'PayPal / Credit Card';
 
       // Validation for complete shipping address
       if (!name || !street || !plz || !city) {
@@ -1955,6 +2144,14 @@
               shippingSettings.base = parseFloat(shipCfg.price) || 1.00;
               shippingSettings.threshold = parseFloat(shipCfg.unit) || 50.00;
               localStorage.setItem('rb_shipping_settings', JSON.stringify(shippingSettings));
+            }
+
+            const feeCfg = data.find(r => r.id === '__store_payment_fee__');
+            if (feeCfg) {
+              paymentFeeSettings.percent = parseFloat(feeCfg.price) || 2.49;
+              paymentFeeSettings.fixed = parseFloat(feeCfg.unit) || 0.35;
+              if (feeCfg.description) paymentFeeSettings.iban = feeCfg.description;
+              localStorage.setItem('rb_payment_fee_settings', JSON.stringify(paymentFeeSettings));
             }
 
             const cloudProds = data.filter(r => r.id !== '__store_shipping__' && r.category !== 'system_setting').map(r => ({
