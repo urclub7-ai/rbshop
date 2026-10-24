@@ -2,7 +2,7 @@
 <html lang="fa" dir="rtl" class="h-full bg-[#0a0b0e]">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>پنل مدیریت فروشگاه R.B Shop | کنترل محصولات و قیمت‌ها</title>
   
   <!-- Tailwind CSS CDN -->
@@ -14,7 +14,7 @@
   <!-- Supabase JS Client -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   
-  <!-- Local Fonts & Vazirmatn (Supports both root and subdirectory) -->
+  <!-- Local Fonts & Vazirmatn -->
   <style>
     @font-face {
       font-family: 'Vazirmatn';
@@ -37,7 +37,7 @@
     .font-display {
       font-family: system-ui, -apple-system, 'Vazirmatn', sans-serif;
     }
-    /* Hide scrollbar for clean horizontal swiping on mobile */
+    /* Hide scrollbars for clean horizontal swiping on mobile */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -48,6 +48,10 @@
     /* Touch target comfort */
     input, button, select {
       touch-action: manipulation;
+    }
+    /* iPhone safe area support */
+    .pb-safe {
+      padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
     }
   </style>
 
@@ -71,7 +75,7 @@
     }
   </script>
 </head>
-<body class="min-h-full flex flex-col text-slate-100 selection:bg-rose-900 selection:text-white pb-20 md:pb-6">
+<body class="min-h-full flex flex-col text-slate-100 selection:bg-rose-900 selection:text-white pb-24 md:pb-8">
 
   <!-- =========================================================================
        1. LOGIN OVERLAY (ورود به پنل مخصوص موبایل و کامپیوتر)
@@ -99,7 +103,7 @@
           <div class="relative">
             <input type="password" id="adminPasswordInput" required 
                    placeholder="رمز عبور..." 
-                   class="w-full h-13 rounded-2xl bg-black/60 border border-white/20 px-4 pr-4 pl-12 text-base text-white focus:outline-none focus:border-rose-500 transition">
+                   class="w-full h-12 rounded-2xl bg-black/60 border border-white/20 px-4 pr-4 pl-12 text-base text-white focus:outline-none focus:border-rose-500 transition">
             <button type="button" onclick="togglePasswordVisibility()" class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white p-1.5 text-base">
               <i class="fa-regular fa-eye" id="eyeIcon"></i>
             </button>
@@ -110,7 +114,7 @@
           </div>
         </div>
 
-        <button type="submit" class="w-full h-13 rounded-2xl bg-brand-red hover:bg-brand-redHover active:scale-98 text-white font-black text-base flex items-center justify-center gap-2 shadow-xl shadow-rose-950/60 transition">
+        <button type="submit" class="w-full h-12 rounded-2xl bg-brand-red hover:bg-brand-redHover active:scale-98 text-white font-black text-base flex items-center justify-center gap-2 shadow-xl shadow-rose-950/60 transition">
           <i class="fa-solid fa-arrow-right-to-bracket text-lg"></i>
           <span>ورود به مدیریت دکان</span>
         </button>
@@ -128,41 +132,44 @@
        ========================================================================= -->
   <div id="mainDashboard" class="flex-1 flex flex-col hidden">
     
-    <!-- Top Bar Header -->
+    <!-- Top Bar Header (Optimized for Mobile) -->
     <header class="bg-[#10121a]/95 border-b border-white/10 sticky top-0 z-30 backdrop-blur-md">
-      <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-3 flex items-center justify-between gap-3">
+      <div class="max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-2.5 sm:py-3 flex items-center justify-between gap-2.5">
         
         <!-- Brand Identity -->
-        <div class="flex items-center gap-2.5">
-          <div class="w-10 h-10 rounded-xl bg-black border border-white/10 p-1 shrink-0">
+        <div class="flex items-center gap-2">
+          <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-black border border-white/10 p-1 shrink-0">
             <img src="../assets/logo_official_2026.png?v=3" onerror="this.onerror=null; this.src='assets/logo_official_2026.png?v=3'" alt="R.B Shop" class="w-full h-full object-contain">
           </div>
           <div>
             <div class="flex items-center gap-1.5">
               <span class="text-sm sm:text-base font-black text-white font-display">R.B Shop</span>
-              <span class="px-2 py-0.5 rounded-md bg-rose-900/60 border border-rose-500/30 text-[10px] font-bold text-rose-300">پنل دکان</span>
+              <span class="px-1.5 py-0.5 rounded-md bg-rose-900/60 border border-rose-500/30 text-[9px] sm:text-[10px] font-bold text-rose-300">پنل دکان</span>
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-400">مدیریت: رمضان بختیاری</div>
+            <div class="text-[10px] text-slate-400 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>رمضان بختیاری</span>
+            </div>
           </div>
         </div>
 
         <!-- Quick Top Actions -->
-        <div class="flex items-center gap-2">
-          <!-- Cloud DB Badge -->
-          <div class="hidden sm:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-[11px] font-bold text-emerald-300">
+        <div class="flex items-center gap-1.5 sm:gap-2">
+          <!-- Cloud DB Badge (Desktop only) -->
+          <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-[11px] font-bold text-emerald-300">
             <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            <span>دیتابیس ابری Supabase</span>
+            <span>دیتابیس ابری فعال</span>
           </div>
 
-          <a id="topShopLink" href="../index.html" target="_blank" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-xs font-bold text-white flex items-center gap-1.5 transition">
-            <i class="fa-solid fa-arrow-up-right-from-square text-rose-400"></i>
-            <span class="hidden sm:inline">مشاهده فروشگاه</span>
-            <span class="sm:hidden">دیدن سایت</span>
+          <a id="topShopLink" href="../index.html" target="_blank" class="px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-white/10 hover:bg-white/15 border border-white/15 text-xs font-bold text-white flex items-center gap-1.5 transition active:scale-95">
+            <i class="fa-solid fa-arrow-up-right-from-square text-rose-400 text-xs"></i>
+            <span class="hidden sm:inline">مشاهده دکان</span>
+            <span class="sm:hidden text-[11px]">دیدن سایت</span>
           </a>
           
-          <button onclick="handleLogout()" class="px-3 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/40 text-xs font-bold text-rose-300 flex items-center gap-1.5 transition" title="خروج از حساب">
-            <i class="fa-solid fa-power-off"></i>
-            <span class="hidden sm:inline">خروج</span>
+          <button onclick="handleLogout()" class="px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/40 text-xs font-bold text-rose-300 flex items-center gap-1.5 transition active:scale-95" title="خروج از حساب">
+            <i class="fa-solid fa-power-off text-xs"></i>
+            <span class="hidden sm:inline text-xs">خروج</span>
           </button>
         </div>
 
@@ -175,7 +182,7 @@
         <button onclick="switchTab('products')" id="tabBtn-products" class="tab-btn active px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition bg-brand-red text-white shadow-sm shrink-0">
           <i class="fa-solid fa-boxes-stacked"></i>
           <span>محصولات و قیمت‌ها</span>
-          <span id="tabProductCount" class="px-1.5 py-0.2 rounded-md bg-black/40 text-[11px]">۱۲</span>
+          <span id="tabProductCount" class="px-1.5 py-0.2 rounded-md bg-black/40 text-[11px]">۲۰</span>
         </button>
 
         <button onclick="switchTab('store')" id="tabBtn-store" class="tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold flex items-center gap-2 transition bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 shrink-0">
@@ -191,62 +198,69 @@
     </div>
 
     <!-- Main Content Area -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-3.5 sm:px-6 lg:px-8 py-4 sm:py-7">
+    <main class="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-3.5 sm:py-7">
 
       <!-- =====================================================================
            TAB 1: PRODUCTS & PRICES MANAGEMENT
            ===================================================================== -->
-      <section id="tabContent-products" class="tab-panel space-y-4 sm:space-y-6">
+      <section id="tabContent-products" class="tab-panel space-y-3.5 sm:space-y-5">
         
-        <!-- Action Bar: Add Product, Add Package & Search -->
-        <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
+        <!-- Mobile-First Action Cards: Add Product & Add Royal Package -->
+        <div class="grid grid-cols-2 gap-2.5 sm:flex sm:items-center sm:gap-3">
           
-          <div class="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
-            <!-- Add Product Button -->
-            <button onclick="openAddProductModal()" class="flex-1 sm:flex-initial h-12 px-4 sm:px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
-              <i class="fa-solid fa-plus-circle text-base"></i>
-              <span>افزودن جنس نو به دکان</span>
-            </button>
+          <!-- Add Regular Product Card -->
+          <button onclick="openAddProductModal()" class="h-14 sm:h-12 px-3 sm:px-5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition border border-emerald-400/30">
+            <i class="fa-solid fa-plus-circle text-lg sm:text-base text-emerald-200"></i>
+            <div class="text-right sm:text-center leading-tight">
+              <div class="font-black">+ جنس جدید</div>
+              <div class="text-[9px] text-emerald-200 font-normal sm:hidden">بادام، پسته، زعفران...</div>
+            </div>
+          </button>
 
-            <!-- Add Royal Package Button -->
-            <button onclick="openAddPackageModal()" class="flex-1 sm:flex-initial h-12 px-4 sm:px-5 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-950/60 border border-amber-400/40 transition">
-              <i class="fa-solid fa-gift text-base text-amber-100"></i>
-              <span>🎁 افزودن پکیج شاهانه نو</span>
-            </button>
-          </div>
+          <!-- Add Royal Package Card -->
+          <button onclick="openAddPackageModal()" class="h-14 sm:h-12 px-3 sm:px-5 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 hover:to-amber-400 active:scale-95 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-950/60 border border-amber-400/40 transition">
+            <i class="fa-solid fa-gift text-lg sm:text-base text-amber-100"></i>
+            <div class="text-right sm:text-center leading-tight">
+              <div class="font-black">🎁 پکیج شاهانه</div>
+              <div class="text-[9px] text-amber-200 font-normal sm:hidden">باکس و بسته‌های کادویی</div>
+            </div>
+          </button>
 
-          <!-- Search Input -->
-          <div class="relative flex-1 md:max-w-xs">
-            <input type="text" id="adminSearchInput" oninput="handleAdminSearch()" placeholder="جستجوی نام جنس یا پکیج (مثلاً پسته)..." class="w-full h-11 rounded-2xl bg-[#12141c] border border-white/10 px-4 pl-9 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-rose-500">
+          <!-- Search Input (Full width on mobile, right-aligned on desktop) -->
+          <div class="col-span-2 sm:col-span-1 relative flex-1 sm:max-w-xs mt-1 sm:mt-0">
+            <input type="text" id="adminSearchInput" oninput="handleAdminSearch()" placeholder="جستجوی نام جنس (مثلاً پسته، هل، انرژی)..." class="w-full h-11 rounded-2xl bg-[#12141c] border border-white/10 px-4 pl-9 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition">
             <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
           </div>
 
         </div>
 
         <!-- Swipeable Category Filter Bar (Smooth horizontal swipe on mobile) -->
-        <div class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar w-full">
-          <button onclick="filterAdminCategory('all')" class="admin-cat-btn active px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-black transition shrink-0 shadow-sm">
-            همه اجناس (<span id="catCount-all">0</span>)
+        <div class="flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar w-full">
+          <button onclick="filterAdminCategory('all')" class="admin-cat-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white text-black transition shrink-0 shadow-sm">
+            همه (<span id="catCount-all">20</span>)
           </button>
-          <button onclick="filterAdminCategory('packages')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            🎁 پکیج‌های شاهانه (<span id="catCount-packages">0</span>)
+          <button onclick="filterAdminCategory('packages')" class="admin-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
+            🎁 پکیج‌ها (<span id="catCount-packages">0</span>)
           </button>
-          <button onclick="filterAdminCategory('nuts')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            بادام و مغزیجات (<span id="catCount-nuts">0</span>)
+          <button onclick="filterAdminCategory('nuts')" class="admin-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
+            بادام و مغزها (<span id="catCount-nuts">0</span>)
           </button>
-          <button onclick="filterAdminCategory('pinenuts')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
+          <button onclick="filterAdminCategory('pinenuts')" class="admin-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
             پسته و جلغوزه (<span id="catCount-pinenuts">0</span>)
           </button>
-          <button onclick="filterAdminCategory('fruits')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            کشمش و میوه خشک (<span id="catCount-fruits">0</span>)
+          <button onclick="filterAdminCategory('fruits')" class="admin-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
+            کشمش و میوه (<span id="catCount-fruits">0</span>)
           </button>
-          <button onclick="filterAdminCategory('saffron')" class="admin-cat-btn px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
-            زعفران اعلا (<span id="catCount-saffron">0</span>)
+          <button onclick="filterAdminCategory('saffron')" class="admin-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
+            زعفران، هل و شیرینی (<span id="catCount-saffron">0</span>)
+          </button>
+          <button onclick="filterAdminCategory('drinks')" class="admin-cat-btn px-3 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap bg-white/5 border border-white/10 text-slate-300 hover:bg-white/10 transition shrink-0">
+            ⚡ نوشیدنی (<span id="catCount-drinks">0</span>)
           </button>
         </div>
 
-        <!-- Products List / Mobile Card Grid -->
-        <div id="adminProductsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-4">
+        <!-- Products List / Mobile Compact Card Grid -->
+        <div id="adminProductsContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
           <!-- Populated dynamically via JS -->
         </div>
 
@@ -258,80 +272,80 @@
            ===================================================================== -->
       <section id="tabContent-store" class="tab-panel space-y-4 sm:space-y-6 hidden">
         
-        <div class="bg-[#12141c] border border-white/10 rounded-3xl p-5 sm:p-8 max-w-2xl mx-auto space-y-5">
-          <div class="border-b border-white/10 pb-4">
-            <h2 class="text-base sm:text-xl font-black text-white flex items-center gap-2">
+        <div class="bg-[#12141c] border border-white/10 rounded-3xl p-4 sm:p-7 max-w-2xl mx-auto space-y-4">
+          <div class="border-b border-white/10 pb-3">
+            <h2 class="text-base sm:text-lg font-black text-white flex items-center gap-2">
               <i class="fa-solid fa-store text-rose-500"></i>
               <span>مشخصات دکان، آدرس آلمان و شماره تلفن</span>
             </h2>
             <p class="text-xs text-slate-400 mt-1">این شماره و آدرس در تمام بخش‌های سایت اصلی و پیام‌های واتساپ مشتریان قرار می‌گیرد.</p>
           </div>
 
-          <form id="storeSettingsForm" onsubmit="handleSaveStoreSettings(event)" class="space-y-4">
+          <form id="storeSettingsForm" onsubmit="handleSaveStoreSettings(event)" class="space-y-3.5">
             
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">نام مدیر فروشگاه:</label>
-              <input type="text" id="storeOwnerInput" required class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white focus:outline-none focus:border-rose-500">
+              <label class="block text-xs font-bold text-slate-300 mb-1">نام مدیر فروشگاه:</label>
+              <input type="text" id="storeOwnerInput" required class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white focus:outline-none focus:border-rose-500">
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">شماره تماس و واتساپ (با کد کشور آلمان):</label>
-              <input type="text" id="storePhoneInput" required placeholder="0049 172 9343833" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm font-bold text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
-              <span class="text-[11px] text-slate-500 mt-1 block">مشتریان با کلیک روی واتساپ مستقیم به این شماره پیام سفارش می‌فرستند.</span>
+              <label class="block text-xs font-bold text-slate-300 mb-1">شماره تماس و واتساپ (با کد کشور آلمان):</label>
+              <input type="text" id="storePhoneInput" required placeholder="0049 172 9343833" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm font-bold text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
+              <span class="text-[10px] text-slate-500 mt-1 block">مشتریان با کلیک روی واتساپ مستقیم به این شماره پیام سفارش می‌فرستند.</span>
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">آدرس کامل دکان / انبار در آلمان:</label>
-              <input type="text" id="storeAddressInput" required placeholder="Möllers weg 6, 25761 Büsum" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
+              <label class="block text-xs font-bold text-slate-300 mb-1">آدرس کامل دکان / انبار در آلمان:</label>
+              <input type="text" id="storeAddressInput" required placeholder="Möllers weg 6, 25761 Büsum" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label class="block text-xs font-bold text-slate-300 mb-1.5">ایمیل فروشگاه:</label>
-                <input type="email" id="storeEmailInput" placeholder="ramazan.bakhtyari152@gmail.com" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
+                <label class="block text-xs font-bold text-slate-300 mb-1">ایمیل فروشگاه:</label>
+                <input type="email" id="storeEmailInput" placeholder="ramazan.bakhtyari152@gmail.com" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
               </div>
 
               <div>
-                <label class="block text-xs font-bold text-slate-300 mb-1.5">آی‌دی تیک‌تاک:</label>
-                <input type="text" id="storeTiktokInput" placeholder="@r.b.omar.osmanshop" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
+                <label class="block text-xs font-bold text-slate-300 mb-1">آی‌دی تیک‌تاک:</label>
+                <input type="text" id="storeTiktokInput" placeholder="@r.b.omar.osmanshop" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
               </div>
             </div>
 
             <!-- Shipping Cost Configuration (DHL / Postal Rates) -->
-            <div class="pt-4 border-t border-white/10 space-y-3">
+            <div class="pt-3 border-t border-white/10 space-y-2.5">
               <div class="flex items-center justify-between flex-wrap gap-2">
                 <label class="block text-xs font-bold text-white flex items-center gap-2">
                   <i class="fa-solid fa-truck-fast text-amber-400"></i>
                   <span>تنظیمات هزینه ارسال و پست دکان (DHL / اروپا):</span>
                 </label>
-                <span class="text-[10px] text-emerald-300 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40">محاسبه هوشمند در سبد خرید</span>
+                <span class="text-[10px] text-emerald-300 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-full border border-emerald-500/40">محاسبه خودکار</span>
               </div>
               <p class="text-[11px] text-slate-400 leading-relaxed">
-                هزینه ارسال به صورت تفکیک‌شده و واضح در سبد خرید مشتری نمایش داده می‌شود. اگر خرید مشتری به سقف تعیین شده برسد، هزینه ارسال به طور خودکار <strong>رایگان (۰ یورو)</strong> خواهد شد.
+                اگر خرید مشتری به سقف تعیین شده برسد، هزینه ارسال به طور خودکار <strong class="text-emerald-400">رایگان (۰ یورو)</strong> خواهد شد.
               </p>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1.5">هزینه ارسال پایه به سراسر آلمان (€):</label>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">هزینه ارسال پایه به سراسر آلمان (€):</label>
                   <div class="relative">
-                    <input type="number" step="0.5" min="0" id="storeShippingBaseInput" required placeholder="1.00" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <input type="number" step="0.5" min="0" id="storeShippingBaseInput" required placeholder="1.00" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                     <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
                   </div>
                   <span class="text-[10px] text-slate-500 mt-1 block">مثلاً ۱.۰۰ یورو یا ۵.۹۹ یورو برای سفارش‌های عادی</span>
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1.5">سقف ارسال کاملاً رایگان (€):</label>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">سقف ارسال کاملاً رایگان (€):</label>
                   <div class="relative">
-                    <input type="number" step="1" min="0" id="storeFreeShippingThresholdInput" required placeholder="50.00" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <input type="number" step="1" min="0" id="storeFreeShippingThresholdInput" required placeholder="50.00" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                     <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-emerald-400">€</span>
                   </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای مساوی یا بیشتر از این مبلغ، ارسالشان ۰ € می‌شود</span>
+                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای ۵۰ یورو یا بیشتر، ارسالشان رایگان می‌شود</span>
                 </div>
               </div>
             </div>
 
-            <div class="pt-3">
+            <div class="pt-2">
               <button type="submit" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/50 transition">
                 <i class="fa-solid fa-floppy-disk text-base"></i>
                 <span>ذخیره تغییرات آدرس، تلفن و هزینه ارسال</span>
@@ -349,27 +363,27 @@
            ===================================================================== -->
       <section id="tabContent-settings" class="tab-panel space-y-4 sm:space-y-6 hidden">
         
-        <div class="max-w-2xl mx-auto space-y-5">
+        <div class="max-w-2xl mx-auto space-y-4">
           
           <!-- Password Change Card -->
-          <div class="bg-[#12141c] border border-white/10 rounded-3xl p-5 sm:p-7 space-y-4">
-            <div class="border-b border-white/10 pb-3">
+          <div class="bg-[#12141c] border border-white/10 rounded-3xl p-4 sm:p-6 space-y-3.5">
+            <div class="border-b border-white/10 pb-2.5">
               <h3 class="text-base font-black text-white flex items-center gap-2">
                 <i class="fa-solid fa-key text-rose-500"></i>
                 <span>تغییر رمز عبور پنل مدیریت</span>
               </h3>
-              <p class="text-xs text-slate-400 mt-1">رمز عبور پیش‌فرض: <strong class="text-amber-400">rb2026</strong> است. می‌توانید آن را عوض کنید.</p>
+              <p class="text-xs text-slate-400 mt-1">رمز عبور فعلی پیش‌فرض: <strong class="text-amber-400">rb2026</strong> است.</p>
             </div>
 
-            <form id="changePasswordForm" onsubmit="handleChangePassword(event)" class="space-y-4">
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form id="changePasswordForm" onsubmit="handleChangePassword(event)" class="space-y-3.5">
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1.5">رمز عبور فعلی:</label>
-                  <input type="password" id="currentPassInput" required class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white focus:outline-none focus:border-rose-500">
+                  <label class="block text-xs font-bold text-slate-300 mb-1">رمز عبور فعلی:</label>
+                  <input type="password" id="currentPassInput" required class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white focus:outline-none focus:border-rose-500">
                 </div>
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1.5">رمز عبور جدید:</label>
-                  <input type="password" id="newPassInput" required minlength="4" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white focus:outline-none focus:border-rose-500">
+                  <label class="block text-xs font-bold text-slate-300 mb-1">رمز عبور جدید:</label>
+                  <input type="password" id="newPassInput" required minlength="4" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm text-white focus:outline-none focus:border-rose-500">
                 </div>
               </div>
 
@@ -381,24 +395,24 @@
           </div>
 
           <!-- Backup & Recovery Card -->
-          <div class="bg-[#12141c] border border-white/10 rounded-3xl p-5 sm:p-7 space-y-4">
-            <div class="border-b border-white/10 pb-3">
+          <div class="bg-[#12141c] border border-white/10 rounded-3xl p-4 sm:p-6 space-y-3.5">
+            <div class="border-b border-white/10 pb-2.5">
               <h3 class="text-base font-black text-white flex items-center gap-2">
                 <i class="fa-solid fa-database text-amber-400"></i>
-                <span>پشتیبان‌گیری و بازگشت به تنظیمات کارخانه</span>
+                <span>پشتیبان‌گیری و بازگشت به تنظیمات اولیه</span>
               </h3>
-              <p class="text-xs text-slate-400 mt-1">اگر به اشتباه جنسی را حذف کردید، می‌توانید دوباره اجناس اولیه را بازگردانید.</p>
+              <p class="text-xs text-slate-400 mt-1">اگر به اشتباه جنسی را حذف کردید، می‌توانید دوباره تمام اجناس اولیه را بازگردانید.</p>
             </div>
 
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
-              <button onclick="downloadBackupJSON()" class="flex-1 h-12 rounded-2xl bg-white/5 hover:bg-white/10 active:scale-98 border border-white/15 text-xs sm:text-sm font-bold text-white flex items-center justify-center gap-2 transition">
+              <button onclick="downloadBackupJSON()" class="flex-1 h-11 rounded-2xl bg-white/5 hover:bg-white/10 active:scale-98 border border-white/15 text-xs sm:text-sm font-bold text-white flex items-center justify-center gap-2 transition">
                 <i class="fa-solid fa-download text-sky-400"></i>
                 <span>دانلود فایل پشتیبان (بک‌آپ)</span>
               </button>
 
-              <button onclick="resetToFactoryDefaults()" class="flex-1 h-12 rounded-2xl bg-rose-950/30 hover:bg-rose-950/60 active:scale-98 border border-rose-800/40 text-xs sm:text-sm font-bold text-rose-300 flex items-center justify-center gap-2 transition">
+              <button onclick="resetToFactoryDefaults()" class="flex-1 h-11 rounded-2xl bg-rose-950/30 hover:bg-rose-950/60 active:scale-98 border border-rose-800/40 text-xs sm:text-sm font-bold text-rose-300 flex items-center justify-center gap-2 transition">
                 <i class="fa-solid fa-rotate-left"></i>
-                <span>بازگرداندن ۱۲ جنس اولیه</span>
+                <span>بازگرداندن تمام ۲۰ جنس اولیه</span>
               </button>
             </div>
           </div>
@@ -412,38 +426,38 @@
     <!-- =========================================================================
          MOBILE BOTTOM NAVIGATION (نوار دسترسی سریع پایین صفحه مخصوص گوشی)
          ========================================================================= -->
-    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0e1017]/95 backdrop-blur-xl border-t border-white/10 px-2 py-2 flex items-center justify-around shadow-2xl">
+    <nav class="md:hidden fixed bottom-0 left-0 right-0 z-40 bg-[#0e1017]/95 backdrop-blur-xl border-t border-white/10 px-2 pt-1 pb-safe flex items-center justify-around shadow-2xl">
       
       <!-- Tab 1: Products -->
       <button onclick="switchTab('products')" id="mobNav-products" class="mob-nav-btn active flex-1 flex flex-col items-center py-1 rounded-xl text-brand-red transition">
-        <i class="fa-solid fa-boxes-stacked text-lg"></i>
+        <i class="fa-solid fa-boxes-stacked text-base"></i>
         <span class="text-[10px] font-bold mt-1">اجناس</span>
       </button>
 
-      <!-- Quick Add: Big Center Button -->
-      <button onclick="openAddProductModal()" class="flex-1 flex flex-col items-center py-1 transition group">
-        <div class="w-11 h-11 -mt-5 rounded-2xl bg-emerald-600 group-hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/80 flex items-center justify-center text-lg transition transform active:scale-90">
+      <!-- Quick Add: Big Center Button (Opens 1-tap choice sheet) -->
+      <button onclick="openQuickAddChoice()" class="flex-1 flex flex-col items-center py-1 transition group">
+        <div class="w-11 h-11 -mt-5 rounded-2xl bg-emerald-600 group-hover:bg-emerald-500 text-white shadow-lg shadow-emerald-950/80 flex items-center justify-center text-lg transition transform active:scale-90 border border-emerald-400/40">
           <i class="fa-solid fa-plus"></i>
         </div>
-        <span class="text-[10px] font-bold text-emerald-400 mt-1">جنس نو</span>
+        <span class="text-[10px] font-bold text-emerald-400 mt-1">+ جدید</span>
       </button>
 
       <!-- Tab 2: Store info -->
       <button onclick="switchTab('store')" id="mobNav-store" class="mob-nav-btn flex-1 flex flex-col items-center py-1 rounded-xl text-slate-400 hover:text-white transition">
-        <i class="fa-solid fa-store text-lg"></i>
+        <i class="fa-solid fa-store text-base"></i>
         <span class="text-[10px] font-bold mt-1">دکان و تلفن</span>
       </button>
 
       <!-- Tab 3: Settings & Pass -->
       <button onclick="switchTab('settings')" id="mobNav-settings" class="mob-nav-btn flex-1 flex flex-col items-center py-1 rounded-xl text-slate-400 hover:text-white transition">
-        <i class="fa-solid fa-key text-lg"></i>
-        <span class="text-[10px] font-bold mt-1">رمز و تنظیمات</span>
+        <i class="fa-solid fa-key text-base"></i>
+        <span class="text-[10px] font-bold mt-1">رمز عبور</span>
       </button>
 
       <!-- View Shop -->
       <a id="mobShopLink" href="../index.html" target="_blank" class="flex-1 flex flex-col items-center py-1 rounded-xl text-slate-400 hover:text-white transition">
-        <i class="fa-solid fa-arrow-up-right-from-square text-lg text-rose-400"></i>
-        <span class="text-[10px] font-bold mt-1">دیدن سایت</span>
+        <i class="fa-solid fa-arrow-up-right-from-square text-base text-rose-400"></i>
+        <span class="text-[10px] font-bold mt-1">دیدن دکان</span>
       </a>
 
     </nav>
@@ -452,20 +466,47 @@
 
 
   <!-- =========================================================================
-       3. EDIT / ADD PRODUCT MODAL (فرم کشویی بسیار ساده ویژه موبایل)
+       3. QUICK ADD CHOICE SHEET (انتخاب ۱-کلیک برای پکیج یا جنس عادی در موبایل)
+       ========================================================================= -->
+  <div id="quickAddChoiceModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 hidden" onclick="closeQuickAddChoice(event)">
+    <div class="w-full sm:max-w-sm bg-[#141722] border-t sm:border border-white/15 rounded-t-3xl sm:rounded-3xl p-5 shadow-2xl space-y-3 pb-safe" onclick="event.stopPropagation()">
+      <div class="w-10 h-1 bg-white/20 rounded-full mx-auto mb-2 sm:hidden"></div>
+      <h3 class="text-sm font-black text-white text-center">چه جنسی می‌خواهید اضافه کنید؟</h3>
+      <div class="grid grid-cols-1 gap-2.5 pt-1">
+        <button onclick="closeQuickAddChoice(); openAddProductModal()" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-lg shadow-emerald-950/60 active:scale-98 transition">
+          <i class="fa-solid fa-boxes-stacked text-base text-emerald-200"></i>
+          <span>افزودن جنس عادی (بادام، پسته، زعفران، نوشیدنی...)</span>
+        </button>
+        <button onclick="closeQuickAddChoice(); openAddPackageModal()" class="w-full h-12 rounded-2xl bg-gradient-to-r from-amber-600 via-amber-500 to-amber-600 hover:from-amber-500 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2.5 shadow-lg shadow-amber-950/60 active:scale-98 transition border border-amber-400/30">
+          <i class="fa-solid fa-gift text-base text-amber-100"></i>
+          <span>🎁 افزودن پکیج شاهانه یا کادویی جدید</span>
+        </button>
+      </div>
+      <button onclick="closeQuickAddChoice()" class="w-full h-10 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-slate-400 active:scale-95 transition">
+        انصراف
+      </button>
+    </div>
+  </div>
+
+
+  <!-- =========================================================================
+       4. EDIT / ADD PRODUCT MODAL (فرم کشویی بسیار ساده ویژه موبایل)
        ========================================================================= -->
   <div id="productModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-end sm:items-center justify-center p-0 sm:p-4 hidden">
     
-    <!-- Modal Window (Slide up drawer on mobile, dialog on desktop) -->
-    <div class="w-full sm:max-w-lg bg-[#141722] border-t sm:border border-white/15 rounded-t-3xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl text-right relative max-h-[92vh] flex flex-col">
+    <!-- Modal Window (Native Slide up sheet on mobile, dialog on desktop) -->
+    <div class="w-full sm:max-w-lg bg-[#141722] border-t sm:border border-white/15 rounded-t-3xl sm:rounded-3xl p-4 sm:p-6 shadow-2xl text-right relative max-h-[92vh] flex flex-col pb-safe">
       
+      <!-- Mobile drag handle -->
+      <div class="w-12 h-1 bg-white/20 rounded-full mx-auto mb-2 sm:hidden shrink-0"></div>
+
       <!-- Modal Header (Always pinned) -->
-      <div class="flex items-center justify-between border-b border-white/10 pb-3 shrink-0">
-        <h3 id="modalTitle" class="text-base sm:text-lg font-black text-white flex items-center gap-2">
+      <div class="flex items-center justify-between border-b border-white/10 pb-2.5 shrink-0">
+        <h3 id="modalTitle" class="text-sm sm:text-base font-black text-white flex items-center gap-2">
           <i class="fa-solid fa-pen-to-square text-rose-500"></i>
           <span>ویرایش محصول</span>
         </h3>
-        <button onclick="closeProductModal()" class="w-9 h-9 rounded-2xl bg-white/10 hover:bg-white/20 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center text-sm">
+        <button onclick="closeProductModal()" class="w-8 h-8 rounded-xl bg-white/10 hover:bg-white/20 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center text-xs">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
@@ -473,101 +514,101 @@
       <!-- Form with scrollable body + pinned bottom buttons -->
       <form id="productForm" onsubmit="handleProductFormSubmit(event)" class="flex flex-col flex-1 overflow-hidden min-h-0 pt-2">
         
-        <div class="space-y-4 overflow-y-auto flex-1 pr-1 pl-1 py-2">
+        <div class="space-y-3.5 overflow-y-auto flex-1 pr-1 pl-1 py-1">
           <input type="hidden" id="prodEditId">
 
           <!-- Title -->
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1.5">نام جنس یا عنوان پکیج:</label>
-            <input type="text" id="prodEditTitle" required placeholder="مثال: پکیج شاهانه رویال یا پسته خندان" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-sm font-bold text-white focus:outline-none focus:border-rose-500">
+            <label class="block text-xs font-bold text-slate-300 mb-1">نام جنس یا عنوان پکیج:</label>
+            <input type="text" id="prodEditTitle" required placeholder="مثال: پکیج شاهانه رویال یا پسته خندان" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-3.5 text-sm font-bold text-white focus:outline-none focus:border-rose-500">
           </div>
 
           <!-- Price & Category -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-2 gap-2.5">
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">قیمت به یورو (€):</label>
+              <label class="block text-xs font-bold text-slate-300 mb-1">قیمت (€):</label>
               <div class="relative">
-                <input type="number" step="0.5" min="1" id="prodEditPrice" required placeholder="25.00" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-base font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
-                <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
+                <input type="number" step="0.5" min="0.5" id="prodEditPrice" required placeholder="25.00" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-3 pl-8 text-base font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">دسته‌بندی جنس یا پکیج:</label>
-              <select id="prodEditCategory" onchange="onCategorySelectChange(this.value)" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-3 text-xs sm:text-sm font-bold text-white focus:outline-none focus:border-rose-500">
-                <option value="packages">🎁 پکیج‌های شاهانه (بسته‌های هدیه و کادویی)</option>
-                <option value="nuts">بادام و مغزیجات</option>
+              <label class="block text-xs font-bold text-slate-300 mb-1">دسته‌بندی جنس:</label>
+              <select id="prodEditCategory" onchange="onCategorySelectChange(this.value)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-2.5 text-xs font-bold text-white focus:outline-none focus:border-rose-500">
+                <option value="packages">🎁 پکیج شاهانه</option>
+                <option value="nuts">بادام و مغزها</option>
                 <option value="pinenuts">پسته و جلغوزه</option>
                 <option value="fruits">کشمش و میوه خشک</option>
-                <option value="saffron">زعفران اعلا</option>
+                <option value="saffron">زعفران، هل و شیرینی</option>
+                <option value="drinks">⚡ نوشیدنی انرژی‌زا</option>
               </select>
             </div>
           </div>
 
           <!-- Unit & In-Stock Status -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="grid grid-cols-2 gap-2.5">
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">وزن یا مشخصات بسته / پکیج:</label>
-              <input type="text" id="prodEditUnit" placeholder="مثلاً: واحد فروش: ۱ کیلوگرم خالص یا باکس کادویی ۱.۲ کیلو" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm text-white focus:outline-none focus:border-rose-500">
+              <label class="block text-xs font-bold text-slate-300 mb-1">وزن / مشخصات:</label>
+              <input type="text" id="prodEditUnit" placeholder="مثلاً: ۱ کیلوگرم خالص یا باکس ۱.۲ کیلو" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-rose-500">
             </div>
 
             <div>
-              <label class="block text-xs font-bold text-slate-300 mb-1.5">وضعیت موجودی در دکان:</label>
-              <select id="prodEditInStock" class="w-full h-12 rounded-2xl bg-black/60 border border-white/15 px-3 text-xs sm:text-sm font-bold text-white focus:outline-none focus:border-rose-500">
-                <option value="true">🟢 موجود در دکان (قابل سفارش)</option>
+              <label class="block text-xs font-bold text-slate-300 mb-1">وضعیت موجودی:</label>
+              <select id="prodEditInStock" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-2.5 text-xs font-bold text-white focus:outline-none focus:border-rose-500">
+                <option value="true">🟢 موجود در دکان</option>
                 <option value="false">🔴 تمام شده / ناموجود</option>
               </select>
             </div>
           </div>
 
           <!-- Visual Image Picker (Upload File / Preset / Custom URL) -->
-          <div class="bg-black/50 border border-white/10 rounded-2xl p-3 sm:p-4 space-y-3">
+          <div class="bg-black/50 border border-white/10 rounded-2xl p-3 space-y-2.5">
             <div class="flex items-center justify-between">
               <label class="block text-xs font-bold text-slate-200">
-                عکس محصول یا پکیج:
+                عکس محصول:
               </label>
-              <span class="text-[11px] text-amber-400 font-semibold">آپلود فایل • انتخاب آماده • لینک</span>
+              <span class="text-[10px] text-amber-400 font-semibold">انتخاب آسان</span>
             </div>
             
             <!-- Direct File Upload & Live Preview Row -->
-            <div class="flex items-center gap-3 bg-white/5 p-3 rounded-xl border border-white/10">
-              <!-- Preview Thumbnail with status badge -->
-              <div class="relative w-16 h-16 rounded-xl bg-black border-2 border-emerald-500/50 overflow-hidden shrink-0 shadow-lg flex items-center justify-center">
+            <div class="flex items-center gap-2.5 bg-white/5 p-2 rounded-xl border border-white/10">
+              <!-- Preview Thumbnail -->
+              <div class="relative w-14 h-14 rounded-xl bg-black border border-emerald-500/50 overflow-hidden shrink-0 shadow flex items-center justify-center">
                 <img id="prodImagePreview" src="../assets/almonds.jpg" onerror="this.onerror=null; this.src='assets/almonds.jpg'" class="w-full h-full object-cover">
-                <span id="prodImageBadge" class="hidden absolute bottom-0 inset-x-0 bg-emerald-600 text-[8px] font-black text-white text-center py-0.5 shadow">آپلود شده</span>
+                <span id="prodImageBadge" class="hidden absolute bottom-0 inset-x-0 bg-emerald-600 text-[7px] font-black text-white text-center py-0.5">آپلود شد</span>
               </div>
 
               <!-- Upload File Button -->
-              <div class="flex-1 min-w-0 space-y-1.5">
+              <div class="flex-1 min-w-0 space-y-1">
                 <input type="file" id="prodFileInput" accept="image/*" onchange="handleProductFileUpload(event)" class="hidden">
-                <button type="button" onclick="document.getElementById('prodFileInput').click()" class="w-full h-10 px-3 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-600 hover:from-blue-500 hover:to-indigo-500 active:scale-98 text-white font-black text-xs flex items-center justify-center gap-2 shadow-md transition border border-blue-400/40">
-                  <i class="fa-solid fa-cloud-arrow-up text-sm text-blue-200"></i>
-                  <span>📷 آپلود عکس از موبایل / کامپیوتر</span>
+                <button type="button" onclick="document.getElementById('prodFileInput').click()" class="w-full h-9 px-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 active:scale-95 text-white font-black text-xs flex items-center justify-center gap-1.5 shadow transition border border-blue-400/40">
+                  <i class="fa-solid fa-cloud-arrow-up text-xs text-blue-200"></i>
+                  <span>📷 انتخاب عکس از گالری گوشی</span>
                 </button>
-                <div id="uploadFileNameHint" class="text-[10px] text-slate-400 truncate flex items-center gap-1">
-                  <i class="fa-solid fa-circle-check text-slate-500 text-[9px]"></i>
-                  <span>می‌توانید عکس را مستقیماً از گوشی یا کامپیوتر انتخاب کنید</span>
+                <div id="uploadFileNameHint" class="text-[9px] text-slate-400 truncate">
+                  یا از عکس‌های آماده زیر انتخاب نمایید:
                 </div>
               </div>
             </div>
 
-            <!-- Direct Link Input (optional alternative) -->
-            <div class="space-y-1">
-              <label class="block text-[11px] font-medium text-slate-400">
-                <i class="fa-solid fa-link text-[10px] ml-1"></i>یا وارد کردن لینک مستقیم عکس اینترنتی (اختیاری):
-              </label>
-              <input type="text" id="prodCustomImageUrl" oninput="handleCustomImageInput(this.value)" placeholder="https://... یا آدرس عکس دلخواه" class="w-full h-10 rounded-xl bg-black/60 border border-white/10 px-3 text-xs text-white dir-ltr text-left focus:outline-none focus:border-rose-500">
-            </div>
-
-            <!-- Preset Thumbnails Grid -->
+            <!-- Preset Thumbnails Grid (Horizontal scrollable on mobile) -->
             <div>
-              <span class="block text-[11px] font-medium text-slate-400 mb-1.5">
-                یا انتخاب سریع از عکس‌های آماده و باکس‌های هدیه:
-              </span>
-              <div id="presetPhotosGrid" class="grid grid-cols-4 sm:grid-cols-7 gap-2 p-2 bg-black/70 border border-white/10 rounded-xl max-h-36 overflow-y-auto">
+              <div id="presetPhotosGrid" class="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar p-1.5 bg-black/70 border border-white/10 rounded-xl">
                 <!-- Rendered by JS -->
               </div>
             </div>
+
+            <!-- Direct Link Input Toggle (Optional) -->
+            <details class="text-[11px] text-slate-400 group">
+              <summary class="cursor-pointer text-slate-400 hover:text-slate-200 transition py-0.5 select-none flex items-center gap-1">
+                <i class="fa-solid fa-link text-[10px] text-slate-500"></i>
+                <span>وارد کردن لینک مستقیم عکس اینترنتی (اختیاری)</span>
+              </summary>
+              <div class="pt-1.5">
+                <input type="text" id="prodCustomImageUrl" oninput="handleCustomImageInput(this.value)" placeholder="https://... آدرس عکس دلخواه" class="w-full h-9 rounded-xl bg-black/60 border border-white/10 px-3 text-xs text-white dir-ltr text-left focus:outline-none focus:border-rose-500">
+              </div>
+            </details>
 
             <!-- Hidden storage for selected image path or base64 -->
             <input type="hidden" id="prodSelectedImage" value="assets/almonds.jpg">
@@ -575,20 +616,20 @@
 
           <!-- Short Description -->
           <div>
-            <label class="block text-xs font-bold text-slate-300 mb-1.5">توضیح کوتاه (یک خط):</label>
-            <input type="text" id="prodEditDesc" placeholder="مثلاً: پوست کاغذی نازک، مغز شیرین و پرچرب" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs text-white focus:outline-none focus:border-rose-500">
+            <label class="block text-xs font-bold text-slate-300 mb-1">توضیح کوتاه (یک خط):</label>
+            <input type="text" id="prodEditDesc" placeholder="مثلاً: پوست کاغذی نازک، مغز شیرین و پرچرب" class="w-full h-10 rounded-2xl bg-black/60 border border-white/15 px-3.5 text-xs text-white focus:outline-none focus:border-rose-500">
           </div>
 
         </div>
 
         <!-- Sticky Submit / Cancel Buttons (Always pinned at the bottom) -->
-        <div class="pt-3 border-t border-white/10 flex items-center gap-2.5 shrink-0 mt-2">
-          <button type="button" onclick="closeProductModal()" class="w-1/3 h-12 rounded-2xl bg-white/5 hover:bg-white/10 active:scale-95 text-xs font-bold text-slate-300 transition">
+        <div class="pt-2.5 border-t border-white/10 flex items-center gap-2 shrink-0 mt-2">
+          <button type="button" onclick="closeProductModal()" class="w-1/3 h-11 rounded-2xl bg-white/5 hover:bg-white/10 active:scale-95 text-xs font-bold text-slate-300 transition">
             انصراف
           </button>
-          <button type="submit" class="flex-1 h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+          <button type="submit" class="flex-1 h-11 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
             <i class="fa-solid fa-check"></i>
-            <span>ثبت و ذخیره جنس</span>
+            <span>ثبت و ذخیره تغییرات</span>
           </button>
         </div>
 
@@ -598,16 +639,16 @@
 
 
   <!-- =========================================================================
-       4. TOAST NOTIFICATION (پیام‌های عملیات در بالای صفحه مانند اعلان‌های گوشی)
+       5. TOAST NOTIFICATION (پیام‌های عملیات در بالای صفحه مانند اعلان‌های گوشی)
        ========================================================================= -->
-  <div id="adminToast" class="fixed top-4 sm:top-6 left-1/2 -translate-x-1/2 z-50 px-5 py-3 rounded-2xl bg-emerald-600 text-white font-black text-xs sm:text-sm shadow-2xl shadow-emerald-950/80 flex items-center gap-2.5 transition-all duration-300 opacity-0 pointer-events-none -translate-y-4">
-    <i class="fa-solid fa-circle-check text-base"></i>
+  <div id="adminToast" class="fixed top-3 sm:top-5 left-1/2 -translate-x-1/2 z-50 px-4 py-2.5 rounded-2xl bg-emerald-600 text-white font-black text-xs sm:text-sm shadow-2xl shadow-emerald-950/80 flex items-center gap-2 transition-all duration-300 opacity-0 pointer-events-none -translate-y-4">
+    <i class="fa-solid fa-circle-check text-sm"></i>
     <span id="adminToastMsg">عملیات با موفقیت انجام شد</span>
   </div>
 
 
   <!-- =========================================================================
-       5. JAVASCRIPT LOGIC
+       6. JAVASCRIPT LOGIC
        ========================================================================= -->
   <script>
     // Supabase Cloud Configuration
@@ -631,26 +672,53 @@
       return path;
     }
 
-    // Default Preset Photo Options (Products & Royal Packages)
+    // Preset Photos Archive (All Products, Packages & Drinks)
     const PRESET_PHOTOS = [
+      { id: 'pkg_55', path: 'https://files.catbox.moe/w3zc40.jpg', title: 'پکیج ۵۵€' },
+      { id: 'pkg_60', path: 'https://files.catbox.moe/bq14ls.jpg', title: 'پاکت ۶۰€' },
       { id: 'royal_box', path: 'assets/rb_royal_box.jpg', title: 'پکیج شاهانه' },
       { id: 'box_lux', path: 'assets/box_luxury.jpg', title: 'باکس لوکس' },
       { id: 'gift_box', path: 'assets/gift_box.jpg', title: 'جعبه کادویی' },
-      { id: 'gift_tray', path: 'assets/gift_tray.jpg', title: 'سینی هدیه' },
-      { id: 'nuts', path: 'assets/mixed_nuts.jpg', title: 'آجیل مخلوط' },
-      { id: 'dried_mix', path: 'assets/dried_mix.jpg', title: 'میکس میوه' },
       { id: 'almond', path: 'assets/almonds.jpg', title: 'بادام قندک' },
       { id: 'pistachio', path: 'assets/pistachio.jpg', title: 'پسته خندان' },
       { id: 'pinenut', path: 'assets/pinenuts.jpg', title: 'جلغوزه سیاه' },
       { id: 'walnut', path: 'assets/walnuts.jpg', title: 'چهارمغز' },
-      { id: 'raisin', path: 'assets/raisins.jpg', title: 'کشمش سبز' },
-      { id: 'saffron', path: 'assets/saffron.jpg', title: 'زعفران اعلا' },
-      { id: 'fig', path: 'assets/figs.jpg', title: 'انجیر کوهی' },
-      { id: 'apricot', path: 'assets/apricot.jpg', title: 'برگه قیسی' }
+      { id: 'raisin', path: 'assets/raisins.jpg', title: 'کشمش سیاه' },
+      { id: 'saffron', path: 'assets/saffron.jpg', title: 'زعفران نگین' },
+      { id: 'fig', path: 'assets/figs.jpg', title: 'انجیر طلایی' },
+      { id: 'apricot', path: 'assets/apricot.jpg', title: 'برگه قیسی' },
+      { id: 'nuts', path: 'assets/mixed_nuts.jpg', title: 'آجیل مخلوط' },
+      { id: 'akbar_cardamom', path: 'https://files.catbox.moe/jh7iaj.jpg', title: 'هل اکبر بنفش' },
+      { id: 'energy_ginseng', path: 'https://files.catbox.moe/ub0nd0.png', title: 'انرژی جنسینگ' },
+      { id: 'energy_carbo', path: 'https://files.catbox.moe/5kbm6t.png', title: 'انرژی کارابائو' },
+      { id: 'afghan_gur', path: 'https://files.catbox.moe/02kf9e.png', title: 'گور سنتی' },
+      { id: 'saffron_nabat', path: 'https://files.catbox.moe/x3pmzj.jpg', title: 'نبات زعفرانی' }
     ];
 
-    // Default Products Dataset
+    // Default Products Dataset (All 20 Items)
     const DEFAULT_PRODUCTS = [
+      {
+        "id": "pkg_royal_55",
+        "title": "پکیج شاهانه رویال بختیاری (ارسال رایگان سراسر اروپا)",
+        "price": 55.00,
+        "unit": "پکیج ۸ قلم اعلا • ارسال پستی رایگان",
+        "variant": "باکس رویال ۵۵ یورو",
+        "description": "۸ قلم اعلا: پسته، چهارمغز، بادام، کشمش سبز، کشمش سیاه و توت، نخود و نقل، سنجد و غولنگ، سیمیان",
+        "image": "https://files.catbox.moe/w3zc40.jpg",
+        "category": "packages",
+        "inStock": true
+      },
+      {
+        "id": "pkg_pouch_60",
+        "title": "پاکت شاهانه کادویی ویژه (۸ قلم ممتاز)",
+        "price": 60.00,
+        "unit": "پاکت کادویی لوکس • ۸ قلم میوه خشک و مغز",
+        "variant": "پاکت کادویی ۶۰ یورو",
+        "description": "پسته اعلا، انجیر طلایی قندهار، بادام قندک، نقل بادامی، چهارمغز کاغذی، کشمش سبز، نخود برشته، توت سیاه",
+        "image": "https://files.catbox.moe/bq14ls.jpg",
+        "category": "packages",
+        "inStock": true
+      },
       {
         "id": "pkg1",
         "title": "مخلوط شاهانه میوه خشک و مغزیجات",
@@ -670,6 +738,28 @@
         "variant": "سینی پذیرایی ۱ کیلوگرم",
         "description": "پسته خندان، بادام بوداده، کشمش سایگی و چهارمغز کاغذی تازه",
         "image": "assets/mixed_nuts.jpg",
+        "category": "packages",
+        "inStock": true
+      },
+      {
+        "id": "pkg3",
+        "title": "پکیج پذیرایی لوکس نگین",
+        "price": 50.00,
+        "unit": "جعبه هاردباکس لوکس ۱.۵ کیلوگرم",
+        "variant": "جعبه هاردباکس لوکس",
+        "description": "پسته اعلا، جلغوزه پکتیا، بادام قندک، چهارمغز سفید و زعفران سرگل",
+        "image": "assets/box_luxury.jpg",
+        "category": "packages",
+        "inStock": true
+      },
+      {
+        "id": "pkg4",
+        "title": "سوغات اصیل هرات و کابل",
+        "price": 32.00,
+        "unit": "بسته کادویی ۹۰۰ گرم",
+        "variant": "بسته کادویی ۹۰۰ گرم",
+        "description": "کشمش سایگی اعلا، توت خشک، قیسی آفتابی، نخود برشته و بادام",
+        "image": "assets/gift_box.jpg",
         "category": "packages",
         "inStock": true
       },
@@ -771,6 +861,61 @@
         "image": "assets/mixed_nuts.jpg",
         "category": "nuts",
         "inStock": true
+      },
+      {
+        "id": "prod_cardamom_akbar",
+        "title": "هل اکبر بنفش درجه یک (کیلویی)",
+        "price": 70.00,
+        "unit": "بسته ۱ کیلوگرم خالص • دانه‌درشت معطر",
+        "variant": "۱ کیلوگرم",
+        "description": "هل سبز امپراطور اکبر با بسته بنفش اصلی، دانه‌های درشت ۸ میلی‌متری با عطر فوق‌العاده قوی و ماندگار",
+        "image": "https://files.catbox.moe/jh7iaj.jpg",
+        "category": "saffron",
+        "inStock": true
+      },
+      {
+        "id": "prod_energy_ginseng",
+        "title": "نوشابه انرژی جنسینگ الوکوزی",
+        "price": 1.00,
+        "unit": "قوطی ۲۵۰ میلی‌لیتر • خنک و انرژی‌بخش",
+        "variant": "قوطی ۲۵۰ میلی‌لیتر",
+        "description": "نوشابه انرژی‌زا الوکوزی با عصاره طبیعی جنسینگ، طعم دلپذیر و افزایش فوری نشاط و تمرکز",
+        "image": "https://files.catbox.moe/ub0nd0.png",
+        "category": "drinks",
+        "inStock": true
+      },
+      {
+        "id": "prod_energy_carbo",
+        "title": "نوشابه انرژی کارابائو اصل",
+        "price": 1.00,
+        "unit": "قوطی ۲۵۰ میلی‌لیتر • اصل و باکیفیت",
+        "variant": "قوطی ۲۵۰ میلی‌لیتر",
+        "description": "نوشابه انرژی‌زای معروف کارابائو سرشار از ویتامین‌های B6 و B12 با طعم فوق‌العاده و رفع خستگی",
+        "image": "https://files.catbox.moe/5kbm6t.png",
+        "category": "drinks",
+        "inStock": true
+      },
+      {
+        "id": "prod_afghan_gur",
+        "title": "گور سنتی و اصیل افغانستان",
+        "price": 8.00,
+        "unit": "بسته ۱ کیلوگرم • قند طبیعی نیشکر",
+        "variant": "۱ کیلوگرم",
+        "description": "گور سنتی خالص و ارگانیک تهیه شده از نیشکر درجه یک، شیرین‌کننده مقوی و طبع گرم برای چای و دسر",
+        "image": "https://files.catbox.moe/02kf9e.png",
+        "category": "saffron",
+        "inStock": true
+      },
+      {
+        "id": "prod_nabat_saffron",
+        "title": "نبات چوبی زعفرانی اعلا",
+        "price": 0.50,
+        "unit": "شاخه تک عددی چوبی با زعفران نگین",
+        "variant": "شاخه تک عددی",
+        "description": "نبات کریستالی اعلا با پرهای زعفران سرگل طبیعی، چوب بهداشتی و طعم آرام‌بخش برای چای و دمنوش",
+        "image": "https://files.catbox.moe/x3pmzj.jpg",
+        "category": "saffron",
+        "inStock": true
       }
     ];
 
@@ -792,11 +937,12 @@
     let searchQuery = '';
 
     const CATEGORY_NAMES = {
-      packages: 'پکیج‌های شاهانه',
+      packages: 'پکیج شاهانه',
       nuts: 'بادام و مغزیجات',
       pinenuts: 'پسته و جلغوزه',
       fruits: 'کشمش و میوه خشک',
-      saffron: 'زعفران اعلا'
+      saffron: 'زعفران و شیرینی',
+      drinks: 'نوشیدنی انرژی‌زا'
     };
 
     // Initialize Page
@@ -815,19 +961,19 @@
       loadStoreSettings();
     });
 
-    // Render preset visual photos for modal
+    // Render preset visual photos for modal (horizontal scroll on mobile)
     function renderPresetPhotosGrid() {
       const container = document.getElementById('presetPhotosGrid');
       if (!container) return;
 
       container.innerHTML = PRESET_PHOTOS.map(p => `
         <button type="button" onclick="selectPresetPhoto('${p.path}')" 
-                class="preset-photo-btn group rounded-xl overflow-hidden border-2 border-white/10 hover:border-emerald-400 focus:border-emerald-400 transition flex flex-col items-center bg-black/60 p-1"
+                class="preset-photo-btn group rounded-xl overflow-hidden border-2 border-white/10 hover:border-emerald-400 focus:border-emerald-400 transition flex flex-col items-center bg-black/60 p-1 shrink-0 w-16"
                 data-path="${p.path}">
-          <div class="w-full h-11 rounded-lg overflow-hidden bg-black">
+          <div class="w-14 h-10 rounded-lg overflow-hidden bg-black">
             <img src="${resolveAsset(p.path)}" alt="${p.title}" class="w-full h-full object-cover">
           </div>
-          <span class="text-[9px] text-slate-300 truncate w-full text-center mt-0.5">${p.title}</span>
+          <span class="text-[8px] text-slate-300 truncate w-full text-center mt-0.5">${p.title}</span>
         </button>
       `).join('');
     }
@@ -845,15 +991,15 @@
 
       const hintEl = document.getElementById('uploadFileNameHint');
       if (hintEl) {
-        hintEl.innerHTML = '<i class="fa-solid fa-circle-check text-slate-500 text-[9px]"></i><span>عکس از آرشیو سایت انتخاب شد</span>';
+        hintEl.innerHTML = '<span class="text-emerald-400 font-semibold"><i class="fa-solid fa-circle-check text-[9px] ml-1"></i>عکس آماده انتخاب شد</span>';
       }
 
       document.querySelectorAll('.preset-photo-btn').forEach(btn => {
         if (btn.getAttribute('data-path') === path) {
-          btn.classList.add('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.add('border-emerald-500', 'bg-emerald-950/50');
           btn.classList.remove('border-white/10');
         } else {
-          btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.remove('border-emerald-500', 'bg-emerald-950/50');
           btn.classList.add('border-white/10');
         }
       });
@@ -872,23 +1018,23 @@
         document.getElementById('prodImagePreview').src = resolveAsset(path);
         const hintEl = document.getElementById('uploadFileNameHint');
         if (hintEl) {
-          hintEl.innerHTML = '<i class="fa-solid fa-link text-emerald-400 text-[9px]"></i><span class="text-emerald-300">لینک عکس متصل شد</span>';
+          hintEl.innerHTML = '<span class="text-emerald-400 font-semibold"><i class="fa-solid fa-link text-[9px] ml-1"></i>لینک عکس متصل شد</span>';
         }
         document.querySelectorAll('.preset-photo-btn').forEach(btn => {
-          btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.remove('border-emerald-500', 'bg-emerald-950/50');
           btn.classList.add('border-white/10');
         });
       }
     }
 
-    // Direct Image File Upload with Smart Browser Compression (max 800x800 JPEG)
+    // Direct Image File Upload with Smart Browser Compression
     function handleProductFileUpload(event) {
       const file = event.target.files && event.target.files[0];
       if (!file) return;
 
       const hintEl = document.getElementById('uploadFileNameHint');
       if (hintEl) {
-        hintEl.innerHTML = `<span class="text-amber-300 font-bold animate-pulse"><i class="fa-solid fa-spinner fa-spin text-[10px] ml-1"></i>در حال پردازش و بهینه‌سازی عکس (${escapeHtml(file.name)})...</span>`;
+        hintEl.innerHTML = `<span class="text-amber-300 font-bold animate-pulse"><i class="fa-solid fa-spinner fa-spin text-[10px] ml-1"></i>در حال پردازش عکس...</span>`;
       }
 
       const reader = new FileReader();
@@ -929,18 +1075,18 @@
 
           if (hintEl) {
             const kbSize = Math.round((dataUrl.length * 3 / 4) / 1024);
-            hintEl.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check text-[10px] ml-1"></i>عکس «${escapeHtml(file.name)}» با موفقیت آپلود شد (${kbSize} KB)</span>`;
+            hintEl.innerHTML = `<span class="text-emerald-400 font-bold"><i class="fa-solid fa-circle-check text-[10px] ml-1"></i>عکس با موفقیت آپلود شد (${kbSize} KB)</span>`;
           }
 
           document.querySelectorAll('.preset-photo-btn').forEach(btn => {
-            btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+            btn.classList.remove('border-emerald-500', 'bg-emerald-950/50');
             btn.classList.add('border-white/10');
           });
 
-          showToast('عکس با موفقیت آپلود و ذخیره شد');
+          showToast('عکس با موفقیت آپلود شد');
         };
         img.onerror = function() {
-          if (hintEl) hintEl.innerHTML = '<span class="text-rose-400 font-bold"><i class="fa-solid fa-triangle-exclamation text-[10px] ml-1"></i>فایل انتخاب شده تصویر معتبر نیست!</span>';
+          if (hintEl) hintEl.innerHTML = '<span class="text-rose-400 font-bold"><i class="fa-solid fa-triangle-exclamation text-[10px] ml-1"></i>فایل تصویر نامعتبر است!</span>';
         };
         img.src = e.target.result;
       };
@@ -1104,7 +1250,7 @@
       if (countBadge) countBadge.innerText = products.length;
       if (catCountAll) catCountAll.innerText = products.length;
 
-      const cats = ['packages', 'nuts', 'pinenuts', 'fruits', 'saffron'];
+      const cats = ['packages', 'nuts', 'pinenuts', 'fruits', 'saffron', 'drinks'];
       cats.forEach(c => {
         const el = document.getElementById('catCount-' + c);
         if (el) {
@@ -1122,20 +1268,17 @@
       if (filtered.length === 0) {
         const isPkgFilter = currentCategory === 'packages';
         container.innerHTML = `
-          <div class="col-span-full py-12 text-center text-slate-400 bg-[#12141c] border border-white/10 rounded-3xl space-y-3.5 p-6">
-            <i class="fa-solid ${isPkgFilter ? 'fa-gift text-amber-400' : 'fa-box-open text-slate-500'} text-4xl"></i>
-            <p class="text-sm font-bold text-white">${isPkgFilter ? 'هنوز هیچ پکیج شاهانه‌ای ثبت نشده است!' : 'هیچ جنسی با این مشخصات یافت نشد!'}</p>
+          <div class="col-span-full py-10 text-center text-slate-400 bg-[#12141c] border border-white/10 rounded-3xl space-y-3 p-5">
+            <i class="fa-solid ${isPkgFilter ? 'fa-gift text-amber-400' : 'fa-box-open text-slate-500'} text-3xl"></i>
+            <p class="text-xs sm:text-sm font-bold text-white">${isPkgFilter ? 'هنوز هیچ پکیج شاهانه‌ای ثبت نشده است!' : 'هیچ جنسی با این مشخصات یافت نشد!'}</p>
             <div class="flex items-center justify-center gap-2 flex-wrap pt-1">
               ${isPkgFilter ? `
-                <button onclick="openAddPackageModal()" class="px-5 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-xs inline-flex items-center gap-2 shadow-lg">
-                  <i class="fa-solid fa-gift"></i> افزودن اولین پکیج شاهانه
+                <button onclick="openAddPackageModal()" class="px-4 py-2 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 text-white font-bold text-xs inline-flex items-center gap-2 shadow-lg">
+                  <i class="fa-solid fa-gift"></i> افزودن پکیج شاهانه
                 </button>
               ` : `
                 <button onclick="openAddProductModal()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs inline-flex items-center gap-1.5">
                   <i class="fa-solid fa-plus"></i> اضافه کردن جنس جدید
-                </button>
-                <button onclick="openAddPackageModal()" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs inline-flex items-center gap-1.5">
-                  <i class="fa-solid fa-gift"></i> افزودن پکیج شاهانه
                 </button>
               `}
             </div>
@@ -1148,81 +1291,79 @@
         const inStock = p.inStock !== false;
         const isPkg = p.category === 'packages';
         return `
-        <div class="bg-[#12141c] border ${isPkg ? 'border-amber-500/40 hover:border-amber-400/80 shadow-amber-950/20' : 'border-white/10 hover:border-white/20'} rounded-3xl p-4 flex flex-col justify-between space-y-3.5 shadow-md transition group">
+        <div class="bg-[#12141c] border ${isPkg ? 'border-amber-500/40 shadow-amber-950/20' : 'border-white/10 hover:border-white/20'} rounded-2xl p-3 sm:p-4 space-y-2.5 shadow-md transition group">
           
-          <!-- Top Row: Thumbnail + Info -->
-          <div class="flex items-start gap-3">
-            <div class="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl overflow-hidden bg-black/60 border ${isPkg ? 'border-amber-500/40' : 'border-white/10'} shrink-0 relative">
+          <!-- Top Row: Thumbnail + Info + 1-Tap Stock Switch -->
+          <div class="flex items-center gap-2.5">
+            <!-- Thumbnail -->
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden bg-black/80 border ${isPkg ? 'border-amber-500/50' : 'border-white/10'} shrink-0 relative">
               <img src="${resolveAsset(p.image)}" alt="${escapeHtml(p.title)}" class="w-full h-full object-cover">
               ${!inStock ? `
-                <div class="absolute inset-0 bg-black/65 backdrop-blur-[1px] flex items-center justify-center">
-                  <span class="text-[9px] font-bold text-rose-300 bg-rose-950/90 px-1.5 py-0.5 rounded border border-rose-700">تمام شد</span>
+                <div class="absolute inset-0 bg-black/75 flex items-center justify-center">
+                  <span class="text-[8px] font-black text-rose-300 bg-rose-950/90 px-1 py-0.5 rounded border border-rose-700">تمام شد</span>
                 </div>
               ` : ''}
               ${isPkg ? `
-                <div class="absolute top-1 right-1 bg-gradient-to-r from-amber-500 to-amber-600 text-black text-[8px] font-black px-1.5 py-0.5 rounded shadow flex items-center gap-0.5">
-                  <i class="fa-solid fa-crown text-[7px]"></i>
-                  <span>شاهانه</span>
+                <div class="absolute top-0.5 right-0.5 bg-gradient-to-r from-amber-500 to-amber-600 text-black text-[7px] font-black px-1 rounded shadow">
+                  شاهانه
                 </div>
               ` : ''}
             </div>
 
+            <!-- Title & Category & Weight -->
             <div class="min-w-0 flex-1">
-              <div class="flex items-center gap-1.5 mb-1 flex-wrap">
-                <span class="px-2 py-0.5 rounded-md text-[10px] font-bold ${isPkg ? 'bg-amber-950/80 border border-amber-500/50 text-amber-300' : 'bg-white/5 border border-white/10 text-amber-300'}">
+              <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="px-1.5 py-0.5 rounded-md text-[9px] font-bold ${isPkg ? 'bg-amber-950/80 border border-amber-500/50 text-amber-300' : 'bg-white/5 border border-white/10 text-slate-300'}">
                   ${CATEGORY_NAMES[p.category] || p.category}
                 </span>
-                ${inStock ? 
-                  `<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-950/80 border border-emerald-600/50 text-emerald-300">موجود در دکان</span>` : 
-                  `<span class="px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-950/80 border border-rose-600/50 text-rose-300">تمام شده</span>`
-                }
               </div>
-
-              <h4 class="text-sm font-black text-white line-clamp-1" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h4>
-              <p class="text-[11px] text-slate-400 line-clamp-1 mt-0.5">${escapeHtml(p.unit || '')}</p>
+              <h4 class="text-xs sm:text-sm font-black text-white truncate" title="${escapeHtml(p.title)}">${escapeHtml(p.title)}</h4>
+              <p class="text-[10px] text-slate-400 truncate mt-0.5">${escapeHtml(p.unit || '')}</p>
             </div>
+
+            <!-- 1-Tap Stock Switch Pill -->
+            <button type="button" onclick="toggleProductStock('${p.id}')" 
+                    class="shrink-0 px-2 py-1 sm:px-2.5 sm:py-1.5 rounded-xl text-[10px] font-bold border transition flex items-center gap-1 active:scale-95 ${inStock ? 'bg-emerald-950/70 border-emerald-500/40 text-emerald-300 hover:bg-emerald-900/60' : 'bg-rose-950/70 border-rose-500/40 text-rose-300 hover:bg-rose-900/60'}"
+                    title="برای تغییر موجودی ضربه بزنید">
+              <span class="w-2 h-2 rounded-full ${inStock ? 'bg-emerald-400 animate-pulse' : 'bg-rose-500'}"></span>
+              <span>${inStock ? 'موجود' : 'تمام شد'}</span>
+            </button>
           </div>
 
-          <!-- Middle Row: Price Stepper (Ultra Easy: + and - Buttons) -->
-          <div class="pt-3 border-t border-white/10 flex items-center justify-between gap-2">
-            <span class="text-xs font-bold text-slate-300">قیمت فروش:</span>
-            
-            <div class="flex items-center gap-1 bg-black/60 border border-white/15 rounded-xl p-1">
+          <!-- Bottom Row: Price Stepper + Edit/Delete Actions -->
+          <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
+            <!-- Quick Price Adjust: - [price €] + -->
+            <div class="flex items-center gap-1 bg-black/70 border border-white/15 rounded-xl p-0.5">
               <button type="button" onclick="stepPrice('${p.id}', -1)" 
-                      class="w-9 h-8 rounded-lg bg-white/10 hover:bg-white/20 active:scale-90 text-white font-black text-sm flex items-center justify-center transition" 
+                      class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 active:scale-90 text-white font-black text-xs flex items-center justify-center transition" 
                       title="کاهش ۱ یورو">-</button>
               
-              <div class="relative w-22">
+              <div class="relative w-16 sm:w-20">
                 <input type="number" step="0.5" value="${Number(p.price).toFixed(2)}" 
                        onchange="quickUpdatePrice('${p.id}', this.value)" 
-                       class="w-full h-8 rounded-lg bg-black/80 border border-white/20 px-1 pl-5 text-sm font-black text-amber-300 text-center focus:outline-none focus:border-rose-500">
-                <span class="absolute left-1.5 top-1/2 -translate-y-1/2 text-xs font-black text-amber-400">€</span>
+                       class="w-full h-7 rounded-lg bg-black/90 border border-white/20 px-1 pl-4 text-xs font-black text-amber-300 text-center focus:outline-none focus:border-rose-500">
+                <span class="absolute left-1 top-1/2 -translate-y-1/2 text-[10px] font-black text-amber-400">€</span>
               </div>
 
               <button type="button" onclick="stepPrice('${p.id}', 1)" 
-                      class="w-9 h-8 rounded-lg bg-white/10 hover:bg-white/20 active:scale-90 text-white font-black text-sm flex items-center justify-center transition" 
+                      class="w-7 h-7 rounded-lg bg-white/10 hover:bg-white/20 active:scale-90 text-white font-black text-xs flex items-center justify-center transition" 
                       title="افزایش ۱ یورو">+</button>
             </div>
-          </div>
 
-          <!-- Stock Toggle Button: 1-Click Tap -->
-          <button type="button" onclick="toggleProductStock('${p.id}')" 
-                  class="w-full h-11 rounded-2xl text-xs font-bold border transition flex items-center justify-center gap-2 active:scale-98 ${inStock ? 'bg-emerald-950/60 hover:bg-emerald-900/70 text-emerald-300 border-emerald-600/50' : 'bg-rose-950/60 hover:bg-rose-900/70 text-rose-300 border-rose-600/50'}">
-            <i class="fa-solid ${inStock ? 'fa-circle-check text-emerald-400' : 'fa-circle-xmark text-rose-400'} text-base"></i>
-            <span>${inStock ? 'موجود در دکان است (اگر تمام شد بزنید)' : 'تمام شده است (برای فعال شدن بزنید)'}</span>
-          </button>
+            <!-- Actions: Edit & Trash -->
+            <div class="flex items-center gap-1.5">
+              <button onclick="openEditProductModal('${p.id}')" 
+                      class="h-7 sm:h-8 px-2.5 sm:px-3 rounded-xl text-xs font-bold bg-white/10 hover:bg-white/15 active:scale-95 text-white border border-white/15 flex items-center gap-1 transition">
+                <i class="fa-solid fa-pen-to-square text-rose-400 text-xs"></i>
+                <span>ویرایش</span>
+              </button>
 
-          <!-- Edit & Delete Buttons -->
-          <div class="grid grid-cols-2 gap-2 pt-1">
-            <button onclick="openEditProductModal('${p.id}')" class="h-10 rounded-xl text-xs font-bold bg-white/5 hover:bg-white/10 active:scale-95 text-white border border-white/10 flex items-center justify-center gap-1.5 transition">
-              <i class="fa-solid fa-pen text-slate-400 text-xs"></i>
-              <span>${isPkg ? 'ویرایش پکیج' : 'ویرایش جنس'}</span>
-            </button>
-
-            <button onclick="deleteProduct('${p.id}')" class="h-10 rounded-xl text-xs font-bold bg-rose-950/25 hover:bg-rose-900/40 active:scale-95 text-rose-300 border border-rose-800/30 flex items-center justify-center gap-1.5 transition">
-              <i class="fa-solid fa-trash-can text-rose-400 text-xs"></i>
-              <span>${isPkg ? 'حذف پکیج' : 'حذف جنس'}</span>
-            </button>
+              <button onclick="deleteProduct('${p.id}')" 
+                      class="w-7 h-7 sm:w-8 sm:h-8 rounded-xl text-xs font-bold bg-rose-950/30 hover:bg-rose-900/50 active:scale-90 text-rose-300 border border-rose-800/30 flex items-center justify-center transition"
+                      title="حذف جنس">
+                <i class="fa-solid fa-trash-can text-xs"></i>
+              </button>
+            </div>
           </div>
 
         </div>
@@ -1235,7 +1376,7 @@
       const p = products.find(x => x.id === id);
       if (p) {
         let cur = parseFloat(p.price) || 0;
-        cur = Math.max(1, cur + delta);
+        cur = Math.max(0.5, cur + delta);
         p.price = parseFloat(cur.toFixed(2));
         saveAllProducts(false);
         renderAdminProducts();
@@ -1266,7 +1407,7 @@
         p.inStock = (p.inStock === false) ? true : false;
         saveAllProducts(false);
         renderAdminProducts();
-        showToast(`وضعیت «${p.title}» به ${p.inStock ? 'موجود در دکان' : 'تمام شد (ناموجود)'} تغییر یافت.`);
+        showToast(`وضعیت «${p.title}» به ${p.inStock ? 'موجود' : 'تمام شد'} تغییر یافت.`);
 
         if (sbClient) {
           sbClient.from('products').update({ in_stock: p.inStock }).eq('id', p.id).then(() => {});
@@ -1281,12 +1422,22 @@
         products = products.filter(x => x.id !== id);
         saveAllProducts(false);
         renderAdminProducts();
-        showToast(`«${p.title}» از لیست اجناس حذف شد.`);
+        showToast(`«${p.title}» حذف شد.`);
 
         if (sbClient) {
           sbClient.from('products').delete().eq('id', id).then(() => {});
         }
       }
+    }
+
+    // Quick Add Choice Bottom Sheet (Mobile)
+    function openQuickAddChoice() {
+      document.getElementById('quickAddChoiceModal').classList.remove('hidden');
+    }
+
+    function closeQuickAddChoice(e) {
+      if (e) e.stopPropagation();
+      document.getElementById('quickAddChoiceModal').classList.add('hidden');
     }
 
     function openAddProductModal() {
@@ -1305,7 +1456,7 @@
       if (badge) badge.classList.add('hidden');
       const hintEl = document.getElementById('uploadFileNameHint');
       if (hintEl) {
-        hintEl.innerHTML = '<i class="fa-solid fa-circle-check text-slate-500 text-[9px]"></i><span>می‌توانید عکس را مستقیماً از گوشی یا کامپیوتر آپلود کنید</span>';
+        hintEl.innerHTML = '<span class="text-slate-400">می‌توانید عکس را از گوشی انتخاب کنید</span>';
       }
 
       selectPresetPhoto('assets/almonds.jpg');
@@ -1316,7 +1467,7 @@
       document.getElementById('modalTitle').innerHTML = '<i class="fa-solid fa-gift text-amber-400"></i><span>🎁 افزودن پکیج شاهانه نو (بسته هدیه)</span>';
       document.getElementById('prodEditId').value = '';
       document.getElementById('prodEditTitle').value = 'پکیج شاهانه رویال بختیاری';
-      document.getElementById('prodEditPrice').value = '45.00';
+      document.getElementById('prodEditPrice').value = '55.00';
       document.getElementById('prodEditCategory').value = 'packages';
       document.getElementById('prodEditUnit').value = 'باکس لوکس کادویی (وزن خالص ۱.۲ کیلوگرم)';
       document.getElementById('prodEditInStock').value = 'true';
@@ -1328,10 +1479,10 @@
       if (badge) badge.classList.add('hidden');
       const hintEl = document.getElementById('uploadFileNameHint');
       if (hintEl) {
-        hintEl.innerHTML = '<i class="fa-solid fa-gift text-amber-400 text-[9px]"></i><span>عکس پکیج را آپلود کنید یا از جعبه‌های آماده زیر انتخاب نمایید</span>';
+        hintEl.innerHTML = '<span class="text-amber-400 font-semibold"><i class="fa-solid fa-gift text-[9px] ml-1"></i>عکس پکیج را آپلود کنید یا انتخاب نمایید</span>';
       }
 
-      selectPresetPhoto('assets/rb_royal_box.jpg');
+      selectPresetPhoto('https://files.catbox.moe/w3zc40.jpg');
       document.getElementById('productModal').classList.remove('hidden');
     }
 
@@ -1358,32 +1509,32 @@
 
       if (p.image && p.image.startsWith('data:')) {
         document.getElementById('prodSelectedImage').value = p.image;
-        document.getElementById('prodCustomImageUrl').value = '[عکس اختصاصی آپلود شده]';
+        document.getElementById('prodCustomImageUrl').value = '[عکس آپلود شده]';
         document.getElementById('prodImagePreview').src = p.image;
         if (badge) badge.classList.remove('hidden');
         if (hintEl) {
-          hintEl.innerHTML = '<span class="text-emerald-400 font-bold"><i class="fa-solid fa-check text-[9px] ml-1"></i>عکس اختصاصی برای این مورد قبلاً آپلود شده است</span>';
+          hintEl.innerHTML = '<span class="text-emerald-400 font-bold"><i class="fa-solid fa-check text-[9px] ml-1"></i>عکس اختصاصی آپلود شده</span>';
         }
         document.querySelectorAll('.preset-photo-btn').forEach(btn => {
-          btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.remove('border-emerald-500', 'bg-emerald-950/50');
           btn.classList.add('border-white/10');
         });
       } else if (PRESET_PHOTOS.some(opt => opt.path === p.image)) {
         if (badge) badge.classList.add('hidden');
         if (hintEl) {
-          hintEl.innerHTML = '<i class="fa-solid fa-circle-check text-slate-500 text-[9px] ml-1"></i><span>عکس فعلی از آرشیو آماده سایت انتخاب شده است</span>';
+          hintEl.innerHTML = '<span class="text-emerald-400"><i class="fa-solid fa-circle-check text-[9px] ml-1"></i>عکس از آرشیو آماده انتخاب شده</span>';
         }
         selectPresetPhoto(p.image);
       } else {
         if (badge) badge.classList.add('hidden');
         if (hintEl) {
-          hintEl.innerHTML = '<i class="fa-solid fa-link text-slate-500 text-[9px] ml-1"></i><span>عکس فعلی از لینک اینترنتی تنظیم شده است</span>';
+          hintEl.innerHTML = '<span class="text-emerald-400"><i class="fa-solid fa-link text-[9px] ml-1"></i>عکس از لینک اینترنتی متصل شده</span>';
         }
         document.getElementById('prodSelectedImage').value = p.image;
         document.getElementById('prodCustomImageUrl').value = p.image;
         document.getElementById('prodImagePreview').src = resolveAsset(p.image);
         document.querySelectorAll('.preset-photo-btn').forEach(btn => {
-          btn.classList.remove('border-emerald-500', 'bg-emerald-950/40');
+          btn.classList.remove('border-emerald-500', 'bg-emerald-950/50');
           btn.classList.add('border-white/10');
         });
       }
@@ -1434,7 +1585,7 @@
           inStock: inStock
         };
         products.unshift(newProd);
-        showToast(isPkg ? `پکیج شاهانه جدید «${title}» اضافه شد.` : `جنس جدید «${title}» اضافه شد.`);
+        showToast(isPkg ? `پکیج جدید «${title}» اضافه شد.` : `جنس جدید «${title}» اضافه شد.`);
       }
 
       saveAllProducts(false);
@@ -1455,7 +1606,7 @@
             description: targetProd.description,
             image: targetProd.image,
             in_stock: targetProd.inStock
-          }]).then(() => {});
+          }], { onConflict: 'id' }).then(() => {});
         }
       }
     }
@@ -1559,7 +1710,7 @@
 
       localStorage.setItem('rb_store_settings', JSON.stringify(newSettings));
       localStorage.setItem('rb_shipping_settings', JSON.stringify({ base: shippingBase, threshold: freeShippingThreshold }));
-      showToast('مشخصات دکان، آدرس و هزینه ارسال با موفقیت ذخیره شد!');
+      showToast('مشخصات دکان و هزینه ارسال ذخیره شد!');
 
       if (sbClient) {
         sbClient.from('store_settings').upsert([{
@@ -1570,7 +1721,7 @@
           address: newSettings.address,
           email: newSettings.email,
           tiktok: newSettings.tiktok
-        }]).then(() => {});
+        }], { onConflict: 'id' }).then(() => {});
 
         sbClient.from('products').upsert([{
           id: '__store_shipping__',
@@ -1579,7 +1730,7 @@
           unit: freeShippingThreshold.toString(),
           category: 'system_setting',
           in_stock: false
-        }]).then(() => {});
+        }], { onConflict: 'id' }).then(() => {});
       }
     }
 
