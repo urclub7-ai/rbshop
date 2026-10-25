@@ -1392,9 +1392,7 @@
                       <i class="fa-solid fa-building-columns text-zinc-300"></i>
                       <span data-i18n="pay_method_bank">Direct Bank Transfer (SEPA / IBAN Germany)</span>
                     </span>
-                    <span class="text-[10px] text-zinc-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded font-medium" data-i18n="pay_fee_free">
-                      0.00 € (0% Free)
-                    </span>
+                    <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">IBAN / SEPA</span>
                   </div>
                   <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_bank_hint">Zero fees (0%). Transfer directly to our German bank account</p>
                 </div>
@@ -1424,7 +1422,7 @@
                   <i class="fa-solid fa-truck text-[11px] text-zinc-400"></i>
                   <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
                 </span>
-                <span id="cartShipping" class="font-bold text-white font-display dir-ltr">1.00 €</span>
+                <span id="cartShipping" class="font-bold text-white font-display dir-ltr">6.00 €</span>
               </div>
 
               <!-- Final Total Row (Total dynamically contains the fee without any separate line!) -->
@@ -1615,20 +1613,25 @@
     let currentLang = localStorage.getItem('rb_lang') || 'en';
     let selectedPaymentMethod = 'paypal'; // 'paypal', 'bank', 'wa'
     let paymentFeeSettings = {
-      percent: 2.00,
+      percent: 0.00,
       fixed: 0.00,
       iban: 'DE49 2105 0170 0000 0000 00',
       holder: 'Ramazan Bakhtyary'
     };
     try {
-      const savedFee = localStorage.getItem('rb_payment_fee_settings');
-      if (savedFee) paymentFeeSettings = { ...paymentFeeSettings, ...JSON.parse(savedFee) };
+      localStorage.removeItem('rb_payment_fee_settings');
+      const savedStore = localStorage.getItem('rb_store_settings');
+      if (savedStore) {
+        const parsedStore = JSON.parse(savedStore);
+        if (parsedStore.bankIban) paymentFeeSettings.iban = parsedStore.bankIban;
+        if (parsedStore.bankHolder) paymentFeeSettings.holder = parsedStore.bankHolder;
+      }
     } catch(e) {}
     let cachedProducts = (typeof DEFAULT_PRODUCTS !== 'undefined' && Array.isArray(DEFAULT_PRODUCTS)) ? DEFAULT_PRODUCTS : [];
 
     // Store Shipping Configuration (Synchronized with Admin Panel & Supabase)
     let shippingSettings = {
-      base: 1.00,
+      base: 6.00,
       threshold: 50.00
     };
     try {
@@ -1637,13 +1640,16 @@
         const parsed = JSON.parse(savedShip);
         if (parsed.base !== undefined) shippingSettings.base = parseFloat(parsed.base);
         if (parsed.threshold !== undefined) shippingSettings.threshold = parseFloat(parsed.threshold);
-      } else {
-        const savedStore = localStorage.getItem('rb_store_settings');
-        if (savedStore) {
-          const parsedStore = JSON.parse(savedStore);
-          if (parsedStore.shippingBase !== undefined) shippingSettings.base = parseFloat(parsedStore.shippingBase);
-          if (parsedStore.freeShippingThreshold !== undefined) shippingSettings.threshold = parseFloat(parsedStore.freeShippingThreshold);
-        }
+      }
+      const savedStore = localStorage.getItem('rb_store_settings');
+      if (savedStore) {
+        const parsedStore = JSON.parse(savedStore);
+        if (parsedStore.shippingBase !== undefined) shippingSettings.base = parseFloat(parsedStore.shippingBase);
+        if (parsedStore.freeShippingThreshold !== undefined) shippingSettings.threshold = parseFloat(parsedStore.freeShippingThreshold);
+      }
+      if (shippingSettings.base === 1.00) {
+        shippingSettings.base = 6.00;
+        localStorage.setItem('rb_shipping_settings', JSON.stringify(shippingSettings));
       }
     } catch(e) {}
 
@@ -1841,7 +1847,7 @@
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
 
       // Shipping Calculation
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
       const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
       const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
       const shippingPrice = isFreeShipping ? 0 : shippingBase;
@@ -1915,15 +1921,10 @@
       }
 
       // Dynamic Payment Processing Fee:
-      // ONLY applied when paying via PayPal!
+      // ZERO FEE for customers ("فقد پول جنس مشتری پرداخت کنه")
       let paymentFee = 0;
       const basePayable = subtotalPrice + shippingPrice;
-      if (selectedPaymentMethod === 'paypal' && basePayable > 0) {
-        const percent = (typeof paymentFeeSettings.percent !== 'undefined') ? parseFloat(paymentFeeSettings.percent) : 2.0;
-        const fixed = (typeof paymentFeeSettings.fixed !== 'undefined') ? parseFloat(paymentFeeSettings.fixed) : 0;
-        paymentFee = Math.round((basePayable * (percent / 100) + fixed) * 100) / 100;
-      }
-      const actualFinalTotal = basePayable + paymentFee;
+      const actualFinalTotal = basePayable;
 
       // Toggle action sections based on payment method
       const paypalSec = document.getElementById('paypalSection');
@@ -2164,17 +2165,11 @@
         },
         createOrder: function(data, actions) {
           const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-          const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+          const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
           const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
           const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
           const shippingPrice = isFreeShipping ? 0 : shippingBase;
-
-          // Fee calculation (Applies 2% or as configured when paying via PayPal)
-          const basePayable = subtotalPrice + shippingPrice;
-          const percent = (typeof paymentFeeSettings.percent !== 'undefined') ? parseFloat(paymentFeeSettings.percent) : 2.0;
-          const fixed = (typeof paymentFeeSettings.fixed !== 'undefined') ? parseFloat(paymentFeeSettings.fixed) : 0;
-          const paymentFee = Math.round((basePayable * (percent / 100) + fixed) * 100) / 100;
-          const finalOrderTotal = basePayable + paymentFee;
+          const finalOrderTotal = subtotalPrice + shippingPrice;
 
           return actions.order.create({
             purchase_units: [{
@@ -2185,7 +2180,7 @@
                 breakdown: {
                   item_total: {
                     currency_code: 'EUR',
-                    value: (subtotalPrice + paymentFee).toFixed(2)
+                    value: subtotalPrice.toFixed(2)
                   },
                   shipping: {
                     currency_code: 'EUR',
@@ -2219,15 +2214,11 @@
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const orderId = details.id || ('RB-' + Math.floor(100000 + Math.random() * 900000));
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
       const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
       const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
       const shippingPrice = isFreeShipping ? 0 : shippingBase;
-      const basePayable = subtotalPrice + shippingPrice;
-      const percent = (typeof paymentFeeSettings.percent !== 'undefined') ? parseFloat(paymentFeeSettings.percent) : 2.0;
-      const fixed = (typeof paymentFeeSettings.fixed !== 'undefined') ? parseFloat(paymentFeeSettings.fixed) : 0;
-      const paymentFee = Math.round((basePayable * (percent / 100) + fixed) * 100) / 100;
-      const finalTotalPrice = basePayable + paymentFee;
+      const finalTotalPrice = subtotalPrice + shippingPrice;
       const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
 
       const name = document.getElementById('custName')?.value.trim() || (details.payer?.name?.given_name || 'Customer');
@@ -2280,8 +2271,8 @@
           deliveryAddress: deliveryAddr,
           items: cart.map(i => ({ title: i.name, qty: i.qty, price: i.price, variant: i.variant || '' })),
           subtotal: subtotalPrice,
-          shipping: isFreeShipping ? 0 : shippingPrice,
-          fee: (finalTotalPrice - subtotalPrice - (isFreeShipping ? 0 : shippingPrice)),
+          shipping: shippingPrice,
+          fee: 0,
           total: finalTotalPrice,
           payMethod: 'PayPal / Online Card',
           lang: currentLang
@@ -2370,7 +2361,7 @@
 
       const orderId = 'RB-' + Math.floor(100000 + Math.random() * 900000);
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
       const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
       const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
       const shippingPrice = isFreeShipping ? 0 : shippingBase;
@@ -2468,8 +2459,8 @@
       const country = countryEl ? countryEl.value : 'Germany (Deutschland)';
 
       let payMethodTitle = 'Online PayPal / Card';
-      if (activeMethod === 'bank') payMethodTitle = 'Bank Transfer (SEPA / IBAN Germany) - 0% Fee';
-      else if (activeMethod === 'wa') payMethodTitle = 'WhatsApp Order / Direct Coordination - 0% Fee';
+      if (activeMethod === 'bank') payMethodTitle = 'Bank Transfer (SEPA / IBAN Germany)';
+      else if (activeMethod === 'wa') payMethodTitle = 'WhatsApp Order / Direct Coordination';
       else payMethodTitle = 'PayPal / Credit Card';
 
       // Validation for complete shipping address
@@ -2489,12 +2480,21 @@
         }));
       } catch(e) {}
 
-      const totalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const formattedTotal = formatLocalizedPrice(totalPrice, currentLang);
+      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
+      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
+      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      const finalTotalPrice = subtotalPrice + shippingPrice;
+
+      const formattedSubtotal = formatLocalizedPrice(subtotalPrice, currentLang);
+      const freeLabel = currentLang === 'fa' ? 'رایگان (بالای ۵۰ یورو)' : 'FREE (Over 50€)';
+      const formattedShipping = isFreeShipping ? freeLabel : formatLocalizedPrice(shippingPrice, currentLang);
+      const formattedTotal = formatLocalizedPrice(finalTotalPrice, currentLang);
 
       // Clean, structured multilingual WhatsApp message
       let msg = dict.wa_msg_greeting || "Hello Mr. Bakhtyary, I would like to place an order from R.B Shop:\n\n";
-      msg += dict.wa_msg_items_heading || "📦 Ordered Items:\n";
+      msg += dict.wa_msg_items_heading || "\u{1F4E6} Ordered Items:\n";
       
       cart.forEach((i) => {
         const pTrans = (PRODUCT_TRANSLATIONS[i.id] && PRODUCT_TRANSLATIONS[i.id][currentLang]) ? PRODUCT_TRANSLATIONS[i.id][currentLang] : null;
@@ -2502,10 +2502,17 @@
         const itemUnit = pTrans ? pTrans.unit : (i.variant || '');
         const itemTotal = formatLocalizedPrice(i.price * i.qty, currentLang);
         const itemQty = formatLocalizedNumber(i.qty, currentLang);
-        msg += `• ${itemQty}x ${itemName} (${itemUnit}) - ${itemTotal}\n`;
+        msg += `• ${itemQty}x ${itemName} (${itemUnit}) - ${itemTotal}
+`;
       });
 
-      msg += `\n${dict.wa_msg_total_heading || "💰 Total Amount: "}${formattedTotal}\n`;
+      msg += `
+${dict.cart_subtotal || "Subtotal:"} ${formattedSubtotal}
+`;
+      msg += `🚚 ${dict.cart_shipping_fee || "Shipping (DHL):"} ${formattedShipping}
+`;
+      msg += `${dict.wa_msg_total_heading || "💰 Total Amount: "}${formattedTotal}
+`;
       msg += `${dict.wa_msg_addr_heading || "\n📍 Delivery Address (DHL Tracking):\n"}`;
       
       const labels = {
@@ -2540,7 +2547,7 @@
             customer_name: name,
             customer_address: fullAddress,
             items: cart,
-            total_price: totalPrice,
+            total_price: finalTotalPrice,
             status: 'whatsapp_sent'
           }]).then(() => {});
         } catch(e) {}
@@ -2811,7 +2818,7 @@
     // =========================================================================
     // APP BUILD VERSION & CACHE PURGER
     // =========================================================================
-    const APP_BUILD_VERSION = '2026.10.25.09';
+    const APP_BUILD_VERSION = '2026.10.25.10';
     if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
       localStorage.removeItem('rb_products');
       localStorage.removeItem('rb_shipping_settings');
@@ -3031,17 +3038,17 @@
           if (!error && Array.isArray(data)) {
             const shipCfg = data.find(r => r.id === '__store_shipping__');
             if (shipCfg) {
-              shippingSettings.base = parseFloat(shipCfg.price) || 1.00;
-              shippingSettings.threshold = parseFloat(shipCfg.unit) || 50.00;
+              shippingSettings.base = (!isNaN(parseFloat(shipCfg.price))) ? parseFloat(shipCfg.price) : 6.00;
+              shippingSettings.threshold = (!isNaN(parseFloat(shipCfg.unit))) ? parseFloat(shipCfg.unit) : 50.00;
               localStorage.setItem('rb_shipping_settings', JSON.stringify(shippingSettings));
             }
 
             const feeCfg = data.find(r => r.id === '__store_payment_fee__');
             if (feeCfg) {
-              paymentFeeSettings.percent = (!isNaN(parseFloat(feeCfg.price))) ? parseFloat(feeCfg.price) : 2.0;
-              paymentFeeSettings.fixed = (!isNaN(parseFloat(feeCfg.unit))) ? parseFloat(feeCfg.unit) : 0;
+              paymentFeeSettings.percent = 0.00;
+              paymentFeeSettings.fixed = 0.00;
               if (feeCfg.description) paymentFeeSettings.iban = feeCfg.description;
-              localStorage.setItem('rb_payment_fee_settings', JSON.stringify(paymentFeeSettings));
+              if (feeCfg.title && feeCfg.title !== 'Payment Fee Settings') paymentFeeSettings.holder = feeCfg.title;
             }
 
             const cloudProds = data.filter(r => r.id !== '__store_shipping__' && r.category !== 'system_setting').map(r => ({

@@ -336,61 +336,38 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">هزینه ارسال پایه به سراسر آلمان (€):</label>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">هزینه ارسال پایه به سراسر آلمان و اروپا (€):</label>
                   <div class="relative">
-                    <input type="text" inputmode="decimal" id="storeShippingBaseInput" required placeholder="00.00" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <input type="text" inputmode="decimal" id="storeShippingBaseInput" required placeholder="06.00" value="6.00" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                     <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
                   </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">مثلاً ۱.۰۰ یورو یا ۵.۹۹ یورو برای سفارش‌های عادی</span>
+                  <span class="text-[10px] text-slate-500 mt-1 block">هزینه ارسال عادی با پست DHL (پیش‌فرض: ۶.۰۰ یورو)</span>
                 </div>
 
                 <div>
                   <label class="block text-xs font-bold text-slate-300 mb-1">سقف ارسال کاملاً رایگان (€):</label>
                   <div class="relative">
-                    <input type="text" inputmode="decimal" id="storeFreeShippingThresholdInput" required placeholder="50.00" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                    <input type="text" inputmode="decimal" id="storeFreeShippingThresholdInput" required placeholder="50.00" value="50.00" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                     <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-emerald-400">€</span>
                   </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای ۵۰ یورو یا بیشتر، ارسالشان رایگان می‌شود</span>
+                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای ۵۰ یورو یا بیشتر، ارسالشان با پست DHL کاملاً رایگان می‌شود</span>
                 </div>
               </div>
             </div>
 
-            <!-- Payment Gateway Surcharge Configuration (تنظیمات کارمزد درگاه پرداخت آنلاین) -->
+            <!-- Bank Account Details for SEPA (مشخصات حساب بانکی برای واریز مستقیم) -->
             <div class="pt-3 border-t border-white/10 space-y-2.5">
-              <div class="flex items-center justify-between flex-wrap gap-2">
-                <label class="block text-xs font-bold text-white flex items-center gap-2">
-                  <i class="fa-solid fa-credit-card text-sky-400"></i>
-                  <span>تنظیمات کارمزد درگاه پرداخت آنلاین (PayPal و کارت):</span>
-                </label>
-                <span class="text-[10px] text-amber-300 font-bold bg-amber-950/80 px-2.5 py-0.5 rounded-full border border-amber-500/40">محاسبه خودکار در سبد خرید</span>
-              </div>
+              <label class="block text-xs font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                <span>مشخصات حساب بانکی در آلمان (IBAN جهت واریز مستقیم بانکی):</span>
+              </label>
               <p class="text-[11px] text-slate-400 leading-relaxed">
-                وقتی مشتری پرداخت آنلاین (PayPal یا کارت) را انتخاب می‌کند، این کارمزد به صورت خودکار به فاکتور مشتری اضافه می‌شود تا هیچ مبلغی از پول آقای بختیاری کسر نگردد. برای واریز مستقیم بانکی کارمزد صفر (۰٪) است.
+                مشتریانی که در صفحه پرداخت گزینه «واریز بانکی» را انتخاب می‌کنند، این شماره شبا و نام صاحب حساب را برای واریز مشاهده خواهند کرد.
               </p>
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">درصد کارمزد درگاه پی‌پال (%):</label>
-                  <div class="relative">
-                    <input type="text" inputmode="decimal" id="storePayFeePercentInput" required placeholder="2.49" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
-                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">%</span>
-                  </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">کارمزد رسمی پی‌پال در آلمان: ۲.۴۹٪</span>
-                </div>
-
-                <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">کارمزد ثابت درگاه پی‌پال (€):</label>
-                  <div class="relative">
-                    <input type="text" inputmode="decimal" id="storePayFeeFixedInput" required placeholder="0.35" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
-                    <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
-                  </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">کارمزد ثابت پی‌پال در آلمان: ۰.۳۵ یورو</span>
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">شماره شبا (IBAN) دکان برای واریز مستقیم بانکی:</label>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">شماره شبا (IBAN) دکان برای واریز بانکی:</label>
                   <input type="text" id="storeIbanInput" placeholder="DE49 2105 0170 0000 0000 00" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                   <span class="text-[10px] text-slate-500 mt-1 block">مشتری با انتخاب واریز بانکی، این شبا را می‌بیند</span>
                 </div>
@@ -1798,16 +1775,11 @@
       if (document.getElementById('storeEmailInput')) document.getElementById('storeEmailInput').value = s.email || '';
       if (document.getElementById('storeTiktokInput')) document.getElementById('storeTiktokInput').value = s.tiktok || '';
       if (document.getElementById('storeShippingBaseInput')) {
-        document.getElementById('storeShippingBaseInput').value = (typeof s.shippingBase !== 'undefined' ? Number(s.shippingBase) : 1.00).toFixed(2);
+        const baseVal = (typeof s.shippingBase !== 'undefined' && Number(s.shippingBase) !== 1.00) ? Number(s.shippingBase) : 6.00;
+        document.getElementById('storeShippingBaseInput').value = baseVal.toFixed(2);
       }
       if (document.getElementById('storeFreeShippingThresholdInput')) {
         document.getElementById('storeFreeShippingThresholdInput').value = (typeof s.freeShippingThreshold !== 'undefined' ? Number(s.freeShippingThreshold) : 50.00).toFixed(2);
-      }
-      if (document.getElementById('storePayFeePercentInput')) {
-        document.getElementById('storePayFeePercentInput').value = (typeof s.payFeePercent !== 'undefined' ? Number(s.payFeePercent) : 2.49).toFixed(2);
-      }
-      if (document.getElementById('storePayFeeFixedInput')) {
-        document.getElementById('storePayFeeFixedInput').value = (typeof s.payFeeFixed !== 'undefined' ? Number(s.payFeeFixed) : 0.35).toFixed(2);
       }
       if (document.getElementById('storeIbanInput')) {
         document.getElementById('storeIbanInput').value = s.iban || 'DE49 2105 0170 0000 0000 00';
@@ -1823,7 +1795,7 @@
       e.preventDefault();
       const phoneRaw = document.getElementById('storePhoneInput').value.trim();
       const cleanPhone = phoneRaw.replace(/[^0-9]/g, '');
-      const shippingBase = parseFloat(document.getElementById('storeShippingBaseInput').value) || 1.00;
+      const shippingBase = parseFloat(document.getElementById('storeShippingBaseInput').value) || 6.00;
       const freeShippingThreshold = parseFloat(document.getElementById('storeFreeShippingThresholdInput').value) || 50.00;
 
       const newSettings = {
@@ -1861,16 +1833,14 @@
           in_stock: false
         }], { onConflict: 'id' }).then(() => {});
 
-        const feePercent = parseFloat(document.getElementById('storePayFeePercentInput').value) || 2.49;
-        const feeFixed = (!isNaN(parseFloat(document.getElementById('storePayFeeFixedInput').value))) ? parseFloat(document.getElementById('storePayFeeFixedInput').value) : 0.00;
-        const iban = document.getElementById('storeIbanInput').value.trim();
-        const holder = document.getElementById('storeBankHolderInput').value.trim();
+        const iban = document.getElementById('storeIbanInput') ? document.getElementById('storeIbanInput').value.trim() : 'DE49 2105 0170 0000 0000 00';
+        const holder = document.getElementById('storeBankHolderInput') ? document.getElementById('storeBankHolderInput').value.trim() : 'Ramazan Bakhtyary';
 
         sbClient.from('products').upsert([{
           id: '__store_payment_fee__',
           title: 'Payment Fee Config',
-          price: feePercent,
-          unit: feeFixed.toString(),
+          price: 0,
+          unit: '0',
           description: iban,
           variant: holder,
           category: 'system_setting',
