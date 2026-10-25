@@ -486,7 +486,7 @@
 
               <!-- Quick Search Input -->
               <div class="relative flex-1 max-w-xs">
-                <input type="text" id="orderSearchInput" oninput="filterOrdersList()" placeholder="جستجو (نام خریدار، تلفن، آدرس)..." class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 pl-8 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition">
+                <input type="text" id="orderSearchInput" oninput="filterOrdersList()" placeholder="جستجو (نام خریدار، تلفن، ایمیل، آدرس)..." class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 pl-8 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-rose-500 transition">
                 <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 text-xs"></i>
               </div>
             </div>
@@ -676,17 +676,21 @@
           <input type="text" id="manualCustName" required placeholder="مثال: علی احمدی یا Max Mustermann" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-white focus:outline-none focus:border-emerald-500">
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
           <div>
             <label class="block text-slate-300 font-bold mb-1">شماره تماس خریدار: *</label>
             <input type="text" id="manualCustPhone" required placeholder="0172 1234567" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-white dir-ltr text-right focus:outline-none focus:border-emerald-500">
           </div>
           <div>
+            <label class="block text-slate-300 font-bold mb-1">ایمیل خریدار (اختیاری):</label>
+            <input type="email" id="manualCustEmail" placeholder="customer@example.com" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-white dir-ltr text-right focus:outline-none focus:border-emerald-500">
+          </div>
+          <div>
             <label class="block text-slate-300 font-bold mb-1">روش پرداخت:</label>
             <select id="manualPayMethod" class="w-full h-10 rounded-xl bg-[#1a1e2b] border border-white/15 px-3 text-white focus:outline-none focus:border-emerald-500">
-              <option value="پرداخت نقدی / حضوری">پرداخت نقدی / حضوری</option>
-              <option value="واریز به شبا (IBAN)">واریز به شبا (IBAN)</option>
               <option value="پرداخت آنلاین پی‌پال">پرداخت آنلاین پی‌پال</option>
+              <option value="واریز به شبا (IBAN)">واریز به شبا (IBAN)</option>
+              <option value="پرداخت نقدی / حضوری">پرداخت نقدی / حضوری</option>
               <option value="کارت به کارت / سایر">کارت به کارت / سایر</option>
             </select>
           </div>
@@ -1915,6 +1919,7 @@
       let name = order.customer_name || 'خریدار محترم';
       let rawAddr = order.customer_address || '';
       let phone = '';
+      let email = order.customer_email || '';
       let cleanAddr = rawAddr;
       let payMethodText = '';
 
@@ -1926,20 +1931,26 @@
       }
 
       // Extract phone number: (تلفن: ...) or (Tel: ...) or (phone: ...) or (موبایل: ...)
-      const phoneMatch = cleanAddr.match(/\((?:تلفن|Tel|phone|موبایل|واتساپ)\s*[:：]\s*([^)]+)\)/i);
+      const phoneMatch = cleanAddr.match(/(?:تلفن|Tel|phone|موبایل|واتساپ)\s*[:：]\s*([+0-9\s-]+)/i);
       if (phoneMatch) {
         phone = phoneMatch[1].trim();
-        cleanAddr = cleanAddr.replace(phoneMatch[0], '').trim();
+      }
+
+      // Extract email: (ایمیل: ...) or (Email: ...) or email pattern
+      const emailMatch = cleanAddr.match(/(?:ایمیل|Email|mail)\s*[:：]\s*([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/i);
+      if (emailMatch) {
+        email = emailMatch[1].trim();
       } else {
-        const altPhoneMatch = cleanAddr.match(/(?:تلفن|Tel|phone|موبایل|واتساپ)\s*[:：]\s*([+0-9\s-]+)/i);
-        if (altPhoneMatch) {
-          phone = altPhoneMatch[1].trim();
-          cleanAddr = cleanAddr.replace(altPhoneMatch[0], '').trim();
+        const rawEmailMatch = cleanAddr.match(/([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})/);
+        if (rawEmailMatch) {
+          email = rawEmailMatch[1].trim();
         }
       }
 
-      // Clean trailing punctuation
-      cleanAddr = cleanAddr.replace(/[,\s-]+$/, '').trim();
+      // Clean contact info parentheticals from cleanAddr so address stays 100% clean for DHL label
+      cleanAddr = cleanAddr.replace(/\((?:[^)]*?(?:Tel|phone|تلفن|واتساپ|Email|ایمیل|mail)[^)]*?)\)/gi, '').trim();
+      cleanAddr = cleanAddr.replace(/(?:Tel|تلفن|Email|ایمیل)\s*[:：]\s*[^\s,]+/gi, '').trim();
+      cleanAddr = cleanAddr.replace(/\s*\|\s*/g, ' ').replace(/[,\s-]+$/, '').trim();
 
       // Format clean phone for WhatsApp wa.me link
       let waPhone = '';
@@ -1957,7 +1968,7 @@
         }
       }
 
-      return { name, cleanAddr, phone, waPhone, payMethodText };
+      return { name, cleanAddr, phone, waPhone, email, payMethodText };
     }
 
     async function loadAdminOrders(isBackground = false) {
@@ -2054,7 +2065,7 @@
       if (!container) return;
 
       const query = (document.getElementById('orderSearchInput')?.value || '').trim().toLowerCase();
-      let list = orders;
+      let list = (Array.isArray(orders) ? orders : allLoadedOrders) || [];
 
       if (currentOrderFilter === 'paid') {
         list = list.filter(o => o.status === 'paid_paypal' || o.status === 'paid');
@@ -2066,10 +2077,13 @@
 
       if (query) {
         list = list.filter(o => {
+          const contact = parseCustomerContact(o);
           const name = (o.customer_name || '').toLowerCase();
           const addr = (o.customer_address || '').toLowerCase();
+          const email = (contact.email || '').toLowerCase();
+          const phone = (contact.phone || '').toLowerCase();
           const id = (o.id || '').toLowerCase();
-          return name.includes(query) || addr.includes(query) || id.includes(query);
+          return name.includes(query) || addr.includes(query) || email.includes(query) || phone.includes(query) || id.includes(query);
         });
       }
 
@@ -2111,18 +2125,28 @@
         // WhatsApp Direct Link
         let waButton = '';
         let callButton = '';
+        let emailButton = '';
         if (contact.waPhone) {
           const waDefaultMsg = `سلام جناب ${contact.name} عزیز، سفارش شما در فروشگاه R.B Shop دریافت گردید. شماره سفارش: #${(o.id || '').slice(0,8)}`;
           waButton = `
             <a href="https://wa.me/${contact.waPhone}?text=${encodeURIComponent(waDefaultMsg)}" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/50 transition">
               <i class="fa-brands fa-whatsapp text-sm"></i>
-              <span>پیام به خریدار در واتساپ</span>
+              <span>واتساپ</span>
             </a>
           `;
           callButton = `
             <a href="tel:${contact.phone.replace(/[^0-9+]/g, '')}" class="px-2.5 py-1.5 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 font-bold text-xs flex items-center gap-1.5 transition">
               <i class="fa-solid fa-phone text-xs text-sky-400"></i>
               <span>تماس</span>
+            </a>
+          `;
+        }
+        if (contact.email) {
+          const emailSubject = encodeURIComponent(`سفارش شما در فروشگاه R.B Shop (#${(o.id || '').slice(0, 8)})`);
+          emailButton = `
+            <a href="mailto:${contact.email}?subject=${emailSubject}" class="px-2.5 py-1.5 rounded-xl bg-sky-950/60 hover:bg-sky-900 border border-sky-500/30 text-sky-300 font-bold text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-envelope text-xs"></i>
+              <span>ایمیل</span>
             </a>
           `;
         }
@@ -2175,22 +2199,26 @@
             <!-- Customer Identity & Direct Contact Row -->
             <div class="p-3 rounded-xl bg-black/40 border border-white/5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div class="space-y-1">
-                <span class="text-[10px] text-slate-400 block font-bold">نام و هویت خریدار:</span>
-                <div class="flex items-center gap-2">
+                <span class="text-[10px] text-slate-400 block font-bold">نام و اطلاعات تماس خریدار:</span>
+                <div class="flex items-center gap-2.5">
                   <div class="w-8 h-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs shrink-0">
                     <i class="fa-solid fa-user"></i>
                   </div>
                   <div>
                     <span class="font-black text-white text-sm sm:text-base">${contact.name}</span>
-                    ${contact.phone ? `<span class="block text-xs font-mono text-emerald-400 dir-ltr text-right">${contact.phone}</span>` : '<span class="block text-[11px] text-slate-500">شماره تلفن مستقیم ثبت نشده</span>'}
+                    <div class="flex items-center gap-3 text-xs mt-0.5 flex-wrap">
+                      ${contact.phone ? `<span class="font-mono text-emerald-400 dir-ltr flex items-center gap-1"><i class="fa-solid fa-phone text-[10px]"></i>${contact.phone}</span>` : '<span class="text-[11px] text-slate-500">شماره تلفن ندارد</span>'}
+                      ${contact.email ? `<a href="mailto:${contact.email}" class="font-mono text-sky-400 hover:text-sky-300 dir-ltr flex items-center gap-1"><i class="fa-regular fa-envelope text-[10px]"></i>${contact.email}</a>` : '<span class="text-[11px] text-slate-500">ایمیل ندارد</span>'}
+                    </div>
                   </div>
                 </div>
               </div>
 
-              <!-- 1-Click WhatsApp & Phone Contact Buttons -->
+              <!-- 1-Click WhatsApp, Phone & Email Contact Buttons -->
               <div class="flex items-center gap-2 flex-wrap">
                 ${waButton}
                 ${callButton}
+                ${emailButton}
               </div>
             </div>
 
@@ -2275,18 +2303,21 @@
       }
 
       let csv = '\uFEFF';
-      csv += 'کد سفارش,تاریخ ثبت,نام خریدار,آدرس پستی کامل,اقلام سفارش,مبلغ کل (یورو),وضعیت\r\n';
+      csv += 'کد سفارش,تاریخ ثبت,نام خریدار,شماره تلفن,ایمیل خریدار,آدرس پستی کامل,اقلام سفارش,مبلغ کل (یورو),وضعیت\r\n';
 
       orders.forEach(o => {
         const id = (o.id || '').slice(0, 8);
         const date = o.created_at ? new Date(o.created_at).toLocaleString('fa-IR') : '';
+        const contact = parseCustomerContact(o);
         const name = (o.customer_name || '').replace(/"/g, '""');
-        const addr = (o.customer_address || '').replace(/"/g, '""');
+        const phone = (contact.phone || '').replace(/"/g, '""');
+        const email = (contact.email || '').replace(/"/g, '""');
+        const addr = (contact.cleanAddr || o.customer_address || '').replace(/"/g, '""');
         const items = Array.isArray(o.items) ? o.items.map(i => `${i.qty || 1}x ${i.title || i.name}`).join(' | ').replace(/"/g, '""') : '';
         const total = (parseFloat(o.total_price) || 0).toFixed(2);
         const status = (o.status || '').replace(/"/g, '""');
 
-        csv += `"${id}","${date}","${name}","${addr}","${items}","${total}","${status}"\r\n`;
+        csv += `"${id}","${date}","${name}","${phone}","${email}","${addr}","${items}","${total}","${status}"\r\n`;
       });
 
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
@@ -2365,6 +2396,7 @@
     function openManualOrderModal() {
       document.getElementById('manualCustName').value = '';
       document.getElementById('manualCustPhone').value = '';
+      if (document.getElementById('manualCustEmail')) document.getElementById('manualCustEmail').value = '';
       document.getElementById('manualCustAddress').value = '';
       document.getElementById('manualTotalPrice').value = '0.00';
       const container = document.getElementById('manualOrderItemsContainer');
@@ -2423,6 +2455,7 @@
       e.preventDefault();
       const name = document.getElementById('manualCustName').value.trim();
       const phone = document.getElementById('manualCustPhone').value.trim();
+      const email = document.getElementById('manualCustEmail')?.value.trim() || '';
       const addr = document.getElementById('manualCustAddress').value.trim();
       const payMethod = document.getElementById('manualPayMethod').value;
       const status = document.getElementById('manualOrderStatus').value;
@@ -2439,7 +2472,12 @@
         }
       });
 
-      const fullAddr = `${addr}` + (phone ? ` (Tel: ${phone})` : '') + ` [روش پرداخت: ${payMethod}]`;
+      const contactParts = [];
+      if (phone) contactParts.push(`Tel: ${phone}`);
+      if (email) contactParts.push(`Email: ${email}`);
+      const contactStr = contactParts.length > 0 ? ` (${contactParts.join(' | ')})` : '';
+
+      const fullAddr = `${addr}${contactStr} [روش پرداخت: ${payMethod}]`;
 
       showToast('در حال ذخیره سفارش در سیستم...');
 
