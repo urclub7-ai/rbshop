@@ -1003,275 +1003,419 @@
     <div id="cartPanel" class="absolute top-0 bottom-0 left-0 w-full max-w-lg bg-[#0e1017] border-r border-brand-border shadow-2xl flex flex-col justify-between transform -translate-x-full transition-transform duration-300 z-10">
       
       <!-- Drawer Header -->
-      <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-[#12141c] shrink-0">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-brand-red/15 border border-brand-red/30 flex items-center justify-center text-brand-red">
+      <div class="p-3.5 sm:p-4 border-b border-white/10 flex items-center justify-between bg-[#12141c] shrink-0">
+        <!-- Default Step 1 Header Info -->
+        <div id="cartDrawerHeaderDefault" class="flex items-center gap-2.5 min-w-0">
+          <div class="w-9 h-9 rounded-xl bg-brand-red/15 border border-brand-red/30 flex items-center justify-center text-brand-red shrink-0">
             <i class="fa-solid fa-bag-shopping text-sm"></i>
           </div>
-          <div>
-            <h3 class="font-black text-sm sm:text-base text-white flex items-center gap-2">
+          <div class="min-w-0">
+            <h3 class="font-black text-sm sm:text-base text-white flex items-center gap-2 truncate">
               <span data-i18n="cart_drawer_title">سبد خرید شما</span>
-              <span id="drawerBadge" class="text-[11px] bg-brand-red/20 text-brand-red font-bold px-2 py-0.5 rounded-full border border-brand-red/30">۰ کالا</span>
+              <span id="drawerBadge" class="text-[11px] bg-brand-red/20 text-brand-red font-bold px-2 py-0.5 rounded-full border border-brand-red/30 shrink-0">۰ کالا</span>
             </h3>
-            <span class="text-[10px] text-slate-400" data-i18n="cart_drawer_sub">فروشگاه میوه خشک و زعفران اعلای R.B Shop</span>
+            <span class="text-[10px] text-slate-400 block truncate" data-i18n="cart_drawer_sub">فروشگاه میوه خشک و زعفران اعلای R.B Shop</span>
           </div>
         </div>
-        <button id="closeCartBtn" aria-label="Close cart" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center text-sm transition active:scale-95">
+
+        <!-- Step 2 Back Button & Title (Hidden on Step 1) -->
+        <div id="cartDrawerHeaderStep2" class="items-center gap-2 min-w-0 hidden">
+          <button type="button" id="cartStepBackBtn" onclick="goToCartStep(1)" class="h-9 px-3 rounded-xl bg-amber-400/15 hover:bg-amber-400/25 border border-amber-400/30 text-amber-300 font-bold text-xs flex items-center gap-1.5 transition active:scale-95 shrink-0">
+            <i class="fa-solid fa-arrow-right rtl:rotate-0 ltr:rotate-180 text-xs"></i>
+            <span data-i18n="cart_back_to_cart">بازگشت به سبد خرید</span>
+          </button>
+          <div class="min-w-0">
+            <h3 class="font-black text-xs sm:text-sm text-white truncate" data-i18n="cart_step_2_title">آدرس و پرداخت</h3>
+            <span class="text-[10px] text-amber-400 font-medium block" data-i18n="cart_checkout_step2_badge">مرحله ۲ از ۲</span>
+          </div>
+        </div>
+
+        <!-- Close Drawer Button -->
+        <button id="closeCartBtn" aria-label="Close cart" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center text-sm transition active:scale-95 shrink-0 ms-2">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <!-- Drawer Scroll Area (Everything flows smoothly in one scrollable container) -->
-      <div id="cartScrollArea" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
-        
-        <!-- 1. Free Shipping Progress / Status Banner -->
-        <div id="freeShippingBanner" class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px] transition-all">
-          <span id="freeShippingText" class="text-amber-300 font-bold flex items-center gap-1.5">
-            <i class="fa-solid fa-truck-fast text-xs"></i>
-            <span>47.00 € away from FREE DHL shipping!</span>
-          </span>
-          <span id="freeShippingStatus" class="px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200">Min. 50.00 €</span>
+      <!-- Step Progress Ribbon (Amazon / Shopify style) -->
+      <div id="cartStepProgressBar" class="px-4 py-2 bg-[#0b0d13] border-b border-white/5 flex items-center justify-between text-xs shrink-0 select-none">
+        <button type="button" onclick="goToCartStep(1)" id="stepTab1" class="flex items-center gap-1.5 font-bold text-amber-400 transition hover:opacity-85">
+          <span id="stepTab1Num" class="w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center">1</span>
+          <span data-i18n="cart_step_1_title">۱. سبد خرید</span>
+        </button>
+        <div class="flex-1 mx-3 h-0.5 bg-white/10 relative rounded-full overflow-hidden">
+          <div id="stepProgressFill" class="absolute top-0 bottom-0 start-0 bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-300 w-0"></div>
         </div>
+        <button type="button" onclick="goToCartStep(2)" id="stepTab2" class="flex items-center gap-1.5 font-medium text-slate-500 transition hover:opacity-85">
+          <span id="stepTab2Num" class="w-5 h-5 rounded-full bg-white/10 text-slate-400 text-[10px] font-bold flex items-center justify-center">2</span>
+          <span data-i18n="cart_step_2_title">۲. آدرس و پرداخت</span>
+        </button>
+      </div>
 
-        <!-- 2. Selected Products Heading & Items Container -->
-        <div class="space-y-2.5">
-          <div class="flex items-center justify-between">
+      <!-- Drawer Scroll Area -->
+      <div id="cartScrollArea" class="flex-1 overflow-y-auto p-3.5 sm:p-4 space-y-4">
+        
+        <!-- ============================================== -->
+        <!-- STEP 1: SHOPPING CART (WARENKORB) VIEW          -->
+        <!-- ============================================== -->
+        <div id="cartStep1View" class="space-y-3.5">
+          
+          <!-- Top Amazon-Style Subtotal & Checkout Card -->
+          <div id="cartStep1TopCard" class="p-3.5 sm:p-4 rounded-2xl bg-[#12151c] border border-amber-500/30 shadow-lg space-y-3">
+            <!-- Subtotal & Item Count -->
+            <div class="flex items-center justify-between">
+              <div class="text-xs text-slate-300">
+                <span data-i18n="cart_subtotal" class="font-medium">مجموع:</span>
+                <span id="cartTopItemsCount" class="text-xs text-slate-400 font-bold ms-1">(۰ کالا)</span>
+              </div>
+              <div id="cartTopSubtotal" class="text-xl sm:text-2xl font-black text-amber-400 font-display dir-ltr">0.00 €</div>
+            </div>
+
+            <!-- Free DHL Shipping Banner -->
+            <div id="cartTopShippingBanner" class="p-2 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px] transition-all">
+              <span id="cartTopShippingText" class="text-amber-300 font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-truck-fast text-xs"></i>
+                <span id="cartTopShippingMsg">47.00 € تا ارسال کاملاً رایگان با DHL!</span>
+              </span>
+              <span id="cartTopShippingBadge" class="px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200">سقف ۵۰٫۰۰ €</span>
+            </div>
+
+            <!-- Amazon Gold Primary Checkout Button -->
+            <button type="button" onclick="goToCartStep(2)" id="cartTopCheckoutBtn" class="w-full h-12 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition cursor-pointer">
+              <span data-i18n="cart_proceed_to_checkout">تکمیل و پرداخت نهایی</span>
+              <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180 text-xs"></i>
+            </button>
+
+            <!-- Trust guarantee -->
+            <div class="flex items-center justify-center gap-1.5 text-[10px] text-slate-400 pt-0.5">
+              <i class="fa-solid fa-shield-halved text-emerald-400 text-xs"></i>
+              <span data-i18n="cart_guarantee_text">پرداخت امن • ارسال بیمه‌شده با پست DHL</span>
+            </div>
+          </div>
+
+          <!-- Selected Products Heading -->
+          <div id="cartItemsHeadingBox" class="flex items-center justify-between pt-1">
             <h4 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
               <i class="fa-solid fa-boxes-stacked text-amber-400 text-xs"></i>
               <span data-i18n="cart_items_heading">محصولات انتخاب شده برای خرید:</span>
             </h4>
           </div>
 
+          <!-- Product Items List -->
           <div id="cartItemsContainer" class="space-y-3">
-            <!-- Rendered dynamically via JS with clear title, unit, price, and controls -->
+            <!-- Rendered dynamically via JS -->
           </div>
+
+          <!-- Empty Cart State -->
+          <div id="cartEmptyState" class="text-center py-12 space-y-3 hidden">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 text-2xl">
+              <i class="fa-solid fa-basket-shopping"></i>
+            </div>
+            <p class="text-sm font-bold text-white" data-i18n="cart_drawer_empty">سبد خرید شما در حال حاضر خالی است!</p>
+            <p class="text-xs text-slate-400 max-w-xs mx-auto" data-i18n="cart_drawer_empty_sub">محصولات یا پکیج‌های کادویی سلطنتی را از منو انتخاب کنید.</p>
+            <button type="button" onclick="closeCart(); document.getElementById('productsSection')?.scrollIntoView({behavior:'smooth'});" class="px-5 py-2.5 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs transition">
+              <span data-i18n="cat_all">مشاهده همه محصولات</span>
+            </button>
+          </div>
+
         </div>
 
-        <!-- 3. Delivery Address Form Section -->
-        <div id="checkoutFormSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-3.5 hidden">
-          <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
-            <div class="flex items-center gap-2">
-              <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
-              <h4 data-i18n="cart_drawer_address_title" class="text-xs sm:text-sm font-bold text-white">DHL / DPD Postal Delivery Address</h4>
-            </div>
-            <span data-i18n="cart_drawer_address_badge" class="text-[10px] text-amber-400/90 font-medium">Direct Postal Delivery</span>
-          </div>
-
-          <!-- Name & Phone -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-            <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                <span data-i18n="cart_field_name">Full Name & Surname:</span> <span class="text-rose-400">*</span>
-              </label>
-              <input type="text" id="custName" data-i18n-ph="cart_field_name_ph" placeholder="e.g. John Doe" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                <span data-i18n="cart_field_phone">Phone or WhatsApp Number:</span> <span class="text-rose-400">*</span>
-              </label>
-              <input type="tel" id="custPhone" data-i18n-ph="cart_field_phone_ph" placeholder="e.g. 0176 12345678" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-start focus:outline-none focus:border-emerald-500">
-            </div>
-          </div>
-
-          <!-- Street & House Number -->
-          <div>
-            <label class="block text-[11px] font-bold text-slate-300 mb-1">
-              <span data-i18n="cart_field_street">Street & House Number (Straße & Hausnr.):</span> <span class="text-rose-400">*</span>
-            </label>
-            <input type="text" id="custStreet" data-i18n-ph="cart_field_street_ph" placeholder="e.g. Möllers weg 15" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
-          </div>
-
-          <!-- Postal Code (PLZ), City & Country -->
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-            <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                <span data-i18n="cart_field_plz">Postal Code (PLZ):</span> <span class="text-rose-400">*</span>
-              </label>
-              <input type="text" id="custPlz" data-i18n-ph="cart_field_plz_ph" placeholder="e.g. 25761" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 dir-ltr text-start focus:outline-none focus:border-emerald-500">
-            </div>
-
-            <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">
-                <span data-i18n="cart_field_city">City (Stadt):</span> <span class="text-rose-400">*</span>
-              </label>
-              <input type="text" id="custCity" data-i18n-ph="cart_field_city_ph" placeholder="e.g. Büsum / Hamburg" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-emerald-500">
-            </div>
-
-            <div class="col-span-2 sm:col-span-1">
-              <label data-i18n="cart_field_country" class="block text-[11px] font-bold text-slate-300 mb-1">Country (Land):</label>
-              <select id="custCountry" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-2 text-xs text-white focus:outline-none focus:border-emerald-500">
-                <option data-i18n="country_de" value="Germany (Deutschland)">Germany (Deutschland)</option>
-                <option data-i18n="country_at" value="Austria (Österreich)">Austria (Österreich)</option>
-                <option data-i18n="country_ch" value="Switzerland (Schweiz)">Switzerland (Schweiz)</option>
-                <option data-i18n="country_nl" value="Netherlands (Nederland)">Netherlands (Nederland)</option>
-                <option data-i18n="country_other" value="Other European Countries">Other European Countries</option>
-              </select>
-            </div>
-          </div>
-        </div>
-
-        <!-- 4. Payment Method Selection (Clean, no separate fee mention!) -->
-        <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-3 hidden">
-          <label data-i18n="cart_field_payment" class="block text-xs font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-credit-card text-emerald-400"></i>
-            <span>روش پرداخت را انتخاب کنید (Zahlungsmethode):</span>
-          </label>
+        <!-- ============================================== -->
+        <!-- STEP 2: CHECKOUT & PAYMENT (KASSE) VIEW        -->
+        <!-- ============================================== -->
+        <div id="cartStep2View" class="space-y-3.5 hidden">
           
-          <div class="space-y-2" id="paymentMethodSelector">
-            <!-- Method 1: PayPal & Online Cards -->
-            <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border-2 border-emerald-500 cursor-pointer transition select-none flex items-start gap-2.5">
-              <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-emerald-500 pointer-events-none">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-1 flex-wrap">
-                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                    <i class="fa-brands fa-paypal text-sky-400"></i>
-                    <span data-i18n="pay_method_paypal">پرداخت آنلاین (PayPal، ویزا، مسترکارت)</span>
-                  </span>
-                  <span class="text-[10px] font-bold text-sky-300 bg-sky-950/80 border border-sky-500/40 px-2 py-0.5 rounded-md flex items-center gap-1">
-                    <i class="fa-solid fa-shield-halved text-[9px]"></i>
-                    <span>فوری و ۱۰۰٪ امن</span>
-                  </span>
-                </div>
-                <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_paypal_hint">پرداخت امن و فوری با پی‌پال، مسترکارت، ویزا یا Später Bezahlen (۳۰ روزه)</p>
-              </div>
-            </div>
+          <!-- Back to Cart Link -->
+          <button type="button" onclick="goToCartStep(1)" class="w-full p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-amber-300 text-xs font-bold flex items-center justify-between transition active:scale-98">
+            <span class="flex items-center gap-2">
+              <i class="fa-solid fa-arrow-right rtl:rotate-0 ltr:rotate-180 text-xs"></i>
+              <span data-i18n="cart_back_to_cart">← بازگشت به سبد خرید</span>
+            </span>
+            <span class="text-[10px] text-slate-400 font-normal" data-i18n="cart_back_to_cart_sub">ویرایش اقلام یا تعداد</span>
+          </button>
 
-            <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
-            <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-              <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-emerald-500 pointer-events-none">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-1 flex-wrap">
-                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                    <i class="fa-solid fa-building-columns text-emerald-400"></i>
-                    <span data-i18n="pay_method_bank">واریز مستقیم بانکی (SEPA / IBAN آلمان)</span>
-                  </span>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
-                    <i class="fa-solid fa-check text-[9px]"></i>
-                    <span>بدون کارمزد (۰٪ رایگان)</span>
-                  </span>
-                </div>
-                <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_bank_hint">انتقال مستقیم از حساب بانکی شما به حساب بانکی در آلمان بدون هیچ کارمزدی</p>
-              </div>
-            </div>
-
-            <!-- Method 3: WhatsApp Order -->
-            <div onclick="selectPaymentMethod('wa')" id="payCard-wa" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-              <input type="radio" name="cartPayOption" id="radio-wa" value="wa" class="mt-0.5 accent-emerald-500 pointer-events-none">
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-1 flex-wrap">
-                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                    <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                    <span data-i18n="pay_method_wa">سفارش و هماهنگی در واتساپ</span>
-                  </span>
-                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
-                    <i class="fa-solid fa-check text-[9px]"></i>
-                    <span>بدون کارمزد (۰٪ رایگان)</span>
-                  </span>
-                </div>
-                <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_wa_hint">هماهنگی آسان نحوه پرداخت مستقیم با مدیریت در چت واتساپ</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 5. Order Summary (Price Breakdown - NO SEPARATE FEE ROW!) -->
-        <div id="cartSummaryBox" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-2.5 hidden">
-          <div class="border-b border-white/10 pb-2">
-            <h4 class="text-xs font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-receipt text-amber-400"></i>
-              <span data-i18n="cart_summary_title">خلاصه حساب سفارش:</span>
-            </h4>
-          </div>
-
-          <div class="space-y-2 text-xs">
-            <!-- Subtotal Row -->
-            <div class="flex items-center justify-between text-slate-300">
-              <span data-i18n="cart_subtotal">Subtotal:</span>
-              <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
-            </div>
-
-            <!-- Shipping Breakdown Row -->
-            <div class="flex items-center justify-between text-slate-300">
-              <span class="flex items-center gap-1.5">
-                <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
-                <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
+          <!-- Collapsible Mini Order Summary -->
+          <div class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 space-y-2.5">
+            <button type="button" onclick="toggleStep2OrderPreview()" class="w-full flex items-center justify-between text-xs font-bold text-white cursor-pointer select-none">
+              <span class="flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-amber-400"></i>
+                <span id="step2SummaryCountLabel">سفارش شما (۰ قلم)</span>
               </span>
-              <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
-            </div>
-
-            <!-- Final Total Row (Total dynamically contains the fee without any separate line!) -->
-            <div class="flex items-center justify-between text-sm sm:text-base font-black text-white pt-2 border-t border-white/10">
-              <span data-i18n="cart_total">Total Amount:</span>
-              <span id="cartTotal" class="text-base sm:text-lg font-black text-amber-400 font-display dir-ltr">0.00 €</span>
-            </div>
-
-            <!-- Legal Tax Compliance Notice (German/EU Preisangabenverordnung) -->
-            <p class="text-[10px] text-slate-400 text-center pt-1" data-i18n="cart_tax_legal">
-              Gesamtpreis inkl. gesetzlicher MwSt. • Schnelle & versicherte Zustellung mit DHL
-            </p>
-          </div>
-        </div>
-
-        <!-- 6. Payment Action Buttons Area -->
-        <div id="paymentActionsArea" class="space-y-2 pt-1 hidden">
-          <!-- PayPal Section -->
-          <div id="paypalSection" class="space-y-2.5">
-            <div class="flex items-center justify-between text-[11px]">
-              <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
-                <i class="fa-solid fa-lock text-xs"></i>
-                <span>Fast & Secure Online Checkout:</span>
+              <span class="text-amber-400 flex items-center gap-2 text-xs font-bold">
+                <span id="step2SummaryPriceLabel" class="font-display dir-ltr">0.00 €</span>
+                <span id="step2CollapseToggleText" class="text-[10px] text-slate-400 font-normal underline" data-i18n="cart_show_order_items">مشاهده اقلام</span>
+                <i id="step2CollapseIcon" class="fa-solid fa-chevron-down text-[10px] text-slate-400 transition-transform"></i>
               </span>
-              <span class="text-[11px] text-brand-silver/70 flex items-center gap-1.5 dir-ltr">
-                <i class="fa-brands fa-paypal text-blue-400 text-sm" title="PayPal"></i>
-                <span class="text-[10px] text-emerald-400 font-bold">100% Protected</span>
-              </span>
-            </div>
-
-            <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-zinc-300">
-              <span class="text-[11px] text-brand-silver/90 font-medium" data-i18n="pay_online_sub">PayPal • Visa • Mastercard • SEPA Lastschrift</span>
-              <div class="flex items-center gap-2 text-zinc-300 dir-ltr text-sm shrink-0">
-                <i class="fa-brands fa-paypal text-sky-400" title="PayPal"></i>
-                <i class="fa-brands fa-cc-visa text-sky-200" title="Visa"></i>
-                <i class="fa-brands fa-cc-mastercard text-amber-400" title="Mastercard"></i>
-                <i class="fa-solid fa-building-columns text-emerald-400" title="SEPA Bank"></i>
-              </div>
-            </div>
-
-            <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
-          </div>
-
-          <!-- Bank Transfer Section -->
-          <div id="bankTransferSection" class="space-y-2.5 hidden">
-            <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-2 text-xs text-right">
-              <div class="text-[11px] font-bold text-emerald-300 flex items-center gap-1.5">
-                <i class="fa-solid fa-building-columns"></i>
-                <span data-i18n="pay_bank_details_title">مشخصات حساب بانکی فروشگاه در آلمان (IBAN / SEPA):</span>
-              </div>
-              <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs sm:text-sm font-bold dir-ltr text-center select-all tracking-wider" id="bankIbanDisplay">
-                DE49 2105 0170 0000 0000 00
-              </div>
-              <div class="flex items-center justify-between text-[11px] text-slate-300 pt-0.5">
-                <span class="text-slate-400" data-i18n="pay_bank_holder_label">نام صاحب حساب:</span>
-                <span class="font-bold text-white" id="bankHolderDisplay">Ramazan Bakhtyary</span>
-              </div>
-            </div>
-            <button onclick="checkoutWhatsApp('bank')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
-              <i class="fa-brands fa-whatsapp text-base"></i>
-              <span data-i18n="btn_confirm_bank_order">ثبت سفارش و ارسال به واتساپ (واریز بانکی)</span>
             </button>
+            <div id="step2OrderItemsPreview" class="hidden pt-2.5 border-t border-white/5 space-y-2 max-h-48 overflow-y-auto">
+              <!-- Rendered mini items with thumbnail, qty, and price -->
+            </div>
           </div>
 
-          <!-- WhatsApp Section -->
-          <div id="waOrderSection" class="space-y-2.5 hidden">
-            <button onclick="checkoutWhatsApp('wa')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
-              <i class="fa-brands fa-whatsapp text-base"></i>
-              <span data-i18n="btn_confirm_wa_order">ثبت و ارسال سفارش در واتساپ</span>
-            </button>
+          <!-- Section 1: Delivery Address Form Section -->
+          <div id="checkoutFormSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-3.5">
+            <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
+                <h4 data-i18n="cart_drawer_address_title" class="text-xs sm:text-sm font-bold text-white">DHL / DPD Postal Delivery Address</h4>
+              </div>
+              <span data-i18n="cart_drawer_address_badge" class="text-[10px] text-amber-400/90 font-medium">Direct Postal Delivery</span>
+            </div>
+
+            <!-- Name & Phone -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                  <span data-i18n="cart_field_name">Full Name & Surname:</span> <span class="text-rose-400">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-slate-500 text-xs">
+                    <i class="fa-solid fa-user"></i>
+                  </span>
+                  <input type="text" id="custName" oninput="autoSaveCustomerInfo()" data-i18n-ph="cart_field_name_ph" placeholder="e.g. John Doe" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 ps-9 pe-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                  <span data-i18n="cart_field_phone">Phone or WhatsApp Number:</span> <span class="text-rose-400">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-slate-500 text-xs">
+                    <i class="fa-solid fa-phone"></i>
+                  </span>
+                  <input type="tel" id="custPhone" oninput="autoSaveCustomerInfo()" data-i18n-ph="cart_field_phone_ph" placeholder="e.g. 0176 12345678" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 ps-9 pe-3 text-xs text-white placeholder-slate-500 dir-ltr text-start focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+                </div>
+              </div>
+            </div>
+
+            <!-- Street & House Number -->
+            <div>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                <span data-i18n="cart_field_street">Street & House Number (Straße & Hausnr.):</span> <span class="text-rose-400">*</span>
+              </label>
+              <div class="relative">
+                <span class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-slate-500 text-xs">
+                  <i class="fa-solid fa-location-dot"></i>
+                </span>
+                <input type="text" id="custStreet" oninput="autoSaveCustomerInfo()" data-i18n-ph="cart_field_street_ph" placeholder="e.g. Möllers weg 15" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 ps-9 pe-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+              </div>
+            </div>
+
+            <!-- Postal Code (PLZ), City & Country -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                  <span data-i18n="cart_field_plz">Postal Code (PLZ):</span> <span class="text-rose-400">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-slate-500 text-xs">
+                    <i class="fa-solid fa-envelope"></i>
+                  </span>
+                  <input type="text" id="custPlz" oninput="autoSaveCustomerInfo()" data-i18n-ph="cart_field_plz_ph" placeholder="e.g. 25761" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 ps-9 pe-3 text-xs text-white placeholder-slate-500 dir-ltr text-start focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-300 mb-1">
+                  <span data-i18n="cart_field_city">City (Stadt):</span> <span class="text-rose-400">*</span>
+                </label>
+                <div class="relative">
+                  <span class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none text-slate-500 text-xs">
+                    <i class="fa-solid fa-city"></i>
+                  </span>
+                  <input type="text" id="custCity" oninput="autoSaveCustomerInfo()" data-i18n-ph="cart_field_city_ph" placeholder="e.g. Büsum / Hamburg" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 ps-9 pe-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+                </div>
+              </div>
+
+              <div class="col-span-2 sm:col-span-1">
+                <label data-i18n="cart_field_country" class="block text-[11px] font-bold text-slate-300 mb-1">Country (Land):</label>
+                <select id="custCountry" onchange="autoSaveCustomerInfo()" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+                  <option data-i18n="country_de" value="Germany (Deutschland)">Germany (Deutschland)</option>
+                  <option data-i18n="country_at" value="Austria (Österreich)">Austria (Österreich)</option>
+                  <option data-i18n="country_ch" value="Switzerland (Schweiz)">Switzerland (Schweiz)</option>
+                  <option data-i18n="country_nl" value="Netherlands (Nederland)">Netherlands (Nederland)</option>
+                  <option data-i18n="country_other" value="Other European Countries">Other European Countries</option>
+                </select>
+              </div>
+            </div>
           </div>
+
+          <!-- Section 2: Payment Method Selection -->
+          <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-3">
+            <label data-i18n="cart_field_payment" class="block text-xs font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-credit-card text-emerald-400"></i>
+              <span>Preferred Payment Method (Zahlungsmethode):</span>
+            </label>
+            
+            <div class="space-y-2" id="paymentMethodSelector">
+              <!-- Method 1: PayPal & Online Cards -->
+              <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border-2 border-emerald-500 cursor-pointer transition select-none flex items-start gap-2.5">
+                <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-emerald-500 pointer-events-none">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1 flex-wrap">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i class="fa-brands fa-paypal text-sky-400"></i>
+                      <span data-i18n="pay_method_paypal">Online Payment (PayPal, Card, Pay Later)</span>
+                    </span>
+                    <span class="text-[10px] font-bold text-sky-300 bg-sky-950/80 border border-sky-500/40 px-2 py-0.5 rounded-md flex items-center gap-1">
+                      <i class="fa-solid fa-shield-halved text-[9px]"></i>
+                      <span>Fast & 100% Secure</span>
+                    </span>
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
+                </div>
+              </div>
+
+              <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
+              <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+                <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-emerald-500 pointer-events-none">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1 flex-wrap">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                      <span data-i18n="pay_method_bank">Direct Bank Transfer (SEPA / IBAN Germany)</span>
+                    </span>
+                    <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
+                      <i class="fa-solid fa-check text-[9px]"></i>
+                      <span>0.00 € (0% Free)</span>
+                    </span>
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_bank_hint">Zero fees (0%). Transfer directly to our German bank account</p>
+                </div>
+              </div>
+
+              <!-- Method 3: WhatsApp Order -->
+              <div onclick="selectPaymentMethod('wa')" id="payCard-wa" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+                <input type="radio" name="cartPayOption" id="radio-wa" value="wa" class="mt-0.5 accent-emerald-500 pointer-events-none">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1 flex-wrap">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                      <span data-i18n="pay_method_wa">WhatsApp Order & Inquiry</span>
+                    </span>
+                    <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
+                      <i class="fa-solid fa-check text-[9px]"></i>
+                      <span>0.00 € (0% Free)</span>
+                    </span>
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_wa_hint">Zero fees (0%). Confirm order & payment details directly in WhatsApp chat</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Order Summary (Price Breakdown - NO SEPARATE FEE ROW!) -->
+          <div id="cartSummaryBox" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-2.5">
+            <div class="border-b border-white/10 pb-2">
+              <h4 class="text-xs font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-receipt text-amber-400"></i>
+                <span data-i18n="cart_summary_title">Order Summary</span>
+              </h4>
+            </div>
+
+            <div class="space-y-2 text-xs">
+              <!-- Subtotal Row -->
+              <div class="flex items-center justify-between text-slate-300">
+                <span data-i18n="cart_subtotal">Subtotal:</span>
+                <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
+              </div>
+
+              <!-- Shipping Breakdown Row -->
+              <div class="flex items-center justify-between text-slate-300">
+                <span class="flex items-center gap-1.5">
+                  <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
+                  <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
+                </span>
+                <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
+              </div>
+
+              <!-- Final Total Row (Total dynamically contains the fee without any separate line!) -->
+              <div class="flex items-center justify-between text-sm sm:text-base font-black text-white pt-2 border-t border-white/10">
+                <span data-i18n="cart_total">Total Amount:</span>
+                <span id="cartTotal" class="text-base sm:text-lg font-black text-amber-400 font-display dir-ltr">0.00 €</span>
+              </div>
+
+              <!-- Legal Tax Compliance Notice (German/EU Preisangabenverordnung) -->
+              <p class="text-[10px] text-slate-400 text-center pt-1" data-i18n="cart_tax_legal">
+                Total price incl. VAT • Fast & insured DHL delivery
+              </p>
+            </div>
+          </div>
+
+          <!-- Section 4: Payment Action Buttons Area -->
+          <div id="paymentActionsArea" class="space-y-2 pt-1">
+            <!-- PayPal Section -->
+            <div id="paypalSection" class="space-y-2.5">
+              <div class="flex items-center justify-between text-[11px]">
+                <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
+                  <i class="fa-solid fa-lock text-xs"></i>
+                  <span>Fast & Secure Online Checkout:</span>
+                </span>
+                <span class="text-[11px] text-brand-silver/70 flex items-center gap-1.5 dir-ltr">
+                  <i class="fa-brands fa-paypal text-blue-400 text-sm" title="PayPal"></i>
+                  <span class="text-[10px] text-emerald-400 font-bold">100% Protected</span>
+                </span>
+              </div>
+
+              <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-zinc-300">
+                <span class="text-[11px] text-brand-silver/90 font-medium" data-i18n="pay_online_sub">PayPal • Visa • Mastercard • SEPA Lastschrift</span>
+                <div class="flex items-center gap-2 text-zinc-300 dir-ltr text-sm shrink-0">
+                  <i class="fa-brands fa-paypal text-sky-400" title="PayPal"></i>
+                  <i class="fa-brands fa-cc-visa text-sky-200" title="Visa"></i>
+                  <i class="fa-brands fa-cc-mastercard text-amber-400" title="Mastercard"></i>
+                  <i class="fa-solid fa-building-columns text-emerald-400" title="SEPA Bank"></i>
+                </div>
+              </div>
+
+              <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
+            </div>
+
+            <!-- Bank Transfer Section -->
+            <div id="bankTransferSection" class="space-y-2.5 hidden">
+              <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-2 text-xs text-right">
+                <div class="text-[11px] font-bold text-emerald-300 flex items-center gap-1.5">
+                  <i class="fa-solid fa-building-columns"></i>
+                  <span data-i18n="pay_bank_details_title">German Bank Account Details (SEPA):</span>
+                </div>
+                <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs sm:text-sm font-bold dir-ltr text-center select-all tracking-wider" id="bankIbanDisplay">
+                  DE49 2105 0170 0000 0000 00
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-slate-300 pt-0.5">
+                  <span class="text-slate-400" data-i18n="pay_bank_holder_label">Account Holder (Inhaber):</span>
+                  <span class="font-bold text-white" id="bankHolderDisplay">Ramazan Bakhtyary</span>
+                </div>
+              </div>
+              <button onclick="checkoutWhatsApp('bank')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span data-i18n="btn_confirm_bank_order">Place Order via Bank Transfer / WhatsApp</span>
+              </button>
+            </div>
+
+            <!-- WhatsApp Section -->
+            <div id="waOrderSection" class="space-y-2.5 hidden">
+              <button onclick="checkoutWhatsApp('wa')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span data-i18n="btn_confirm_wa_order">Place Order via WhatsApp</span>
+              </button>
+            </div>
+          </div>
+
         </div>
 
       </div>
+
+      <!-- Sticky Bottom Footer on Step 1 (Mobile & Desktop) -->
+      <div id="cartStep1StickyFooter" class="p-3 sm:p-3.5 bg-[#12141c]/95 backdrop-blur-md border-t border-white/10 flex items-center justify-between gap-3 shrink-0 hidden">
+        <div class="min-w-0">
+          <span class="text-[10px] text-slate-400 block truncate" data-i18n="cart_subtotal">Subtotal:</span>
+          <span id="cartStickySubtotal" class="text-base sm:text-lg font-black text-amber-400 font-display dir-ltr">0.00 €</span>
+        </div>
+        <button type="button" onclick="goToCartStep(2)" class="flex-1 h-11 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 active:scale-[0.98] transition cursor-pointer">
+          <span data-i18n="cart_proceed_to_checkout">Proceed to Checkout</span>
+          <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180 text-xs"></i>
+        </button>
+      </div>
+
     </div>
   </div>
 
@@ -1430,16 +1574,35 @@
       if (item.qty <= 0) {
         cart = cart.filter(i => i.id !== id);
       }
+      if (cart.length === 0) {
+        goToCartStep(1);
+      }
       saveCart();
     }
 
     // Remove item
     function removeFromCart(id) {
       cart = cart.filter(i => i.id !== id);
+      if (cart.length === 0) {
+        goToCartStep(1);
+      }
       saveCart();
     }
 
-    // Update Cart UI with Dynamic Shipping & Breakdown
+    // Auto-save customer address on any input
+    function autoSaveCustomerInfo() {
+      try {
+        const info = {
+          name: document.getElementById('custName')?.value.trim() || '',
+          phone: document.getElementById('custPhone')?.value.trim() || '',
+          street: document.getElementById('custStreet')?.value.trim() || '',
+          plz: document.getElementById('custPlz')?.value.trim() || '',
+          city: document.getElementById('custCity')?.value.trim() || '',
+          country: document.getElementById('custCountry')?.value || 'Germany (Deutschland)'
+        };
+        localStorage.setItem('rb_saved_customer', JSON.stringify(info));
+      } catch(e) {}
+    }
 
     function selectPaymentMethod(method) {
       selectedPaymentMethod = method;
@@ -1464,6 +1627,99 @@
       renderReviewsList();
     }
 
+    let currentCartStep = 1;
+    let step2PreviewExpanded = false;
+
+    function goToCartStep(step) {
+      if (step === 2 && cart.length === 0) {
+        const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+        showToast(dict.cart_drawer_empty || 'Your cart is currently empty!');
+        return;
+      }
+
+      currentCartStep = step;
+      const step1View = document.getElementById('cartStep1View');
+      const step2View = document.getElementById('cartStep2View');
+      const stickyFooter = document.getElementById('cartStep1StickyFooter');
+      const headerDefault = document.getElementById('cartDrawerHeaderDefault');
+      const headerStep2 = document.getElementById('cartDrawerHeaderStep2');
+      const stepTab1 = document.getElementById('stepTab1');
+      const stepTab2 = document.getElementById('stepTab2');
+      const stepTab1Num = document.getElementById('stepTab1Num');
+      const stepTab2Num = document.getElementById('stepTab2Num');
+      const stepProgressFill = document.getElementById('stepProgressFill');
+
+      if (step === 1) {
+        if (step1View) step1View.classList.remove('hidden');
+        if (step2View) step2View.classList.add('hidden');
+        if (stickyFooter && cart.length > 0) stickyFooter.classList.remove('hidden');
+
+        if (headerDefault) headerDefault.classList.remove('hidden');
+        if (headerStep2) {
+          headerStep2.classList.add('hidden');
+          headerStep2.classList.remove('flex');
+        }
+
+        if (stepTab1) stepTab1.className = 'flex items-center gap-1.5 font-bold text-amber-400 transition hover:opacity-85';
+        if (stepTab1Num) {
+          stepTab1Num.className = 'w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center';
+          stepTab1Num.innerHTML = '1';
+        }
+        if (stepTab2) stepTab2.className = 'flex items-center gap-1.5 font-medium text-slate-500 transition hover:opacity-85';
+        if (stepTab2Num) {
+          stepTab2Num.className = 'w-5 h-5 rounded-full bg-white/10 text-slate-400 text-[10px] font-bold flex items-center justify-center';
+        }
+        if (stepProgressFill) stepProgressFill.style.width = '0%';
+      } else {
+        if (step1View) step1View.classList.add('hidden');
+        if (step2View) step2View.classList.remove('hidden');
+        if (stickyFooter) stickyFooter.classList.add('hidden');
+
+        if (headerDefault) headerDefault.classList.add('hidden');
+        if (headerStep2) {
+          headerStep2.classList.remove('hidden');
+          headerStep2.classList.add('flex');
+        }
+
+        if (stepTab1) stepTab1.className = 'flex items-center gap-1.5 font-medium text-emerald-400 transition hover:opacity-85';
+        if (stepTab1Num) {
+          stepTab1Num.className = 'w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-bold flex items-center justify-center';
+          stepTab1Num.innerHTML = '<i class="fa-solid fa-check text-[8px]"></i>';
+        }
+        if (stepTab2) stepTab2.className = 'flex items-center gap-1.5 font-bold text-amber-400 transition hover:opacity-85';
+        if (stepTab2Num) {
+          stepTab2Num.className = 'w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center';
+        }
+        if (stepProgressFill) stepProgressFill.style.width = '100%';
+
+        // Render PayPal buttons if PayPal is the selected method
+        if (selectedPaymentMethod === 'paypal') {
+          setTimeout(() => renderPayPalButtons(), 120);
+        }
+      }
+
+      const scrollArea = document.getElementById('cartScrollArea');
+      if (scrollArea) scrollArea.scrollTop = 0;
+    }
+
+    function toggleStep2OrderPreview() {
+      step2PreviewExpanded = !step2PreviewExpanded;
+      const preview = document.getElementById('step2OrderItemsPreview');
+      const icon = document.getElementById('step2CollapseIcon');
+      const text = document.getElementById('step2CollapseToggleText');
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+
+      if (preview) {
+        preview.classList.toggle('hidden', !step2PreviewExpanded);
+      }
+      if (icon) {
+        icon.style.transform = step2PreviewExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+      }
+      if (text) {
+        text.textContent = step2PreviewExpanded ? (dict.cart_hide_order_items || 'Hide items') : (dict.cart_show_order_items || 'Show items');
+      }
+    }
+
     function updateCartUI() {
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
@@ -1484,7 +1740,19 @@
         drawerBadge.textContent = `${formatLocalizedNumber(totalCount, currentLang)} ${dict.cart_drawer_badge_items || 'items'}`;
       }
 
-      // Subtotal
+      // Step 1: Top Subtotal & Counts
+      const topCountEl = document.getElementById('cartTopItemsCount');
+      if (topCountEl) {
+        topCountEl.textContent = `(${formatLocalizedNumber(totalCount, currentLang)} ${dict.cart_drawer_badge_items || 'items'})`;
+      }
+      const topSubtotalEl = document.getElementById('cartTopSubtotal');
+      if (topSubtotalEl) topSubtotalEl.textContent = formatLocalizedPrice(subtotalPrice, currentLang);
+
+      // Step 1: Sticky Subtotal
+      const stickySubtotalEl = document.getElementById('cartStickySubtotal');
+      if (stickySubtotalEl) stickySubtotalEl.textContent = formatLocalizedPrice(subtotalPrice, currentLang);
+
+      // Step 2: Order summary subtotal
       const subtotalEl = document.getElementById('cartSubtotal');
       if (subtotalEl) subtotalEl.textContent = formatLocalizedPrice(subtotalPrice, currentLang);
 
@@ -1499,33 +1767,33 @@
         }
       }
 
-      // Free shipping threshold banner / progress
-      const bannerEl = document.getElementById('freeShippingBanner');
-      const bannerTextEl = document.getElementById('freeShippingText');
-      const bannerStatusEl = document.getElementById('freeShippingStatus');
-      if (bannerEl && bannerTextEl) {
+      // Step 1: Free shipping banner
+      const bannerEl = document.getElementById('cartTopShippingBanner');
+      const bannerMsgEl = document.getElementById('cartTopShippingMsg');
+      const bannerBadgeEl = document.getElementById('cartTopShippingBadge');
+      if (bannerEl && bannerMsgEl) {
         if (subtotalPrice === 0) {
           bannerEl.classList.add('hidden');
         } else {
           bannerEl.classList.remove('hidden');
           if (isFreeShipping) {
-            bannerEl.className = 'p-2.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-[11px]';
+            bannerEl.className = 'p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-[11px]';
             const unlockMsg = dict.cart_free_shipping_unlocked || (currentLang === 'fa' ? '🎉 ارسال با DHL برای این سفارش کاملاً رایگان است!' : '🎉 Free DHL tracked shipping applied!');
-            bannerTextEl.innerHTML = `<span class="text-emerald-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-xs"></i><span>${unlockMsg}</span></span>`;
-            if (bannerStatusEl) {
-              bannerStatusEl.className = 'px-2 py-0.5 rounded-md bg-emerald-950/90 text-[10px] font-bold text-emerald-200 border border-emerald-500/40';
-              bannerStatusEl.textContent = freeShippingBadge;
+            bannerMsgEl.innerHTML = `<span class="text-emerald-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-xs"></i><span>${unlockMsg}</span></span>`;
+            if (bannerBadgeEl) {
+              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-emerald-950/90 text-[10px] font-bold text-emerald-200 border border-emerald-500/40';
+              bannerBadgeEl.textContent = freeShippingBadge;
             }
           } else {
             const diff = freeThreshold - subtotalPrice;
             const diffFormatted = formatLocalizedPrice(diff, currentLang);
             const awayMsg = dict.cart_away_from_free || (currentLang === 'fa' ? 'دیگر تا ارسال کاملاً رایگان با DHL!' : 'away from FREE DHL shipping!');
-            bannerEl.className = 'p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px]';
-            bannerTextEl.innerHTML = `<span class="text-amber-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
-            if (bannerStatusEl) {
+            bannerEl.className = 'p-2 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px]';
+            bannerMsgEl.innerHTML = `<span class="text-amber-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
+            if (bannerBadgeEl) {
               const minBadge = dict.cart_threshold_badge || (currentLang === 'fa' ? 'سقف' : 'Min.');
-              bannerStatusEl.className = 'px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200';
-              bannerStatusEl.textContent = `${minBadge} ${formatLocalizedPrice(freeThreshold, currentLang)}`;
+              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200';
+              bannerBadgeEl.textContent = `${minBadge} ${formatLocalizedPrice(freeThreshold, currentLang)}`;
             }
           }
         }
@@ -1575,41 +1843,34 @@
         }
       }
 
+      // Visibility toggles for Step 1 elements
+      const topCard = document.getElementById('cartStep1TopCard');
+      const itemsHeading = document.getElementById('cartItemsHeadingBox');
       const container = document.getElementById('cartItemsContainer');
-      const checkoutForm = document.getElementById('checkoutFormSection');
-      const payMethodSec = document.getElementById('paymentMethodSection');
-      const summaryBox = document.getElementById('cartSummaryBox');
-      const payActions = document.getElementById('paymentActionsArea');
+      const emptyState = document.getElementById('cartEmptyState');
+      const stickyFooter = document.getElementById('cartStep1StickyFooter');
 
       if (cart.length === 0) {
-        if (checkoutForm) checkoutForm.classList.add('hidden');
-        if (payMethodSec) payMethodSec.classList.add('hidden');
-        if (summaryBox) summaryBox.classList.add('hidden');
-        if (payActions) payActions.classList.add('hidden');
-        if (container) {
-          container.innerHTML = `
-            <div class="text-center py-16 space-y-3">
-              <div class="w-16 h-16 mx-auto rounded-full bg-brand-surface border border-brand-border flex items-center justify-center text-brand-silver/50 text-2xl">
-                <i class="fa-solid fa-basket-shopping"></i>
-              </div>
-              <p class="text-sm font-bold text-white">${dict.cart_drawer_empty || 'Your cart is currently empty!'}</p>
-              <p class="text-xs text-brand-silver">${dict.cart_drawer_empty_sub || 'Add products or royal gift boxes from our catalog to get started.'}</p>
-            </div>
-          `;
-        }
+        if (topCard) topCard.classList.add('hidden');
+        if (itemsHeading) itemsHeading.classList.add('hidden');
+        if (container) container.innerHTML = '';
+        if (emptyState) emptyState.classList.remove('hidden');
+        if (stickyFooter) stickyFooter.classList.add('hidden');
+        if (currentCartStep === 2) goToCartStep(1);
         return;
       }
 
-      if (checkoutForm) checkoutForm.classList.remove('hidden');
-      if (payMethodSec) payMethodSec.classList.remove('hidden');
-      if (summaryBox) summaryBox.classList.remove('hidden');
-      if (payActions) payActions.classList.remove('hidden');
-      setTimeout(() => renderPayPalButtons(), 100);
+      if (topCard) topCard.classList.remove('hidden');
+      if (itemsHeading) itemsHeading.classList.remove('hidden');
+      if (emptyState) emptyState.classList.add('hidden');
+      if (stickyFooter && currentCartStep === 1) stickyFooter.classList.remove('hidden');
 
-      // Render spacious, highly visible cart items
+      // Render spacious, highly visible Amazon-style cart items in Step 1
       if (container) {
         const unitLabel = dict.cart_unit_price || (currentLang === 'fa' ? 'قیمت هر بسته:' : 'Unit price:');
         const subtotalLabel = dict.cart_item_subtotal || (currentLang === 'fa' ? 'مجموع این قلم:' : 'Item total:');
+        const inStockText = dict.cart_in_stock || (currentLang === 'fa' ? 'موجود در انبار • ارسال فوری با DHL' : 'In Stock • Fast DHL Delivery');
+        const deleteText = dict.cart_delete_item || (currentLang === 'fa' ? 'حذف' : 'Delete');
 
         container.innerHTML = cart.map(item => {
           const pTrans = (PRODUCT_TRANSLATIONS[item.id] && PRODUCT_TRANSLATIONS[item.id][currentLang]) ? PRODUCT_TRANSLATIONS[item.id][currentLang] : null;
@@ -1620,14 +1881,18 @@
           const itemQty = formatLocalizedNumber(item.qty, currentLang);
 
           return `
-          <div class="bg-[#12151c] border border-white/10 hover:border-amber-400/30 rounded-2xl p-3.5 space-y-3 transition shadow-md">
+          <div class="bg-[#12151c] border border-white/10 hover:border-amber-400/30 rounded-2xl p-3 sm:p-3.5 space-y-3 transition shadow-md">
             <!-- Top Row: Thumbnail + Product Details + Delete -->
             <div class="flex items-start gap-3">
-              <img src="${item.img}" alt="${itemName}" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl bg-black/40 border border-white/10 shrink-0">
+              <img src="${item.img}" alt="${itemName}" class="w-20 h-20 min-w-[80px] max-w-[80px] min-h-[80px] max-h-[80px] object-cover rounded-xl bg-black/40 border border-white/10 shrink-0">
               
               <div class="flex-1 min-w-0 space-y-1">
                 <h4 class="text-xs sm:text-sm font-bold text-white leading-snug break-words">${itemName}</h4>
                 ${itemUnit ? `<span class="inline-block px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] text-amber-300 font-semibold">${itemUnit}</span>` : ''}
+                <div class="text-[10px] text-emerald-400 font-medium flex items-center gap-1">
+                  <i class="fa-solid fa-circle-check text-[9px]"></i>
+                  <span>${inStockText}</span>
+                </div>
                 <div class="text-[11px] text-slate-400 flex items-center gap-1.5 pt-0.5">
                   <span>${unitLabel}</span>
                   <span class="font-bold text-white font-display dir-ltr">${unitPriceStr}</span>
@@ -1635,7 +1900,7 @@
               </div>
 
               <!-- Delete Button -->
-              <button onclick="removeFromCart('${item.id}')" title="حذف" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center text-xs transition active:scale-95 shrink-0">
+              <button onclick="removeFromCart('${item.id}')" title="${deleteText}" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center text-xs transition active:scale-95 shrink-0">
                 <i class="fa-solid fa-trash-can"></i>
               </button>
             </div>
@@ -1643,9 +1908,9 @@
             <!-- Bottom Row: Quantity Controls & Item Subtotal -->
             <div class="flex items-center justify-between pt-2 border-t border-white/5">
               <div class="flex items-center gap-1 bg-black/60 border border-white/15 rounded-xl p-1">
-                <button onclick="changeQty('${item.id}', -1)" aria-label="Decrease" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-xs font-bold active:scale-95 transition">-</button>
+                <button onclick="changeQty('${item.id}', -1)" aria-label="Decrease" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-sm font-bold active:scale-95 transition">-</button>
                 <span class="w-8 text-center text-xs font-bold text-white font-display">${itemQty}</span>
-                <button onclick="changeQty('${item.id}', 1)" aria-label="Increase" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-xs font-bold active:scale-95 transition">+</button>
+                <button onclick="changeQty('${item.id}', 1)" aria-label="Increase" class="w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-sm font-bold active:scale-95 transition">+</button>
               </div>
 
               <div class="text-end">
@@ -1657,9 +1922,44 @@
           `;
         }).join('');
       }
+
+      // Step 2: Update mini ordered items preview accordion
+      const step2CountLabel = document.getElementById('step2SummaryCountLabel');
+      if (step2CountLabel) {
+        step2CountLabel.textContent = `${dict.cart_summary_title || 'Order Summary'} (${formatLocalizedNumber(totalCount, currentLang)})`;
+      }
+      const step2PriceLabel = document.getElementById('step2SummaryPriceLabel');
+      if (step2PriceLabel) {
+        step2PriceLabel.textContent = formatLocalizedPrice(subtotalPrice, currentLang);
+      }
+      const step2PreviewContainer = document.getElementById('step2OrderItemsPreview');
+      if (step2PreviewContainer) {
+        step2PreviewContainer.innerHTML = cart.map(item => {
+          const pTrans = (PRODUCT_TRANSLATIONS[item.id] && PRODUCT_TRANSLATIONS[item.id][currentLang]) ? PRODUCT_TRANSLATIONS[item.id][currentLang] : null;
+          const itemName = pTrans ? pTrans.title : item.name;
+          const itemQty = formatLocalizedNumber(item.qty, currentLang);
+          const itemSubtotal = formatLocalizedPrice(item.price * item.qty, currentLang);
+          return `
+            <div class="flex items-center justify-between gap-2 p-2 rounded-xl bg-black/40 border border-white/5 text-xs">
+              <div class="flex items-center gap-2 min-w-0">
+                <img src="${item.img}" alt="${itemName}" class="w-9 h-9 rounded-lg object-cover bg-black/50 border border-white/10 shrink-0">
+                <div class="min-w-0">
+                  <span class="text-white font-bold block truncate text-[11px]">${itemName}</span>
+                  <span class="text-slate-400 text-[10px]">${itemQty} × ${formatLocalizedPrice(item.price, currentLang)}</span>
+                </div>
+              </div>
+              <span class="font-bold text-amber-400 font-display dir-ltr shrink-0 text-xs">${itemSubtotal}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      // If we are currently on Step 2, re-render PayPal buttons
+      if (currentCartStep === 2 && selectedPaymentMethod === 'paypal') {
+        setTimeout(() => renderPayPalButtons(), 100);
+      }
     }
 
-    // Load previously saved customer address for repeat orders
     function loadSavedCustomer() {
       try {
         const saved = localStorage.getItem('rb_saved_customer');
@@ -1671,7 +1971,7 @@
           if (document.getElementById('custPlz') && c.plz) document.getElementById('custPlz').value = c.plz;
           if (document.getElementById('custCity') && c.city) document.getElementById('custCity').value = c.city;
           if (document.getElementById('custCountry') && c.country) document.getElementById('custCountry').value = c.country;
-                  }
+        }
       } catch(e) {}
     }
 
@@ -1810,7 +2110,11 @@
       const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
       const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
       const shippingPrice = isFreeShipping ? 0 : shippingBase;
-      const finalTotalPrice = subtotalPrice + shippingPrice;
+      const basePayable = subtotalPrice + shippingPrice;
+      const percent = (typeof paymentFeeSettings.percent !== 'undefined') ? parseFloat(paymentFeeSettings.percent) : 2.0;
+      const fixed = (typeof paymentFeeSettings.fixed !== 'undefined') ? parseFloat(paymentFeeSettings.fixed) : 0;
+      const paymentFee = Math.round((basePayable * (percent / 100) + fixed) * 100) / 100;
+      const finalTotalPrice = basePayable + paymentFee;
       const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
 
       const name = document.getElementById('custName')?.value.trim() || (details.payer?.name?.given_name || 'Customer');
@@ -2223,10 +2527,16 @@
     const cartBackdrop = document.getElementById('cartBackdrop');
     const cartPanel = document.getElementById('cartPanel');
 
-    function openCart() {
+    function openCart(step) {
       cartModal.classList.remove('invisible');
-      if (cart.length > 0) {
-        setTimeout(() => renderPayPalButtons(), 150);
+      if (cart.length === 0) {
+        goToCartStep(1);
+      } else if (step) {
+        goToCartStep(step);
+      } else if (currentCartStep === 2) {
+        goToCartStep(2);
+      } else {
+        goToCartStep(1);
       }
       setTimeout(() => {
         cartBackdrop.classList.remove('opacity-0');
