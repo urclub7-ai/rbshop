@@ -17,7 +17,7 @@ const LANGUAGES = {
 
 const UI_TRANSLATIONS = {
   en: {
-    page_title: "R.B Shop | Authentic Afghan Dried Fruits, Nuts & Royal Gifts in Germany",
+    page_title: "RB SHOP (R.B SHOP) | Authentic Afghan Dried Fruits, Nuts & Royal Gifts in Germany",
     meta_desc: "R.B Shop by Ramazan Bakhtyary in Büsum, Germany. Premium Qandak almonds, Herat smiling pistachios, wild black pine nuts, shadow-dried raisins, Super Negin saffron and luxury gift boxes with fast DHL shipping across Europe.",
     nav_shop_desc: "Authentic Dried Fruits & Royal Gifts",
     nav_search_ph: "Search royal gift boxes, almonds, pistachios, pine nuts, saffron...",
@@ -204,7 +204,7 @@ const UI_TRANSLATIONS = {
   },
 
   de: {
-    page_title: "R.B Shop | Authentische afghanische Trockenfrüchte, Nüsse & Geschenke in Deutschland",
+    page_title: "RB SHOP (R.B SHOP) | Authentische afghanische Trockenfrüchte, Nüsse & Geschenke in Deutschland",
     meta_desc: "Offizieller R.B Shop von Ramazan Bakhtyary in Büsum, Deutschland. Süße Qandak-Mandeln, lachende Herat-Pistazien, wilde Pinienkerne, schattengereifte Rosinen, Safran und Geschenkboxen mit schnellem DHL-Versand in ganz Europa.",
     nav_shop_desc: "Erlesene Trockenfrüchte & Königliche Geschenke",
     nav_search_ph: "Suche nach königlichen Geschenkboxen, Mandeln, Pistazien, Safran...",
@@ -382,7 +382,7 @@ const UI_TRANSLATIONS = {
   },
 
   fr: {
-    page_title: "R.B Shop | Fruits Secs, Noix & Coffrets Royaux d'Afghanistan en Europe",
+    page_title: "RB SHOP (R.B SHOP) | Fruits Secs, Noix & Coffrets Royaux d'Afghanistan en Europe",
     meta_desc: "Boutique officielle R.B Shop par Ramazan Bakhtyary à Büsum, Allemagne. Amandes Qandak, pistaches d'Hérat, pignons de pin noirs, raisins séchés à l'ombre, safran et coffrets cadeaux expédiés par DHL dans toute l'Europe.",
     nav_shop_desc: "Fruits Secs Authentiques & Cadeaux Royaux",
     nav_search_ph: "Rechercher coffrets royaux, amandes, pistaches, safran...",
@@ -560,7 +560,7 @@ const UI_TRANSLATIONS = {
   },
 
   fa: {
-    page_title: "R.B Shop | فروشگاه میوه خشک و سوغات اصیل افغانستان در آلمان و اروپا",
+    page_title: "RB SHOP (R.B SHOP) | فروشگاه رسمی میوه خشک و زعفران اعلای افغانی در آلمان و اروپا",
     meta_desc: "فروشگاه رسمی R.B Shop با مدیریت رمضان بختیاری در آلمان (بوسوم). عرضه اعلاترین بادام قندک، پسته خندان هرات، جلغوزه سیاه، کشمش سایگی، زعفران و پکیج‌های کادویی با ارسال سریع DHL به سراسر اروپا.",
     nav_shop_desc: "فروشگاه میوه خشک اصیل و سوغات",
     nav_search_ph: "جستجوی پکیج، بادام، پسته، جلغوزه، کشمش، زعفران...",
@@ -738,7 +738,7 @@ const UI_TRANSLATIONS = {
   },
 
   ar: {
-    page_title: "R.B Shop | متجر المكسرات والفواكه المجففة الأفغانية الأصيلة في ألمانيا وأوروبا",
+    page_title: "RB SHOP (R.B SHOP) | متجر المكسرات والفواكه المجففة والزعفران الأفغاني الأصيل في ألمانيا",
     meta_desc: "المتجر الرسمي R.B Shop بإدارة رمضان بختياري في بيسوم، ألمانيا. تشكيلة فاخرة من لوز قندك، فستق هرات، صنوبر أسود، كشمش الظل، زعفران سوبر نقين وصناديق هدايا مع شحن سريع عبر DHL إلى كل أوروبا.",
     nav_shop_desc: "فواكه مجففة أفغانية وهدايا ملكية",
     nav_search_ph: "ابحث عن الصناديق الملكية، اللوز، الفستق، الصنوبر، الزعفران...",
@@ -916,8 +916,8 @@ const UI_TRANSLATIONS = {
   }
 ,
 
-nl: {
-    page_title: "R.B Shop | Authentiek Afghaans Gedroogd Fruit, Noten & Koninklijke Geschenken in Duitsland",
+  nl: {
+    page_title: "RB SHOP (R.B SHOP) | Authentiek Afghaans Gedroogd Fruit, Noten & Geschenken in Duitsland",
     meta_desc: "Officiële R.B Shop van Ramazan Bakhtyary in Büsum, Duitsland. Premium Qandak amandelen, lachende Herat pistachenoten, wilde zwarte pijnboompitten, schaduwgedroogde rozijnen, Super Negin saffraan en luxe geschenkdozen met snelle DHL-verzending in heel Europa.",
     nav_shop_desc: "Authentiek Gedroogd Fruit & Koninklijke Geschenken",
     nav_search_ph: "Zoek koninklijke geschenkdozen, amandelen, pistachenoten, pijnboompitten, saffraan...",
@@ -1095,7 +1095,7 @@ nl: {
   },
 
   es: {
-    page_title: "R.B Shop | Frutos Secos y Nueces Auténticos de Afganistán y Cajas Reales en Alemania",
+    page_title: "RB SHOP (R.B SHOP) | Frutos Secos y Nueces Auténticos de Afganistán en Alemania",
     meta_desc: "Tienda oficial R.B Shop de Ramazan Bakhtyary en Büsum, Alemania. Almendras dulces Qandak, pistachos sonrientes de Herat, piñones negros silvestres, pasas secadas a la sombra y azafrán Negin con envío rápido por DHL a toda Europa.",
     nav_shop_desc: "Frutos Secos Auténticos y Regalos Reales",
     nav_search_ph: "Buscar cajas reales, almendras, pistachos, piñones, azafrán...",
@@ -1273,7 +1273,7 @@ nl: {
   },
 
   it: {
-    page_title: "R.B Shop | Frutta Secca Autentica Afghana, Noci & Cofanetti Reali in Germania",
+    page_title: "RB SHOP (R.B SHOP) | Frutta Secca Autentica Afghana, Noci & Cofanetti Reali in Germania",
     meta_desc: "Negozio ufficiale R.B Shop di Ramazan Bakhtyary a Büsum, Germania. Mandorle dolci Qandak, pistacchi sorridenti di Herat, pinoli neri selvatici, uva sultanina e zafferano Negin con spedizione rapida DHL in tutta Europa.",
     nav_shop_desc: "Frutta Secca Autentica e Doni Reali",
     nav_search_ph: "Cerca cofanetti regalo reali, mandorle, pistacchi, pinoli, zafferano...",
@@ -1451,7 +1451,7 @@ nl: {
   },
 
   tr: {
-    page_title: "R.B Shop | Almanya'da Orijinal Afgan Kuru Yemişleri, Meyveleri ve Kraliyet Hediye Kutuları",
+    page_title: "RB SHOP (R.B SHOP) | Almanya'da Orijinal Afgan Kuru Yemişleri, Meyveleri ve Hediyeler",
     meta_desc: "Büsum, Almanya'da Ramazan Bakhtyary resmi R.B Shop mağazası. Kandak bademi, Herat gülen fıstığı, yabani siyah çam fıstığı, gölgede kurutulmuş kuru üzüm ve lüks hediye paketleri. Tüm Avrupa'ya hızlı DHL kargo.",
     nav_shop_desc: "Orijinal Kuru Meyveler ve Kraliyet Hediyeleri",
     nav_search_ph: "Kraliyet hediye kutuları, badem, fıstık, çam fıstığı, safran ara...",

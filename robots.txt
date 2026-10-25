@@ -4,4 +4,14 @@ Disallow: /rb-shop-admin/
 Disallow: /rb-control-786.html
 Disallow: /rb-shop-admin.html
 
+User-agent: Googlebot
+Allow: /
+Disallow: /rb-shop-admin/
+Disallow: /rb-control-786.html
+Disallow: /rb-shop-admin.html
+
+User-agent: Googlebot-Image
+Allow: /
+
 Sitemap: https://rbshop.vercel.app/sitemap.xml
+Host: https://rbshop.vercel.app

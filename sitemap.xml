@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://rbshop.vercel.app/</loc>
-    <lastmod>2026-10-24</lastmod>
+    <lastmod>2026-10-25</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="fa" href="https://rbshop.vercel.app/?lang=fa"/>
@@ -15,5 +16,27 @@
     <xhtml:link rel="alternate" hreflang="it" href="https://rbshop.vercel.app/?lang=it"/>
     <xhtml:link rel="alternate" hreflang="tr" href="https://rbshop.vercel.app/?lang=tr"/>
     <xhtml:link rel="alternate" hreflang="ar" href="https://rbshop.vercel.app/?lang=ar"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://rbshop.vercel.app/"/>
+    <image:image>
+      <image:loc>https://rbshop.vercel.app/assets/logo_official_2026.png</image:loc>
+      <image:title>RB SHOP (R.B SHOP) Official Logo</image:title>
+      <image:caption>فروشگاه رسمی میوه خشک و زعفران اعلای RB SHOP در آلمان</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&amp;fit=crop&amp;w=600&amp;q=80</image:loc>
+      <image:title>Qandak Mandeln - بادام قندک شاهی اعلا - RB SHOP</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&amp;fit=crop&amp;w=600&amp;q=80</image:loc>
+      <image:title>Super Negin Safran - زعفران سوپر نگین سلطنتی - RB SHOP</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1528751014936-863e6e7a319c?auto=format&amp;fit=crop&amp;w=600&amp;q=80</image:loc>
+      <image:title>Herat Pistazien - پسته خندان اعلای هرات - RB SHOP</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&amp;fit=crop&amp;w=600&amp;q=80</image:loc>
+      <image:title>Schwarze Pinienkerne - جلغوزه سیاه ارگانیک پکتیا - RB SHOP</image:title>
+    </image:image>
   </url>
 </urlset>
