@@ -1772,8 +1772,8 @@
           // Fetch payment fee config from Supabase
           const { data: feeData } = await sbClient.from('products').select('*').eq('id', '__store_payment_fee__').maybeSingle();
           if (feeData) {
-            s.payFeePercent = parseFloat(feeData.price) || 2.49;
-            s.payFeeFixed = parseFloat(feeData.unit) || 0.35;
+            s.payFeePercent = (!isNaN(parseFloat(feeData.price))) ? parseFloat(feeData.price) : 2.00;
+            s.payFeeFixed = (!isNaN(parseFloat(feeData.unit))) ? parseFloat(feeData.unit) : 0.00;
             s.iban = feeData.description || 'DE49 2105 0170 0000 0000 00';
           }
 
@@ -1862,7 +1862,7 @@
         }], { onConflict: 'id' }).then(() => {});
 
         const feePercent = parseFloat(document.getElementById('storePayFeePercentInput').value) || 2.49;
-        const feeFixed = parseFloat(document.getElementById('storePayFeeFixedInput').value) || 0.35;
+        const feeFixed = (!isNaN(parseFloat(document.getElementById('storePayFeeFixedInput').value))) ? parseFloat(document.getElementById('storePayFeeFixedInput').value) : 0.00;
         const iban = document.getElementById('storeIbanInput').value.trim();
         const holder = document.getElementById('storeBankHolderInput').value.trim();
 

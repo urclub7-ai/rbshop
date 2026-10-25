@@ -69,7 +69,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=3">
 
   <!-- Multilingual Engine Data -->
-  <script src="translations.js?v=20261025_08"></script>
+  <script src="translations.js?v=20261025_09"></script>
 
   <!-- Local Fonts First (Instant, Offline & Censorship-Proof) -->
   <style>
@@ -1000,31 +1000,55 @@
     <div id="cartBackdrop" class="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300"></div>
 
     <!-- Panel -->
-    <div id="cartPanel" class="absolute top-0 bottom-0 left-0 w-full max-w-md bg-brand-dark border-r border-brand-border shadow-2xl flex flex-col justify-between transform -translate-x-full transition-transform duration-300 z-10">
+    <div id="cartPanel" class="absolute top-0 bottom-0 left-0 w-full max-w-lg bg-[#0e1017] border-r border-brand-border shadow-2xl flex flex-col justify-between transform -translate-x-full transition-transform duration-300 z-10">
       
       <!-- Drawer Header -->
-      <div class="p-4 sm:p-5 border-b border-brand-border flex items-center justify-between bg-brand-surface shrink-0">
-        <div class="flex items-center gap-2">
-          <i class="fa-solid fa-bag-shopping text-brand-red text-lg"></i>
-          <h3 data-i18n="cart_drawer_title" class="font-bold text-base text-white">Your Shopping Cart</h3>
-          <span id="drawerBadge" class="text-xs bg-brand-dark border border-brand-border px-2 py-0.5 rounded text-brand-silver">0 items</span>
+      <div class="p-4 sm:p-5 border-b border-white/10 flex items-center justify-between bg-[#12141c] shrink-0">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-brand-red/15 border border-brand-red/30 flex items-center justify-center text-brand-red">
+            <i class="fa-solid fa-bag-shopping text-sm"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-sm sm:text-base text-white flex items-center gap-2">
+              <span data-i18n="cart_drawer_title">سبد خرید شما</span>
+              <span id="drawerBadge" class="text-[11px] bg-brand-red/20 text-brand-red font-bold px-2 py-0.5 rounded-full border border-brand-red/30">۰ کالا</span>
+            </h3>
+            <span class="text-[10px] text-slate-400" data-i18n="cart_drawer_sub">فروشگاه میوه خشک و زعفران اعلای R.B Shop</span>
+          </div>
         </div>
-        <button id="closeCartBtn" class="w-8 h-8 rounded-lg bg-brand-dark border border-brand-border text-brand-silver hover:text-white flex items-center justify-center">
+        <button id="closeCartBtn" aria-label="Close cart" class="w-9 h-9 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white flex items-center justify-center text-sm transition active:scale-95">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
 
-      <!-- Drawer Scroll Area (Items List + Delivery Address Form) -->
+      <!-- Drawer Scroll Area (Everything flows smoothly in one scrollable container) -->
       <div id="cartScrollArea" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-4">
         
-        <!-- Cart Items List Container -->
-        <div id="cartItemsContainer" class="space-y-3">
-          <!-- Rendered dynamically via JS -->
+        <!-- 1. Free Shipping Progress / Status Banner -->
+        <div id="freeShippingBanner" class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px] transition-all">
+          <span id="freeShippingText" class="text-amber-300 font-bold flex items-center gap-1.5">
+            <i class="fa-solid fa-truck-fast text-xs"></i>
+            <span>47.00 € away from FREE DHL shipping!</span>
+          </span>
+          <span id="freeShippingStatus" class="px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200">Min. 50.00 €</span>
         </div>
 
-        <!-- Delivery Address & Payment Method Section (Shown when items in cart) -->
+        <!-- 2. Selected Products Heading & Items Container -->
+        <div class="space-y-2.5">
+          <div class="flex items-center justify-between">
+            <h4 class="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-boxes-stacked text-amber-400 text-xs"></i>
+              <span data-i18n="cart_items_heading">محصولات انتخاب شده برای خرید:</span>
+            </h4>
+          </div>
+
+          <div id="cartItemsContainer" class="space-y-3">
+            <!-- Rendered dynamically via JS with clear title, unit, price, and controls -->
+          </div>
+        </div>
+
+        <!-- 3. Delivery Address Form Section -->
         <div id="checkoutFormSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-3.5 hidden">
-          
           <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
             <div class="flex items-center gap-2">
               <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
@@ -1050,7 +1074,7 @@
             </div>
           </div>
 
-          <!-- Street & House Number (Straße & Hausnummer) -->
+          <!-- Street & House Number -->
           <div>
             <label class="block text-[11px] font-bold text-slate-300 mb-1">
               <span data-i18n="cart_field_street">Street & House Number (Straße & Hausnr.):</span> <span class="text-rose-400">*</span>
@@ -1085,119 +1109,113 @@
               </select>
             </div>
           </div>
+        </div>
 
-            <!-- Payment Method Selection (انتخاب روش پرداخت با محاسبه دقیق کارمزد) -->
-            <div class="space-y-2 pt-2.5 border-t border-brand-border/60">
-              <label data-i18n="cart_field_payment" class="block text-[11px] font-bold text-slate-300">
-                روش پرداخت را انتخاب کنید (Zahlungsmethode):
-              </label>
-              
-              <div class="space-y-2" id="paymentMethodSelector">
-                <!-- Method 1: PayPal & Online Cards -->
-                <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-2.5 rounded-xl bg-black/60 border-2 border-emerald-500 cursor-pointer transition select-none flex items-start gap-2.5">
-                  <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-emerald-500 pointer-events-none">
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between gap-1 flex-wrap">
-                      <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                        <i class="fa-brands fa-paypal text-sky-400"></i>
-                        <span data-i18n="pay_method_paypal">پرداخت آنلاین (PayPal، ویزا، مسترکارت)</span>
-                      </span>
-                      <span id="paypalFeeBadge" class="text-[9px] font-bold text-amber-300 bg-amber-950/80 border border-amber-500/40 px-1.5 py-0.5 rounded-md">
-                        +۲.۴۹٪ + ۰.۳۵€ کارمزد درگاه
-                      </span>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mt-0.5" data-i18n="pay_paypal_hint">پرداخت امن و فوری با پی‌پال، مسترکارت، ویزا یا Später Bezahlen (۳۰ روزه)</p>
-                  </div>
+        <!-- 4. Payment Method Selection (Clean, no separate fee mention!) -->
+        <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-3 hidden">
+          <label data-i18n="cart_field_payment" class="block text-xs font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-credit-card text-emerald-400"></i>
+            <span>روش پرداخت را انتخاب کنید (Zahlungsmethode):</span>
+          </label>
+          
+          <div class="space-y-2" id="paymentMethodSelector">
+            <!-- Method 1: PayPal & Online Cards -->
+            <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border-2 border-emerald-500 cursor-pointer transition select-none flex items-start gap-2.5">
+              <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-emerald-500 pointer-events-none">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-1 flex-wrap">
+                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                    <i class="fa-brands fa-paypal text-sky-400"></i>
+                    <span data-i18n="pay_method_paypal">پرداخت آنلاین (PayPal، ویزا، مسترکارت)</span>
+                  </span>
+                  <span class="text-[10px] font-bold text-sky-300 bg-sky-950/80 border border-sky-500/40 px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <i class="fa-solid fa-shield-halved text-[9px]"></i>
+                    <span>فوری و ۱۰۰٪ امن</span>
+                  </span>
                 </div>
-
-                <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
-                <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-2.5 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-                  <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-emerald-500 pointer-events-none">
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between gap-1 flex-wrap">
-                      <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                        <i class="fa-solid fa-building-columns text-emerald-400"></i>
-                        <span data-i18n="pay_method_bank">واریز مستقیم بانکی (SEPA / IBAN آلمان)</span>
-                      </span>
-                      <span class="text-[9px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-1.5 py-0.5 rounded-md" data-i18n="pay_fee_free">
-                        بدون کارمزد (۰٪ رایگان)
-                      </span>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mt-0.5" data-i18n="pay_bank_hint">انتقال مستقیم از حساب بانکی شما به حساب بانکی در آلمان بدون هیچ کارمزدی</p>
-                  </div>
-                </div>
-
-                <!-- Method 3: WhatsApp Order -->
-                <div onclick="selectPaymentMethod('wa')" id="payCard-wa" class="p-2.5 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-                  <input type="radio" name="cartPayOption" id="radio-wa" value="wa" class="mt-0.5 accent-emerald-500 pointer-events-none">
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center justify-between gap-1 flex-wrap">
-                      <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                        <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                        <span data-i18n="pay_method_wa">سفارش و هماهنگی در واتساپ</span>
-                      </span>
-                      <span class="text-[9px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-1.5 py-0.5 rounded-md" data-i18n="pay_fee_free">
-                        بدون کارمزد (۰٪ رایگان)
-                      </span>
-                    </div>
-                    <p class="text-[10px] text-slate-400 mt-0.5" data-i18n="pay_wa_hint">هماهنگی آسان نحوه پرداخت مستقیم با مدیریت در چت واتساپ</p>
-                  </div>
-                </div>
+                <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_paypal_hint">پرداخت امن و فوری با پی‌پال، مسترکارت، ویزا یا Später Bezahlen (۳۰ روزه)</p>
               </div>
             </div>
 
+            <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
+            <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+              <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-emerald-500 pointer-events-none">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-1 flex-wrap">
+                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                    <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                    <span data-i18n="pay_method_bank">واریز مستقیم بانکی (SEPA / IBAN آلمان)</span>
+                  </span>
+                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                    <span>بدون کارمزد (۰٪ رایگان)</span>
+                  </span>
+                </div>
+                <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_bank_hint">انتقال مستقیم از حساب بانکی شما به حساب بانکی در آلمان بدون هیچ کارمزدی</p>
+              </div>
+            </div>
 
-
-        </div>
-
-      </div>
-
-      <!-- Drawer Footer with Total & WhatsApp Checkout Button -->
-      <div id="cartFooterSection" class="p-4 sm:p-5 border-t border-brand-border bg-brand-surface space-y-3 shrink-0">
-        
-        <div class="space-y-2 text-xs">
-          <!-- Free Shipping Progress / Status Banner -->
-          <div id="freeShippingBanner" class="p-2.5 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px] transition-all">
-            <span id="freeShippingText" class="text-amber-300 font-bold flex items-center gap-1.5">
-              <i class="fa-solid fa-truck-fast text-xs"></i>
-              <span>47.00 € away from FREE DHL shipping!</span>
-            </span>
-            <span id="freeShippingStatus" class="px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200">Min. 50.00 €</span>
-          </div>
-
-          <!-- Subtotal Row -->
-          <div class="flex items-center justify-between text-brand-silver pt-1">
-            <span data-i18n="cart_subtotal">Subtotal:</span>
-            <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
-          </div>
-
-          <!-- Shipping Breakdown Row -->
-          <div class="flex items-center justify-between text-brand-silver">
-            <span class="flex items-center gap-1.5">
-              <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
-              <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
-            </span>
-            <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
-          </div>
-
-          <!-- Payment Processing Fee Row (کارمزد درگاه پرداخت آنلاین - دقیق و شفاف) -->
-          <div class="flex items-center justify-between text-brand-silver" id="paymentFeeRow">
-            <span class="flex items-center gap-1.5">
-              <i class="fa-solid fa-credit-card text-[11px] text-amber-400"></i>
-              <span data-i18n="cart_payment_fee">Payment Fee:</span>
-            </span>
-            <span id="cartPaymentFee" class="font-bold text-amber-400 font-display dir-ltr">+ 0.00 €</span>
-          </div>
-
-          <!-- Final Total Row -->
-          <div class="flex items-center justify-between text-sm font-black text-white pt-2 border-t border-brand-border/60">
-            <span data-i18n="cart_total">Total Amount:</span>
-            <span id="cartTotal" class="text-lg font-black text-chrome font-display dir-ltr">0.00 €</span>
+            <!-- Method 3: WhatsApp Order -->
+            <div onclick="selectPaymentMethod('wa')" id="payCard-wa" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+              <input type="radio" name="cartPayOption" id="radio-wa" value="wa" class="mt-0.5 accent-emerald-500 pointer-events-none">
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-1 flex-wrap">
+                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                    <i class="fa-brands fa-whatsapp text-emerald-400"></i>
+                    <span data-i18n="pay_method_wa">سفارش و هماهنگی در واتساپ</span>
+                  </span>
+                  <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
+                    <i class="fa-solid fa-check text-[9px]"></i>
+                    <span>بدون کارمزد (۰٪ رایگان)</span>
+                  </span>
+                </div>
+                <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_wa_hint">هماهنگی آسان نحوه پرداخت مستقیم با مدیریت در چت واتساپ</p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- Online Payment Section (PayPal Instant Checkout) -->
-        <div id="paymentActionsArea" class="space-y-2 pt-1">
+        <!-- 5. Order Summary (Price Breakdown - NO SEPARATE FEE ROW!) -->
+        <div id="cartSummaryBox" class="bg-[#12151c] border border-white/10 rounded-2xl p-4 space-y-2.5 hidden">
+          <div class="border-b border-white/10 pb-2">
+            <h4 class="text-xs font-bold text-white flex items-center gap-2">
+              <i class="fa-solid fa-receipt text-amber-400"></i>
+              <span data-i18n="cart_summary_title">خلاصه حساب سفارش:</span>
+            </h4>
+          </div>
+
+          <div class="space-y-2 text-xs">
+            <!-- Subtotal Row -->
+            <div class="flex items-center justify-between text-slate-300">
+              <span data-i18n="cart_subtotal">Subtotal:</span>
+              <span id="cartSubtotal" class="font-bold text-white font-display dir-ltr">0.00 €</span>
+            </div>
+
+            <!-- Shipping Breakdown Row -->
+            <div class="flex items-center justify-between text-slate-300">
+              <span class="flex items-center gap-1.5">
+                <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
+                <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
+              </span>
+              <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
+            </div>
+
+            <!-- Final Total Row (Total dynamically contains the fee without any separate line!) -->
+            <div class="flex items-center justify-between text-sm sm:text-base font-black text-white pt-2 border-t border-white/10">
+              <span data-i18n="cart_total">Total Amount:</span>
+              <span id="cartTotal" class="text-base sm:text-lg font-black text-amber-400 font-display dir-ltr">0.00 €</span>
+            </div>
+
+            <!-- Legal Tax Compliance Notice (German/EU Preisangabenverordnung) -->
+            <p class="text-[10px] text-slate-400 text-center pt-1" data-i18n="cart_tax_legal">
+              Gesamtpreis inkl. gesetzlicher MwSt. • Schnelle & versicherte Zustellung mit DHL
+            </p>
+          </div>
+        </div>
+
+        <!-- 6. Payment Action Buttons Area -->
+        <div id="paymentActionsArea" class="space-y-2 pt-1 hidden">
+          <!-- PayPal Section -->
           <div id="paypalSection" class="space-y-2.5">
             <div class="flex items-center justify-between text-[11px]">
               <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
@@ -1210,7 +1228,6 @@
               </span>
             </div>
 
-            <!-- Accepted Payment Badges Bar (PayPal, Visa, Mastercard, SEPA Bank) -->
             <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-zinc-300">
               <span class="text-[11px] text-brand-silver/90 font-medium" data-i18n="pay_online_sub">PayPal • Visa • Mastercard • SEPA Lastschrift</span>
               <div class="flex items-center gap-2 text-zinc-300 dir-ltr text-sm shrink-0">
@@ -1224,14 +1241,14 @@
             <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
           </div>
 
-          <!-- Bank Transfer Action Section -->
+          <!-- Bank Transfer Section -->
           <div id="bankTransferSection" class="space-y-2.5 hidden">
-            <div class="p-3 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-1.5 text-xs text-right">
+            <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-2 text-xs text-right">
               <div class="text-[11px] font-bold text-emerald-300 flex items-center gap-1.5">
                 <i class="fa-solid fa-building-columns"></i>
                 <span data-i18n="pay_bank_details_title">مشخصات حساب بانکی فروشگاه در آلمان (IBAN / SEPA):</span>
               </div>
-              <div class="p-2 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs font-bold dir-ltr text-center select-all" id="bankIbanDisplay">
+              <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs sm:text-sm font-bold dir-ltr text-center select-all tracking-wider" id="bankIbanDisplay">
                 DE49 2105 0170 0000 0000 00
               </div>
               <div class="flex items-center justify-between text-[11px] text-slate-300 pt-0.5">
@@ -1245,7 +1262,7 @@
             </button>
           </div>
 
-          <!-- WhatsApp Direct Action Section -->
+          <!-- WhatsApp Section -->
           <div id="waOrderSection" class="space-y-2.5 hidden">
             <button onclick="checkoutWhatsApp('wa')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
               <i class="fa-brands fa-whatsapp text-base"></i>
@@ -1255,7 +1272,6 @@
         </div>
 
       </div>
-
     </div>
   </div>
 
@@ -1340,8 +1356,8 @@
     let currentLang = localStorage.getItem('rb_lang') || 'en';
     let selectedPaymentMethod = 'paypal'; // 'paypal', 'bank', 'wa'
     let paymentFeeSettings = {
-      percent: 2.49,
-      fixed: 0.35,
+      percent: 2.00,
+      fixed: 0.00,
       iban: 'DE49 2105 0170 0000 0000 00',
       holder: 'Ramazan Bakhtyary'
     };
@@ -1453,13 +1469,13 @@
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
 
-      // Shipping calculation
+      // Shipping Calculation
       const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
       const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
       const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
       const shippingPrice = isFreeShipping ? 0 : shippingBase;
-      const finalTotalPrice = subtotalPrice + shippingPrice;
 
+      // Header Badges
       const cartCountEl = document.getElementById('cartCount');
       if (cartCountEl) cartCountEl.textContent = formatLocalizedNumber(totalCount, currentLang);
       
@@ -1515,36 +1531,16 @@
         }
       }
 
-      // Dynamic Payment Processing Fee Calculation (کارمزد درگاه پرداخت آنلاین)
+      // Dynamic Payment Processing Fee:
+      // ONLY applied when paying via PayPal!
       let paymentFee = 0;
       const basePayable = subtotalPrice + shippingPrice;
       if (selectedPaymentMethod === 'paypal' && basePayable > 0) {
-        const r = (parseFloat(paymentFeeSettings.percent) || 2.49) / 100;
-        const f = parseFloat(paymentFeeSettings.fixed) || 0.35;
-        // Gross formula so merchant receives 100% net of the order amount
-        const gross = (basePayable + f) / (1 - r);
-        paymentFee = Math.max(0, Math.round((gross - basePayable) * 100) / 100);
+        const percent = (typeof paymentFeeSettings.percent !== 'undefined') ? parseFloat(paymentFeeSettings.percent) : 2.0;
+        const fixed = (typeof paymentFeeSettings.fixed !== 'undefined') ? parseFloat(paymentFeeSettings.fixed) : 0;
+        paymentFee = Math.round((basePayable * (percent / 100) + fixed) * 100) / 100;
       }
       const actualFinalTotal = basePayable + paymentFee;
-
-      const feeEl = document.getElementById('cartPaymentFee');
-      if (feeEl) {
-        if (selectedPaymentMethod === 'paypal') {
-          feeEl.className = 'font-bold text-amber-400 font-display dir-ltr';
-          feeEl.textContent = '+ ' + formatLocalizedPrice(paymentFee, currentLang);
-        } else {
-          feeEl.className = 'font-bold text-emerald-400 font-display dir-ltr';
-          feeEl.textContent = dict.pay_fee_free || (currentLang === 'fa' ? '۰.۰۰ € (رایگان - ۰٪)' : '0.00 € (0% Free)');
-        }
-      }
-
-      // Update badge text on paypal card
-      const feeBadge = document.getElementById('paypalFeeBadge');
-      if (feeBadge) {
-        const pStr = (parseFloat(paymentFeeSettings.percent) || 2.49).toFixed(2);
-        const fStr = (parseFloat(paymentFeeSettings.fixed) || 0.35).toFixed(2);
-        feeBadge.textContent = `+${pStr}% + ${fStr}€ ${currentLang === 'fa' ? 'کارمزد درگاه' : 'Fee'}`;
-      }
 
       // Toggle action sections based on payment method
       const paypalSec = document.getElementById('paypalSection');
@@ -1561,7 +1557,7 @@
       if (ibanDisp && paymentFeeSettings.iban) ibanDisp.textContent = paymentFeeSettings.iban;
       if (holderDisp && paymentFeeSettings.holder) holderDisp.textContent = paymentFeeSettings.holder;
 
-      // Final Total Amount
+      // Final Total Amount (Cleanly includes the fee when PayPal is chosen - NO SEPARATE FEE ROW!)
       const totalEl = document.getElementById('cartTotal');
       if (totalEl) totalEl.textContent = formatLocalizedPrice(actualFinalTotal, currentLang);
 
@@ -1581,10 +1577,14 @@
 
       const container = document.getElementById('cartItemsContainer');
       const checkoutForm = document.getElementById('checkoutFormSection');
+      const payMethodSec = document.getElementById('paymentMethodSection');
+      const summaryBox = document.getElementById('cartSummaryBox');
+      const payActions = document.getElementById('paymentActionsArea');
 
       if (cart.length === 0) {
         if (checkoutForm) checkoutForm.classList.add('hidden');
-        const payActions = document.getElementById('paymentActionsArea');
+        if (payMethodSec) payMethodSec.classList.add('hidden');
+        if (summaryBox) summaryBox.classList.add('hidden');
         if (payActions) payActions.classList.add('hidden');
         if (container) {
           container.innerHTML = `
@@ -1601,34 +1601,58 @@
       }
 
       if (checkoutForm) checkoutForm.classList.remove('hidden');
-      const payActions = document.getElementById('paymentActionsArea');
+      if (payMethodSec) payMethodSec.classList.remove('hidden');
+      if (summaryBox) summaryBox.classList.remove('hidden');
       if (payActions) payActions.classList.remove('hidden');
       setTimeout(() => renderPayPalButtons(), 100);
 
+      // Render spacious, highly visible cart items
       if (container) {
+        const unitLabel = dict.cart_unit_price || (currentLang === 'fa' ? 'قیمت هر بسته:' : 'Unit price:');
+        const subtotalLabel = dict.cart_item_subtotal || (currentLang === 'fa' ? 'مجموع این قلم:' : 'Item total:');
+
         container.innerHTML = cart.map(item => {
           const pTrans = (PRODUCT_TRANSLATIONS[item.id] && PRODUCT_TRANSLATIONS[item.id][currentLang]) ? PRODUCT_TRANSLATIONS[item.id][currentLang] : null;
           const itemName = pTrans ? pTrans.title : item.name;
           const itemUnit = pTrans ? pTrans.unit : (item.variant || '');
+          const unitPriceStr = formatLocalizedPrice(item.price, currentLang);
           const itemPriceTotal = formatLocalizedPrice(item.price * item.qty, currentLang);
           const itemQty = formatLocalizedNumber(item.qty, currentLang);
 
           return `
-          <div class="bg-brand-surface border border-brand-border rounded-xl p-3 flex items-center gap-3">
-            <img src="${item.img}" alt="${itemName}" class="w-14 h-14 object-cover rounded-lg bg-brand-dark shrink-0">
-            <div class="flex-1 min-w-0">
-              <h4 class="text-xs font-bold text-white truncate">${itemName}</h4>
-              <span class="text-[11px] text-brand-silver/70 block">${itemUnit}</span>
-              <div class="text-xs font-black text-chrome font-display mt-1 dir-ltr text-start">${itemPriceTotal}</div>
+          <div class="bg-[#12151c] border border-white/10 hover:border-amber-400/30 rounded-2xl p-3.5 space-y-3 transition shadow-md">
+            <!-- Top Row: Thumbnail + Product Details + Delete -->
+            <div class="flex items-start gap-3">
+              <img src="${item.img}" alt="${itemName}" class="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl bg-black/40 border border-white/10 shrink-0">
+              
+              <div class="flex-1 min-w-0 space-y-1">
+                <h4 class="text-xs sm:text-sm font-bold text-white leading-snug break-words">${itemName}</h4>
+                ${itemUnit ? `<span class="inline-block px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-[10px] text-amber-300 font-semibold">${itemUnit}</span>` : ''}
+                <div class="text-[11px] text-slate-400 flex items-center gap-1.5 pt-0.5">
+                  <span>${unitLabel}</span>
+                  <span class="font-bold text-white font-display dir-ltr">${unitPriceStr}</span>
+                </div>
+              </div>
+
+              <!-- Delete Button -->
+              <button onclick="removeFromCart('${item.id}')" title="حذف" class="w-8 h-8 rounded-xl bg-white/5 hover:bg-rose-500/20 text-slate-400 hover:text-rose-400 flex items-center justify-center text-xs transition active:scale-95 shrink-0">
+                <i class="fa-solid fa-trash-can"></i>
+              </button>
             </div>
-            <div class="flex items-center gap-1.5 bg-brand-dark border border-brand-border rounded-lg p-1">
-              <button onclick="changeQty('${item.id}', -1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">-</button>
-              <span class="w-6 text-center text-xs font-bold text-white font-display">${itemQty}</span>
-              <button onclick="changeQty('${item.id}', 1)" class="w-6 h-6 rounded bg-brand-surface text-brand-silver hover:text-white flex items-center justify-center text-xs font-bold">+</button>
+
+            <!-- Bottom Row: Quantity Controls & Item Subtotal -->
+            <div class="flex items-center justify-between pt-2 border-t border-white/5">
+              <div class="flex items-center gap-1 bg-black/60 border border-white/15 rounded-xl p-1">
+                <button onclick="changeQty('${item.id}', -1)" aria-label="Decrease" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-xs font-bold active:scale-95 transition">-</button>
+                <span class="w-8 text-center text-xs font-bold text-white font-display">${itemQty}</span>
+                <button onclick="changeQty('${item.id}', 1)" aria-label="Increase" class="w-7 h-7 rounded-lg bg-white/5 hover:bg-white/10 text-white flex items-center justify-center text-xs font-bold active:scale-95 transition">+</button>
+              </div>
+
+              <div class="text-end">
+                <span class="text-[10px] text-slate-400 block">${subtotalLabel}</span>
+                <span class="text-xs sm:text-sm font-black text-amber-400 font-display dir-ltr">${itemPriceTotal}</span>
+              </div>
             </div>
-            <button onclick="removeFromCart('${item.id}')" class="text-brand-silver/50 hover:text-brand-red p-1 text-xs">
-              <i class="fa-solid fa-trash-can"></i>
-            </button>
           </div>
           `;
         }).join('');
@@ -1732,12 +1756,11 @@
           const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
           const shippingPrice = isFreeShipping ? 0 : shippingBase;
 
-          // Fee calculation
+          // Fee calculation (Applies 2% or as configured when paying via PayPal)
           const basePayable = subtotalPrice + shippingPrice;
-          const r = (parseFloat(paymentFeeSettings.percent) || 2.49) / 100;
-          const f = parseFloat(paymentFeeSettings.fixed) || 0.35;
-          const gross = (basePayable + f) / (1 - r);
-          const paymentFee = Math.max(0, Math.round((gross - basePayable) * 100) / 100);
+          const percent = (typeof paymentFeeSettings.percent !== 'undefined') ? parseFloat(paymentFeeSettings.percent) : 2.0;
+          const fixed = (typeof paymentFeeSettings.fixed !== 'undefined') ? parseFloat(paymentFeeSettings.fixed) : 0;
+          const paymentFee = Math.round((basePayable * (percent / 100) + fixed) * 100) / 100;
           const finalOrderTotal = basePayable + paymentFee;
 
           return actions.order.create({
@@ -2249,7 +2272,7 @@
     // =========================================================================
     // APP BUILD VERSION & CACHE PURGER
     // =========================================================================
-    const APP_BUILD_VERSION = '2026.10.25.08';
+    const APP_BUILD_VERSION = '2026.10.25.09';
     if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
       localStorage.removeItem('rb_products');
       localStorage.removeItem('rb_shipping_settings');
@@ -2476,8 +2499,8 @@
 
             const feeCfg = data.find(r => r.id === '__store_payment_fee__');
             if (feeCfg) {
-              paymentFeeSettings.percent = parseFloat(feeCfg.price) || 2.49;
-              paymentFeeSettings.fixed = parseFloat(feeCfg.unit) || 0.35;
+              paymentFeeSettings.percent = (!isNaN(parseFloat(feeCfg.price))) ? parseFloat(feeCfg.price) : 2.0;
+              paymentFeeSettings.fixed = (!isNaN(parseFloat(feeCfg.unit))) ? parseFloat(feeCfg.unit) : 0;
               if (feeCfg.description) paymentFeeSettings.iban = feeCfg.description;
               localStorage.setItem('rb_payment_fee_settings', JSON.stringify(paymentFeeSettings));
             }
