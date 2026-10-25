@@ -1124,27 +1124,27 @@
       <div class="p-3.5 sm:p-4 border-b border-white/10 flex items-center justify-between bg-[#12141c] shrink-0">
         <!-- Default Step 1 Header Info -->
         <div id="cartDrawerHeaderDefault" class="flex items-center gap-2.5 min-w-0">
-          <div class="w-9 h-9 rounded-xl bg-brand-red/15 border border-brand-red/30 flex items-center justify-center text-brand-red shrink-0">
+          <div class="w-9 h-9 rounded-xl bg-amber-400/10 border border-amber-400/20 flex items-center justify-center text-amber-400 shrink-0">
             <i class="fa-solid fa-bag-shopping text-sm"></i>
           </div>
           <div class="min-w-0">
-            <h3 class="font-black text-sm sm:text-base text-white flex items-center gap-2 truncate">
+            <h3 class="font-bold text-sm sm:text-base text-white flex items-center gap-2 truncate">
               <span data-i18n="cart_drawer_title">سبد خرید شما</span>
-              <span id="drawerBadge" class="text-[11px] bg-brand-red/20 text-brand-red font-bold px-2 py-0.5 rounded-full border border-brand-red/30 shrink-0">۰ کالا</span>
+              <span id="drawerBadge" class="text-[11px] bg-white/5 text-zinc-300 font-medium px-2 py-0.5 rounded-full border border-white/10 shrink-0">۰ کالا</span>
             </h3>
-            <span class="text-[10px] text-slate-400 block truncate" data-i18n="cart_drawer_sub">فروشگاه میوه خشک و زعفران اعلای R.B Shop</span>
+            <span class="text-[10px] text-zinc-400 block truncate" data-i18n="cart_drawer_sub">فروشگاه میوه خشک و زعفران اعلای R.B Shop</span>
           </div>
         </div>
 
         <!-- Step 2 Back Button & Title (Hidden on Step 1) -->
         <div id="cartDrawerHeaderStep2" class="items-center gap-2 min-w-0 hidden">
-          <button type="button" id="cartStepBackBtn" onclick="goToCartStep(1)" class="h-9 px-3 rounded-xl bg-amber-400/15 hover:bg-amber-400/25 border border-amber-400/30 text-amber-300 font-bold text-xs flex items-center gap-1.5 transition active:scale-95 shrink-0">
+          <button type="button" id="cartStepBackBtn" onclick="goToCartStep(1)" class="h-9 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-200 font-medium text-xs flex items-center gap-1.5 transition active:scale-95 shrink-0">
             <i class="fa-solid fa-arrow-right rtl:rotate-0 ltr:rotate-180 text-xs"></i>
             <span data-i18n="cart_back_to_cart">بازگشت به سبد خرید</span>
           </button>
           <div class="min-w-0">
-            <h3 class="font-black text-xs sm:text-sm text-white truncate" data-i18n="cart_step_2_title">آدرس و پرداخت</h3>
-            <span class="text-[10px] text-amber-400 font-medium block" data-i18n="cart_checkout_step2_badge">مرحله ۲ از ۲</span>
+            <h3 class="font-bold text-xs sm:text-sm text-white truncate" data-i18n="cart_step_2_title">آدرس و پرداخت</h3>
+            <span class="text-[10px] text-zinc-400 font-medium block" data-i18n="cart_checkout_step2_badge">مرحله ۲ از ۲</span>
           </div>
         </div>
 
@@ -1154,16 +1154,16 @@
         </button>
       </div>
 
-      <!-- Step Progress Ribbon (Amazon / Shopify style) -->
-      <div id="cartStepProgressBar" class="px-4 py-2 bg-[#0b0d13] border-b border-white/5 flex items-center justify-between text-xs shrink-0 select-none">
-        <button type="button" onclick="goToCartStep(1)" id="stepTab1" class="flex items-center gap-1.5 font-bold text-amber-400 transition hover:opacity-85">
+      <!-- Step Progress Ribbon (Amazon / European style) -->
+      <div id="cartStepProgressBar" class="px-4 py-2.5 bg-[#0e1017] border-b border-white/5 flex items-center justify-between text-xs shrink-0 select-none">
+        <button type="button" onclick="goToCartStep(1)" id="stepTab1" class="flex items-center gap-2 font-bold text-amber-400 transition hover:opacity-85">
           <span id="stepTab1Num" class="w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center">1</span>
           <span data-i18n="cart_step_1_title">۱. سبد خرید</span>
         </button>
         <div class="flex-1 mx-3 h-0.5 bg-white/10 relative rounded-full overflow-hidden">
-          <div id="stepProgressFill" class="absolute top-0 bottom-0 start-0 bg-gradient-to-r from-amber-400 to-amber-500 transition-all duration-300 w-0"></div>
+          <div id="stepProgressFill" class="absolute top-0 bottom-0 start-0 bg-amber-400 transition-all duration-300 w-0"></div>
         </div>
-        <button type="button" onclick="goToCartStep(2)" id="stepTab2" class="flex items-center gap-1.5 font-medium text-slate-500 transition hover:opacity-85">
+        <button type="button" onclick="goToCartStep(2)" id="stepTab2" class="flex items-center gap-2 font-medium text-slate-500 transition hover:opacity-85">
           <span id="stepTab2Num" class="w-5 h-5 rounded-full bg-white/10 text-slate-400 text-[10px] font-bold flex items-center justify-center">2</span>
           <span data-i18n="cart_step_2_title">۲. آدرس و پرداخت</span>
         </button>
@@ -1177,35 +1177,35 @@
         <!-- ============================================== -->
         <div id="cartStep1View" class="space-y-3.5">
           
-          <!-- Top Amazon-Style Subtotal & Checkout Card -->
-          <div id="cartStep1TopCard" class="p-3.5 sm:p-4 rounded-2xl bg-[#12151c] border border-amber-500/30 shadow-lg space-y-3">
+          <!-- Top Subtotal & Checkout Card -->
+          <div id="cartStep1TopCard" class="p-3.5 sm:p-4 rounded-2xl bg-[#12141c] border border-white/10 space-y-3">
             <!-- Subtotal & Item Count -->
             <div class="flex items-center justify-between">
               <div class="text-xs text-slate-300">
                 <span data-i18n="cart_subtotal" class="font-medium">مجموع:</span>
-                <span id="cartTopItemsCount" class="text-xs text-slate-400 font-bold ms-1">(۰ کالا)</span>
+                <span id="cartTopItemsCount" class="text-xs text-slate-400 font-medium ms-1">(۰ کالا)</span>
               </div>
-              <div id="cartTopSubtotal" class="text-xl sm:text-2xl font-black text-amber-400 font-display dir-ltr">0.00 €</div>
+              <div id="cartTopSubtotal" class="text-xl sm:text-2xl font-bold text-white font-display dir-ltr">0.00 €</div>
             </div>
 
-            <!-- Free DHL Shipping Banner -->
-            <div id="cartTopShippingBanner" class="p-2 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px] transition-all">
-              <span id="cartTopShippingText" class="text-amber-300 font-bold flex items-center gap-1.5">
-                <i class="fa-solid fa-truck-fast text-xs"></i>
+            <!-- DHL Shipping Notice -->
+            <div id="cartTopShippingBanner" class="px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px] transition-all">
+              <span id="cartTopShippingText" class="text-zinc-300 font-medium flex items-center gap-1.5">
+                <i class="fa-solid fa-truck text-amber-400 text-xs"></i>
                 <span id="cartTopShippingMsg">47.00 € تا ارسال کاملاً رایگان با DHL!</span>
               </span>
-              <span id="cartTopShippingBadge" class="px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200">سقف ۵۰٫۰۰ €</span>
+              <span id="cartTopShippingBadge" class="px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-300 border border-white/10">سقف ۵۰٫۰۰ €</span>
             </div>
 
-            <!-- Amazon Gold Primary Checkout Button -->
-            <button type="button" onclick="goToCartStep(2)" id="cartTopCheckoutBtn" class="w-full h-12 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 active:scale-[0.98] text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 transition cursor-pointer">
+            <!-- Solid Gold Primary Checkout Button -->
+            <button type="button" onclick="goToCartStep(2)" id="cartTopCheckoutBtn" class="w-full h-11 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-[0.99] text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer">
               <span data-i18n="cart_proceed_to_checkout">تکمیل و پرداخت نهایی</span>
               <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180 text-xs"></i>
             </button>
 
             <!-- Trust guarantee -->
-            <div class="flex items-center justify-center gap-1.5 text-[10px] text-slate-400 pt-0.5">
-              <i class="fa-solid fa-shield-halved text-emerald-400 text-xs"></i>
+            <div class="flex items-center justify-center gap-1.5 text-[10px] text-zinc-400 pt-0.5">
+              <i class="fa-solid fa-shield-halved text-zinc-400 text-xs"></i>
               <span data-i18n="cart_guarantee_text">پرداخت امن • ارسال بیمه‌شده با پست DHL</span>
             </div>
           </div>
@@ -1360,63 +1360,43 @@
 
           <!-- Section 2: Payment Method Selection -->
           <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-3">
-            <label data-i18n="cart_field_payment" class="block text-xs font-bold text-white flex items-center gap-2">
-              <i class="fa-solid fa-credit-card text-emerald-400"></i>
-              <span>Preferred Payment Method (Zahlungsmethode):</span>
-            </label>
+            <div class="flex items-center justify-between border-b border-white/10 pb-2">
+              <h4 data-i18n="cart_field_payment" class="text-xs font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-credit-card text-amber-400"></i>
+                <span>Preferred Payment Method (Zahlungsmethode):</span>
+              </h4>
+            </div>
             
-            <div class="space-y-2" id="paymentMethodSelector">
+            <div class="space-y-2.5" id="paymentMethodSelector">
               <!-- Method 1: PayPal & Online Cards -->
-              <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border-2 border-emerald-500 cursor-pointer transition select-none flex items-start gap-2.5">
-                <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-emerald-500 pointer-events-none">
+              <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border border-amber-400/80 cursor-pointer transition select-none flex items-start gap-2.5">
+                <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-amber-400 pointer-events-none">
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-1 flex-wrap">
                     <span class="text-xs font-bold text-white flex items-center gap-1.5">
                       <i class="fa-brands fa-paypal text-sky-400"></i>
                       <span data-i18n="pay_method_paypal">Online Payment (PayPal, Card, Pay Later)</span>
                     </span>
-                    <span class="text-[10px] font-bold text-sky-300 bg-sky-950/80 border border-sky-500/40 px-2 py-0.5 rounded-md flex items-center gap-1">
-                      <i class="fa-solid fa-shield-halved text-[9px]"></i>
-                      <span>Fast & 100% Secure</span>
-                    </span>
+                    <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">PayPal • Visa • MC</span>
                   </div>
-                  <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
+                  <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
                 </div>
               </div>
 
               <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
               <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-                <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-emerald-500 pointer-events-none">
+                <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-amber-400 pointer-events-none">
                 <div class="flex-1 min-w-0">
                   <div class="flex items-center justify-between gap-1 flex-wrap">
                     <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                      <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                      <i class="fa-solid fa-building-columns text-zinc-300"></i>
                       <span data-i18n="pay_method_bank">Direct Bank Transfer (SEPA / IBAN Germany)</span>
                     </span>
-                    <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
-                      <i class="fa-solid fa-check text-[9px]"></i>
-                      <span>0.00 € (0% Free)</span>
+                    <span class="text-[10px] text-zinc-300 bg-white/5 border border-white/10 px-2 py-0.5 rounded font-medium" data-i18n="pay_fee_free">
+                      0.00 € (0% Free)
                     </span>
                   </div>
-                  <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_bank_hint">Zero fees (0%). Transfer directly to our German bank account</p>
-                </div>
-              </div>
-
-              <!-- Method 3: WhatsApp Order -->
-              <div onclick="selectPaymentMethod('wa')" id="payCard-wa" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-                <input type="radio" name="cartPayOption" id="radio-wa" value="wa" class="mt-0.5 accent-emerald-500 pointer-events-none">
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1 flex-wrap">
-                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                      <i class="fa-brands fa-whatsapp text-emerald-400"></i>
-                      <span data-i18n="pay_method_wa">WhatsApp Order & Inquiry</span>
-                    </span>
-                    <span class="text-[10px] font-bold text-emerald-300 bg-emerald-950/80 border border-emerald-500/40 px-2 py-0.5 rounded-md flex items-center gap-1" data-i18n="pay_fee_free">
-                      <i class="fa-solid fa-check text-[9px]"></i>
-                      <span>0.00 € (0% Free)</span>
-                    </span>
-                  </div>
-                  <p class="text-[10px] text-slate-400 mt-1" data-i18n="pay_wa_hint">Zero fees (0%). Confirm order & payment details directly in WhatsApp chat</p>
+                  <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_bank_hint">Zero fees (0%). Transfer directly to our German bank account</p>
                 </div>
               </div>
             </div>
@@ -1441,14 +1421,14 @@
               <!-- Shipping Breakdown Row -->
               <div class="flex items-center justify-between text-slate-300">
                 <span class="flex items-center gap-1.5">
-                  <i class="fa-solid fa-truck text-[11px] text-amber-400"></i>
+                  <i class="fa-solid fa-truck text-[11px] text-zinc-400"></i>
                   <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
                 </span>
-                <span id="cartShipping" class="font-bold text-amber-400 font-display dir-ltr">1.00 €</span>
+                <span id="cartShipping" class="font-bold text-white font-display dir-ltr">1.00 €</span>
               </div>
 
               <!-- Final Total Row (Total dynamically contains the fee without any separate line!) -->
-              <div class="flex items-center justify-between text-sm sm:text-base font-black text-white pt-2 border-t border-white/10">
+              <div class="flex items-center justify-between text-sm sm:text-base font-bold text-white pt-2 border-t border-white/10">
                 <span data-i18n="cart_total">Total Amount:</span>
                 <span id="cartTotal" class="text-base sm:text-lg font-black text-amber-400 font-display dir-ltr">0.00 €</span>
               </div>
@@ -1465,23 +1445,23 @@
             <!-- PayPal Section -->
             <div id="paypalSection" class="space-y-2.5">
               <div class="flex items-center justify-between text-[11px]">
-                <span data-i18n="pay_online_title" class="font-bold text-amber-400 flex items-center gap-1.5">
-                  <i class="fa-solid fa-lock text-xs"></i>
+                <span data-i18n="pay_online_title" class="font-bold text-zinc-200 flex items-center gap-1.5">
+                  <i class="fa-solid fa-lock text-amber-400 text-xs"></i>
                   <span>Fast & Secure Online Checkout:</span>
                 </span>
-                <span class="text-[11px] text-brand-silver/70 flex items-center gap-1.5 dir-ltr">
-                  <i class="fa-brands fa-paypal text-blue-400 text-sm" title="PayPal"></i>
-                  <span class="text-[10px] text-emerald-400 font-bold">100% Protected</span>
+                <span class="text-[11px] text-zinc-400 flex items-center gap-1.5 dir-ltr">
+                  <i class="fa-brands fa-paypal text-sky-400 text-sm" title="PayPal"></i>
+                  <span class="text-[10px] text-zinc-400 font-medium">100% Protected</span>
                 </span>
               </div>
 
               <div class="flex items-center justify-between px-3 py-2 rounded-xl bg-black/40 border border-white/10 text-zinc-300">
-                <span class="text-[11px] text-brand-silver/90 font-medium" data-i18n="pay_online_sub">PayPal • Visa • Mastercard • SEPA Lastschrift</span>
+                <span class="text-[11px] text-zinc-400 font-medium" data-i18n="pay_online_sub">PayPal • Visa • Mastercard • SEPA Lastschrift</span>
                 <div class="flex items-center gap-2 text-zinc-300 dir-ltr text-sm shrink-0">
                   <i class="fa-brands fa-paypal text-sky-400" title="PayPal"></i>
-                  <i class="fa-brands fa-cc-visa text-sky-200" title="Visa"></i>
+                  <i class="fa-brands fa-cc-visa text-zinc-300" title="Visa"></i>
                   <i class="fa-brands fa-cc-mastercard text-amber-400" title="Mastercard"></i>
-                  <i class="fa-solid fa-building-columns text-emerald-400" title="SEPA Bank"></i>
+                  <i class="fa-solid fa-building-columns text-zinc-300" title="SEPA Bank"></i>
                 </div>
               </div>
 
@@ -1490,9 +1470,9 @@
 
             <!-- Bank Transfer Section -->
             <div id="bankTransferSection" class="space-y-2.5 hidden">
-              <div class="p-3.5 rounded-2xl bg-black/60 border border-emerald-500/30 space-y-2 text-xs text-right">
-                <div class="text-[11px] font-bold text-emerald-300 flex items-center gap-1.5">
-                  <i class="fa-solid fa-building-columns"></i>
+              <div class="p-3.5 rounded-2xl bg-black/60 border border-white/10 space-y-2 text-xs text-start">
+                <div class="text-[11px] font-bold text-zinc-200 flex items-center gap-1.5">
+                  <i class="fa-solid fa-building-columns text-amber-400"></i>
                   <span data-i18n="pay_bank_details_title">German Bank Account Details (SEPA):</span>
                 </div>
                 <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs sm:text-sm font-bold dir-ltr text-center select-all tracking-wider" id="bankIbanDisplay">
@@ -1503,17 +1483,10 @@
                   <span class="font-bold text-white" id="bankHolderDisplay">Ramazan Bakhtyary</span>
                 </div>
               </div>
-              <button onclick="checkoutWhatsApp('bank')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
-                <i class="fa-brands fa-whatsapp text-base"></i>
-                <span data-i18n="btn_confirm_bank_order">Place Order via Bank Transfer / WhatsApp</span>
-              </button>
-            </div>
 
-            <!-- WhatsApp Section -->
-            <div id="waOrderSection" class="space-y-2.5 hidden">
-              <button onclick="checkoutWhatsApp('wa')" class="w-full h-12 rounded-2xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition">
-                <i class="fa-brands fa-whatsapp text-base"></i>
-                <span data-i18n="btn_confirm_wa_order">Place Order via WhatsApp</span>
+              <button type="button" onclick="confirmBankOrder()" class="w-full h-11 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-[0.99] text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer">
+                <i class="fa-solid fa-check text-xs"></i>
+                <span data-i18n="btn_confirm_bank_order">Place Order (Bank Transfer)</span>
               </button>
             </div>
           </div>
@@ -1526,9 +1499,9 @@
       <div id="cartStep1StickyFooter" class="p-3 sm:p-3.5 bg-[#12141c]/95 backdrop-blur-md border-t border-white/10 flex items-center justify-between gap-3 shrink-0 hidden">
         <div class="min-w-0">
           <span class="text-[10px] text-slate-400 block truncate" data-i18n="cart_subtotal">Subtotal:</span>
-          <span id="cartStickySubtotal" class="text-base sm:text-lg font-black text-amber-400 font-display dir-ltr">0.00 €</span>
+          <span id="cartStickySubtotal" class="text-base sm:text-lg font-bold text-white font-display dir-ltr">0.00 €</span>
         </div>
-        <button type="button" onclick="goToCartStep(2)" class="flex-1 h-11 rounded-xl bg-gradient-to-r from-amber-400 via-amber-500 to-yellow-500 hover:from-amber-300 hover:to-amber-400 text-slate-950 font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md shadow-amber-500/20 active:scale-[0.98] transition cursor-pointer">
+        <button type="button" onclick="goToCartStep(2)" class="flex-1 h-11 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 active:scale-[0.99] transition cursor-pointer">
           <span data-i18n="cart_proceed_to_checkout">Proceed to Checkout</span>
           <i class="fa-solid fa-arrow-left rtl:rotate-0 ltr:rotate-180 text-xs"></i>
         </button>
@@ -1542,49 +1515,73 @@
 
   <!-- ORDER SUCCESS MODAL -->
   <div id="orderSuccessModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
-    <div class="relative w-full max-w-md rounded-3xl bg-[#12151c] border border-amber-400/40 p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] transform scale-95 transition-transform duration-300 space-y-5">
+    <div class="relative w-full max-w-md rounded-3xl bg-[#12151c] border border-white/15 p-6 text-center shadow-[0_25px_60px_rgba(0,0,0,0.9)] transform scale-95 transition-transform duration-300 space-y-4">
       
-      <!-- Glow & Icon -->
-      <div class="relative mx-auto w-20 h-20 rounded-full bg-emerald-500/10 border-2 border-emerald-400 flex items-center justify-center text-emerald-400 text-3xl shadow-[0_0_40px_rgba(16,185,129,0.3)]">
+      <!-- Icon -->
+      <div class="relative mx-auto w-16 h-16 rounded-full bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-2xl">
         <i class="fa-solid fa-check"></i>
       </div>
 
       <div class="space-y-1.5">
-        <h3 data-i18n="pay_success_title" class="text-xl font-black text-white font-display">Payment Successful!</h3>
-        <p data-i18n="pay_success_desc" class="text-xs text-brand-silver/80 leading-relaxed max-w-xs mx-auto">
-          Thank you for your order! Your payment has been received and your royal package will be dispatched with DHL/DPD.
+        <h3 data-i18n="pay_success_title" class="text-lg font-bold text-white">Order Placed Successfully!</h3>
+        <p data-i18n="pay_success_desc" class="text-xs text-zinc-400 leading-relaxed max-w-xs mx-auto">
+          Thank you for your order! Your royal package will be dispatched with DHL/DPD.
         </p>
       </div>
 
       <!-- Receipt Box -->
-      <div class="bg-black/50 border border-white/10 rounded-2xl p-4 text-start text-xs space-y-2.5">
+      <div class="bg-black/50 border border-white/10 rounded-2xl p-3.5 text-start text-xs space-y-2">
         <div class="flex items-center justify-between border-b border-white/10 pb-2">
-          <span class="text-brand-silver/70" data-i18n="pay_success_tx">Transaction / Order ID:</span>
-          <span id="successOrderId" class="font-mono font-bold text-amber-400 text-[11px] dir-ltr"></span>
+          <span class="text-zinc-400" data-i18n="pay_success_tx">Order Number:</span>
+          <span id="successOrderId" class="font-mono font-bold text-amber-400 text-xs dir-ltr"></span>
         </div>
         <div class="flex items-center justify-between">
-          <span class="text-brand-silver/70" data-i18n="cart_total">Total Amount:</span>
-          <span id="successTotalAmount" class="font-black text-white font-display dir-ltr"></span>
+          <span class="text-zinc-400" data-i18n="cart_total">Total Amount:</span>
+          <span id="successTotalAmount" class="font-bold text-white font-display dir-ltr"></span>
         </div>
-        <div class="pt-1 text-[11px] text-brand-silver/60">
-          <span class="font-medium text-slate-300">Delivery Address:</span>
+        <div class="pt-1 text-[11px] text-zinc-400">
+          <span class="font-medium text-zinc-300">Delivery Address:</span>
           <span id="successDeliveryAddr" class="block text-white font-medium mt-0.5 truncate dir-ltr text-start"></span>
         </div>
       </div>
 
+      <!-- Bank Transfer Details Box (Shown ONLY when payment method is Banküberweisung) -->
+      <div id="successBankBox" class="p-3.5 rounded-2xl bg-black/60 border border-white/10 text-start text-xs space-y-2 hidden">
+        <div class="text-[11px] font-bold text-amber-400 flex items-center gap-1.5">
+          <i class="fa-solid fa-building-columns"></i>
+          <span data-i18n="pay_success_bank_title">German Bank Account Details (SEPA):</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs font-bold dir-ltr select-all tracking-wider text-center" id="successBankIban">
+          DE49 2105 0170 0000 0000 00
+        </div>
+        <div class="space-y-1 text-[11px] text-zinc-300">
+          <div class="flex items-center justify-between">
+            <span class="text-zinc-400" data-i18n="pay_bank_holder_label">Account Holder:</span>
+            <span class="font-bold text-white" id="successBankHolder">Ramazan Bakhtyary</span>
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-zinc-400" data-i18n="pay_bank_ref_label">Payment Reference:</span>
+            <span class="font-mono font-bold text-amber-400" id="successBankRef">RB-XXXXXX</span>
+          </div>
+        </div>
+        <p class="text-[10px] text-zinc-400 pt-1" data-i18n="pay_success_bank_note">
+          Please transfer the total amount using your Order Number as payment reference. Your order will be dispatched via DHL immediately upon payment receipt.
+        </p>
+      </div>
+
       <!-- Status Badge & Courier info -->
-      <div class="p-2.5 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center gap-2 text-[11px] font-bold text-emerald-300">
-        <i class="fa-solid fa-truck-fast text-xs"></i>
+      <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center gap-2 text-[11px] font-medium text-zinc-300">
+        <i class="fa-solid fa-truck text-xs text-amber-400"></i>
         <span data-i18n="pay_success_courier">DHL Express Insured Dispatch</span>
       </div>
 
-      <!-- Action Buttons (Clean & Professional, Zero WhatsApp for customer) -->
+      <!-- Action Buttons -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
-        <button onclick="window.print()" class="w-full py-3 px-3 rounded-xl bg-brand-surface hover:bg-brand-surface/80 border border-brand-border text-brand-silver hover:text-white font-bold text-xs flex items-center justify-center gap-2 transition active:scale-98">
+        <button onclick="window.print()" class="w-full py-2.5 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-zinc-300 hover:text-white font-medium text-xs flex items-center justify-center gap-2 transition active:scale-98">
           <i class="fa-solid fa-print"></i>
           <span data-i18n="pay_success_print">Print Official Receipt</span>
         </button>
-        <button onclick="closeSuccessModal()" class="w-full py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-98 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-emerald-950/60 transition" data-i18n="pay_success_close">
+        <button onclick="closeSuccessModal()" class="w-full py-2.5 px-4 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-98 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 transition" data-i18n="pay_success_close">
           Continue Shopping
         </button>
       </div>
@@ -1594,18 +1591,18 @@
 
   <!-- FLOATING BOTTOM CART BAR (MOBILE ONLY) -->
   <div id="mobileBottomCartBar" class="fixed bottom-3 left-3 right-3 sm:hidden z-40 hidden transition-all duration-300">
-    <div onclick="openCart()" class="bg-gradient-to-r from-[#941120] to-[#54070e] border border-amber-400/40 rounded-2xl p-3 shadow-[0_12px_36px_rgba(0,0,0,0.85)] flex items-center justify-between cursor-pointer active:scale-98">
+    <div onclick="openCart()" class="bg-[#141720]/95 backdrop-blur-md border border-white/15 rounded-2xl p-3 shadow-2xl flex items-center justify-between cursor-pointer active:scale-98">
       <div class="flex items-center gap-2.5">
-        <div class="relative w-10 h-10 rounded-xl bg-black/40 border border-white/20 flex items-center justify-center text-white">
-          <i class="fa-solid fa-bag-shopping text-base text-amber-300"></i>
-          <span id="mobileBarCount" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-400 text-[#54070e] text-[10px] font-black flex items-center justify-center font-display">0</span>
+        <div class="relative w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-white">
+          <i class="fa-solid fa-bag-shopping text-base text-amber-400"></i>
+          <span id="mobileBarCount" class="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-bold flex items-center justify-center font-display">0</span>
         </div>
         <div>
           <span data-i18n="mobile_bar_title" class="text-xs font-bold text-white block">Your Shopping Cart</span>
-          <span id="mobileBarTotal" class="text-sm font-black text-amber-300 font-display dir-ltr">0.00 €</span>
+          <span id="mobileBarTotal" class="text-sm font-bold text-white font-display dir-ltr">0.00 €</span>
         </div>
       </div>
-      <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white text-[#7a0f1b] font-black text-xs shadow-md">
+      <div class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs shadow-sm">
         <span data-i18n="mobile_bar_checkout">Checkout</span>
         <i class="fa-solid fa-arrow-right rtl:rotate-180 text-[11px]"></i>
       </div>
@@ -1724,19 +1721,17 @@
 
     function selectPaymentMethod(method) {
       selectedPaymentMethod = method;
-      ['paypal', 'bank', 'wa'].forEach(m => {
+      ['paypal', 'bank'].forEach(m => {
         const card = document.getElementById('payCard-' + m);
         const radio = document.getElementById('radio-' + m);
         if (m === method) {
           if (card) {
-            card.classList.add('border-2', 'border-emerald-500', 'bg-black/60');
-            card.classList.remove('border-white/10', 'bg-black/30');
+            card.className = 'p-3 rounded-xl bg-black/60 border border-amber-400/80 cursor-pointer transition select-none flex items-start gap-2.5';
           }
           if (radio) radio.checked = true;
         } else {
           if (card) {
-            card.classList.remove('border-2', 'border-emerald-500', 'bg-black/60');
-            card.classList.add('border-white/10', 'bg-black/30');
+            card.className = 'p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5';
           }
           if (radio) radio.checked = false;
         }
@@ -1778,14 +1773,15 @@
           headerStep2.classList.remove('flex');
         }
 
-        if (stepTab1) stepTab1.className = 'flex items-center gap-1.5 font-bold text-amber-400 transition hover:opacity-85';
+        if (stepTab1) stepTab1.className = 'flex items-center gap-2 font-bold text-amber-400 transition hover:opacity-85';
         if (stepTab1Num) {
           stepTab1Num.className = 'w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center';
           stepTab1Num.innerHTML = '1';
         }
-        if (stepTab2) stepTab2.className = 'flex items-center gap-1.5 font-medium text-slate-500 transition hover:opacity-85';
+        if (stepTab2) stepTab2.className = 'flex items-center gap-2 font-medium text-slate-500 transition hover:opacity-85';
         if (stepTab2Num) {
           stepTab2Num.className = 'w-5 h-5 rounded-full bg-white/10 text-slate-400 text-[10px] font-bold flex items-center justify-center';
+          stepTab2Num.innerHTML = '2';
         }
         if (stepProgressFill) stepProgressFill.style.width = '0%';
       } else {
@@ -1799,14 +1795,15 @@
           headerStep2.classList.add('flex');
         }
 
-        if (stepTab1) stepTab1.className = 'flex items-center gap-1.5 font-medium text-emerald-400 transition hover:opacity-85';
+        if (stepTab1) stepTab1.className = 'flex items-center gap-2 font-medium text-zinc-300 transition hover:opacity-85';
         if (stepTab1Num) {
-          stepTab1Num.className = 'w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-bold flex items-center justify-center';
-          stepTab1Num.innerHTML = '<i class="fa-solid fa-check text-[8px]"></i>';
+          stepTab1Num.className = 'w-5 h-5 rounded-full bg-white/10 text-zinc-300 text-[10px] font-bold flex items-center justify-center';
+          stepTab1Num.innerHTML = '✓';
         }
-        if (stepTab2) stepTab2.className = 'flex items-center gap-1.5 font-bold text-amber-400 transition hover:opacity-85';
+        if (stepTab2) stepTab2.className = 'flex items-center gap-2 font-bold text-amber-400 transition hover:opacity-85';
         if (stepTab2Num) {
           stepTab2Num.className = 'w-5 h-5 rounded-full bg-amber-400 text-black text-[10px] font-black flex items-center justify-center';
+          stepTab2Num.innerHTML = '2';
         }
         if (stepProgressFill) stepProgressFill.style.width = '100%';
 
@@ -1876,12 +1873,12 @@
 
       // Shipping Breakdown
       const shippingEl = document.getElementById('cartShipping');
-      const freeShippingBadge = dict.cart_shipping_free || (currentLang === 'fa' ? 'رایگان 🎁' : 'Free 🎁');
+      const freeShippingBadge = dict.cart_shipping_free || (currentLang === 'fa' ? 'رایگان' : 'Free');
       if (shippingEl) {
         if (isFreeShipping && subtotalPrice > 0) {
-          shippingEl.innerHTML = `<span class="text-emerald-400 font-bold">${formatLocalizedPrice(0, currentLang)} (${freeShippingBadge})</span>`;
+          shippingEl.innerHTML = `<span class="text-zinc-300 font-bold">${formatLocalizedPrice(0, currentLang)} (${freeShippingBadge})</span>`;
         } else {
-          shippingEl.innerHTML = `<span class="text-amber-400 font-bold">${formatLocalizedPrice(shippingPrice, currentLang)}</span>`;
+          shippingEl.innerHTML = `<span class="text-white font-bold">${formatLocalizedPrice(shippingPrice, currentLang)}</span>`;
         }
       }
 
@@ -1895,22 +1892,22 @@
         } else {
           bannerEl.classList.remove('hidden');
           if (isFreeShipping) {
-            bannerEl.className = 'p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-between text-[11px]';
-            const unlockMsg = dict.cart_free_shipping_unlocked || (currentLang === 'fa' ? '🎉 ارسال با DHL برای این سفارش کاملاً رایگان است!' : '🎉 Free DHL tracked shipping applied!');
-            bannerMsgEl.innerHTML = `<span class="text-emerald-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-xs"></i><span>${unlockMsg}</span></span>`;
+            bannerEl.className = 'px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px]';
+            const unlockMsg = dict.cart_free_shipping_unlocked || (currentLang === 'fa' ? 'ارسال با DHL برای این سفارش کاملاً رایگان است' : 'Free DHL tracked shipping applied');
+            bannerMsgEl.innerHTML = `<span class="text-zinc-200 font-medium flex items-center gap-1.5"><i class="fa-solid fa-check text-amber-400 text-xs"></i><span>${unlockMsg}</span></span>`;
             if (bannerBadgeEl) {
-              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-emerald-950/90 text-[10px] font-bold text-emerald-200 border border-emerald-500/40';
+              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-300 border border-white/10';
               bannerBadgeEl.textContent = freeShippingBadge;
             }
           } else {
             const diff = freeThreshold - subtotalPrice;
             const diffFormatted = formatLocalizedPrice(diff, currentLang);
-            const awayMsg = dict.cart_away_from_free || (currentLang === 'fa' ? 'دیگر تا ارسال کاملاً رایگان با DHL!' : 'away from FREE DHL shipping!');
-            bannerEl.className = 'p-2 rounded-xl bg-amber-500/10 border border-amber-500/25 flex items-center justify-between text-[11px]';
-            bannerMsgEl.innerHTML = `<span class="text-amber-300 font-bold flex items-center gap-1.5"><i class="fa-solid fa-truck-fast text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
+            const awayMsg = dict.cart_away_from_free || (currentLang === 'fa' ? 'دیگر تا ارسال رایگان با DHL' : 'away from free DHL shipping');
+            bannerEl.className = 'px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px]';
+            bannerMsgEl.innerHTML = `<span class="text-zinc-300 font-medium flex items-center gap-1.5"><i class="fa-solid fa-truck text-amber-400 text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
             if (bannerBadgeEl) {
               const minBadge = dict.cart_threshold_badge || (currentLang === 'fa' ? 'سقف' : 'Min.');
-              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-black/40 text-[10px] font-bold text-amber-200';
+              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-400 border border-white/10';
               bannerBadgeEl.textContent = `${minBadge} ${formatLocalizedPrice(freeThreshold, currentLang)}`;
             }
           }
@@ -1931,11 +1928,9 @@
       // Toggle action sections based on payment method
       const paypalSec = document.getElementById('paypalSection');
       const bankSec = document.getElementById('bankTransferSection');
-      const waSec = document.getElementById('waOrderSection');
 
       if (paypalSec) paypalSec.classList.toggle('hidden', selectedPaymentMethod !== 'paypal');
       if (bankSec) bankSec.classList.toggle('hidden', selectedPaymentMethod !== 'bank');
-      if (waSec) waSec.classList.toggle('hidden', selectedPaymentMethod !== 'wa');
 
       // Update Bank IBAN & Holder Display
       const ibanDisp = document.getElementById('bankIbanDisplay');
@@ -2255,10 +2250,12 @@
       const oIdEl = document.getElementById('successOrderId');
       const tAmtEl = document.getElementById('successTotalAmount');
       const dAddrEl = document.getElementById('successDeliveryAddr');
+      const bankBox = document.getElementById('successBankBox');
 
       if (oIdEl) oIdEl.textContent = orderId;
       if (tAmtEl) tAmtEl.textContent = formattedPrice;
       if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}`;
+      if (bankBox) bankBox.classList.add('hidden');
 
       // Save confirmed paid order in Supabase Cloud
       if (sbClient) {
@@ -2331,6 +2328,120 @@
           box.classList.remove('scale-100');
         }
       }
+    }
+
+    function confirmBankOrder() {
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      if (cart.length === 0) {
+        showToast(dict.cart_drawer_empty || 'Please add at least one item to your cart!');
+        return;
+      }
+
+      const nameEl = document.getElementById('custName');
+      const phoneEl = document.getElementById('custPhone');
+      const streetEl = document.getElementById('custStreet');
+      const plzEl = document.getElementById('custPlz');
+      const cityEl = document.getElementById('custCity');
+      const countryEl = document.getElementById('custCountry');
+
+      const name = nameEl ? nameEl.value.trim() : '';
+      const phone = phoneEl ? phoneEl.value.trim() : '';
+      const street = streetEl ? streetEl.value.trim() : '';
+      const plz = plzEl ? plzEl.value.trim() : '';
+      const city = cityEl ? cityEl.value.trim() : '';
+      const country = countryEl ? countryEl.value : 'Germany (Deutschland)';
+
+      // Full address validation
+      if (!name || !street || !plz || !city) {
+        showToast(dict.validation_addr || 'Please provide your Name, Street, Postal Code (PLZ), and City!');
+        if (!name && nameEl) nameEl.focus();
+        else if (!street && streetEl) streetEl.focus();
+        else if (!plz && plzEl) plzEl.focus();
+        else if (!city && cityEl) cityEl.focus();
+        return;
+      }
+
+      // Save customer info in localStorage
+      try {
+        localStorage.setItem('rb_saved_customer', JSON.stringify({
+          name, phone, street, plz, city, country, payMethod: 'Bank Transfer (SEPA / IBAN)'
+        }));
+      } catch(e) {}
+
+      const orderId = 'RB-' + Math.floor(100000 + Math.random() * 900000);
+      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 1.00;
+      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
+      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      const finalTotalPrice = subtotalPrice + shippingPrice; // 0% payment fee for bank transfer
+      const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
+      const deliveryAddr = `${street}, ${plz} ${city} (${country})`;
+
+      // Populate Success Modal
+      const oIdEl = document.getElementById('successOrderId');
+      const tAmtEl = document.getElementById('successTotalAmount');
+      const dAddrEl = document.getElementById('successDeliveryAddr');
+      const bankBox = document.getElementById('successBankBox');
+      const bankRefEl = document.getElementById('successBankRef');
+      const bankIbanEl = document.getElementById('successBankIban');
+      const bankHolderEl = document.getElementById('successBankHolder');
+
+      if (oIdEl) oIdEl.textContent = orderId;
+      if (tAmtEl) tAmtEl.textContent = formattedPrice;
+      if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}${phone ? ' • ' + phone : ''}`;
+      if (bankBox) bankBox.classList.remove('hidden');
+      if (bankRefEl) bankRefEl.textContent = orderId;
+      if (bankIbanEl && paymentFeeSettings.iban) bankIbanEl.textContent = paymentFeeSettings.iban;
+      if (bankHolderEl && paymentFeeSettings.holder) bankHolderEl.textContent = paymentFeeSettings.holder;
+
+      // Save pending SEPA order in Supabase Cloud
+      if (sbClient) {
+        try {
+          sbClient.from('orders').insert([{
+            customer_name: name,
+            customer_address: `${deliveryAddr}` + (phone ? ` (Tel: ${phone})` : ''),
+            items: cart,
+            total_price: finalTotalPrice,
+            status: 'pending_sepa'
+          }]).then(() => {}).catch(() => {});
+        } catch(e) {}
+      }
+
+      // Silent Server-Side Notification to Shop Owner
+      try {
+        const orderPayload = {
+          orderId: orderId,
+          txId: 'SEPA-' + orderId,
+          customerName: name,
+          customerPhone: phone,
+          deliveryAddress: deliveryAddr,
+          items: cart.map(i => ({ title: i.name, qty: i.qty, price: i.price, variant: i.variant || '' })),
+          subtotal: subtotalPrice,
+          shipping: shippingPrice,
+          fee: 0,
+          total: finalTotalPrice,
+          payMethod: 'Bank Transfer (SEPA / IBAN Germany)',
+          lang: currentLang
+        };
+
+        fetch('/api/notify-owner', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload)
+        }).catch(err => console.log('Silent server notification dispatch:', err));
+      } catch(err) {
+        console.log('Notification payload error:', err);
+      }
+
+      // Clear cart
+      cart = [];
+      saveCart();
+      updateCartUI();
+      closeCart();
+
+      // Show Success Modal
+      openSuccessModal();
     }
 
     function checkoutWhatsApp(methodOverride) {
