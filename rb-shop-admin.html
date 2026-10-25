@@ -366,6 +366,30 @@
               </div>
             </div>
 
+            <!-- Bank Account Details for SEPA (مشخصات حساب بانکی برای واریز مستقیم) -->
+            <div class="pt-3 border-t border-white/10 space-y-2.5">
+              <label class="block text-xs font-bold text-white flex items-center gap-2">
+                <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                <span>مشخصات حساب بانکی آقای بختیاری در آلمان (جهت واریز بانکی شبا / SEPA):</span>
+              </label>
+              <p class="text-[11px] text-slate-400 leading-relaxed">
+                مشتریانی که در سبد خرید گزینه «واریز بانکی» را انتخاب می‌کنند، این شماره شبا و نام را مشاهده خواهند کرد.
+              </p>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">شماره شبا (IBAN) دکان برای واریز بانکی:</label>
+                  <input type="text" id="storeIbanInput" placeholder="DE33 2225 0020 0090 3756 50" value="DE33 2225 0020 0090 3756 50" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
+                  <span class="text-[10px] text-slate-500 mt-1 block">Sparkasse Mittelholstein AG</span>
+                </div>
+                <div>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">نام دارنده حساب بانکی (Inhaber):</label>
+                  <input type="text" id="storeBankHolderInput" placeholder="Ramazan Bakhtyary" value="Ramazan Bakhtyary" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-bold text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
+                  <span class="text-[10px] text-slate-500 mt-1 block">نام صاحب حساب در بانک آلمان</span>
+                </div>
+              </div>
+            </div>
+
 
 
             <!-- Orders Hub Quick Notice -->
@@ -1740,7 +1764,7 @@
           if (feeData) {
             s.payFeePercent = (!isNaN(parseFloat(feeData.price))) ? parseFloat(feeData.price) : 2.00;
             s.payFeeFixed = (!isNaN(parseFloat(feeData.unit))) ? parseFloat(feeData.unit) : 0.00;
-            s.iban = feeData.description || 'DE33 2225 0020 0090 3756 50';
+            s.iban = (feeData.description && !feeData.description.includes('0000 0000') && !feeData.description.includes('DE49')) ? feeData.description : 'DE33 2225 0020 0090 3756 50';
           }
 
           // Fetch WhatsApp notification config from Supabase
@@ -1769,6 +1793,12 @@
       }
       if (document.getElementById('storeFreeShippingThresholdInput')) {
         document.getElementById('storeFreeShippingThresholdInput').value = (typeof s.freeShippingThreshold !== 'undefined' ? Number(s.freeShippingThreshold) : 50.00).toFixed(2);
+      }
+      if (document.getElementById('storeIbanInput')) {
+        document.getElementById('storeIbanInput').value = s.iban || 'DE33 2225 0020 0090 3756 50';
+      }
+      if (document.getElementById('storeBankHolderInput')) {
+        document.getElementById('storeBankHolderInput').value = s.bankHolder || 'Ramazan Bakhtyary';
       }
 
     }
@@ -1811,6 +1841,20 @@
           title: 'Shipping Config',
           price: shippingBase,
           unit: freeShippingThreshold.toString(),
+          category: 'system_setting',
+          in_stock: false
+        }], { onConflict: 'id' }).then(() => {});
+
+        const iban = document.getElementById('storeIbanInput') ? document.getElementById('storeIbanInput').value.trim() : 'DE33 2225 0020 0090 3756 50';
+        const holder = document.getElementById('storeBankHolderInput') ? document.getElementById('storeBankHolderInput').value.trim() : 'Ramazan Bakhtyary';
+
+        sbClient.from('products').upsert([{
+          id: '__store_payment_fee__',
+          title: 'Payment Fee Config',
+          price: 0,
+          unit: '0',
+          description: iban,
+          variant: holder,
           category: 'system_setting',
           in_stock: false
         }], { onConflict: 'id' }).then(() => {});

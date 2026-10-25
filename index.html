@@ -1360,27 +1360,45 @@
             </div>
           </div>
 
-          <!-- Section 2: Payment Method Details -->
-          <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-2.5">
+          <!-- Section 2: Payment Method Selection -->
+          <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-3">
             <div class="flex items-center justify-between border-b border-white/10 pb-2">
               <h4 data-i18n="cart_field_payment" class="text-xs font-bold text-white flex items-center gap-2">
                 <i class="fa-solid fa-credit-card text-amber-400"></i>
                 <span>Payment Method (Zahlungsmethode):</span>
               </h4>
-              <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">PayPal • Visa • MC</span>
+              <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">PayPal • SEPA</span>
             </div>
             
-            <div class="p-3 rounded-xl bg-black/60 border border-amber-400/80 flex items-start gap-2.5">
-              <div class="w-2.5 h-2.5 rounded-full bg-amber-400 mt-1 shrink-0 ring-4 ring-amber-400/20"></div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between gap-1 flex-wrap">
-                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                    <i class="fa-brands fa-paypal text-sky-400"></i>
-                    <span data-i18n="pay_method_paypal">Online Payment (PayPal, Card, Pay Later)</span>
-                  </span>
-                  <span class="text-[10px] text-emerald-400 font-medium bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">100% Secure</span>
+            <div class="space-y-2.5" id="paymentMethodSelector">
+              <!-- Method 1: PayPal & Online Cards -->
+              <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border border-amber-400/80 cursor-pointer transition select-none flex items-start gap-2.5">
+                <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-amber-400 pointer-events-none">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1 flex-wrap">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i class="fa-brands fa-paypal text-sky-400"></i>
+                      <span data-i18n="pay_method_paypal">Online Payment (PayPal, Card, Pay Later)</span>
+                    </span>
+                    <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">PayPal • Visa • MC</span>
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
                 </div>
-                <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
+              </div>
+
+              <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
+              <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
+                <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-amber-400 pointer-events-none">
+                <div class="flex-1 min-w-0">
+                  <div class="flex items-center justify-between gap-1 flex-wrap">
+                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                      <i class="fa-solid fa-building-columns text-emerald-400"></i>
+                      <span data-i18n="pay_method_bank">Direct Bank Transfer (SEPA / IBAN Germany)</span>
+                    </span>
+                    <span class="text-[10px] text-emerald-400/90 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded dir-ltr font-medium">IBAN / SEPA</span>
+                  </div>
+                  <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_bank_hint">Direct bank transfer to our German bank account (SEPA / IBAN)</p>
+                </div>
               </div>
             </div>
           </div>
@@ -1451,6 +1469,43 @@
               <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
             </div>
 
+            <!-- Direct Bank Transfer Action Button & Info -->
+            <div id="bankSection" class="space-y-3 hidden">
+              <div class="p-3.5 rounded-2xl bg-black/50 border border-emerald-500/25 space-y-2.5 text-xs">
+                <div class="flex items-center justify-between text-emerald-400 font-bold border-b border-white/10 pb-2">
+                  <span class="flex items-center gap-1.5">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <span data-i18n="pay_bank_details_title">German Bank Account Details (SEPA):</span>
+                  </span>
+                  <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded font-medium">Sparkasse</span>
+                </div>
+                <div class="space-y-2 text-[11px]">
+                  <div class="flex items-center justify-between text-zinc-400">
+                    <span data-i18n="pay_bank_holder_label">Account Holder (Inhaber):</span>
+                    <span id="bankHolderNameDisplay" class="font-bold text-white">Ramazan Bakhtyary</span>
+                  </div>
+                  <div class="flex items-center justify-between text-zinc-400 gap-2 flex-wrap">
+                    <span data-i18n="pay_bank_iban_label">IBAN:</span>
+                    <div class="flex items-center gap-1.5">
+                      <span id="bankIbanDisplay" class="font-mono font-bold text-emerald-300 dir-ltr text-xs select-all">DE33 2225 0020 0090 3756 50</span>
+                      <button type="button" onclick="copyIbanToClipboard()" title="Copy IBAN" class="px-2 py-1 rounded bg-white/10 hover:bg-emerald-500/20 hover:text-emerald-300 text-zinc-300 transition text-[10px] flex items-center gap-1 cursor-pointer">
+                        <i class="fa-regular fa-copy"></i>
+                        <span>Copy</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between text-zinc-400">
+                    <span>Bank:</span>
+                    <span class="font-medium text-white">Sparkasse Mittelholstein AG</span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" onclick="checkoutBankOrder()" class="w-full h-12 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-500/20 transition active:scale-[0.99] cursor-pointer">
+                <i class="fa-solid fa-circle-check"></i>
+                <span data-i18n="btn_confirm_bank_order">Place Order (Bank Transfer)</span>
+              </button>
+            </div>
 
           </div>
 
@@ -1506,6 +1561,39 @@
           <span class="font-medium text-zinc-300">Delivery Address:</span>
           <span id="successDeliveryAddr" class="block text-white font-medium mt-0.5 truncate dir-ltr text-start"></span>
         </div>
+      </div>
+
+      <!-- Direct Bank Transfer Instruction Box inside Success Modal -->
+      <div id="successBankBox" class="bg-black/60 border border-emerald-500/30 rounded-2xl p-3.5 text-start text-xs space-y-2 hidden">
+        <div class="flex items-center justify-between text-emerald-400 font-bold border-b border-white/10 pb-1.5">
+          <span class="flex items-center gap-1.5">
+            <i class="fa-solid fa-building-columns"></i>
+            <span data-i18n="pay_success_bank_title">German Bank Account Details (SEPA):</span>
+          </span>
+          <span class="text-[10px] text-zinc-400">Sparkasse Mittelholstein</span>
+        </div>
+        <div class="space-y-1.5 text-[11px]">
+          <div class="flex items-center justify-between text-zinc-400">
+            <span data-i18n="pay_bank_holder_label">Account Holder (Inhaber):</span>
+            <span id="successBankHolder" class="font-bold text-white">Ramazan Bakhtyary</span>
+          </div>
+          <div class="flex items-center justify-between text-zinc-400">
+            <span data-i18n="pay_bank_iban_label">IBAN:</span>
+            <div class="flex items-center gap-1.5">
+              <span id="successBankIban" class="font-mono font-bold text-emerald-300 dir-ltr select-all">DE33 2225 0020 0090 3756 50</span>
+              <button type="button" onclick="copyIbanToClipboard()" title="Copy IBAN" class="px-1.5 py-0.5 rounded bg-white/10 text-zinc-300 hover:text-white text-[10px]">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+          <div class="flex items-center justify-between text-zinc-400">
+            <span data-i18n="pay_bank_ref_label">Payment Reference (Verwendungszweck):</span>
+            <span id="successBankRef" class="font-mono font-bold text-amber-400 dir-ltr"></span>
+          </div>
+        </div>
+        <p class="text-[10px] text-slate-400 pt-1 leading-normal border-t border-white/5" data-i18n="pay_success_bank_note">
+          Please transfer the total amount using your Order Number as payment reference. Your order will be dispatched via DHL immediately upon payment receipt.
+        </p>
       </div>
 
 
@@ -1566,7 +1654,7 @@
       const savedStore = localStorage.getItem('rb_store_settings');
       if (savedStore) {
         const parsedStore = JSON.parse(savedStore);
-        if (parsedStore.bankIban) paymentFeeSettings.iban = parsedStore.bankIban;
+        if (parsedStore.bankIban && !parsedStore.bankIban.includes('0000 0000') && !parsedStore.bankIban.includes('DE49')) paymentFeeSettings.iban = parsedStore.bankIban;
         if (parsedStore.bankHolder) paymentFeeSettings.holder = parsedStore.bankHolder;
       }
     } catch(e) {}
@@ -1753,9 +1841,171 @@
     }
 
     function selectPaymentMethod(method) {
-      selectedPaymentMethod = 'paypal';
+      selectedPaymentMethod = (method === 'bank') ? 'bank' : 'paypal';
+      const paypalRadio = document.getElementById('radio-paypal');
+      const bankRadio = document.getElementById('radio-bank');
+      const paypalCard = document.getElementById('payCard-paypal');
+      const bankCard = document.getElementById('payCard-bank');
+      const paypalSection = document.getElementById('paypalSection');
+      const bankSection = document.getElementById('bankSection');
+
+      if (selectedPaymentMethod === 'paypal') {
+        if (paypalRadio) paypalRadio.checked = true;
+        if (bankRadio) bankRadio.checked = false;
+        if (paypalCard) {
+          paypalCard.classList.add('border-amber-400/80', 'bg-black/60');
+          paypalCard.classList.remove('border-white/10', 'bg-black/30');
+        }
+        if (bankCard) {
+          bankCard.classList.remove('border-amber-400/80', 'bg-black/60');
+          bankCard.classList.add('border-white/10', 'bg-black/30');
+        }
+        if (paypalSection) paypalSection.classList.remove('hidden');
+        if (bankSection) bankSection.classList.add('hidden');
+      } else {
+        if (bankRadio) bankRadio.checked = true;
+        if (paypalRadio) paypalRadio.checked = false;
+        if (bankCard) {
+          bankCard.classList.add('border-amber-400/80', 'bg-black/60');
+          bankCard.classList.remove('border-white/10', 'bg-black/30');
+        }
+        if (paypalCard) {
+          paypalCard.classList.remove('border-amber-400/80', 'bg-black/60');
+          paypalCard.classList.add('border-white/10', 'bg-black/30');
+        }
+        if (paypalSection) paypalSection.classList.add('hidden');
+        if (bankSection) bankSection.classList.remove('hidden');
+
+        const holderEl = document.getElementById('bankHolderNameDisplay');
+        const ibanEl = document.getElementById('bankIbanDisplay');
+        if (holderEl) holderEl.textContent = paymentFeeSettings.holder || 'Ramazan Bakhtyary';
+        if (ibanEl) ibanEl.textContent = paymentFeeSettings.iban || 'DE33 2225 0020 0090 3756 50';
+      }
+
       updateCartUI();
-      renderReviewsList();
+    }
+
+    function copyIbanToClipboard() {
+      const iban = paymentFeeSettings.iban || 'DE33 2225 0020 0090 3756 50';
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(iban.replace(/\s+/g, '')).then(() => {
+          showToast(currentLang === 'fa' ? 'شماره شبا کپی شد! ✅' : 'IBAN copied to clipboard! ✅');
+        }).catch(() => {
+          showToast(iban);
+        });
+      } else {
+        showToast(iban);
+      }
+    }
+
+    function checkoutBankOrder() {
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      if (!cart || cart.length === 0) {
+        showToast(dict.cart_drawer_empty || 'Your cart is empty!');
+        return;
+      }
+
+      const nameEl = document.getElementById('custName');
+      const phoneEl = document.getElementById('custPhone');
+      const streetEl = document.getElementById('custStreet');
+      const plzEl = document.getElementById('custPlz');
+      const cityEl = document.getElementById('custCity');
+      const countryEl = document.getElementById('custCountry');
+
+      const name = nameEl ? nameEl.value.trim() : '';
+      const phone = phoneEl ? phoneEl.value.trim() : '';
+      const street = streetEl ? streetEl.value.trim() : '';
+      const plz = plzEl ? plzEl.value.trim() : '';
+      const city = cityEl ? cityEl.value.trim() : '';
+      const country = countryEl ? countryEl.value : 'Germany (Deutschland)';
+
+      if (!name || !street || !plz || !city) {
+        showToast(dict.validation_addr || 'Please provide your Name, Street, Postal Code (PLZ), and City!');
+        if (!name && nameEl) nameEl.focus();
+        else if (!street && streetEl) streetEl.focus();
+        else if (!plz && plzEl) plzEl.focus();
+        else if (!city && cityEl) cityEl.focus();
+        return;
+      }
+
+      try {
+        localStorage.setItem('rb_saved_customer', JSON.stringify({
+          name, phone, street, plz, city, country, payMethod: 'Bank Transfer (SEPA / IBAN)'
+        }));
+      } catch(e) {}
+
+      const orderId = 'RB-' + Math.floor(100000 + Math.random() * 900000);
+      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const shipInfo = getOrderShippingInfo();
+      const shippingPrice = shipInfo.price;
+      const finalTotalPrice = subtotalPrice + shippingPrice;
+      const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
+      const deliveryAddr = `${street}, ${plz} ${city} (${country})`;
+
+      // Populate Success Modal
+      const oIdEl = document.getElementById('successOrderId');
+      const tAmtEl = document.getElementById('successTotalAmount');
+      const dAddrEl = document.getElementById('successDeliveryAddr');
+      const bankBox = document.getElementById('successBankBox');
+      const bankRefEl = document.getElementById('successBankRef');
+      const bankIbanEl = document.getElementById('successBankIban');
+      const bankHolderEl = document.getElementById('successBankHolder');
+
+      if (oIdEl) oIdEl.textContent = orderId;
+      if (tAmtEl) tAmtEl.textContent = formattedPrice;
+      if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}${phone ? ' • ' + phone : ''}`;
+      if (bankBox) bankBox.classList.remove('hidden');
+      if (bankRefEl) bankRefEl.textContent = orderId;
+      if (bankIbanEl) bankIbanEl.textContent = paymentFeeSettings.iban || 'DE33 2225 0020 0090 3756 50';
+      if (bankHolderEl) bankHolderEl.textContent = paymentFeeSettings.holder || 'Ramazan Bakhtyary';
+
+      // Save pending SEPA order in Supabase Cloud
+      if (sbClient) {
+        try {
+          sbClient.from('orders').insert([{
+            customer_name: name,
+            customer_address: `${deliveryAddr}` + (phone ? ` (Tel: ${phone})` : ''),
+            items: cart,
+            total_price: finalTotalPrice,
+            status: 'pending_sepa'
+          }]).then(() => {}).catch(() => {});
+        } catch(e) {}
+      }
+
+      // Silent Server-Side Notification to Shop Owner
+      try {
+        const orderPayload = {
+          orderId: orderId,
+          txId: 'SEPA-' + orderId,
+          customerName: name,
+          customerPhone: phone,
+          deliveryAddress: deliveryAddr,
+          items: cart.map(i => ({ title: i.name, qty: i.qty, price: i.price, variant: i.variant || '' })),
+          subtotal: subtotalPrice,
+          shipping: shippingPrice,
+          fee: 0,
+          total: finalTotalPrice,
+          payMethod: 'Bank Transfer (SEPA / IBAN Germany)',
+          lang: currentLang
+        };
+
+        fetch('/api/notify-owner', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderPayload)
+        }).catch(err => console.log('Silent server notification dispatch:', err));
+      } catch(err) {
+        console.log('Notification payload error:', err);
+      }
+
+      // Clear cart
+      cart = [];
+      saveCart();
+      updateCartUI();
+      closeCart();
+
+      // Show Success Modal
+      openSuccessModal();
     }
 
     let currentCartStep = 1;
@@ -1980,9 +2230,16 @@
       const basePayable = subtotalPrice + shippingPrice;
       const actualFinalTotal = basePayable;
 
-      // Ensure PayPal online payment section is active
+      // Sync payment method visibility
       const paypalSec = document.getElementById('paypalSection');
-      if (paypalSec) paypalSec.classList.remove('hidden');
+      const bankSec = document.getElementById('bankSection');
+      if (selectedPaymentMethod === 'bank') {
+        if (paypalSec) paypalSec.classList.add('hidden');
+        if (bankSec) bankSec.classList.remove('hidden');
+      } else {
+        if (paypalSec) paypalSec.classList.remove('hidden');
+        if (bankSec) bankSec.classList.add('hidden');
+      }
 
       // Final Total Amount (Cleanly includes the fee when PayPal is chosen - NO SEPARATE FEE ROW!)
       const totalEl = document.getElementById('cartTotal');
@@ -2282,6 +2539,8 @@
       const oIdEl = document.getElementById('successOrderId');
       const tAmtEl = document.getElementById('successTotalAmount');
       const dAddrEl = document.getElementById('successDeliveryAddr');
+      const bankBox = document.getElementById('successBankBox');
+      if (bankBox) bankBox.classList.add('hidden');
 
       if (oIdEl) oIdEl.textContent = orderId;
       if (tAmtEl) tAmtEl.textContent = formattedPrice;
@@ -2741,7 +3000,8 @@ ${dict.cart_subtotal || "Subtotal:"} ${formattedSubtotal}
     // =========================================================================
     // APP BUILD VERSION & CACHE PURGER
     // =========================================================================
-    const APP_BUILD_VERSION = '2026.10.25.12';
+    const APP_BUILD_VERSION = '2026.10.25.13';
+    localStorage.removeItem('rb_store_settings');
     if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
       localStorage.removeItem('rb_products');
       localStorage.removeItem('rb_shipping_settings');
@@ -2970,8 +3230,14 @@ ${dict.cart_subtotal || "Subtotal:"} ${formattedSubtotal}
             if (feeCfg) {
               paymentFeeSettings.percent = 0.00;
               paymentFeeSettings.fixed = 0.00;
-              if (feeCfg.description) paymentFeeSettings.iban = feeCfg.description;
-              if (feeCfg.title && feeCfg.title !== 'Payment Fee Settings') paymentFeeSettings.holder = feeCfg.title;
+              if (feeCfg.description && !feeCfg.description.includes('0000 0000') && !feeCfg.description.includes('DE49')) paymentFeeSettings.iban = feeCfg.description;
+              if (feeCfg.variant) paymentFeeSettings.holder = feeCfg.variant;
+              else if (feeCfg.title && feeCfg.title !== 'Payment Fee Settings' && feeCfg.title !== 'Payment Fee Config') paymentFeeSettings.holder = feeCfg.title;
+
+              const holderEl = document.getElementById('bankHolderNameDisplay');
+              const ibanEl = document.getElementById('bankIbanDisplay');
+              if (holderEl && paymentFeeSettings.holder) holderEl.textContent = paymentFeeSettings.holder;
+              if (ibanEl && paymentFeeSettings.iban) ibanEl.textContent = paymentFeeSettings.iban;
             }
 
             const cloudProds = data.filter(r => r.id !== '__store_shipping__' && r.category !== 'system_setting').map(r => ({
