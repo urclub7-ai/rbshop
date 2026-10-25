@@ -649,7 +649,7 @@
             </div>
             <div class="inline-flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-black/40 border border-white/15 text-white text-[11px] font-semibold backdrop-blur-sm">
               <i class="fa-solid fa-truck-fast text-amber-300 text-[10px]"></i>
-              <span data-i18n="hero_chip_shipping">Fast DHL & DPD Postal Delivery across Europe</span>
+              <span data-i18n="hero_chip_shipping">Fast DHL Postal Delivery across Europe</span>
             </div>
           </div>
 
@@ -875,7 +875,7 @@
           </div>
           <h3 data-i18n="why_feat2_title" class="text-lg font-bold text-white">Fast Tracked DHL Shipping</h3>
           <p data-i18n="why_feat2_desc" class="text-xs text-brand-silver/80 leading-relaxed">
-            Dispatched directly from Büsum, Germany via DHL & DPD with live tracking numbers across Germany and all EU countries.
+            Dispatched directly from Büsum, Germany via DHL with live tracking numbers across Germany and all EU countries.
           </p>
         </div>
 
@@ -1274,7 +1274,7 @@
             <div class="flex items-center justify-between border-b border-white/10 pb-2.5">
               <div class="flex items-center gap-2">
                 <i class="fa-solid fa-truck-fast text-emerald-400 text-sm"></i>
-                <h4 data-i18n="cart_drawer_address_title" class="text-xs sm:text-sm font-bold text-white">DHL / DPD Postal Delivery Address</h4>
+                <h4 data-i18n="cart_drawer_address_title" class="text-xs sm:text-sm font-bold text-white">DHL Postal Delivery Address</h4>
               </div>
               <span data-i18n="cart_drawer_address_badge" class="text-[10px] text-amber-400/90 font-medium">Direct Postal Delivery</span>
             </div>
@@ -1347,13 +1347,15 @@
 
               <div class="col-span-2 sm:col-span-1">
                 <label data-i18n="cart_field_country" class="block text-[11px] font-bold text-slate-300 mb-1">Country (Land):</label>
-                <select id="custCountry" onchange="autoSaveCustomerInfo()" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
+                <select id="custCountry" onchange="handleCountryChange()" class="w-full h-11 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white focus:outline-none focus:border-amber-400 focus:ring-1 focus:ring-amber-400/30">
                   <option data-i18n="country_de" value="Germany (Deutschland)">Germany (Deutschland)</option>
                   <option data-i18n="country_at" value="Austria (Österreich)">Austria (Österreich)</option>
                   <option data-i18n="country_ch" value="Switzerland (Schweiz)">Switzerland (Schweiz)</option>
                   <option data-i18n="country_nl" value="Netherlands (Nederland)">Netherlands (Nederland)</option>
+                  <option data-i18n="country_fr" value="France (France)">France (France)</option>
                   <option data-i18n="country_other" value="Other European Countries">Other European Countries</option>
                 </select>
+                <div id="countryShippingHint" class="text-[10px] mt-1.5 leading-tight flex items-center gap-1.5 min-h-[16px]"></div>
               </div>
             </div>
           </div>
@@ -1403,7 +1405,7 @@
               <div class="flex items-center justify-between text-slate-300">
                 <span class="flex items-center gap-1.5">
                   <i class="fa-solid fa-truck text-[11px] text-zinc-400"></i>
-                  <span data-i18n="cart_shipping_fee">Shipping (DHL):</span>
+                  <span id="cartShippingLabel" data-i18n="cart_shipping_fee">Shipping (DHL):</span>
                 </span>
                 <span id="cartShipping" class="font-bold text-white font-display dir-ltr">6.00 €</span>
               </div>
@@ -1486,7 +1488,7 @@
       <div class="space-y-1.5">
         <h3 data-i18n="pay_success_title" class="text-lg font-bold text-white">Order Placed Successfully!</h3>
         <p data-i18n="pay_success_desc" class="text-xs text-zinc-400 leading-relaxed max-w-xs mx-auto">
-          Thank you for your order! Your royal package will be dispatched with DHL/DPD.
+          Thank you for your order! Your royal package will be dispatched with DHL.
         </p>
       </div>
 
@@ -1666,6 +1668,90 @@
       } catch(e) {}
     }
 
+    function handleCountryChange() {
+      autoSaveCustomerInfo();
+      updateCartUI();
+    }
+
+    // ==========================================
+    // MULTI-DESTINATION DHL SHIPPING ENGINE
+    // ==========================================
+    // Germany (Deutschland): 6.00 EUR base, free shipping over 50.00 EUR
+    // Outside Germany (Rest of Europe): 12.00 EUR regular products, 15.00 EUR special package (e.g. Royal Gift Box)
+    function getSelectedCountry() {
+      const countryEl = document.getElementById('custCountry');
+      if (countryEl && countryEl.value) return countryEl.value;
+      try {
+        const saved = localStorage.getItem('rb_saved_customer');
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.country) return parsed.country;
+        }
+      } catch(e) {}
+      return 'Germany (Deutschland)';
+    }
+
+    function isCountryGermany(countryStr) {
+      if (!countryStr) return true;
+      const lower = countryStr.toLowerCase();
+      return lower.includes('germany') || lower.includes('deutschland') || lower.includes('آلمان') || lower === 'de';
+    }
+
+    function cartHasSpecialPackage() {
+      return cart.some(item => (
+        item.category === 'packages' ||
+        (item.id && String(item.id).startsWith('pkg_')) ||
+        (item.name && (
+          item.name.includes('پکیج') ||
+          item.name.includes('پک') ||
+          item.name.includes('باکس') ||
+          item.name.toLowerCase().includes('package') ||
+          item.name.toLowerCase().includes('paket') ||
+          item.name.toLowerCase().includes('royal')
+        ))
+      ));
+    }
+
+    function getOrderShippingInfo() {
+      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      const country = getSelectedCountry();
+      const isGermany = isCountryGermany(country);
+      const hasSpecialPkg = cartHasSpecialPackage();
+
+      if (subtotalPrice === 0) {
+        return {
+          price: 0,
+          isFree: false,
+          isGermany: isGermany,
+          hasSpecialPkg: hasSpecialPkg,
+          country: country
+        };
+      }
+
+      if (isGermany) {
+        const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
+        const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+        const isFree = subtotalPrice >= freeThreshold;
+        return {
+          price: isFree ? 0 : shippingBase,
+          isFree: isFree,
+          isGermany: true,
+          hasSpecialPkg: hasSpecialPkg,
+          country: country
+        };
+      } else {
+        // Outside Germany in Europe: 12.00 EUR for regular products, 15.00 EUR for special packages
+        const price = hasSpecialPkg ? 15.00 : 12.00;
+        return {
+          price: price,
+          isFree: false,
+          isGermany: false,
+          hasSpecialPkg: hasSpecialPkg,
+          country: country
+        };
+      }
+    }
+
     function selectPaymentMethod(method) {
       selectedPaymentMethod = 'paypal';
       updateCartUI();
@@ -1772,11 +1858,10 @@
       const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
 
-      // Shipping Calculation
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
-      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
-      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
-      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      // Dynamic Multi-Destination Shipping Calculation
+      const shipInfo = getOrderShippingInfo();
+      const shippingPrice = shipInfo.price;
+      const isFreeShipping = shipInfo.isFree;
 
       // Header Badges
       const cartCountEl = document.getElementById('cartCount');
@@ -1803,9 +1888,20 @@
       const subtotalEl = document.getElementById('cartSubtotal');
       if (subtotalEl) subtotalEl.textContent = formatLocalizedPrice(subtotalPrice, currentLang);
 
-      // Shipping Breakdown
+      // Shipping Breakdown & Dynamic Label
+      const shippingLabelEl = document.getElementById('cartShippingLabel');
+      if (shippingLabelEl) {
+        if (shipInfo.isGermany) {
+          shippingLabelEl.textContent = dict.cart_shipping_de || (currentLang === 'fa' ? 'هزینه ارسال (DHL آلمان):' : 'Shipping (DHL Germany):');
+        } else if (shipInfo.hasSpecialPkg) {
+          shippingLabelEl.textContent = dict.cart_shipping_eu_pkg || (currentLang === 'fa' ? 'هزینه ارسال (DHL اروپا - پک ویژه):' : 'Shipping (DHL Europe - Special Pack):');
+        } else {
+          shippingLabelEl.textContent = dict.cart_shipping_eu_reg || (currentLang === 'fa' ? 'هزینه ارسال (DHL اروپا):' : 'Shipping (DHL Europe):');
+        }
+      }
+
       const shippingEl = document.getElementById('cartShipping');
-      const freeShippingBadge = dict.cart_shipping_free || (currentLang === 'fa' ? 'رایگان' : 'Free');
+      const freeShippingBadge = dict.cart_shipping_free || (currentLang === 'fa' ? 'رایگان 🎁' : 'Free 🎁');
       if (shippingEl) {
         if (isFreeShipping && subtotalPrice > 0) {
           shippingEl.innerHTML = `<span class="text-zinc-300 font-bold">${formatLocalizedPrice(0, currentLang)} (${freeShippingBadge})</span>`;
@@ -1814,7 +1910,25 @@
         }
       }
 
-      // Step 1: Free shipping banner
+      // Live Destination Shipping Hint in Step 2 Address Section
+      const hintEl = document.getElementById('countryShippingHint');
+      if (hintEl) {
+        if (shipInfo.isGermany) {
+          if (shipInfo.isFree) {
+            hintEl.innerHTML = `<i class="fa-solid fa-gift text-amber-400 text-[10px]"></i><span class="text-emerald-400 font-medium">${dict.hint_ship_de_free || 'Shipping in Germany: Free 🎁'}</span>`;
+          } else {
+            hintEl.innerHTML = `<i class="fa-solid fa-truck text-amber-400 text-[10px]"></i><span class="text-zinc-300">${dict.hint_ship_de_base || 'DHL Shipping in Germany: 6.00 € (Free over 50€)'}</span>`;
+          }
+        } else {
+          if (shipInfo.hasSpecialPkg) {
+            hintEl.innerHTML = `<i class="fa-solid fa-box text-amber-400 text-[10px]"></i><span class="text-amber-300 font-medium">${dict.hint_ship_eu_pkg || 'DHL Shipping to Europe (Special Package): 15.00 €'}</span>`;
+          } else {
+            hintEl.innerHTML = `<i class="fa-solid fa-truck text-amber-400 text-[10px]"></i><span class="text-zinc-300">${dict.hint_ship_eu_reg || 'DHL Shipping to Europe (Regular items): 12.00 €'}</span>`;
+          }
+        }
+      }
+
+      // Step 1: Free shipping / Destination notice banner
       const bannerEl = document.getElementById('cartTopShippingBanner');
       const bannerMsgEl = document.getElementById('cartTopShippingMsg');
       const bannerBadgeEl = document.getElementById('cartTopShippingBadge');
@@ -1823,24 +1937,38 @@
           bannerEl.classList.add('hidden');
         } else {
           bannerEl.classList.remove('hidden');
-          if (isFreeShipping) {
-            bannerEl.className = 'px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px]';
-            const unlockMsg = dict.cart_free_shipping_unlocked || (currentLang === 'fa' ? 'ارسال با DHL برای این سفارش کاملاً رایگان است' : 'Free DHL tracked shipping applied');
-            bannerMsgEl.innerHTML = `<span class="text-zinc-200 font-medium flex items-center gap-1.5"><i class="fa-solid fa-check text-amber-400 text-xs"></i><span>${unlockMsg}</span></span>`;
-            if (bannerBadgeEl) {
-              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-300 border border-white/10';
-              bannerBadgeEl.textContent = freeShippingBadge;
+          if (shipInfo.isGermany) {
+            const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
+            if (isFreeShipping) {
+              bannerEl.className = 'px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px]';
+              const unlockMsg = dict.cart_free_shipping_unlocked || (currentLang === 'fa' ? '🎉 ارسال با DHL در آلمان برای این سفارش کاملاً رایگان است!' : 'Free DHL shipping in Germany applied!');
+              bannerMsgEl.innerHTML = `<span class="text-zinc-200 font-medium flex items-center gap-1.5"><i class="fa-solid fa-check text-amber-400 text-xs"></i><span>${unlockMsg}</span></span>`;
+              if (bannerBadgeEl) {
+                bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-300 border border-white/10';
+                bannerBadgeEl.textContent = freeShippingBadge;
+              }
+            } else {
+              const diff = freeThreshold - subtotalPrice;
+              const diffFormatted = formatLocalizedPrice(diff, currentLang);
+              const awayMsg = dict.cart_away_from_free || (currentLang === 'fa' ? 'دیگر تا ارسال رایگان با DHL در آلمان' : 'away from free DHL shipping in Germany');
+              bannerEl.className = 'px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px]';
+              bannerMsgEl.innerHTML = `<span class="text-zinc-300 font-medium flex items-center gap-1.5"><i class="fa-solid fa-truck text-amber-400 text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
+              if (bannerBadgeEl) {
+                const minBadge = dict.cart_threshold_badge || (currentLang === 'fa' ? 'سقف آلمان' : 'Min. DE');
+                bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-400 border border-white/10';
+                bannerBadgeEl.textContent = `${minBadge} ${formatLocalizedPrice(freeThreshold, currentLang)}`;
+              }
             }
           } else {
-            const diff = freeThreshold - subtotalPrice;
-            const diffFormatted = formatLocalizedPrice(diff, currentLang);
-            const awayMsg = dict.cart_away_from_free || (currentLang === 'fa' ? 'دیگر تا ارسال رایگان با DHL' : 'away from free DHL shipping');
+            // Outside Germany (EU)
             bannerEl.className = 'px-3 py-2 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-between text-[11px]';
-            bannerMsgEl.innerHTML = `<span class="text-zinc-300 font-medium flex items-center gap-1.5"><i class="fa-solid fa-truck text-amber-400 text-xs"></i><span>${diffFormatted} ${awayMsg}</span></span>`;
+            const euMsg = shipInfo.hasSpecialPkg
+              ? (dict.hint_ship_eu_pkg || (currentLang === 'fa' ? 'ارسال با DHL به اروپا (پک ویژه): ۱۵.۰۰ €' : 'DHL Shipping to Europe (Special Package): 15.00 €'))
+              : (dict.hint_ship_eu_reg || (currentLang === 'fa' ? 'ارسال با DHL به اروپا (محصولات عادی): ۱۲.۰۰ €' : 'DHL Shipping to Europe (Regular items): 12.00 €'));
+            bannerMsgEl.innerHTML = `<span class="text-zinc-200 font-medium flex items-center gap-1.5"><i class="fa-solid fa-globe text-amber-400 text-xs"></i><span>${euMsg}</span></span>`;
             if (bannerBadgeEl) {
-              const minBadge = dict.cart_threshold_badge || (currentLang === 'fa' ? 'سقف' : 'Min.');
-              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-400 border border-white/10';
-              bannerBadgeEl.textContent = `${minBadge} ${formatLocalizedPrice(freeThreshold, currentLang)}`;
+              bannerBadgeEl.className = 'px-2 py-0.5 rounded-md bg-white/5 text-[10px] font-medium text-zinc-300 border border-white/10';
+              bannerBadgeEl.textContent = 'DHL Europe';
             }
           }
         }
@@ -2082,10 +2210,8 @@
         },
         createOrder: function(data, actions) {
           const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-          const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
-          const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
-          const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
-          const shippingPrice = isFreeShipping ? 0 : shippingBase;
+          const shipInfo = getOrderShippingInfo();
+          const shippingPrice = shipInfo.price;
           const finalOrderTotal = subtotalPrice + shippingPrice;
 
           return actions.order.create({
@@ -2131,10 +2257,8 @@
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const orderId = details.id || ('RB-' + Math.floor(100000 + Math.random() * 900000));
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
-      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
-      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
-      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      const shipInfo = getOrderShippingInfo();
+      const shippingPrice = shipInfo.price;
       const finalTotalPrice = subtotalPrice + shippingPrice;
       const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
 
@@ -2282,15 +2406,13 @@
       } catch(e) {}
 
       const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
-      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
-      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
-      const shippingPrice = isFreeShipping ? 0 : shippingBase;
+      const shipInfo = getOrderShippingInfo();
+      const shippingPrice = shipInfo.price;
       const finalTotalPrice = subtotalPrice + shippingPrice;
 
       const formattedSubtotal = formatLocalizedPrice(subtotalPrice, currentLang);
-      const freeLabel = currentLang === 'fa' ? 'رایگان (بالای ۵۰ یورو)' : 'FREE (Over 50€)';
-      const formattedShipping = isFreeShipping ? freeLabel : formatLocalizedPrice(shippingPrice, currentLang);
+      const freeLabel = currentLang === 'fa' ? 'رایگان (ویژه آلمان)' : 'FREE (Germany)';
+      const formattedShipping = shipInfo.isFree ? freeLabel : formatLocalizedPrice(shippingPrice, currentLang);
       const formattedTotal = formatLocalizedPrice(finalTotalPrice, currentLang);
 
       // Clean, structured multilingual WhatsApp message
@@ -2619,7 +2741,7 @@ ${dict.cart_subtotal || "Subtotal:"} ${formattedSubtotal}
     // =========================================================================
     // APP BUILD VERSION & CACHE PURGER
     // =========================================================================
-    const APP_BUILD_VERSION = '2026.10.25.11';
+    const APP_BUILD_VERSION = '2026.10.25.12';
     if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
       localStorage.removeItem('rb_products');
       localStorage.removeItem('rb_shipping_settings');

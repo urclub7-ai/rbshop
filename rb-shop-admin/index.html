@@ -336,22 +336,33 @@
 
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">هزینه ارسال پایه به سراسر آلمان و اروپا (€):</label>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">هزینه ارسال پایه داخل آلمان (€):</label>
                   <div class="relative">
                     <input type="text" inputmode="decimal" id="storeShippingBaseInput" required placeholder="06.00" value="6.00" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-amber-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                     <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-amber-400">€</span>
                   </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">هزینه ارسال عادی با پست DHL (پیش‌فرض: ۶.۰۰ یورو)</span>
+                  <span class="text-[10px] text-slate-500 mt-1 block">هزینه ارسال عادی داخل آلمان با پست DHL (پیش‌فرض: ۶.۰۰ یورو)</span>
                 </div>
 
                 <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">سقف ارسال کاملاً رایگان (€):</label>
+                  <label class="block text-xs font-bold text-slate-300 mb-1">سقف ارسال کاملاً رایگان داخل آلمان (€):</label>
                   <div class="relative">
                     <input type="text" inputmode="decimal" id="storeFreeShippingThresholdInput" required placeholder="50.00" value="50.00" oninput="this.value = this.value.replace(/[^0-9.,۰-۹٠-٩]/g, '').replace(',', '.')" onblur="formatPriceInput(this)" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 pl-10 text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
                     <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-sm font-bold text-emerald-400">€</span>
                   </div>
-                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای ۵۰ یورو یا بیشتر، ارسالشان با پست DHL کاملاً رایگان می‌شود</span>
+                  <span class="text-[10px] text-slate-500 mt-1 block">خریدهای ۵۰ یورو یا بیشتر در آلمان، ارسالشان با پست DHL کاملاً رایگان می‌شود</span>
                 </div>
+              </div>
+
+              <!-- Note for Europe Shipping -->
+              <div class="mt-3 p-3 rounded-xl bg-white/[0.03] border border-white/10 text-[11px] text-slate-300 space-y-1">
+                <div class="font-bold text-amber-400 flex items-center gap-1.5">
+                  <i class="fa-solid fa-earth-europe"></i>
+                  <span>قانون هوشمند ارسال با DHL به سایر کشورهای اروپا (بیرون از آلمان):</span>
+                </div>
+                <p class="text-slate-400 text-[10px] leading-relaxed">
+                  سیستم برای مقاصد اروپایی خارج از آلمان به صورت خودکار محاسبه می‌کند: <b class="text-white">محصولات عادی ۱۲.۰۰ یورو</b> و برای <b class="text-amber-300">پکیج ویژه سلطنتی (۴ کیلویی) ۱۵.۰۰ یورو</b>.
+                </p>
               </div>
             </div>
 
