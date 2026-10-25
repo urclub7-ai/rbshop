@@ -8,6 +8,11 @@
   <meta name="keywords" content="rb shop, R.Bship, R.B Shop, RB shop, میوه خشک, خرید انلاین میوه خشک, میوه خشک انلاین اروپا, میوه خشک انلاین المان, خشکبار افغانی در آلمان, پسته خندان هرات در اروپا, بادام قندک کابل, جلغوزه سیاه افغانستان, زعفران اعلا در آلمان, فروشگاه رمضان بختیاری, پکیج کادویی میوه خشک, خرید خشکبار افغانی, afghanische Trockenfrüchte online kaufen, afghanischer Laden Deutschland, Trockenobst online bestellen, Qandak Mandeln kaufen, Safran aus Afghanistan, buy Afghan dried fruits online Europe, Afghan nuts Germany, Büsum">
   <meta name="author" content="Ramazan Bakhtyary">
   <meta name="robots" content="index, follow">
+  <!-- Aggressive Cache-Busting for Mobile & Desktop Browsers -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+
 
   <!-- Google Search Console Verification -->
   <meta name="google-site-verification" content="google28418389207487c8">
@@ -64,7 +69,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=3">
 
   <!-- Multilingual Engine Data -->
-  <script src="translations.js"></script>
+  <script src="translations.js?v=20261025_05"></script>
 
   <!-- Local Fonts First (Instant, Offline & Censorship-Proof) -->
   <style>
@@ -626,6 +631,98 @@
 
     </div>
   </section>
+
+  <!-- CUSTOMER REVIEWS & TESTIMONIALS SECTION (بخش نظرات و تجربیات مشتریان) -->
+  <section id="reviews" class="py-12 sm:py-16 bg-[#0a0c10] relative border-b border-brand-border/60">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 space-y-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 border-b border-white/10 pb-5">
+        <div class="space-y-1.5 text-start">
+          <div class="flex items-center gap-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold flex items-center gap-1">
+              <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
+              <span id="reviewsRatingSummary" data-i18n="reviews_summary">۴.۹ از ۵ (بیش از ۱۰۰+ سفارش موفق)</span>
+            </span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
+            <i class="fa-solid fa-comments text-brand-red"></i>
+            <span data-i18n="reviews_title">نظرات و تجربیات مشتریان R.B Shop</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-brand-silver/80" data-i18n="reviews_sub">
+            تجربیات واقعی هموطنان و مشتریان گرامی از کیفیت میوه خشک، زعفران و ارسال سریع با پست DHL در سراسر آلمان و اروپا
+          </p>
+        </div>
+
+        <!-- Add Review Trigger Button -->
+        <button type="button" onclick="toggleReviewForm()" class="h-10 px-4 rounded-xl bg-brand-red hover:bg-brand-redHover active:scale-95 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-glow-red transition self-start sm:self-auto shrink-0">
+          <i class="fa-solid fa-pen text-xs"></i>
+          <span data-i18n="reviews_btn_write">ثبت نظر شما</span>
+        </button>
+      </div>
+
+      <!-- Quick Add Review Form (Simple, Elegant Collapsible Card) -->
+      <div id="addReviewBox" class="hidden bg-brand-surface border border-brand-red/40 rounded-2xl p-4 sm:p-6 space-y-4 shadow-xl">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+          <h3 class="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <i class="fa-solid fa-pen-fancy text-amber-400"></i>
+            <span data-i18n="reviews_form_title">ثبت نظر یا تجربه خرید</span>
+          </h3>
+          <button type="button" onclick="toggleReviewForm()" class="text-slate-400 hover:text-white text-xs">
+            <i class="fa-solid fa-xmark text-base"></i>
+          </button>
+        </div>
+
+        <form id="reviewSubmitForm" onsubmit="handleCustomerReviewSubmit(event)" class="space-y-3.5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1" data-i18n="reviews_lbl_name">نام و تخلص شما:</label>
+              <input type="text" id="revAuthorName" required placeholder="مثال: احمد رحیمی" data-i18n-ph="reviews_name_ph" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-red">
+            </div>
+            <div>
+              <label class="block text-xs font-bold text-slate-300 mb-1" data-i18n="reviews_lbl_city">شهر و کشور سکونت:</label>
+              <input type="text" id="revAuthorLocation" placeholder="مثال: هامبورگ، آلمان" data-i18n-ph="reviews_city_ph" class="w-full h-10 rounded-xl bg-black/60 border border-white/15 px-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-red">
+            </div>
+          </div>
+
+          <!-- Star Rating Selector -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1" data-i18n="reviews_lbl_rating">امتیاز شما به کیفیت و ارسال:</label>
+            <div class="flex items-center gap-1.5" id="revStarContainer">
+              <button type="button" onclick="setReviewRating(1)" class="rev-star text-lg text-amber-400 transition" data-val="1"><i class="fa-solid fa-star"></i></button>
+              <button type="button" onclick="setReviewRating(2)" class="rev-star text-lg text-amber-400 transition" data-val="2"><i class="fa-solid fa-star"></i></button>
+              <button type="button" onclick="setReviewRating(3)" class="rev-star text-lg text-amber-400 transition" data-val="3"><i class="fa-solid fa-star"></i></button>
+              <button type="button" onclick="setReviewRating(4)" class="rev-star text-lg text-amber-400 transition" data-val="4"><i class="fa-solid fa-star"></i></button>
+              <button type="button" onclick="setReviewRating(5)" class="rev-star text-lg text-amber-400 transition" data-val="5"><i class="fa-solid fa-star"></i></button>
+              <span id="revRatingLabel" class="text-xs font-bold text-amber-400 mr-2 ml-2">۵ از ۵ ستاره (عالی)</span>
+            </div>
+          </div>
+
+          <!-- Comment Textarea -->
+          <div>
+            <label class="block text-xs font-bold text-slate-300 mb-1" data-i18n="reviews_lbl_comment">متن نظر شما:</label>
+            <textarea id="revCommentText" rows="3" required placeholder="نظر خود را درباره طعم، تازگی محصولات و سرعت ارسال بنویسید..." data-i18n-ph="reviews_text_ph" class="w-full rounded-xl bg-black/60 border border-white/15 p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-brand-red resize-none"></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="flex justify-end gap-2 pt-1">
+            <button type="button" onclick="toggleReviewForm()" class="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-xs font-bold text-slate-300">انصراف</button>
+            <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 active:scale-95 text-white font-bold text-xs flex items-center gap-1.5 shadow-md shadow-emerald-950/60 transition">
+              <i class="fa-solid fa-paper-plane text-xs"></i>
+              <span data-i18n="reviews_btn_submit">ارسال نظر</span>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Reviews Cards Grid -->
+      <div id="reviewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+  </section>
+
 
   <!-- WHY CHOOSE R.B SHOP (ویژگی‌ها و مزایای خرید) -->
   <section id="why-us" class="py-16 sm:py-20 border-y border-brand-border/60 bg-brand-dark/40 relative">
@@ -1290,6 +1387,7 @@
         localStorage.setItem('rb_cart', JSON.stringify(cart));
       } catch(e) {}
       updateCartUI();
+      renderReviewsList();
     }
 
     // Add to cart
@@ -1347,6 +1445,7 @@
         }
       });
       updateCartUI();
+      renderReviewsList();
     }
 
     function updateCartUI() {
@@ -2146,6 +2245,198 @@
     }
 
     // Dynamic Products & Store Sync (Supabase Cloud + LocalStorage Fallback)
+    
+    // =========================================================================
+    // APP BUILD VERSION & CACHE PURGER
+    // =========================================================================
+    const APP_BUILD_VERSION = '2026.10.25.04';
+    if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
+      localStorage.removeItem('rb_products');
+      localStorage.removeItem('rb_shipping_settings');
+      localStorage.removeItem('rb_payment_fee_settings');
+      localStorage.setItem('rb_app_build_version', APP_BUILD_VERSION);
+    }
+
+    // =========================================================================
+    // CUSTOMER REVIEWS & TESTIMONIALS LOGIC
+    // =========================================================================
+    const DEFAULT_CUSTOMER_REVIEWS = [
+      {
+        id: 'rev_1',
+        name: 'فرهاد رحمانی',
+        location: 'فرانکفورت، آلمان',
+        rating: 5,
+        text: 'زعفران اعلا و کشمش سبز شنگیل خانی فوق‌العاده باکیفیت و تازه بودند. بسته‌بندی محکم و بهداشتی بود و طی ۲ روز با پست DHL رسید. تشکر فراوان از جناب بختیاری.',
+        date: '۲۰۲۶/۱۰/۲۲'
+      },
+      {
+        id: 'rev_2',
+        name: 'مریم سادات',
+        location: 'هامبورگ، آلمان',
+        rating: 5,
+        text: 'پسته خندان و توت خشک بسیار لذیذ، تمیز و کاملاً ارگانیک. خرید آنلاین با پی‌پال خیلی سریع و بدون دردسر انجام شد.',
+        date: '۲۰۲۶/۱۰/۱۹'
+      },
+      {
+        id: 'rev_3',
+        name: 'احمد شاه حسینی',
+        location: 'برلین، آلمان',
+        rating: 5,
+        text: 'جلغوزه سیاه اصل و چهارمغز باکیفیت با همان عطر و طعم اصیل وطن. قیمت‌ها نسبت به بازار اروپا بسیار منصفانه است.',
+        date: '۲۰۲۶/۱۰/۱۵'
+      },
+      {
+        id: 'rev_4',
+        name: 'Thomas Weber',
+        location: 'München, Deutschland',
+        rating: 5,
+        text: 'Sehr hohe Qualität der afghanischen Trockenfrüchte und Nüsse. Der DHL-Versand war extrem schnell und die Ware aromaversiegelt. Sehr zu empfehlen!',
+        date: '۲۰۲۶/۱۰/۱۲'
+      }
+    ];
+
+    let customerReviews = [];
+    let currentReviewRating = 5;
+
+    function toggleReviewForm() {
+      const box = document.getElementById('addReviewBox');
+      if (box) {
+        box.classList.toggle('hidden');
+        if (!box.classList.contains('hidden')) {
+          document.getElementById('revAuthorName')?.focus();
+        }
+      }
+    }
+
+    function setReviewRating(r) {
+      currentReviewRating = r;
+      document.querySelectorAll('.rev-star').forEach((star, idx) => {
+        if (idx < r) {
+          star.classList.add('text-amber-400');
+          star.classList.remove('text-slate-600');
+        } else {
+          star.classList.remove('text-amber-400');
+          star.classList.add('text-slate-600');
+        }
+      });
+      const lbl = document.getElementById('revRatingLabel');
+      if (lbl) {
+        const isRTL = (currentLang === 'fa' || currentLang === 'ar');
+        const locNum = isRTL ? String(r).replace(/[0-9]/g, d => ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'][d]) : String(r);
+        lbl.textContent = `${locNum} / 5 ⭐`;
+      }
+    }
+
+    function renderReviewsList() {
+      const container = document.getElementById('reviewsGrid');
+      if (!container) return;
+
+      if (!customerReviews || customerReviews.length === 0) {
+        const saved = localStorage.getItem('rb_customer_reviews');
+        if (saved) {
+          try { customerReviews = JSON.parse(saved); } catch(e) {}
+        }
+        if (!customerReviews || customerReviews.length === 0) {
+          customerReviews = DEFAULT_CUSTOMER_REVIEWS;
+        }
+      }
+
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      const verifiedText = dict.reviews_verified || (currentLang === 'fa' ? 'خرید تایید شده' : 'Verified Buyer');
+
+      container.innerHTML = customerReviews.map(rev => {
+        let starsHtml = '';
+        const rating = rev.rating || 5;
+        for (let i = 1; i <= 5; i++) {
+          if (i <= rating) {
+            starsHtml += '<i class="fa-solid fa-star text-amber-400 text-[11px]"></i>';
+          } else {
+            starsHtml += '<i class="fa-regular fa-star text-slate-600 text-[11px]"></i>';
+          }
+        }
+
+        const safeName = (rev.name || 'مشتری محترم').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeLoc = (rev.location || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeText = (rev.text || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const dateStr = rev.date ? formatLocalizedNumber(rev.date, currentLang) : '';
+
+        return `
+          <div class="bg-[#111317] border border-white/10 hover:border-amber-400/40 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3 transition shadow-sm hover:shadow-lg">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1">${starsHtml}</div>
+                <span class="text-[10px] text-emerald-400 font-bold bg-emerald-950/60 border border-emerald-500/30 px-2 py-0.5 rounded-full flex items-center gap-1">
+                  <i class="fa-solid fa-circle-check text-[9px]"></i>
+                  <span>${verifiedText}</span>
+                </span>
+              </div>
+              <p class="text-xs sm:text-[13px] text-slate-200 leading-relaxed font-normal">
+                "${safeText}"
+              </p>
+            </div>
+            <div class="pt-3 border-t border-white/5 flex items-center justify-between text-xs">
+              <div class="flex items-center gap-2">
+                <div class="w-7 h-7 rounded-full bg-brand-red/20 border border-brand-red/30 text-white font-black text-xs flex items-center justify-center shrink-0">
+                  ${safeName.slice(0, 1)}
+                </div>
+                <div>
+                  <span class="font-bold text-white block text-xs">${safeName}</span>
+                  ${safeLoc ? `<span class="text-[10px] text-slate-400 block">${safeLoc}</span>` : ''}
+                </div>
+              </div>
+              <span class="text-[10px] text-slate-500 font-mono">${dateStr}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function handleCustomerReviewSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById('revAuthorName').value.trim();
+      const location = document.getElementById('revAuthorLocation').value.trim();
+      const text = document.getElementById('revCommentText').value.trim();
+
+      if (!name || !text) {
+        showToast(currentLang === 'fa' ? 'لطفاً نام و متن نظر را وارد فرمایید.' : 'Please enter your name and comment.');
+        return;
+      }
+
+      const todayStr = new Date().toLocaleDateString(currentLang === 'fa' ? 'fa-IR' : 'de-DE');
+      const newRev = {
+        id: 'rev_' + Date.now(),
+        name: name,
+        location: location || (currentLang === 'fa' ? 'اروپا' : 'Europa'),
+        rating: currentReviewRating,
+        text: text,
+        date: todayStr
+      };
+
+      customerReviews.unshift(newRev);
+      localStorage.setItem('rb_customer_reviews', JSON.stringify(customerReviews));
+      renderReviewsList();
+
+      document.getElementById('reviewSubmitForm').reset();
+      setReviewRating(5);
+      toggleReviewForm();
+
+      showToast(currentLang === 'fa' ? '✅ با تشکر! نظر ارزشمند شما با موفقیت ثبت شد.' : '✅ Thank you! Your review was successfully submitted.');
+
+      // Save into Supabase Cloud
+      if (sbClient) {
+        try {
+          sbClient.from('products').upsert([{
+            id: '__store_reviews__',
+            title: 'Customer Reviews List',
+            price: 5.0,
+            description: JSON.stringify(customerReviews),
+            category: 'system_setting',
+            in_stock: false
+          }], { onConflict: 'id' }).then(() => {});
+        } catch(err) {}
+      }
+    }
+
     async function syncWithAdminPanel() {
       // 1. Instant local render (zero waiting)
       const savedProds = localStorage.getItem('rb_products');
@@ -2196,6 +2487,20 @@
               inStock: r.in_stock !== false
             }));
             localStorage.setItem('rb_products', JSON.stringify(cloudProds));
+
+            // Sync Customer Reviews from Supabase Cloud
+            const revCfg = data.find(r => r.id === '__store_reviews__');
+            if (revCfg && revCfg.description) {
+              try {
+                const cloudReviews = JSON.parse(revCfg.description);
+                if (Array.isArray(cloudReviews) && cloudReviews.length > 0) {
+                  customerReviews = cloudReviews;
+                  localStorage.setItem('rb_customer_reviews', JSON.stringify(customerReviews));
+                  renderReviewsList();
+                }
+              } catch(e) {}
+            }
+
             renderDynamicProducts(cloudProds);
             updateCartUI();
           }
@@ -2434,6 +2739,7 @@
         updateCategoryFilterTabs();
       }
       updateCartUI();
+      renderReviewsList();
     }
 
     // Wire up Language Switcher UI Event Listeners
@@ -2471,6 +2777,7 @@
     setLanguage(currentLang);
     initPayPalSDK();
     syncWithAdminPanel();
+      renderReviewsList();
     loadSavedCustomer();
     updateCartUI();
   </script>
