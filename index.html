@@ -69,7 +69,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png?v=3">
 
   <!-- Multilingual Engine Data -->
-  <script src="translations.js?v=20261025_05"></script>
+  <script src="translations.js?v=20261025_08"></script>
 
   <!-- Local Fonts First (Instant, Offline & Censorship-Proof) -->
   <style>
@@ -642,7 +642,7 @@
           <div class="flex items-center gap-2">
             <span class="px-2.5 py-0.5 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-400 text-[11px] font-bold flex items-center gap-1">
               <i class="fa-solid fa-star text-amber-400 text-[10px]"></i>
-              <span id="reviewsRatingSummary" data-i18n="reviews_summary">۴.۹ از ۵ (بیش از ۱۰۰+ سفارش موفق)</span>
+              <span id="reviewsRatingSummary" data-i18n="reviews_no_reviews">نظرات و تجربیات مشتریان</span>
             </span>
           </div>
           <h2 class="text-xl sm:text-2xl font-black text-white flex items-center gap-2">
@@ -2249,51 +2249,19 @@
     // =========================================================================
     // APP BUILD VERSION & CACHE PURGER
     // =========================================================================
-    const APP_BUILD_VERSION = '2026.10.25.04';
+    const APP_BUILD_VERSION = '2026.10.25.08';
     if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
       localStorage.removeItem('rb_products');
       localStorage.removeItem('rb_shipping_settings');
       localStorage.removeItem('rb_payment_fee_settings');
+      localStorage.removeItem('rb_customer_reviews');
       localStorage.setItem('rb_app_build_version', APP_BUILD_VERSION);
     }
 
     // =========================================================================
     // CUSTOMER REVIEWS & TESTIMONIALS LOGIC
     // =========================================================================
-    const DEFAULT_CUSTOMER_REVIEWS = [
-      {
-        id: 'rev_1',
-        name: 'فرهاد رحمانی',
-        location: 'فرانکفورت، آلمان',
-        rating: 5,
-        text: 'زعفران اعلا و کشمش سبز شنگیل خانی فوق‌العاده باکیفیت و تازه بودند. بسته‌بندی محکم و بهداشتی بود و طی ۲ روز با پست DHL رسید. تشکر فراوان از جناب بختیاری.',
-        date: '۲۰۲۶/۱۰/۲۲'
-      },
-      {
-        id: 'rev_2',
-        name: 'مریم سادات',
-        location: 'هامبورگ، آلمان',
-        rating: 5,
-        text: 'پسته خندان و توت خشک بسیار لذیذ، تمیز و کاملاً ارگانیک. خرید آنلاین با پی‌پال خیلی سریع و بدون دردسر انجام شد.',
-        date: '۲۰۲۶/۱۰/۱۹'
-      },
-      {
-        id: 'rev_3',
-        name: 'احمد شاه حسینی',
-        location: 'برلین، آلمان',
-        rating: 5,
-        text: 'جلغوزه سیاه اصل و چهارمغز باکیفیت با همان عطر و طعم اصیل وطن. قیمت‌ها نسبت به بازار اروپا بسیار منصفانه است.',
-        date: '۲۰۲۶/۱۰/۱۵'
-      },
-      {
-        id: 'rev_4',
-        name: 'Thomas Weber',
-        location: 'München, Deutschland',
-        rating: 5,
-        text: 'Sehr hohe Qualität der afghanischen Trockenfrüchte und Nüsse. Der DHL-Versand war extrem schnell und die Ware aromaversiegelt. Sehr zu empfehlen!',
-        date: '۲۰۲۶/۱۰/۱۲'
-      }
-    ];
+    const DEFAULT_CUSTOMER_REVIEWS = [];
 
     let customerReviews = [];
     let currentReviewRating = 5;
@@ -2334,15 +2302,54 @@
       if (!customerReviews || customerReviews.length === 0) {
         const saved = localStorage.getItem('rb_customer_reviews');
         if (saved) {
-          try { customerReviews = JSON.parse(saved); } catch(e) {}
+          try {
+            const parsed = JSON.parse(saved);
+            if (Array.isArray(parsed)) customerReviews = parsed;
+          } catch(e) {}
         }
-        if (!customerReviews || customerReviews.length === 0) {
-          customerReviews = DEFAULT_CUSTOMER_REVIEWS;
-        }
+      }
+      if (!Array.isArray(customerReviews)) {
+        customerReviews = [];
       }
 
       const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
       const verifiedText = dict.reviews_verified || (currentLang === 'fa' ? 'خرید تایید شده' : 'Verified Buyer');
+
+      // Update Rating Summary Header
+      const summaryEl = document.getElementById('reviewsRatingSummary');
+      if (summaryEl) {
+        if (customerReviews.length > 0) {
+          const sum = customerReviews.reduce((acc, r) => acc + (Number(r.rating) || 5), 0);
+          const avg = (sum / customerReviews.length).toFixed(1);
+          const count = customerReviews.length;
+          const isRTL = (currentLang === 'fa' || currentLang === 'ar');
+          const locAvg = isRTL ? String(avg).replace(/[0-9]/g, d => ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'][d]) : avg;
+          const locCount = isRTL ? String(count).replace(/[0-9]/g, d => ['۰','۱','۲','۳','۴','۵','۶','۷','۸','۹'][d]) : count;
+          summaryEl.textContent = `${locAvg} / 5 (${locCount} ${dict.reviews_count_label || 'نظر'})`;
+        } else {
+          summaryEl.textContent = dict.reviews_no_reviews || (currentLang === 'fa' ? 'نظرات و تجربیات مشتریان' : 'Customer Reviews');
+        }
+      }
+
+      if (customerReviews.length === 0) {
+        const emptyTitle = dict.reviews_empty_title || (currentLang === 'fa' ? 'هنوز نظری ثبت نشده است' : 'No reviews yet');
+        const emptySub = dict.reviews_empty_sub || (currentLang === 'fa' ? 'شما اولین نفری باشید که تجربه خود را درباره کیفیت محصولات و ارسال سریع با پست DHL ثبت می‌کند!' : 'Be the first to share your experience with our products!');
+        const writeBtn = dict.reviews_btn_write || (currentLang === 'fa' ? 'ثبت نظر شما' : 'Leave a Review');
+        container.innerHTML = `
+          <div class="col-span-full py-10 px-4 text-center border border-dashed border-white/15 rounded-2xl bg-white/[0.02]">
+            <div class="w-12 h-12 mx-auto rounded-full bg-brand-red/10 border border-brand-red/30 flex items-center justify-center text-brand-red text-xl mb-3">
+              <i class="fa-solid fa-comments"></i>
+            </div>
+            <p class="text-sm font-bold text-white mb-1">${emptyTitle}</p>
+            <p class="text-xs text-slate-400 max-w-md mx-auto mb-4">${emptySub}</p>
+            <button type="button" onclick="toggleReviewForm()" class="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-brand-red hover:bg-brand-redHover active:scale-95 text-white text-xs font-bold shadow-glow-red transition">
+              <i class="fa-solid fa-pen text-xs"></i>
+              <span>${writeBtn}</span>
+            </button>
+          </div>
+        `;
+        return;
+      }
 
       container.innerHTML = customerReviews.map(rev => {
         let starsHtml = '';
@@ -2493,7 +2500,7 @@
             if (revCfg && revCfg.description) {
               try {
                 const cloudReviews = JSON.parse(revCfg.description);
-                if (Array.isArray(cloudReviews) && cloudReviews.length > 0) {
+                if (Array.isArray(cloudReviews)) {
                   customerReviews = cloudReviews;
                   localStorage.setItem('rb_customer_reviews', JSON.stringify(customerReviews));
                   renderReviewsList();
