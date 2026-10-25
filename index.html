@@ -1358,44 +1358,27 @@
             </div>
           </div>
 
-          <!-- Section 2: Payment Method Selection -->
-          <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-3">
+          <!-- Section 2: Payment Method Details -->
+          <div id="paymentMethodSection" class="bg-[#12151c] border border-white/10 rounded-2xl p-3.5 sm:p-4 space-y-2.5">
             <div class="flex items-center justify-between border-b border-white/10 pb-2">
               <h4 data-i18n="cart_field_payment" class="text-xs font-bold text-white flex items-center gap-2">
                 <i class="fa-solid fa-credit-card text-amber-400"></i>
-                <span>Preferred Payment Method (Zahlungsmethode):</span>
+                <span>Payment Method (Zahlungsmethode):</span>
               </h4>
+              <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">PayPal • Visa • MC</span>
             </div>
             
-            <div class="space-y-2.5" id="paymentMethodSelector">
-              <!-- Method 1: PayPal & Online Cards -->
-              <div onclick="selectPaymentMethod('paypal')" id="payCard-paypal" class="p-3 rounded-xl bg-black/60 border border-amber-400/80 cursor-pointer transition select-none flex items-start gap-2.5">
-                <input type="radio" name="cartPayOption" id="radio-paypal" value="paypal" checked class="mt-0.5 accent-amber-400 pointer-events-none">
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1 flex-wrap">
-                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                      <i class="fa-brands fa-paypal text-sky-400"></i>
-                      <span data-i18n="pay_method_paypal">Online Payment (PayPal, Card, Pay Later)</span>
-                    </span>
-                    <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">PayPal • Visa • MC</span>
-                  </div>
-                  <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
+            <div class="p-3 rounded-xl bg-black/60 border border-amber-400/80 flex items-start gap-2.5">
+              <div class="w-2.5 h-2.5 rounded-full bg-amber-400 mt-1 shrink-0 ring-4 ring-amber-400/20"></div>
+              <div class="flex-1 min-w-0">
+                <div class="flex items-center justify-between gap-1 flex-wrap">
+                  <span class="text-xs font-bold text-white flex items-center gap-1.5">
+                    <i class="fa-brands fa-paypal text-sky-400"></i>
+                    <span data-i18n="pay_method_paypal">Online Payment (PayPal, Card, Pay Later)</span>
+                  </span>
+                  <span class="text-[10px] text-emerald-400 font-medium bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded">100% Secure</span>
                 </div>
-              </div>
-
-              <!-- Method 2: Direct Bank Transfer (SEPA / IBAN Germany) -->
-              <div onclick="selectPaymentMethod('bank')" id="payCard-bank" class="p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5">
-                <input type="radio" name="cartPayOption" id="radio-bank" value="bank" class="mt-0.5 accent-amber-400 pointer-events-none">
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-1 flex-wrap">
-                    <span class="text-xs font-bold text-white flex items-center gap-1.5">
-                      <i class="fa-solid fa-building-columns text-zinc-300"></i>
-                      <span data-i18n="pay_method_bank">Direct Bank Transfer (SEPA / IBAN Germany)</span>
-                    </span>
-                    <span class="text-[10px] text-zinc-400 bg-white/5 border border-white/10 px-2 py-0.5 rounded dir-ltr font-medium">IBAN / SEPA</span>
-                  </div>
-                  <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_bank_hint">Zero fees (0%). Transfer directly to our German bank account</p>
-                </div>
+                <p class="text-[10px] text-slate-400 mt-1 leading-normal" data-i18n="pay_paypal_hint">Secure instant payment via PayPal, Visa, Mastercard, or Später Bezahlen (30 days)</p>
               </div>
             </div>
           </div>
@@ -1466,27 +1449,7 @@
               <div id="paypal-button-container" class="w-full min-h-[44px]"></div>
             </div>
 
-            <!-- Bank Transfer Section -->
-            <div id="bankTransferSection" class="space-y-2.5 hidden">
-              <div class="p-3.5 rounded-2xl bg-black/60 border border-white/10 space-y-2 text-xs text-start">
-                <div class="text-[11px] font-bold text-zinc-200 flex items-center gap-1.5">
-                  <i class="fa-solid fa-building-columns text-amber-400"></i>
-                  <span data-i18n="pay_bank_details_title">German Bank Account Details (SEPA):</span>
-                </div>
-                <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs sm:text-sm font-bold dir-ltr text-center select-all tracking-wider" id="bankIbanDisplay">
-                  DE49 2105 0170 0000 0000 00
-                </div>
-                <div class="flex items-center justify-between text-[11px] text-slate-300 pt-0.5">
-                  <span class="text-slate-400" data-i18n="pay_bank_holder_label">Account Holder (Inhaber):</span>
-                  <span class="font-bold text-white" id="bankHolderDisplay">Ramazan Bakhtyary</span>
-                </div>
-              </div>
 
-              <button type="button" onclick="confirmBankOrder()" class="w-full h-11 rounded-xl bg-amber-500 hover:bg-amber-400 active:scale-[0.99] text-zinc-950 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition cursor-pointer">
-                <i class="fa-solid fa-check text-xs"></i>
-                <span data-i18n="btn_confirm_bank_order">Place Order (Bank Transfer)</span>
-              </button>
-            </div>
           </div>
 
         </div>
@@ -1543,29 +1506,7 @@
         </div>
       </div>
 
-      <!-- Bank Transfer Details Box (Shown ONLY when payment method is Banküberweisung) -->
-      <div id="successBankBox" class="p-3.5 rounded-2xl bg-black/60 border border-white/10 text-start text-xs space-y-2 hidden">
-        <div class="text-[11px] font-bold text-amber-400 flex items-center gap-1.5">
-          <i class="fa-solid fa-building-columns"></i>
-          <span data-i18n="pay_success_bank_title">German Bank Account Details (SEPA):</span>
-        </div>
-        <div class="p-2.5 rounded-xl bg-black/80 border border-white/10 font-mono text-white text-xs font-bold dir-ltr select-all tracking-wider text-center" id="successBankIban">
-          DE49 2105 0170 0000 0000 00
-        </div>
-        <div class="space-y-1 text-[11px] text-zinc-300">
-          <div class="flex items-center justify-between">
-            <span class="text-zinc-400" data-i18n="pay_bank_holder_label">Account Holder:</span>
-            <span class="font-bold text-white" id="successBankHolder">Ramazan Bakhtyary</span>
-          </div>
-          <div class="flex items-center justify-between">
-            <span class="text-zinc-400" data-i18n="pay_bank_ref_label">Payment Reference:</span>
-            <span class="font-mono font-bold text-amber-400" id="successBankRef">RB-XXXXXX</span>
-          </div>
-        </div>
-        <p class="text-[10px] text-zinc-400 pt-1" data-i18n="pay_success_bank_note">
-          Please transfer the total amount using your Order Number as payment reference. Your order will be dispatched via DHL immediately upon payment receipt.
-        </p>
-      </div>
+
 
       <!-- Status Badge & Courier info -->
       <div class="p-2.5 rounded-xl bg-white/[0.03] border border-white/10 flex items-center justify-center gap-2 text-[11px] font-medium text-zinc-300">
@@ -1726,22 +1667,7 @@
     }
 
     function selectPaymentMethod(method) {
-      selectedPaymentMethod = method;
-      ['paypal', 'bank'].forEach(m => {
-        const card = document.getElementById('payCard-' + m);
-        const radio = document.getElementById('radio-' + m);
-        if (m === method) {
-          if (card) {
-            card.className = 'p-3 rounded-xl bg-black/60 border border-amber-400/80 cursor-pointer transition select-none flex items-start gap-2.5';
-          }
-          if (radio) radio.checked = true;
-        } else {
-          if (card) {
-            card.className = 'p-3 rounded-xl bg-black/30 border border-white/10 hover:border-white/20 cursor-pointer transition select-none flex items-start gap-2.5';
-          }
-          if (radio) radio.checked = false;
-        }
-      });
+      selectedPaymentMethod = 'paypal';
       updateCartUI();
       renderReviewsList();
     }
@@ -1926,18 +1852,9 @@
       const basePayable = subtotalPrice + shippingPrice;
       const actualFinalTotal = basePayable;
 
-      // Toggle action sections based on payment method
+      // Ensure PayPal online payment section is active
       const paypalSec = document.getElementById('paypalSection');
-      const bankSec = document.getElementById('bankTransferSection');
-
-      if (paypalSec) paypalSec.classList.toggle('hidden', selectedPaymentMethod !== 'paypal');
-      if (bankSec) bankSec.classList.toggle('hidden', selectedPaymentMethod !== 'bank');
-
-      // Update Bank IBAN & Holder Display
-      const ibanDisp = document.getElementById('bankIbanDisplay');
-      const holderDisp = document.getElementById('bankHolderDisplay');
-      if (ibanDisp && paymentFeeSettings.iban) ibanDisp.textContent = paymentFeeSettings.iban;
-      if (holderDisp && paymentFeeSettings.holder) holderDisp.textContent = paymentFeeSettings.holder;
+      if (paypalSec) paypalSec.classList.remove('hidden');
 
       // Final Total Amount (Cleanly includes the fee when PayPal is chosen - NO SEPARATE FEE ROW!)
       const totalEl = document.getElementById('cartTotal');
@@ -2241,12 +2158,10 @@
       const oIdEl = document.getElementById('successOrderId');
       const tAmtEl = document.getElementById('successTotalAmount');
       const dAddrEl = document.getElementById('successDeliveryAddr');
-      const bankBox = document.getElementById('successBankBox');
 
       if (oIdEl) oIdEl.textContent = orderId;
       if (tAmtEl) tAmtEl.textContent = formattedPrice;
       if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}`;
-      if (bankBox) bankBox.classList.add('hidden');
 
       // Save confirmed paid order in Supabase Cloud
       if (sbClient) {
@@ -2319,120 +2234,6 @@
           box.classList.remove('scale-100');
         }
       }
-    }
-
-    function confirmBankOrder() {
-      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
-      if (cart.length === 0) {
-        showToast(dict.cart_drawer_empty || 'Please add at least one item to your cart!');
-        return;
-      }
-
-      const nameEl = document.getElementById('custName');
-      const phoneEl = document.getElementById('custPhone');
-      const streetEl = document.getElementById('custStreet');
-      const plzEl = document.getElementById('custPlz');
-      const cityEl = document.getElementById('custCity');
-      const countryEl = document.getElementById('custCountry');
-
-      const name = nameEl ? nameEl.value.trim() : '';
-      const phone = phoneEl ? phoneEl.value.trim() : '';
-      const street = streetEl ? streetEl.value.trim() : '';
-      const plz = plzEl ? plzEl.value.trim() : '';
-      const city = cityEl ? cityEl.value.trim() : '';
-      const country = countryEl ? countryEl.value : 'Germany (Deutschland)';
-
-      // Full address validation
-      if (!name || !street || !plz || !city) {
-        showToast(dict.validation_addr || 'Please provide your Name, Street, Postal Code (PLZ), and City!');
-        if (!name && nameEl) nameEl.focus();
-        else if (!street && streetEl) streetEl.focus();
-        else if (!plz && plzEl) plzEl.focus();
-        else if (!city && cityEl) cityEl.focus();
-        return;
-      }
-
-      // Save customer info in localStorage
-      try {
-        localStorage.setItem('rb_saved_customer', JSON.stringify({
-          name, phone, street, plz, city, country, payMethod: 'Bank Transfer (SEPA / IBAN)'
-        }));
-      } catch(e) {}
-
-      const orderId = 'RB-' + Math.floor(100000 + Math.random() * 900000);
-      const subtotalPrice = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
-      const shippingBase = (typeof shippingSettings.base !== 'undefined') ? parseFloat(shippingSettings.base) : 6.00;
-      const freeThreshold = (typeof shippingSettings.threshold !== 'undefined') ? parseFloat(shippingSettings.threshold) : 50.00;
-      const isFreeShipping = (subtotalPrice >= freeThreshold) || (subtotalPrice === 0);
-      const shippingPrice = isFreeShipping ? 0 : shippingBase;
-      const finalTotalPrice = subtotalPrice + shippingPrice; // 0% payment fee for bank transfer
-      const formattedPrice = formatLocalizedPrice(finalTotalPrice, currentLang);
-      const deliveryAddr = `${street}, ${plz} ${city} (${country})`;
-
-      // Populate Success Modal
-      const oIdEl = document.getElementById('successOrderId');
-      const tAmtEl = document.getElementById('successTotalAmount');
-      const dAddrEl = document.getElementById('successDeliveryAddr');
-      const bankBox = document.getElementById('successBankBox');
-      const bankRefEl = document.getElementById('successBankRef');
-      const bankIbanEl = document.getElementById('successBankIban');
-      const bankHolderEl = document.getElementById('successBankHolder');
-
-      if (oIdEl) oIdEl.textContent = orderId;
-      if (tAmtEl) tAmtEl.textContent = formattedPrice;
-      if (dAddrEl) dAddrEl.textContent = `${name} • ${deliveryAddr}${phone ? ' • ' + phone : ''}`;
-      if (bankBox) bankBox.classList.remove('hidden');
-      if (bankRefEl) bankRefEl.textContent = orderId;
-      if (bankIbanEl && paymentFeeSettings.iban) bankIbanEl.textContent = paymentFeeSettings.iban;
-      if (bankHolderEl && paymentFeeSettings.holder) bankHolderEl.textContent = paymentFeeSettings.holder;
-
-      // Save pending SEPA order in Supabase Cloud
-      if (sbClient) {
-        try {
-          sbClient.from('orders').insert([{
-            customer_name: name,
-            customer_address: `${deliveryAddr}` + (phone ? ` (Tel: ${phone})` : ''),
-            items: cart,
-            total_price: finalTotalPrice,
-            status: 'pending_sepa'
-          }]).then(() => {}).catch(() => {});
-        } catch(e) {}
-      }
-
-      // Silent Server-Side Notification to Shop Owner
-      try {
-        const orderPayload = {
-          orderId: orderId,
-          txId: 'SEPA-' + orderId,
-          customerName: name,
-          customerPhone: phone,
-          deliveryAddress: deliveryAddr,
-          items: cart.map(i => ({ title: i.name, qty: i.qty, price: i.price, variant: i.variant || '' })),
-          subtotal: subtotalPrice,
-          shipping: shippingPrice,
-          fee: 0,
-          total: finalTotalPrice,
-          payMethod: 'Bank Transfer (SEPA / IBAN Germany)',
-          lang: currentLang
-        };
-
-        fetch('/api/notify-owner', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderPayload)
-        }).catch(err => console.log('Silent server notification dispatch:', err));
-      } catch(err) {
-        console.log('Notification payload error:', err);
-      }
-
-      // Clear cart
-      cart = [];
-      saveCart();
-      updateCartUI();
-      closeCart();
-
-      // Show Success Modal
-      openSuccessModal();
     }
 
     function checkoutWhatsApp(methodOverride) {
@@ -2818,7 +2619,7 @@ ${dict.cart_subtotal || "Subtotal:"} ${formattedSubtotal}
     // =========================================================================
     // APP BUILD VERSION & CACHE PURGER
     // =========================================================================
-    const APP_BUILD_VERSION = '2026.10.25.10';
+    const APP_BUILD_VERSION = '2026.10.25.11';
     if (localStorage.getItem('rb_app_build_version') !== APP_BUILD_VERSION) {
       localStorage.removeItem('rb_products');
       localStorage.removeItem('rb_shipping_settings');

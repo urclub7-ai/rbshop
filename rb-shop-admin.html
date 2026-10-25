@@ -355,29 +355,7 @@
               </div>
             </div>
 
-            <!-- Bank Account Details for SEPA (مشخصات حساب بانکی برای واریز مستقیم) -->
-            <div class="pt-3 border-t border-white/10 space-y-2.5">
-              <label class="block text-xs font-bold text-white flex items-center gap-2">
-                <i class="fa-solid fa-building-columns text-emerald-400"></i>
-                <span>مشخصات حساب بانکی در آلمان (IBAN جهت واریز مستقیم بانکی):</span>
-              </label>
-              <p class="text-[11px] text-slate-400 leading-relaxed">
-                مشتریانی که در صفحه پرداخت گزینه «واریز بانکی» را انتخاب می‌کنند، این شماره شبا و نام صاحب حساب را برای واریز مشاهده خواهند کرد.
-              </p>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">شماره شبا (IBAN) دکان برای واریز بانکی:</label>
-                  <input type="text" id="storeIbanInput" placeholder="DE49 2105 0170 0000 0000 00" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-mono font-bold text-emerald-300 dir-ltr text-right focus:outline-none focus:border-rose-500">
-                  <span class="text-[10px] text-slate-500 mt-1 block">مشتری با انتخاب واریز بانکی، این شبا را می‌بیند</span>
-                </div>
-                <div>
-                  <label class="block text-xs font-bold text-slate-300 mb-1">نام دارنده حساب بانکی (Inhaber):</label>
-                  <input type="text" id="storeBankHolderInput" placeholder="Ramazan Bakhtyary" class="w-full h-11 rounded-2xl bg-black/60 border border-white/15 px-4 text-xs sm:text-sm font-bold text-white dir-ltr text-right focus:outline-none focus:border-rose-500">
-                  <span class="text-[10px] text-slate-500 mt-1 block">نام صاحب حساب در بانک آلمان</span>
-                </div>
-              </div>
-            </div>
 
             <!-- Orders Hub Quick Notice -->
             <div class="p-4 rounded-2xl bg-emerald-950/20 border border-emerald-500/25 space-y-2">
@@ -1781,14 +1759,7 @@
       if (document.getElementById('storeFreeShippingThresholdInput')) {
         document.getElementById('storeFreeShippingThresholdInput').value = (typeof s.freeShippingThreshold !== 'undefined' ? Number(s.freeShippingThreshold) : 50.00).toFixed(2);
       }
-      if (document.getElementById('storeIbanInput')) {
-        document.getElementById('storeIbanInput').value = s.iban || 'DE49 2105 0170 0000 0000 00';
-      }
-      
-      
-      if (document.getElementById('storeBankHolderInput')) {
-        document.getElementById('storeBankHolderInput').value = s.bankHolder || 'Ramazan Bakhtyary';
-      }
+
     }
 
     function handleSaveStoreSettings(e) {
@@ -1833,19 +1804,7 @@
           in_stock: false
         }], { onConflict: 'id' }).then(() => {});
 
-        const iban = document.getElementById('storeIbanInput') ? document.getElementById('storeIbanInput').value.trim() : 'DE49 2105 0170 0000 0000 00';
-        const holder = document.getElementById('storeBankHolderInput') ? document.getElementById('storeBankHolderInput').value.trim() : 'Ramazan Bakhtyary';
 
-        sbClient.from('products').upsert([{
-          id: '__store_payment_fee__',
-          title: 'Payment Fee Config',
-          price: 0,
-          unit: '0',
-          description: iban,
-          variant: holder,
-          category: 'system_setting',
-          in_stock: false
-        }], { onConflict: 'id' }).then(() => {});
 
         
       }
