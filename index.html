@@ -534,7 +534,7 @@
           <div class="grid grid-cols-1 sm:flex sm:flex-wrap items-center gap-2.5 w-full max-w-md lg:max-w-none pt-2">
             <a href="#products" class="w-full sm:w-auto px-6 py-3 rounded-full bg-white hover:bg-rose-50 text-[#7a0f1b] font-black text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl transition active:scale-95">
               <i class="fa-solid fa-bag-shopping text-sm"></i>
-              <span data-i18n="hero_cta_products">Explore Products & Boxes (12 Items)</span>
+              <span data-i18n="hero_cta_products">Explore Products & Boxes</span>
             </a>
             <a href="https://wa.me/491729343833" 
                target="_blank" 
@@ -589,26 +589,26 @@
         
         <!-- Filter Pills Tabs (Horizontal Swipe on Mobile) -->
         <div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-3 px-3 sm:mx-0 sm:px-0" id="filterContainer">
-          <button onclick="filterProducts('all')" class="filter-btn active shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red" data-i18n="cat_all">
-            All Items (12)
+          <button onclick="filterProducts('all')" class="filter-btn active shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-red text-white shadow-glow-red" data-cat="all">
+            <span>All Items</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(19)</span>
           </button>
-          <button onclick="filterProducts('packages')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_packages">
-            Royal Gift Boxes (4)
+          <button onclick="filterProducts('fruits')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-cat="fruits">
+            <span>Dried Fruits & Raisins</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(10)</span>
           </button>
-          <button onclick="filterProducts('nuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_nuts">
-            Almonds & Nuts (2)
+          <button onclick="filterProducts('nuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-cat="nuts">
+            <span>Almonds & Nuts</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(4)</span>
           </button>
-          <button onclick="filterProducts('pinenuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_pinenuts">
-            Pistachios & Pine Nuts (2)
+          <button onclick="filterProducts('pinenuts')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-cat="pinenuts">
+            <span>Pistachios & Pine Nuts</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(2)</span>
           </button>
-          <button onclick="filterProducts('fruits')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_fruits">
-            Dried Fruits & Raisins (3)
+          <button onclick="filterProducts('saffron')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-cat="saffron">
+            <span>Saffron & Spices</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(3)</span>
           </button>
-          <button onclick="filterProducts('saffron')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_saffron">
-            Super Negin Saffron (1)
+          <button onclick="filterProducts('packages')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-cat="packages" style="display: none;">
+            <span>Royal Gift Boxes</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(0)</span>
           </button>
-          <button onclick="filterProducts('drinks')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-i18n="cat_drinks">
-            Energy Drinks (2)
+          <button onclick="filterProducts('drinks')" class="filter-btn shrink-0 whitespace-nowrap px-3.5 py-2 rounded-full text-xs font-bold transition bg-brand-surface border border-brand-border text-brand-silver hover:text-white hover:border-brand-red" data-cat="drinks" style="display: none;">
+            <span>Energy Drinks</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(0)</span>
           </button>
         </div>
 
@@ -1997,16 +1997,14 @@
 
     // Filter Products by Category
     function filterProducts(cat) {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
+      document.querySelectorAll('#filterContainer .filter-btn').forEach(btn => {
         btn.classList.remove('active', 'bg-brand-red', 'text-white', 'shadow-glow-red');
         btn.classList.add('bg-brand-surface', 'border-brand-border', 'text-brand-silver');
       });
-      if (window.event && window.event.target) {
-        const t = window.event.target.closest('button');
-        if (t) {
-          t.classList.add('active', 'bg-brand-red', 'text-white', 'shadow-glow-red');
-          t.classList.remove('bg-brand-surface', 'text-brand-silver');
-        }
+      const activeBtn = document.querySelector(`#filterContainer .filter-btn[data-cat="${cat}"]`);
+      if (activeBtn) {
+        activeBtn.classList.add('active', 'bg-brand-red', 'text-white', 'shadow-glow-red');
+        activeBtn.classList.remove('bg-brand-surface', 'text-brand-silver');
       }
 
       const cards = document.querySelectorAll('.product-card');
@@ -2023,6 +2021,60 @@
       const countEl = document.getElementById('productsCount');
       if (countEl) {
         countEl.innerText = getLocalizedCountStatus(visibleCount, currentLang);
+      }
+    }
+
+    // Dynamic Category Filter Tabs & Counts in active language
+    function updateCategoryFilterTabs() {
+      const prods = (cachedProducts && cachedProducts.length > 0) ? cachedProducts : [];
+      const counts = {
+        all: prods.length,
+        packages: 0,
+        nuts: 0,
+        pinenuts: 0,
+        fruits: 0,
+        saffron: 0,
+        drinks: 0
+      };
+
+      prods.forEach(p => {
+        if (p.category && counts[p.category] !== undefined) {
+          counts[p.category]++;
+        }
+      });
+
+      const dict = UI_TRANSLATIONS[currentLang] || UI_TRANSLATIONS['en'];
+      const catKeys = {
+        all: 'cat_all',
+        packages: 'cat_packages',
+        nuts: 'cat_nuts',
+        pinenuts: 'cat_pinenuts',
+        fruits: 'cat_fruits',
+        saffron: 'cat_saffron',
+        drinks: 'cat_drinks'
+      };
+
+      document.querySelectorAll('#filterContainer .filter-btn').forEach(btn => {
+        const cat = btn.getAttribute('data-cat');
+        if (!cat) return;
+        const cnt = counts[cat] || 0;
+        const key = catKeys[cat];
+        const rawLabel = (dict && dict[key]) ? dict[key] : cat;
+        const cleanLabel = rawLabel.replace(/\s*\([0-9۰-۹٠-٩]+\)/g, '').trim();
+
+        // If category is completely empty (cnt === 0) and not 'all', hide it from view
+        if (cat !== 'all' && cnt === 0) {
+          btn.style.display = 'none';
+        } else {
+          btn.style.display = 'inline-flex';
+          const formattedCnt = formatLocalizedNumber(cnt, currentLang);
+          btn.innerHTML = `<span>${cleanLabel}</span> <span class="opacity-80 font-mono text-[11px] mr-1 ml-1">(${formattedCnt})</span>`;
+        }
+      });
+
+      const countEl = document.getElementById('productsCount');
+      if (countEl) {
+        countEl.innerText = getLocalizedCountStatus(prods.length, currentLang);
       }
     }
 
@@ -2309,10 +2361,7 @@
         `;
       }).join('');
 
-      const countEl = document.getElementById('productsCount');
-      if (countEl) {
-        countEl.innerText = getLocalizedCountStatus(cachedProducts.length, currentLang);
-      }
+      updateCategoryFilterTabs();
     }
 
     // Language Switcher Controller
@@ -2381,6 +2430,8 @@
       // Re-render products & cart
       if (cachedProducts && cachedProducts.length > 0) {
         renderDynamicProducts(cachedProducts);
+      } else {
+        updateCategoryFilterTabs();
       }
       updateCartUI();
     }
